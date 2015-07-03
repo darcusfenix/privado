@@ -6,15 +6,8 @@
 // to create separate JavaScript files as needed.
 //
 //= require jquery
-//= require_tree .
+//= require angular.min
+//= require angular-route.min
+//= require loading-bar
+//= require main/Main
 //= require_self
-
-if (typeof jQuery !== 'undefined') {
-	(function($) {
-		$('#spinner').ajaxStart(function() {
-			$(this).fadeIn();
-		}).ajaxStop(function() {
-			$(this).fadeOut();
-		});
-	})(jQuery);
-}

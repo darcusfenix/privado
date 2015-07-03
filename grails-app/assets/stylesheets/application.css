@@ -9,5 +9,7 @@
 *
 *= require main
 *= require mobile
+*= require loading-bar
+*= require bootstrap.min
 *= require_self
 */
