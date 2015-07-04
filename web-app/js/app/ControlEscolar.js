@@ -6,6 +6,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
         controller: 'MainController',
         templateUrl: 'views/main/index.gsp'
+    }).when('/user/', {
+        controller: 'UserListController',
+        templateUrl: 'views/user/index.gsp'
     }).otherwise({
         redirectTo: '/'
     });
