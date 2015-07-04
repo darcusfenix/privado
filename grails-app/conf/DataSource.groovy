@@ -1,9 +1,10 @@
 dataSource {
     pooled = true
     jmxExport = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
+    driverClassName = "com.mysql.jdbc.Driver"
+    username = "root"
     password = ""
+    dialect = org.hibernate.dialect.MySQLDialect
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -12,14 +13,23 @@ hibernate {
     cache.region.factory_class = 'org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory' // Hibernate 4
     singleSession = true // configure OSIV singleSession mode
     flush.mode = 'manual' // OSIV session flush mode outside of transactional context
+    show_sql = true
+    format_sql = true
 }
 
 // environment specific settings
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            pooled = true
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            driverClassName = "com.mysql.jdbc.Driver"
+            //url = "jdbc:sqlserver://206.225.81.10:1433;databaseName=CasasGeo"
+            url = "jdbc:mysql://localhost/ControlEscuela"
+            //url = "jdbc:sqlserver://201.155.52.247:1433;databaseName=Subasta"
+            username = "root"
+            password = "n0m3l0s3"
+            autoReconnect = true
         }
     }
     test {
