@@ -14,5 +14,6 @@
 		<div class="row" ng-view></div>
 		<script type="text/javascript" src="${resource(dir: 'js/app', file: 'ControlEscolar.js')}" ></script>
 		<script type="text/javascript" src="${resource(dir: 'js/app/main', file: 'Main.js')}" ></script>
+		<script type="text/javascript" src="${resource(dir: 'js/app/user', file: 'User.js')}" ></script>
 	</body>
 </html>
