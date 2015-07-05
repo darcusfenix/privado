@@ -5,16 +5,19 @@ var app = angular.module('ControlEscuela', ['ngRoute', 'ngResource', 'angular-lo
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
         controller: 'MainController',
-        templateUrl: 'views/main/index.gsp'
+        templateUrl: 'app/views/main/index.gsp'
     }).when('/user/', {
         controller: 'UserListController',
-        templateUrl: 'views/user/index.gsp'
+        templateUrl: 'app/views/user/index.gsp'
     }).when('/user/create', {
         controller: 'UserCreateController',
-        templateUrl: 'views/user/create.gsp'
+        templateUrl: 'app/views/user/create.gsp'
     }).when('/user/edit/:id', {
         controller: 'UserEditController',
-        templateUrl: 'views/user/edit.gsp'
+        templateUrl: 'app/views/user/edit.gsp'
+    }).when('/user/show/:id', {
+        controller: 'UserShowController',
+        templateUrl: 'app/views/user/show.gsp'
     }).otherwise({
         redirectTo: '/'
     });
