@@ -28,7 +28,7 @@ environments {
             url = "jdbc:mysql://localhost/ControlEscuela"
             //url = "jdbc:sqlserver://201.155.52.247:1433;databaseName=Subasta"
             username = "root"
-            password = "n0m3l0s3"
+            password = "2706"
             autoReconnect = true
         }
     }
