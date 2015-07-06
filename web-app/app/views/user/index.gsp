@@ -40,15 +40,29 @@
                             Teléfono
                         </th>
                     </tr>
-                    </thead>
-                    <tbody">
-                    <tr ng-repeat="user in userList">
-                        <td><a href="#/user/show/{{user.id}}">{{user.name}}</a></td>
-                        <td><a href="#/user/show/{{user.id}}">{{user.lastName}}</a></td>
-                        <td><a href="#/user/show/{{user.id}}">{{user.username}}</a></td>
-                        <td><a href="#/user/show/{{user.id}}">{{user.phoneNumber}}</a></td>
+                    <tr>
+                        <th>
+                            <input type="text" ng-model="filtro.name">
+                        </th>
+                        <th>
+                            <input type="text" ng-model="filtro.lastName">
+                        </th>
+                        <th>
+                            <input type="text" ng-model="filtro.username">
+                        </th>
+                        <th>
+                            <input type="text" ng-model="filtro.phoneNumber">
+                        </th>
                     </tr>
-                </tbody>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in userList|filter:filtro">
+                            <td><a href="#/user/show/{{user.id}}">{{user.name}}</a></td>
+                            <td><a href="#/user/show/{{user.id}}">{{user.lastName}}</a></td>
+                            <td><a href="#/user/show/{{user.id}}">{{user.username}}</a></td>
+                            <td><a href="#/user/show/{{user.id}}">{{user.phoneNumber}}</a></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

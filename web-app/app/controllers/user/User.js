@@ -2,12 +2,7 @@
  * Created by alberto on 3/07/15.
  */
 function UserListController($scope, User) {
-    console.log(User.query());
     $scope.userList = User.query();
-
-    setTimeout(function(){
-        TableAdvanced.init();
-    }, 1000);
 };
 
 function UserEditController($scope, $location, $routeParams, User) {
