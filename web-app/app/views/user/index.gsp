@@ -1,25 +1,12 @@
-<div class="row margin-top-10">
-    <div class="col-md-12">
-        <a href="#/user/create" class="btn btn-info">Crear Usuario</a>
-    </div>
-</div>
 
 <div class="row margin-top-10">
     <div class="col-md-12">
-        <!-- BEGIN EXAMPLE TABLE PORTLET-->
 
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
         <div class="portlet box green-haze">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-globe"></i>Lista de los alumnos
-                </div>
-
-                <div class="tools">
-                    <a href="javascript:;" class="reload">
-                    </a>
-                    <a href="javascript:;" class="remove">
-                    </a>
                 </div>
             </div>
 
@@ -42,16 +29,16 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="text" ng-model="filtro.name">
+                            <input type="text" ng-model="filtro.name" placeholder="Filtrar por nombre">
                         </th>
                         <th>
-                            <input type="text" ng-model="filtro.lastName">
+                            <input type="text" ng-model="filtro.lastName" placeholder="Filtrar por Apellido">
                         </th>
                         <th>
-                            <input type="text" ng-model="filtro.username">
+                            <input type="text" ng-model="filtro.username" placeholder="Filtrar por nombre de suario">
                         </th>
                         <th>
-                            <input type="text" ng-model="filtro.phoneNumber">
+                            <input type="text" ng-model="filtro.phoneNumber" placeholder="Filtrar por teléfono">
                         </th>
                     </tr>
                     </thead>
