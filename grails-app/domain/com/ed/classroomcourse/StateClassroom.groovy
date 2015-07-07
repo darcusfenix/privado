@@ -1,6 +1,6 @@
 /**
  * By: Tapia Mujica Fernando 6/07/15
- * Desc:
+ * Desc: Relationship between state machine classroom with classroom
  */
 
 package com.ed.classroomcourse

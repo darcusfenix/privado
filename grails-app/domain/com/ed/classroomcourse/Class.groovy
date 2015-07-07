@@ -1,6 +1,6 @@
 /**
  * By: Tapia Mujica Fernando 6/07/15
- * Desc:
+ * Desc: Entity to abstract the logic of a class
  */
 
 package com.ed.classroomcourse

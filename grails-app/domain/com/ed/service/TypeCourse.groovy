@@ -1,6 +1,6 @@
 /**
  * By: Tapia Mujica Fernando 6/07/15
- * Desc:
+ * Desc: Entity to abstract the logic of course catalog
  */
 
 package com.ed.service

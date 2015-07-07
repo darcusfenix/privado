@@ -1,6 +1,6 @@
 /**
  * By: Tapia Mujica Fernando on 6/07/15
- * Desc:
+ * Desc: Relationship between services with students
  */
 
 package com.ed.accesscontrol

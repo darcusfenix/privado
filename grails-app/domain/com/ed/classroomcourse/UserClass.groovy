@@ -1,6 +1,6 @@
 /**
  * By: Tapia Mujica Fernando 6/07/15
- * Desc:
+ * Desc: Relationship between User with your classes
  */
 
 package com.ed.classroomcourse

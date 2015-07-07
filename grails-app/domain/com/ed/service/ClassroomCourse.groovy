@@ -1,6 +1,6 @@
 /**
  * By: Tapia Mujica Fernando on 6/07/15
- * Desc:
+ * Desc: Entity to abstract the logic of classroom course service
  */
 
 package com.ed.service

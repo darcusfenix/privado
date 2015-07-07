@@ -1,6 +1,6 @@
 /**
  * By: Tapia Mujica Fernando 6/07/14
- * Desc:
+ * Desc: Relationship between office with classroom
  */
 
 package com.ed.service
