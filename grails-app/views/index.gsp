@@ -34,6 +34,12 @@
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/global/plugins/datatables/plugins/bootstrap', file: 'dataTables.bootstrap.css')}" />
     <!-- FIN DE PLUGINS SON PARA MOSTRAR TABLAS -->
 
+    <!-- begin profile user styles -->
+    <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/global/plugins/bootstrap-fileinput', file: 'bootstrap-fileinput.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/pages/css', file: 'profile.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/pages/css', file: 'tasks.css')}">
+    <!-- end profile user styles -->
+
     <!-- FIN DE TODOS LOS ESTILOS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
     <!-- BEGIN THEME STYLES -->
@@ -143,8 +149,6 @@
 <script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'metronic.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/tema/scripts', file: 'layout.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/tema/scripts', file: 'demo.js')}"></script>
-
-
 <script type="text/javascript" src="${resource(dir: 'assets/scripts', file: 'table-advanced.js')}"></script>
 
 
