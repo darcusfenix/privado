@@ -1,11 +1,13 @@
 /**
  * Created by alberto on 3/07/15.
  */
-function UserListController($scope, User) {
+function UserListController($scope, User, $location, $rootScope) {
+        $rootScope.location = $location.path();
     $scope.userList = User.query();
 };
 
-function UserEditController($scope, $location, $routeParams, User) {
+function UserEditController($scope, $location, $routeParams, User, $rootScope) {
+    $rootScope.location = $location.path();
     $scope.userInstance = User.get({id: $routeParams.id});
     $scope.updateUser = function updateUser() {
         $scope.userInstance = $scope.userInstance.$update();
@@ -17,7 +19,8 @@ function UserEditController($scope, $location, $routeParams, User) {
 
 };
 
-function UserShowController($scope, $location, $routeParams, User) {
+function UserShowController($scope, $location, $routeParams, User, $rootScope) {
+    $rootScope.location = $location.path();
     User.get({id: $routeParams.id}).$promise.then(function (user) {
         $scope.userInstance = user;
     });
@@ -30,7 +33,8 @@ function UserShowController($scope, $location, $routeParams, User) {
         });
     };
 };
-function UserCreateController($scope, $location, User) {
+function UserCreateController($scope, $location, User, $rootScope) {
+    $rootScope.location = $location.path();
     $scope.errors = [];
     $scope.userInstance = User.create();
     $scope.saveUser = function saveUser() {

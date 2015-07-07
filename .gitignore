@@ -36,3 +36,4 @@
 target
 *.war
 *.class
+grails-app/conf/DataSource.groovy
