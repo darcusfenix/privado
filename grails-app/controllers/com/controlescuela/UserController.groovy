@@ -16,6 +16,7 @@ class UserController {
 
     def save(User userInstance) {
         if (userInstance.save(flush: true, failOnError: true)) {
+            UserRole.create(userInstance, Role.findById(params.int('roleId')), true)
             response.status = 200
             render userInstance as JSON
         } else {
@@ -43,6 +44,7 @@ class UserController {
 
     def delete(Integer id) {
         def user = User.findById(id ?: params.int("id"))
+        UserRole.removeAll(user, false)
         user.delete(flush: true)
         response.status = 200
         render([message: "Eliminado"] as JSON)
