@@ -1,104 +1,71 @@
 package com.controlescuela
 
+import grails.converters.JSON
 
-import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
-
-@Transactional(readOnly = true)
 class RoleController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Role.list(params), model: [roleInstanceCount: Role.count()]
+        render Role.list(params) as JSON
     }
 
-    def show(Role roleInstance) {
-        respond roleInstance
+    def show(Integer id) {
+        render Role.findById(id) as JSON
     }
 
     def create() {
-        respond new Role(params)
+        render new Role(params) as JSON
     }
 
-    @Transactional
     def save(Role roleInstance) {
         if (roleInstance == null) {
-            notFound()
+            response.status = 500
+            render(['message': 'El rol no puede ser nulo'] as JSON)
             return
         }
 
         if (roleInstance.hasErrors()) {
-            respond roleInstance.errors, view: 'create'
+            response.status = 500
+            render roleInstance.errors as JSON
             return
         }
 
-        roleInstance.save flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'role.label', default: 'Role'), roleInstance.id])
-                redirect roleInstance
-            }
-            '*' { respond roleInstance, [status: CREATED] }
+        if (roleInstance.save(flush: true, failOnError: true)) {
+            render roleInstance as JSON
+            return
         }
     }
 
-    def edit(Role roleInstance) {
-        respond roleInstance
+    def edit(Integer id) {
+        render Role.findById(id) as JSON
     }
 
-    @Transactional
     def update(Role roleInstance) {
         if (roleInstance == null) {
-            notFound()
+            response.status = 500
+            render(['message': 'El rol no puede ser nulo'] as JSON)
             return
         }
 
         if (roleInstance.hasErrors()) {
-            respond roleInstance.errors, view: 'edit'
+            response.status = 500
+            render roleInstance.errors as JSON
             return
         }
 
-        roleInstance.save flush: true
-        // aplication/json
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Role.label', default: 'Role'), roleInstance.id])
-                redirect roleInstance
-            }
-            '*' { respond roleInstance, [status: OK] }
+        if (roleInstance.save(flush: true, failOnError: true)) {
+            render roleInstance as JSON
+            return
         }
     }
 
 
-    @Transactional
-    def delete(Role roleInstance) {
-
-        if (roleInstance == null) {
-            notFound()
-            return
-        }
-
-        roleInstance.delete flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Role.label', default: 'Role'), roleInstance.id])
-                redirect action: "index", method: "GET"
-            }
-            '*' { render status: NO_CONTENT }
-        }
-    }
-
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'role.label', default: 'Role'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*' { render status: NOT_FOUND }
-        }
+    def delete(Integer id) {
+        Role roleInstance = Role.findById(id)
+        UserRole.removeAll(roleInstance, false)
+        roleInstance.delete(flush: true)
+        render(['message': 'Eliminado'] as JSON)
     }
 }
