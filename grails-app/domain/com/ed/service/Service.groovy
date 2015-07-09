@@ -10,6 +10,7 @@ import com.ed.accesscontrol.StudentService
 class Service implements Serializable{
 
     Integer serviceId
+    String nombre
     Float cost
     String period
     Boolean active

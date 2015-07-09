@@ -18,6 +18,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     }).when('/user/show/:id', {
         controller: 'UserShowController',
         templateUrl: 'app/views/user/show.gsp'
+    }).when('/voucherPayment/create', {
+        controller: 'VoucherPaymentCreateController',
+        templateUrl: 'app/views/voucherPayment/create.gsp'
     }).otherwise({
         redirectTo: '/'
     });

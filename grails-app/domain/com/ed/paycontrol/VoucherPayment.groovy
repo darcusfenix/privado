@@ -1,13 +1,9 @@
-/**
- * By: Tapia Mujica Fernando on 6/07/15
- * Desc: Entity to abstract the logic of a voucherpayment
- */
-
 package com.ed.paycontrol
 
 import com.ed.accesscontrol.StudentService
 
 import java.sql.Blob
+
 
 class VoucherPayment implements Serializable{
 
@@ -24,6 +20,9 @@ class VoucherPayment implements Serializable{
         payDate blank: true, nullable: true
         pay blank: true, nullable: true
     }
+
+
+
 
     static mapping = {
         table 't_voucher_payment_tab'
