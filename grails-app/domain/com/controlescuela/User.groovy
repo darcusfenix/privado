@@ -1,6 +1,7 @@
 package com.controlescuela
 
 class User {
+    Integer id
     String name
     String lastName
     String phoneNumber

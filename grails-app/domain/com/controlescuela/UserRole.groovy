@@ -1,7 +1,6 @@
 package com.controlescuela
 
 import grails.gorm.DetachedCriteria
-import groovy.transform.ToString
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
@@ -12,6 +11,11 @@ class UserRole implements Serializable {
 
     User user
     Role role
+
+    UserRole(def user, def role){
+        this.user = user
+        this.role = role
+    }
 
     @Override
     boolean equals(other) {

@@ -1,7 +1,7 @@
 package com.controlescuela
 
 class Role implements Serializable {
-
+    Integer id
     String authority
 
     Role(String authority){
