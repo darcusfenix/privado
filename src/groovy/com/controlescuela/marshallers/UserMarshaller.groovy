@@ -21,7 +21,7 @@ class UserMarshaller {
                     mobileNumber    : user.mobileNumber,
                     email           : user.email,
                     socialNetworkUrl: user.socialNetworkUrl,
-                    authorities     : user.getAuthorities(),
+                    authority    : user.getAuthorities()[0],
 
             ]
         }
