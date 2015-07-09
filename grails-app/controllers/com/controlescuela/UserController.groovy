@@ -35,6 +35,9 @@ class UserController {
 
     def update(User userInstance) {
         if (userInstance.save(flush: true)) {
+            UserRole.removeAll(userInstance)
+            UserRole.create(userInstance, Role.findById(params.int('roleId')), true)
+            response.status = 200
             render userInstance as JSON
         } else {
             response.status = 500
