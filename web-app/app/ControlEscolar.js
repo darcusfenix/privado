@@ -22,16 +22,3 @@ app.config(['$routeProvider', function ($routeProvider) {
         redirectTo: '/'
     });
 }]);
-
-/*
- .when('/user/create', {
- controller: 'UserCreateController',
- templateUrl: 'views/user/index.gsp'
- }).when('/user/edit/:id', {
- controller: 'UserEditController',
- templateUrl: 'views/user/edit.gsp'
- }).when('/user/show/:id', {
- controller: 'UserShowController',
- templateUrl: 'views/user/show.gsp'
- })
-* */
