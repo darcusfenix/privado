@@ -99,6 +99,7 @@
 
 <script type="text/javascript" src="${resource(dir: 'app', file: 'ControlEscolar.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'User.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Role.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/main', file: 'Main.js')}"></script>
 
