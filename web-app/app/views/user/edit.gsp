@@ -2,118 +2,6 @@
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
     <div class="col-md-12">
-        <!-- BEGIN PROFILE SIDEBAR -->
-        <div class="profile-sidebar" style="width:250px;">
-            <!-- PORTLET MAIN -->
-            <div class="portlet light profile-sidebar-portlet">
-                <!-- SIDEBAR USERPIC -->
-                <div class="profile-userpic">
-                    <img src="assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
-                </div>
-                <!-- END SIDEBAR USERPIC -->
-                <!-- SIDEBAR USER TITLE -->
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name">
-                        {{userInstance.username}}
-                    </div>
-
-                    <div class="profile-usertitle-job">
-                        Alumno
-                    </div>
-                </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
-                <div class="profile-userbuttons">
-                    <button type="button" class="btn btn-circle green-haze btn-sm">Follow</button>
-                    <button type="button" class="btn btn-circle btn-danger btn-sm">Message</button>
-                </div>
-                <!-- END SIDEBAR BUTTONS -->
-                <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li>
-                            <a href="extra_profile.html">
-                                <i class="icon-home"></i>
-                                Overview</a>
-                        </li>
-                        <li class="active">
-                            <a href="extra_profile_account.html">
-                                <i class="icon-settings"></i>
-                                Cuenta</a>
-                        </li>
-                        <li>
-                            <a href="page_todo.html" target="_blank">
-                                <i class="icon-check"></i>
-                                Tasks</a>
-                        </li>
-                        <li>
-                            <a href="extra_profile_help.html">
-                                <i class="icon-info"></i>
-                                Help</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- END MENU -->
-            </div>
-            <!-- END PORTLET MAIN -->
-            <!-- PORTLET MAIN -->
-            <div class="portlet light">
-                <!-- STAT -->
-                <div class="row list-separated profile-stat">
-                    <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title">
-                            37
-                        </div>
-
-                        <div class="uppercase profile-stat-text">
-                            Projects
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title">
-                            51
-                        </div>
-
-                        <div class="uppercase profile-stat-text">
-                            Tasks
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title">
-                            61
-                        </div>
-
-                        <div class="uppercase profile-stat-text">
-                            Uploads
-                        </div>
-                    </div>
-                </div>
-                <!-- END STAT -->
-                <div>
-                    <h4 class="profile-desc-title">About Marcus Doe</h4>
-                    <span class="profile-desc-text">Lorem ipsum dolor sit amet diam nonummy nibh dolore.</span>
-
-                    <div class="margin-top-20 profile-desc-link">
-                        <i class="fa fa-globe"></i>
-                        <a href="http://www.keenthemes.com">www.keenthemes.com</a>
-                    </div>
-
-                    <div class="margin-top-20 profile-desc-link">
-                        <i class="fa fa-twitter"></i>
-                        <a href="http://www.twitter.com/keenthemes/">@keenthemes</a>
-                    </div>
-
-                    <div class="margin-top-20 profile-desc-link">
-                        <i class="fa fa-facebook"></i>
-                        <a href="http://www.facebook.com/keenthemes/">keenthemes</a>
-                    </div>
-                </div>
-            </div>
-            <!-- END PORTLET MAIN -->
-        </div>
-        <!-- END BEGIN PROFILE SIDEBAR -->
         <!-- BEGIN PROFILE CONTENT -->
         <div class="profile-content">
             <div class="row">
@@ -128,15 +16,6 @@
                                 <li class="active">
                                     <a href="#tab_1_1" data-toggle="tab">Editar información Personal</a>
                                 </li>
-                                <li>
-                                    <a href="#tab_1_2" data-toggle="tab">Change Avatar</a>
-                                </li>
-                                <li>
-                                    <a href="#tab_1_3" data-toggle="tab">Change Password</a>
-                                </li>
-                                <li>
-                                    <a href="#tab_1_4" data-toggle="tab">Privacy Settings</a>
-                                </li>
                             </ul>
                         </div>
 
@@ -144,32 +23,62 @@
                             <div class="tab-content">
                                 <!-- PERSONAL INFO TAB -->
                                 <div class="tab-pane active" id="tab_1_1">
+                                    <form name="editUser" ng-submit="updateUser(editUser.$valid)"novalidate>
+                                        <div class="form-group">
+                                            <label class="control-label">Nombre de usuario:</label>
+                                            <input type="text" ng-model="userInstance.username" placeholder="Nombre de usuario" class="form-control"/>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label">Nombre de usuario:</label>
-                                        <input type="text" ng-model="userInstance.username" placeholder="{{userInstance.name}}" class="form-control"/>
-                                    </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Nombre:</label>
+                                            <input type="text" ng-model="userInstance.name" placeholder="Nombre(s)" class="form-control"/>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label">Nombre:</label>
-                                        <input type="text" ng-model="userInstance.name" placeholder="{{userInstance.name}}" class="form-control"/>
-                                    </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Apellido:</label>
+                                            <input type="text" ng-model="userInstance.lastName" placeholder="Apellido(s)" class="form-control"/>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label">Apellido:</label>
-                                        <input type="text" ng-model="userInstance.lastName" placeholder="{{userInstance.lastName}}" class="form-control"/>
-                                    </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Dirección:</label>
+                                            <input type="text" ng-model="userInstance.address" placeholder="Dirección" class="form-control"/>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label">Teléfono:</label>
-                                        <input type="text" ng-model="userInstance.phoneNumber" placeholder="{{userInstance.phoneNumber}}" class="form-control"/>
-                                    </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Correo Electrónico:</label>
+                                            <input type="text" name="email" ng-model="userInstance.email" placeholder="E-Mail" class="form-control" required/>
+                                            <span class="error" ng-show="editUser.email.$error.required">Required!</span><br>
+                                        </div>
 
-                                    <div class="margiv-top-10">
-                                        <button class="btn purple" ng-click="updateUser();">Actualizar datos</button>
-                                        <button class="btn btn-danger" ng-click="cancelar();">Cancelar</button>
-                                    </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Rol:</label>
+                                            <select ng-options="role.id as role.authority for role in roles" ng-model="userInstance.authority.id"></select>
+                                        </div>
 
+                                        <div class="form-group">
+                                            <label class="control-label">Teléfono:</label>
+                                            <input type="text" ng-model="userInstance.phoneNumber" placeholder="Teléfono" class="form-control"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Teléfono Móvil:</label>
+                                            <input type="text" ng-model="userInstance.mobileNumber" placeholder="Telefóno Móvil" class="form-control"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Contraseña:</label>
+                                            <input type="password" name="password" ng-model="userInstance.password" placeholder="Contraseña" class="form-control" required/>
+                                            <span class="error" ng-show="editUser.password.$error.required">Required!</span><br>
+                                        </div>
+                                        <div class="form-group" ng-show="editUser.password.$dirty">
+                                            <label class="control-label">Verifica Contraseña:</label>
+                                            <input type="password" ng-model="userInstance.verifyPassword" placeholder="Contraseña" class="form-control" required ng-valid=""/>
+                                        </div>
+                                        <div class="margiv-top-10">
+                                            <button type="submit" class="btn purple" ng-disabled="editUser.$invalid || userInstance.verifyPassword !== userInstance.password">Actualizar</button>
+                                            <button class="btn btn-danger" ng-click="cancelar()">Cancelar</button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <!-- END PERSONAL INFO TAB -->
                             </div>

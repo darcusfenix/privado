@@ -1,5 +1,6 @@
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
+    {{$root.message}}
     <div class="col-md-12">
         <!-- BEGIN PROFILE SIDEBAR -->
         <div class="profile-sidebar" style="width:250px;">
