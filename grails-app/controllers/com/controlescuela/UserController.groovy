@@ -15,13 +15,14 @@ class UserController {
     }
 
     def save(User userInstance) {
-        if (userInstance.save(flush: true, failOnError: true)) {
-            UserRole.create(userInstance, Role.findById(params.int('roleId')), true)
+        if (!userInstance.hasErrors()) {
+            userInstance.save()
+            UserRole.create(userInstance, Role.findById(params.int("roleId"), true))
             response.status = 200
-            render userInstance as JSON
+            render([user: userInstance, message: message(code: "my.property.message", args: ['Pepo', 'Reséndiz'])] as JSON)
         } else {
             response.status = 500
-            render userInstance.errors as JSON
+            render(userInstance.errors as JSON)
         }
     }
 
