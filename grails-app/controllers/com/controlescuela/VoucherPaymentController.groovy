@@ -4,8 +4,11 @@ import com.ed.accesscontrol.StudentService
 import com.ed.paycontrol.VoucherPayment
 import com.ed.paycontrol.StateVoucher
 import com.ed.service.Service
+import com.ed.service.TypeService
 import grails.converters.JSON
 import org.apache.tools.ant.types.resources.comparators.Date
+import org.grails.datastore.mapping.query.api.Criteria
+import org.h2.util.StatementBuilder
 
 class VoucherPaymentController {
 
@@ -20,40 +23,22 @@ class VoucherPaymentController {
     def save(VoucherPayment voucherPaymentInstance) {
 
 
-        User user = new User()
-        user.id = 1
 
-        println(user)
 
-        Service service = new Service()
-        service.id = 4
+        User otroU = User.findById(1)
 
-        println(service)
+        Service otroS = Service.findById(1)
 
-        StateVoucher stateVoucher = new StateVoucher()
-        stateVoucher.id = 1
-
-        println(stateVoucher.id + " state voucher")
-
-        StudentService studentService = new StudentService()
-        studentService.user = user
-        studentService.service = service
-        studentService.active = true
-
-        println ("student service --> id_user " + studentService.user.id + " id_service: " + studentService.service.id)
+        //StudentService studentService = StudentService.find("from StudentService where user=:user and service=:service", [user : otroU, service: otroS])
+        StudentService studentService = StudentService.findByUserAndService(otroU, otroS)
 
         voucherPaymentInstance.studentService = studentService
         voucherPaymentInstance.stateId = 1
-        voucherPaymentInstance.stateVoucher = stateVoucher
+        voucherPaymentInstance.image = null
+        voucherPaymentInstance.payDate = new java.util.Date()
+        voucherPaymentInstance.stateVoucher = StateVoucher.findById(1)
 
-
-
-        println("id del voucher " + voucherPaymentInstance.stateVoucher.id)
-
-
-
-
-        if (voucherPaymentInstance.save()) {
+        if (voucherPaymentInstance.save(flush: true, failOnError: true)) {
             response.status = 200
             render voucherPaymentInstance as JSON
         }
@@ -64,3 +49,4 @@ class VoucherPaymentController {
 
     }
 }
+

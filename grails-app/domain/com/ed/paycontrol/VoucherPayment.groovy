@@ -16,9 +16,11 @@ class VoucherPayment implements Serializable{
     StateVoucher stateVoucher
 
     static constraints = {
+
         image blank: true, nullable: true
         payDate blank: true, nullable: true
         pay blank: true, nullable: true
+
     }
 
 
