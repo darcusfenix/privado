@@ -9,7 +9,6 @@ import java.sql.Blob
 
 class Question implements Serializable{
 
-    Integer questionId
     Integer number
     String text
     Blob image
@@ -22,7 +21,7 @@ class Question implements Serializable{
 
     static mapping = {
         table 't_question_tab'
-        id name: 'questionId', column: 'id_question', generator: 'identity'
+        id column: 'id_question', generator: 'identity'
         number column: 'nu_question'
         text column: 'tx_question'
         image column: 'bl_image'

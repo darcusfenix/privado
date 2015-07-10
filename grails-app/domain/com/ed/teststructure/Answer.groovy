@@ -9,7 +9,6 @@ import java.sql.Blob
 
 class Answer {
 
-    Integer answerId
     Boolean state
     String textAnswer
     Blob image
@@ -20,7 +19,7 @@ class Answer {
 
     static mapping = {
         table 't_answer_tab'
-        id name: 'answerId', column: 'id_answer', generator: 'identity'
+        id column: 'id_answer', generator: 'identity'
         state column: 'st_state'
         textAnswer column: 'tx_answer'
         image column: 'bl_image'
