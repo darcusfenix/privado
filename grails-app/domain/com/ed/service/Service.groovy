@@ -9,14 +9,13 @@ import com.ed.accesscontrol.StudentService
 
 class Service implements Serializable{
 
-    Integer serviceId
     Float cost
     String period
     Boolean active
     Date stDate
     Date endDate
     static hasMany = [studentService: StudentService]
-    static belongsTo = [typeService: TypeService]
+    TypeService typeService
 
     static constraints = {
         cost nullable: false
@@ -30,7 +29,7 @@ class Service implements Serializable{
     static mapping = {
         tablePerHierarchy false
         table 't_service_tab'
-        id name: 'serviceId', column: 'id_service', generator: 'identity'
+        id column: 'id_service', generator: 'identity'
         cost column: 'nu_cost'
         period column: 'tx_period'
         active column: 'st_active'

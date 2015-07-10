@@ -7,7 +7,9 @@ package com.ed.classroomcourse
 
 class Class implements Serializable{
 
-    Integer classId
+    Date dateClass
+    String stHour
+    String endHour
     String name
     String description
     static belongsTo = [classroom: Classroom]
@@ -17,8 +19,11 @@ class Class implements Serializable{
 
     static mapping = {
         table 't_class_tab'
-        id name: 'classId', column: 'id_class', generator: 'identity'
+        id column: 'id_class', generator: 'identity'
         name column: 'nb_class'
+        dateClass column: 'fh_date_class'
+        stHour column: 'fh_st_hour'
+        endHour column: 'fh_end_hour'
         description column: 'ds_class'
         version false
     }
