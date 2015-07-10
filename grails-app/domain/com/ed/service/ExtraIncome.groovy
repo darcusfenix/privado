@@ -7,7 +7,6 @@ package com.ed.service
 
 class ExtraIncome implements Serializable{
 
-    Integer incomeId
     Date incomeDate
     Float income
     static belongsTo = [extraService: ExtraService]
@@ -17,7 +16,7 @@ class ExtraIncome implements Serializable{
 
     static mapping = {
         table 't_extra_income_tab'
-        id name: 'incomeId', column: 'id_income', generator: 'identity'
+        id column: 'id_income', generator: 'identity'
         incomeDate column: 'fh_income'
         income column: 'nu_income'
         version false
