@@ -86,7 +86,7 @@
                                     <input type="text" ng-model="userInstance.email" class="form-control" name="email" required/>
                                 </div>
                             </div>
-                            <span class="help-block" ng-show="createUser.address.$error.required||validator.address.hasError">
+                            <span class="help-block" ng-show="createUser.email.$error.required||validator.email.hasError">
                                 {{validator.email.message}}
                             </span>
                         </div>
