@@ -45,11 +45,10 @@ class BootStrap {
 
         Service service = new Service()
         service.active = true;
-        service.nombre = "servicio que chinga"
         service.cost = 1500.00
         service.period = "2015"
-        service.stDate = "2015-05-10"
-        service.endDate = "2015-10-05"
+        service.stDate = new Date()
+        service.endDate = new Date()
         service.typeService = TypeService.findById(1)
         service.save()
 
