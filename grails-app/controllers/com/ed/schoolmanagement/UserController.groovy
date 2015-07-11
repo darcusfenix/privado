@@ -44,7 +44,7 @@ class UserController {
     def update() {
         User userInstance = User.findById(request.JSON.id)
         userInstance.properties = request.JSON
-        if (!userInstance.hasErrors()) {
+        if (userInstance.validate()) {
             userInstance.save()
             UserRole.removeAll(userInstance)
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
