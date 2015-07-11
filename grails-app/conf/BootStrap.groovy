@@ -1,8 +1,8 @@
-import com.controlescuela.*
+import com.ed.paycontrol.StateVoucher
 import com.ed.schoolmanagement.Role
 import com.ed.schoolmanagement.User
-import com.ed.schoolmanagement.UserRole
-import org.springframework.web.context.support.WebApplicationContextUtils
+import com.ed.service.Service
+import com.ed.service.TypeService
 
 class BootStrap {
 
@@ -27,6 +27,30 @@ class BootStrap {
         pepo.username = "pepo27"
         pepo.save()
         UserRole.create(pepo, alumno, true)
+
+
+        StateVoucher stateVoucher = new StateVoucher()
+        stateVoucher.name = "pendiente"
+        stateVoucher.description = "esta es una descripción"
+        stateVoucher.save();
+
+
+
+        TypeService typeService = new TypeService()
+        typeService.description = "esta es otra descripción"
+        typeService.name = "curso muy rápido"
+        typeService.save();
+
+        Service service = new Service()
+        service.active = true;
+        service.nombre = "servicio que chinga"
+        service.cost = 1500.00
+        service.period = "2015"
+        service.stDate = "2015-05-10"
+        service.endDate = "2015-10-05"
+        service.typeService = TypeService.findById(1)
+        service.save()
+
     }
     def destroy = {
 

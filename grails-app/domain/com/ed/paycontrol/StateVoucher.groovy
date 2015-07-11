@@ -18,5 +18,9 @@ class StateVoucher implements Serializable{
         version false
     }
 
+    Integer getStateVoucherId(){
+        return this.id;
+    }
+
 // TODO: Talk of Enum classes for the catalogs.
 }
