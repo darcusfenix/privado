@@ -5,7 +5,7 @@
 
 package com.ed.service
 
-import com.controlescuela.User
+import com.ed.schoolmanagement.User
 import com.ed.classroomcourse.Classroom
 
 class OfficeClassroom implements Serializable{

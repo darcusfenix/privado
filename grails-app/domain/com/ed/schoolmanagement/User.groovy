@@ -42,7 +42,12 @@ class User {
         lastName nullable: true, blank: true, maxSize: 100
         phoneNumber nullable: false, maxSize: 20
         mobileNumber nullable: true, maxSize: 20
-        email nullable: false, blank: false, email: true
+        email nullable: false, blank: false, unique:true, email: true
         socialNetworkUrl nullable: true, blank: true, url: true
+    }
+    static mapping = {
+        version false
+        table 't_user'
+        email unique: true
     }
 }
