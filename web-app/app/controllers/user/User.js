@@ -82,6 +82,7 @@ function UserCreateController($scope, $location, $rootScope, User, Role) {
                             message: $scope.errors[i].message
                         }
                     }
+                    console.log($scope.validator);
                 });
             return false;
         } else {
