@@ -9,6 +9,7 @@ import com.ed.accesscontrol.StudentService
 
 class Service implements Serializable{
 
+
     Float cost
     String period
     Boolean active
@@ -23,7 +24,6 @@ class Service implements Serializable{
         active nullable: true
         stDate nullable: true, blank: true
         endDate nullable: true, blank: true
-
     }
 
     static mapping = {
