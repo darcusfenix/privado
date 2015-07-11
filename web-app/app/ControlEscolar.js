@@ -18,6 +18,12 @@ app.config(['$routeProvider', function ($routeProvider) {
     }).when('/user/show/:id', {
         controller: 'UserShowController',
         templateUrl: 'app/views/user/show.gsp'
+    }).when('/classroom/', {
+        controller: 'ClassroomListController',
+        templateUrl: 'app/views/classroom/index.gsp'
+    }).when('/classroom/create', {
+        controller: 'ClassroomCreateController',
+        templateUrl: 'app/views/classroom/create.gsp'
     }).otherwise({
         redirectTo: '/'
     });

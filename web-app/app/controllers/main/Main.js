@@ -3,5 +3,6 @@
  */
 function MainController($scope, $location, $rootScope){
     $rootScope.location = $location.path();
+    $rootScope.nameSpace ="";
     $scope.message = "OK";
 }

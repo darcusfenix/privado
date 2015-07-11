@@ -28,6 +28,23 @@
                         </li>
                     </ul>
                 </li>
+                <li ng-class="($root.location == '/classroom/' || $root.location == '/classroom/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="icon-folder"></i>
+                        <span class="title">Grupos</span>
+                        <span class="arrow {{$root.location == '/classroom/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location == '/classroom/') ? 'active' : ''">
+                            <a href="#/classroom/">
+                                Ver todos</a>
+                        </li>
+                        <li ng-class="($root.location == '/classroom/create') ? 'active' : ''">
+                            <a href="#/classroom/create">
+                                Registrar Grupo</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javascript:;">
                         <i class="icon-diamond"></i>
