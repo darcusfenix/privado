@@ -1,9 +1,13 @@
 import com.controlescuela.*
+import com.ed.schoolmanagement.Role
+import com.ed.schoolmanagement.User
+import com.ed.schoolmanagement.UserRole
 import org.springframework.web.context.support.WebApplicationContextUtils
 
 class BootStrap {
 
     def init = { servletContext ->
+        // DO NOT MODIFY
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         springContext.getBean("customObjectMarshallers").register()
         //
