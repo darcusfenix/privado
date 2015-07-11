@@ -5,7 +5,7 @@
 
 package com.ed.classroomcourse
 
-import com.controlescuela.User
+import com.ed.schoolmanagement.User
 
 class UserClass implements Serializable {
 
