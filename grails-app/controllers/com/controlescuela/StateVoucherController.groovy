@@ -1,5 +1,6 @@
-package com.ed.paycontrol
+package com.controlescuela
 
+import com.ed.paycontrol.StateVoucher
 import grails.converters.JSON
 
 class StateVoucherController {
