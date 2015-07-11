@@ -1,6 +1,6 @@
-package com.controlescuela.marshallers
+package com.ed.schoolmanagement.marshallers
 
-import com.controlescuela.User
+import com.ed.schoolmanagement.User
 import grails.converters.JSON
 
 /**

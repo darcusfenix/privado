@@ -1,4 +1,4 @@
-package com.controlescuela
+package com.ed.schoolmanagement
 
 class User {
     Integer id

@@ -1,4 +1,4 @@
-package com.controlescuela.marshallers
+package com.ed.schoolmanagement.marshallers
 
 /**
  * Created by alberto on 9/07/15.

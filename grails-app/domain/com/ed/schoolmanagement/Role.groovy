@@ -1,4 +1,4 @@
-package com.controlescuela
+package com.ed.schoolmanagement
 
 class Role implements Serializable {
     Integer id
