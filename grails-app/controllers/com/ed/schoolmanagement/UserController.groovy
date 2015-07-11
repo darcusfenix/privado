@@ -16,13 +16,19 @@ class UserController {
 
     def save() {
         def userInstance = new User(request.JSON)
-        if (!userInstance.hasErrors()) {
+        log.error(request.JSON)
+        log.error(userInstance.validate())
+        if (userInstance.validate()) {
+            log.error("IS VALID");
             userInstance.save()
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.created.message")] as JSON)
         } else {
             response.status = 500
+            log.error("ERROR")
+            log.error(userInstance.errors)
+            log.error("ERROR")
             render(userInstance.errors as JSON)
         }
     }
