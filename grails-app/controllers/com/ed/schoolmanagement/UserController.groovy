@@ -11,15 +11,16 @@ class UserController {
     }
 
     def create() {
-        render new User() as JSON
+        render(new User() as JSON)
     }
 
-    def save(User userInstance) {
+    def save() {
+        def userInstance = new User(request.JSON)
         if (!userInstance.hasErrors()) {
             userInstance.save()
-            UserRole.create(userInstance, Role.findById(params.int("roleId"), true))
+            UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
             response.status = 200
-            render([user: userInstance, message: message(code: "my.property.message", args: ['Pepo', 'Reséndiz'])] as JSON)
+            render([user: userInstance, message: message(code: "de.user.created.message")] as JSON)
         } else {
             response.status = 500
             render(userInstance.errors as JSON)
@@ -27,22 +28,25 @@ class UserController {
     }
 
     def edit(Integer id) {
-        render User.findById(id ?: params.int("id")) as JSON
+        render(User.findById(id ?: params.int("id")) as JSON)
     }
 
     def show(Integer id) {
-        render User.findById(id ?: params.int("id")) as JSON
+        render(User.findById(id ?: params.int("id")) as JSON)
     }
 
-    def update(User userInstance) {
-        if (userInstance.save(flush: true)) {
+    def update() {
+        User userInstance = User.findById(request.JSON.id)
+        userInstance.properties = request.JSON
+        if (!userInstance.hasErrors()) {
+            userInstance.save()
             UserRole.removeAll(userInstance)
-            UserRole.create(userInstance, Role.findById(params.int('roleId')), true)
+            UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
             response.status = 200
-            render userInstance as JSON
+            render([user: userInstance, message: message(code: "de.user.updated.message")] as JSON)
         } else {
             response.status = 500
-            render userInstance.errors as JSON
+            render(userInstance.errors as JSON)
         }
     }
 
@@ -51,6 +55,6 @@ class UserController {
         UserRole.removeAll(user, false)
         user.delete(flush: true)
         response.status = 200
-        render([message: "Eliminado"] as JSON)
+        render([message: message(code: 'de.user.deleted.message')] as JSON)
     }
 }
