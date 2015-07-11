@@ -1,5 +1,5 @@
-import com.controlescuela.marshallers.CustomObjectMarshallers
-import com.controlescuela.marshallers.UserMarshaller
+import com.ed.schoolmanagement.marshallers.CustomObjectMarshallers
+import com.ed.schoolmanagement.marshallers.UserMarshaller
 
 // Place your Spring DSL code here
 beans = {
