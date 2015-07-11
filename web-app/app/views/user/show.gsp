@@ -56,9 +56,27 @@
 
                                     <div class="margiv-top-10">
                                         <button class="btn purple" ng-click="editUser();">Editar datos</button>
-                                        <button class="btn btn-danger" ng-click="deleteUser();">Eliminar</button>
+                                        <button class="btn btn-danger" data-toggle="modal" href="#model-confirm" >Eliminar</button>
                                     </div>
-
+                                    <div class="modal fade" id="model-confirm" tabindex="-1" role="basic" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                    <h4 class="modal-title text-danger">Mensaje de confirmación</h4>
+                                                </div>
+                                                <div class="modal-body ">
+                                                    <b>¿Está seguro que desea elimnar el usuario {{userInstance.name}} {{userInstance.lastName}} ?</b>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteUser();">Eliminar</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
                                 </div>
                                 <!-- END PERSONAL INFO TAB -->
                             </div>
