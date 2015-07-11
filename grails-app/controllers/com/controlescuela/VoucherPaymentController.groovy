@@ -4,11 +4,7 @@ import com.ed.accesscontrol.StudentService
 import com.ed.paycontrol.VoucherPayment
 import com.ed.paycontrol.StateVoucher
 import com.ed.service.Service
-import com.ed.service.TypeService
 import grails.converters.JSON
-import org.apache.tools.ant.types.resources.comparators.Date
-import org.grails.datastore.mapping.query.api.Criteria
-import org.h2.util.StatementBuilder
 
 class VoucherPaymentController {
 
