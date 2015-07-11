@@ -3,6 +3,7 @@ package com.controlescuela
 import com.ed.accesscontrol.StudentService
 import com.ed.paycontrol.VoucherPayment
 import com.ed.paycontrol.StateVoucher
+import com.ed.schoolmanagement.User
 import com.ed.service.Service
 import grails.converters.JSON
 
@@ -29,7 +30,7 @@ class VoucherPaymentController {
         StudentService studentService = StudentService.findByUserAndService(otroU, otroS)
 
         voucherPaymentInstance.studentService = studentService
-        voucherPaymentInstance.stateId = 1
+        voucherPaymentInstance.id = 1
         voucherPaymentInstance.image = null
         voucherPaymentInstance.payDate = new java.util.Date()
         voucherPaymentInstance.stateVoucher = StateVoucher.findById(1)
