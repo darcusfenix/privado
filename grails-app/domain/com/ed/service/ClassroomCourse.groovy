@@ -8,7 +8,7 @@ package com.ed.service
 class ClassroomCourse extends Service {
 
     Integer numberClasses
-    static belongsTo = [typeCourse: TypeCourse]
+    TypeCourse typeCourse
 
     static constraints = {
         numberClasses nullable: true, blank: true

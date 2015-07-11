@@ -57,7 +57,6 @@
 </head>
 
 <body ng-app="ControlEscuela" class="page-md page-header-fixed page-sidebar-closed-hide-logo">
-
 <!-- BEGIN HEADER -->
 <g:include view="tpl/header.html"/>
 <!-- END HEADER -->
@@ -77,6 +76,10 @@
         <div class="page-content">
 
             <!-- BEGIN PAGE HEAD -->
+            <div class="alert alert-success alert-dismissable" ng-show="$root.message">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <strong>{{$root.message}}</strong> </a>
+            </div>
             <g:include view="tpl/page-head.html"/>
             <!-- END PAGE HEAD -->
 
@@ -99,9 +102,9 @@
 
 <script type="text/javascript" src="${resource(dir: 'app', file: 'ControlEscolar.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'User.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'VoucherPayment.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Role.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/controllers/VoucherPayment', file: 'VoucherPayment.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/main', file: 'Main.js')}"></script>
 
 

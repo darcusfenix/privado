@@ -7,7 +7,6 @@ package com.ed.service
 
 class TypeCourse implements Serializable{
 
-    Integer id
     String name
     String description
 
@@ -16,7 +15,7 @@ class TypeCourse implements Serializable{
 
     static mapping = {
         table 't_type_course_cat'
-        id name: 'id', column: 'id_type', generator: 'identity'
+        id column: 'id_type', generator: 'identity'
         name column: 'nb_type'
         description column: 'ds_type'
         version false

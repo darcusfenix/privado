@@ -5,7 +5,7 @@
 
 package com.ed.accesscontrol
 
-import com.controlescuela.User
+import com.ed.schoolmanagement.User
 import com.ed.service.Service
 
 class StudentService implements Serializable {

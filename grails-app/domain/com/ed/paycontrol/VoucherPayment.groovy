@@ -7,8 +7,6 @@ import java.sql.Blob
 
 class VoucherPayment implements Serializable{
 
-    Integer paymentId
-    Integer stateId
     Blob image
     Date payDate
     Float pay
@@ -28,7 +26,7 @@ class VoucherPayment implements Serializable{
 
     static mapping = {
         table 't_voucher_payment_tab'
-        id name: 'paymentId', column: 'id_payment', generator: 'identity'
+        id column: 'id_payment', generator: 'identity'
         image column: 'bl_image'
         payDate column: 'fh_pay'
         pay column: 'nu_pay'

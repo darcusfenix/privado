@@ -6,35 +6,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
         controller: 'MainController',
         templateUrl: 'app/views/main/index.gsp'
-    }).when('/user/', {
-        controller: 'UserListController',
-        templateUrl: 'app/views/user/index.gsp'
-    }).when('/user/create', {
-        controller: 'UserCreateController',
-        templateUrl: 'app/views/user/create.gsp'
-    }).when('/user/edit/:id', {
-        controller: 'UserEditController',
-        templateUrl: 'app/views/user/edit.gsp'
-    }).when('/user/show/:id', {
-        controller: 'UserShowController',
-        templateUrl: 'app/views/user/show.gsp'
-    }).when('/voucherPayment/create', {
-        controller: 'VoucherPaymentCreateController',
-        templateUrl: 'app/views/voucherPayment/create.gsp'
     }).otherwise({
         redirectTo: '/'
     });
 }]);
-
-/*
- .when('/user/create', {
- controller: 'UserCreateController',
- templateUrl: 'views/user/index.gsp'
- }).when('/user/edit/:id', {
- controller: 'UserEditController',
- templateUrl: 'views/user/edit.gsp'
- }).when('/user/show/:id', {
- controller: 'UserShowController',
- templateUrl: 'views/user/show.gsp'
- })
-* */
