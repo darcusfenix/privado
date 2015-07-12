@@ -1,6 +1,6 @@
 
 <div class="row margin-top-10">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
 
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
         <div class="portlet box green-haze">
@@ -23,17 +23,17 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="text" ng-model="filtro.name" placeholder="Filtrar por nombre">
+                            <input type="text" ng-model="filtro.nameClassroom" placeholder="Filtrar por nombre">
                         </th>
                         <th>
-                            <input type="text" ng-model="filtro.lastName" placeholder="Filtrar por lugares">
+                            <input type="text" ng-model="filtro.places" placeholder="Filtrar por lugares">
                         </th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="classroom in classroomList|filter:filtro">
-                            <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.name}}</a></td>
-                            <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.lastName}}</a></td>
+                            <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameClassroom}}</a></td>
+                            <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.places}}</a></td>
                         </tr>
                     </tbody>
                 </table>

@@ -40,6 +40,13 @@
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/pages/css', file: 'tasks.css')}">
     <!-- end profile user styles -->
 
+    <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/global/plugins/clockface/css', file: 'clockface.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-datepicker/css', file: 'bootstrap-datepicker3.min.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-timepicker/css', file: 'bootstrap-timepicker.min.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-colorpicker/css', file: 'colorpicker.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-daterangepicker', file: 'daterangepicker-bs3.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-datetimepicker/css', file: 'bootstrap-datetimepicker.min.css')}">
+
     <!-- FIN DE TODOS LOS ESTILOS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
     <!-- BEGIN THEME STYLES -->
@@ -96,6 +103,8 @@
 <!-- END FOOTER -->
 
 <script type="text/javascript" src="${resource(dir: 'js', file: 'angular.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js', file: 'ui-bootstrap-tpls-0.13.0.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js', file: 'ui-bootstrap-custom-0.13.0.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'angular-route.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'angular-resource.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'loading-bar.js')}"></script>
@@ -103,8 +112,11 @@
 <script type="text/javascript" src="${resource(dir: 'app', file: 'ControlEscolar.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Role.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Classroom.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/controllers/classroom', file: 'Classroom.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ClassroomRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/main', file: 'Main.js')}"></script>
 
 
@@ -147,6 +159,14 @@
 <script type="text/javascript" src="${resource(dir: 'assets/global/plugins/datatables/plugins/bootstrap', file: 'dataTables.bootstrap.js')}"></script>
 <!-- FIN DE JS SON PARA LA FUNCIONALIDAD DE LAS TABLAS -->
 
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-datepicker/js', file: 'bootstrap-datepicker.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-timepicker/js', file: 'bootstrap-timepicker.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/clockface/js', file: 'clockface.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-daterangepicker', file: 'moment.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-daterangepicker', file: 'daterangepicker.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-colorpicker/js', file: 'bootstrap-colorpicker.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-datetimepicker/js', file: 'bootstrap-datetimepicker.min.js')}"></script>
+
 <!-- FIN DE TODOS LOS RECURSOS JS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
 
@@ -155,15 +175,13 @@
 <script type="text/javascript" src="${resource(dir: 'assets/tema/scripts', file: 'layout.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/tema/scripts', file: 'demo.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/scripts', file: 'table-advanced.js')}"></script>
-
-
+<script type="text/javascript" src="${resource(dir: 'assets/pages/scripts', file: 'components-pickers.js')}"></script>
 
 <script>
     jQuery(document).ready(function () {
         Metronic.init(); // init metronic core components
         Layout.init(); // init current layout
         Demo.init(); // init demo features
-
     });
 </script>
 <!-- END JAVASCRIPTS -->

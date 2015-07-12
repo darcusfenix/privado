@@ -24,8 +24,6 @@ class BootStrap {
         office.setDescription("Oficina central")
         office.save(flush: true)
 
-        User u = new User()
-        u.setName("Fernando")
         // DO NOT MODIFY
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         springContext.getBean("customObjectMarshallers").register()
