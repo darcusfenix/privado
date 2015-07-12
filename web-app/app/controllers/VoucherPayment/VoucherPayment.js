@@ -3,12 +3,28 @@
  */
 
 
-function VoucherPaymentCreateController($scope, $location, VoucherPayment, $rootScope) {
+
+function VoucherPaymentCreateController($scope, $location, VoucherPayment, User, $rootScope, StudentService, Service, TypeService) {
 
     $rootScope.location = $location.path();
-
     $scope.errors = [];
+    $scope.validator = {};
+
+    $scope.users = User.query();
+
+    //$scope.services = Service.query();
+    //$scope.typeServices= TypeService.query();
+
     $scope.voucherPaymentInstance = VoucherPayment.create();
+
+    $scope.userSelected = {};
+
+    $scope.servicesWithStudent = function (){
+        $scope.studentServices = StudentService.services({userId:$scope.userSelected.id},function(data) {
+            $scope.studentServices = data;
+            console.log($scope.studentServices);
+        });
+    }
 
     $scope.saveVoucherPayment = function saveVoucherPayment() {
         console.log($scope.voucherPaymentInstance);

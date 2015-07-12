@@ -1,3 +1,4 @@
+import com.ed.accesscontrol.StudentService
 import com.ed.paycontrol.StateVoucher
 import com.ed.schoolmanagement.Role
 import com.ed.schoolmanagement.User
@@ -28,8 +29,20 @@ class BootStrap {
         pepo.password = "test"
         pepo.username = "pepo27"
         pepo.save()
-        UserRole.create(pepo, alumno, true)
+        UserRole.create(pepo, alumno, false)
 
+        User user = new User()
+        user.address = "test address"
+        user.email = "juancvfenix@gmail.com"
+        user.enabled = true
+        user.name = "JUan"
+        user.lastName = "Crisóstomo"
+        user.mobileNumber = "5530271655"
+        user.phoneNumber = "5530271655"
+        user.password = "test"
+        user.username = "darcusfenix"
+        user.save()
+        UserRole.create(user, alumno, false)
 
         StateVoucher stateVoucher = new StateVoucher()
         stateVoucher.name = "pendiente"
@@ -43,14 +56,38 @@ class BootStrap {
         typeService.name = "curso muy rápido"
         typeService.save();
 
+
         Service service = new Service()
         service.active = true;
         service.cost = 1500.00
-        service.period = "2015"
+        service.period = "2015-02"
         service.stDate = new Date()
         service.endDate = new Date()
-        service.typeService = TypeService.findById(1)
+        service.typeService = typeService
         service.save()
+
+        Service anotherService = new Service()
+        anotherService.active = true;
+        anotherService.cost = 300.00
+        anotherService.period = "2015-01"
+        anotherService.stDate = new Date()
+        anotherService.endDate = new Date()
+        anotherService.typeService = typeService
+        anotherService.save()
+
+        StudentService studentService = new StudentService()
+        studentService.service = service
+        studentService.user = pepo
+        studentService.active = true
+        studentService.fullPayment = 1500.00
+        studentService.save()
+
+        StudentService anotherstudentService = new StudentService()
+        anotherstudentService.service = anotherService
+        anotherstudentService.user = pepo
+        anotherstudentService.active = true
+        anotherstudentService.fullPayment = 1500.00
+        anotherstudentService.save(flush: true)
 
     }
     def destroy = {

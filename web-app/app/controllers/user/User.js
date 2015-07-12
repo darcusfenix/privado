@@ -4,6 +4,7 @@
 function UserListController($scope, $location, $rootScope, User, Role) {
     $rootScope.location = $location.path();
     $scope.userList = User.query();
+
     $scope.roles = Role.query();
 };
 

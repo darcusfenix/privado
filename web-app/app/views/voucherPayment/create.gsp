@@ -29,6 +29,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="control-label col-md-3">Alumnos:  <span class="required">
+                            *</span>
+                        </label>
+                        <div class="col-md-8">
+                            <select ng-options="(user.name+' '+user.lastName) for user in users track by user.id" ng-model="userSelected" ng-change='servicesWithStudent()' name="user" class="form-control" required></select>
+                        </div>
+				   </div>
+                    <div class="form-group">
                         <label class="control-label col-md-3">Cantidad: <span class="required">
                             *</span>
                         </label>
@@ -40,9 +48,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 <div class="form-actions">
                     <div class="row">
                         <div class="col-md-offset-3 col-md-9">
@@ -56,4 +61,44 @@
         </div>
         <!-- END VALIDATION STATES-->
     </div>
+</div>
+
+<div class="row" ng-show="services[0]">
+	<div class="col-md-12 col-sm-12">
+		<div class="portlet grey-cascade box">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-cogs"></i>Servicios de {{userSelected.name}} {{userSelected.lastName}}
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered table-striped">
+					<thead>
+					<tr class="text-center">
+						<th>
+							 Servicio
+						</th>
+						<th>
+
+						</th>
+						<th>
+
+						</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<tr ng-repeat="studentService in studentServices|filter:filtro">
+							<td> {{studentServices.service.id}} </td>
+							<td class="text-center"> <input type="text" placeholder="Cantidad: " > </td>
+							<td class="text-center"> <button class="btn btn-success uppercase"> Ingresar </button> </td>
+                        </tr>
+					</tr>
+					</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
