@@ -7,7 +7,7 @@ class UserController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index() {
-        render User.list([max: params.int('max')]) as JSON
+        render User.listOrderById([max: params.int('max')]) as JSON
     }
 
     def create() {
