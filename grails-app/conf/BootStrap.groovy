@@ -1,4 +1,5 @@
 import com.ed.accesscontrol.StudentService
+import com.ed.inductionClass.InductionClass
 import com.ed.paycontrol.StateVoucher
 import com.ed.schoolmanagement.Role
 import com.ed.schoolmanagement.User
@@ -35,7 +36,7 @@ class BootStrap {
         user.address = "test address"
         user.email = "juancvfenix@gmail.com"
         user.enabled = true
-        user.name = "JUan"
+        user.name = "Juan"
         user.lastName = "Crisóstomo"
         user.mobileNumber = "5530271655"
         user.phoneNumber = "5530271655"
@@ -43,6 +44,20 @@ class BootStrap {
         user.username = "darcusfenix"
         user.save()
         UserRole.create(user, alumno, false)
+
+
+        User anotheruser = new User()
+        anotheruser.address = "muy cerca del metro"
+        anotheruser.email = "gerard@gmail.com"
+        anotheruser.enabled = true
+        anotheruser.name = "Gerard"
+        anotheruser.lastName = "Un apellido"
+        anotheruser.mobileNumber = "55555555"
+        anotheruser.phoneNumber = "55881763"
+        anotheruser.password = "test"
+        anotheruser.username = "chochoz"
+        anotheruser.save()
+        UserRole.create(anotheruser, alumno, false)
 
         StateVoucher stateVoucher = new StateVoucher()
         stateVoucher.name = "pendiente"

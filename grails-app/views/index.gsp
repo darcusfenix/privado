@@ -102,6 +102,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Service.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'VoucherPayment.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'StudentService.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'StateVoucher.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'VoucherPaymentRoutes.js')}"></script>
