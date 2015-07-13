@@ -20,7 +20,7 @@ class UserMarshaller {
                     city            : user.city,
                     town            : user.town,
                     street          : user.street,
-                    number          : user.streetNumber,
+                    streetNumber    : user.streetNumber,
                     zipCode         : user.zipCode,
                     username        : user.username,
                     password        : user.password,
@@ -28,6 +28,7 @@ class UserMarshaller {
                     mobileNumber    : user.mobileNumber,
                     email           : user.email,
                     socialNetworkUrl: user.socialNetworkUrl,
+                    previousStudent : user.previousStudent,
                     authority       : user.getAuthorities()[0],
 
             ]
