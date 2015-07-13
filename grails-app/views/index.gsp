@@ -27,12 +27,6 @@
 
     <!-- AQUÍ ESTARÁN TODOS LOS ESTILOS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
-    <!-- ESTOS PLUGINS SON PARA MOSTRAR TABLAS -->
-    <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/global/plugins/select2', file: 'select2.css')}" />
-    <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/global/plugins/datatables/extensions/Scroller/css', file: 'dataTables.scroller.min.css')}" />
-    <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/global/plugins/datatables/extensions/ColReorder/css', file: 'dataTables.colReorder.min.css')}" />
-    <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/global/plugins/datatables/plugins/bootstrap', file: 'dataTables.bootstrap.css')}" />
-    <!-- FIN DE PLUGINS SON PARA MOSTRAR TABLAS -->
 
     <!-- begin profile user styles -->
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/global/plugins/bootstrap-fileinput', file: 'bootstrap-fileinput.css')}">
@@ -101,14 +95,17 @@
 <script type="text/javascript" src="${resource(dir: 'js', file: 'loading-bar.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app', file: 'ControlEscolar.js')}"></script>
+
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Role.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'VoucherPayment.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'StudentService.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'TypeService.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Service.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'VoucherPayment.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'StudentService.js')}"></script>
+
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'VoucherPaymentRoutes.js')}"></script>
+
 <script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/VoucherPayment', file: 'VoucherPayment.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/main', file: 'Main.js')}"></script>
@@ -144,14 +141,6 @@
 
 <!-- AQUÍ ESTARAN TODOS LOS RECURSOS JS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
-<!-- ESTOS JS SON PARA LA FUNCIONALIDAD DE LAS TABLAS -->
-<script type="text/javascript" src="${resource(dir: 'assets/global/plugins/select2', file: 'select2.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'assets/global/plugins/datatables/media/js', file: 'jquery.dataTables.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'assets/global/plugins/datatables/extensions/TableTools/js', file: 'dataTables.tableTools.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'assets/global/plugins/datatables/extensions/ColReorder/js', file: 'dataTables.colReorder.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'assets/global/plugins/datatables/extensions/Scroller/js', file: 'dataTables.scroller.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'assets/global/plugins/datatables/plugins/bootstrap', file: 'dataTables.bootstrap.js')}"></script>
-<!-- FIN DE JS SON PARA LA FUNCIONALIDAD DE LAS TABLAS -->
 
 <!-- FIN DE TODOS LOS RECURSOS JS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
