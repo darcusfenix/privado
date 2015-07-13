@@ -18,7 +18,7 @@ class Classroom implements Serializable{
     static constraints = {
         typeClassroom nullable: false
         places nullable: false
-        nameClassroom nullable: false
+        nameClassroom nullable: false, unique: true
     }
 
     static mapping = {
@@ -28,5 +28,6 @@ class Classroom implements Serializable{
         places column: 'nu_places'
         typeClassroom column: 'st_typeClassroom'
         version false
+        stateClassroom lazy: false
     }
 }

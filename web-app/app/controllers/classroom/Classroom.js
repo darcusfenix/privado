@@ -2,10 +2,22 @@
  * By Tapia Mujica Fernando 10/07/15
  */
 
-function ClassroomListController($scope, Classroom, $location, $rootScope) {
+function ClassroomListController($scope, Classroom, StateClassroom, $location, $rootScope) {
     $rootScope.location = $location.path();
     $scope.classroomList = Classroom.query();
+    $scope.stateClassroomList = StateClassroom.query();
     $rootScope.nameSpace = 'Grupos';
+
+    $scope.getNameState = function (idState){
+        var name = "";
+        for(i = 0; i < $scope.stateClassroomList.length; i++){
+            if(idState == $scope.stateClassroomList[i].id){
+                name = $scope.stateClassroomList[i].name;
+            }
+        }
+        return name;
+    };
+
 };
 
 function ClassroomCreateController($scope, $location, Classroom, $rootScope) {
@@ -42,6 +54,10 @@ function ClassroomCreateController($scope, $location, Classroom, $rootScope) {
                     $location.path("/classroom/");
                     $rootScope.message = data.message;
                 }, function (error) { // 50* HTTP ERROR
+                    $scope.errorDate = {
+                        message : error.data.message,
+                        estatus : true
+                    };
                     $scope.errors = error.data.errors;
                     for (var i = 0; i < $scope.errors.length; i++) {
                         $scope.validator[$scope.errors[i].field] = {

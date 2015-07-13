@@ -6,6 +6,7 @@ import grails.transaction.Transactional
 
 import java.sql.Time
 import java.text.DateFormat
+import java.text.ParseException
 import java.text.SimpleDateFormat
 
 class ClassroomController {
@@ -21,7 +22,7 @@ class ClassroomController {
     }
 
     def create() {
-        respond (new Classroom() as JSON)
+        render (new Classroom() as JSON)
     }
 
     def save(String lista) {
@@ -40,11 +41,18 @@ class ClassroomController {
                 def json = JSON.parse(a)
                 clazz = new Class()
                 clazz.setName(json.name)
-                clazz.setDateClass(sdf.parse(json.dateClass))
-                clazz.setStHour(formatter.parse(json.stHour))
-                clazz.setEndHour(formatter.parse(json.endHour))
-                clazz.classroom = classroomInstance
-                clazz.save(flush: true)
+                try {
+                    clazz.setDateClass(sdf.parse(json.dateClass))
+                    clazz.setStHour(formatter.parse(json.stHour))
+                    clazz.setEndHour(formatter.parse(json.endHour))
+                    clazz.classroom = classroomInstance
+                    clazz.save(flush: true)
+                }catch (ParseException pe ){
+                    Class.executeUpdate("delete Class c where c.classroom = :classroom", [classroom: classroomInstance])
+                    classroomInstance.delete(flush: true)
+                    response.status = 500
+                    render([classroom: classroomInstance, message: message(code: "de.classroom.errorDate.message")] as JSON)
+                }
             }
             response.status = 200
             render([classroom: classroomInstance, message: message(code: "de.classroom.created.message")] as JSON)
@@ -52,16 +60,6 @@ class ClassroomController {
             response.status = 500
             render(classroomInstance.errors as JSON)
         }
-
-        //print(id)
-//        if (classroomInstance.save(flush: true, failOnError: true)) {
-//            response.status = 200
-//            render classroomInstance as JSON
-//        } else {
-//            response.status = 500
-//            render classroomInstance.errors as JSON
-//        }
     }
-
 
 }

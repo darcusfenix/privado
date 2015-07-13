@@ -1,6 +1,6 @@
 
 <div class="row margin-top-10">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
 
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
         <div class="portlet box green-haze">
@@ -20,6 +20,12 @@
                         <th>
                             Lugares
                         </th>
+                        <th>
+                            Tipo
+                        </th>
+                        <th>
+                            Estatus
+                        </th>
                     </tr>
                     <tr>
                         <th>
@@ -28,13 +34,23 @@
                         <th>
                             <input type="text" ng-model="filtro.places" placeholder="Filtrar por lugares">
                         </th>
+                        <th>
+                            <input type="text" ng-model="filtro.typeClassroom" placeholder="Filtrar por tipo de grupo">
+                        </th>
+                        <th>
+                            <input type="text" ng-model="filtro.stateClassroom.id" placeholder="Filtrar por estado">
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="classroom in classroomList|filter:filtro">
-                            <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameClassroom}}</a></td>
-                            <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.places}}</a></td>
-                        </tr>
+                    <tr ng-repeat="classroom in classroomList|filter:filtro">
+                        <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameClassroom}}</a></td>
+                        <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.places}}</a></td>
+                        <td><span ng-if="classroom.typeClassroom == 0">Alumnos nuevos</span>
+                            <span ng-if="classroom.typeClassroom == 1">Alumnos inscritos</span></td>
+                        <td><span ng-class="classroom.stateClassroom.id != 2 ? 'text-success' : 'text-danger'">{{getNameState(classroom.stateClassroom.id)}}</span></td>
+
+                    </tr>
                     </tbody>
                 </table>
             </div>

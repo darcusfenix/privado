@@ -4,7 +4,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-gift"></i>Registro de Grupo
+                    Registro de Grupo
                 </div>
             </div>
             <div class="portlet-body form">
@@ -34,7 +34,7 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input type="text" ng-model="classroomInstance.places" class="form-control" name="places" required/>
+                                    <input type="number" min="1" ng-model="classroomInstance.places" class="form-control" name="places" required/>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,9 @@
                                 <button ng-click="agregarFila(lesson)" class="btn blue-madison" type="button">Agregar clase</button>
                             </div>
                         </div>
-
+                        <div class="alert-danger" ng-show="errorDate.estatus">
+                            {{errorDate.message}}
+                        </div>
                         <table class="table table-striped table-bordered table-hover" id="tableClass">
                             <thead>
                             <tr>
@@ -148,11 +150,10 @@
                         </table>
 
                     </div>
-
                     <div class="form-actions">
                         <div class="row">
                             <div class="text-center">
-                                <button type="submit" class="btn green" ng-disabled="createGroup.$invalid">Registrar</button>
+                                <button type="submit" class="btn green" ng-disabled="createGroup.$invalid || !(lessonList.length != 0)">Registrar</button>
                                 <button type="button" class="btn default" ng-click="cancelar();">Cancelar</button>
                             </div>
                         </div>
