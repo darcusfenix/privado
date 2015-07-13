@@ -14,6 +14,8 @@ class Classroom implements Serializable{
     static mappedBy = [clazz: 'classroom']
 
     static constraints = {
+        clazz nullable: true
+        stateClassroom nullable: true
     }
 
     static mapping = {
