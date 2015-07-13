@@ -31,10 +31,10 @@ class BootStrap {
         Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
         Role.findOrSaveWhere([authority: 'ROLE_SU'])
 
-        Classroom classroomA = Classroom.findOrSaveWhere([nameClassroom: 'Grupo A', places: 50])
-        Classroom classroomB = Classroom.findOrSaveWhere([nameClassroom: 'Grupo B', places: 50])
-        Classroom classroomC = Classroom.findOrSaveWhere([nameClassroom: 'Grupo C', places: 50])
-        Classroom classroomD = Classroom.findOrSaveWhere([nameClassroom: 'Grupo D', places: 50])
+        Classroom classroomA = new Classroom([nameClassroom: 'Grupo A', places: 50]).save(validate:false, flush:true)
+        Classroom classroomB = new Classroom([nameClassroom: 'Grupo B', places: 50]).save(validate:false, flush:true)
+        Classroom classroomC = new Classroom([nameClassroom: 'Grupo C', places: 50]).save(validate:false, flush:true)
+        Classroom classroomD = new Classroom([nameClassroom: 'Grupo D', places: 50]).save(validate:false, flush:true)
 
         User pepo = new User()
         pepo.email = "jresendiz27@gmail.com"
@@ -50,6 +50,7 @@ class BootStrap {
         pepo.city = "Mexico"
         pepo.town = "Nezahualcóyotl"
         pepo.zipCode = "57820"
+        pepo.previousStudent = true
         pepo.save()
         UserRole.create(pepo, alumno, true)
     }
