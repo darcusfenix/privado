@@ -6,6 +6,12 @@ angular.module('ControlEscuela').config(['$routeProvider', function ($routeProvi
     $routeProvider.when('/voucherPayment/create', {
         controller: 'VoucherPaymentCreateController',
         templateUrl: 'app/views/voucherPayment/create.gsp'
+    }).when('/voucherPayment/student/:id', {
+        controller: 'VoucherPaymentShowStudentController',
+        templateUrl: 'app/views/voucherPayment/show-student.gsp'
+    }).when('/voucherPayment/student/:userId/service/:serviceId/record', {
+        controller: 'VoucherPaymentShowStudentRecordController',
+        templateUrl: 'app/views/voucherPayment/student-record.gsp'
     }).otherwise({
         redirectTo: '/'
     });
