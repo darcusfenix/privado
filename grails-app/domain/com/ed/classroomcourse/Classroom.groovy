@@ -18,7 +18,7 @@ class Classroom implements Serializable{
     static constraints = {
         typeClassroom nullable: false
         places nullable: false
-        nameClassroom nullable: false, unique: true
+        nameClassroom nullable: false
     }
 
     static mapping = {

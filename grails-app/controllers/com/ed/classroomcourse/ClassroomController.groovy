@@ -26,7 +26,6 @@ class ClassroomController {
     }
 
     def save(String lista) {
-        print(request.JSON)
         def classroomInstance = new Classroom(request.JSON)
         classroomInstance.stateClassroom = StateClassroom.findByName("Abierto");
 
