@@ -23,6 +23,11 @@ angular.module('ControlEscuela').factory('Service', function ($resource) {
         save: {
             method: 'POST',
             url: 'service/save'
+        },
+        getTotalRequiredByUser:{
+            method: 'GET',
+            isArray: false,
+            url: 'service/getTotalRequiredByUser/:userId'
         }
     });
 });
