@@ -171,15 +171,27 @@
                                                 <div class="col-md-4">
                                                     <div class="input-icon right">
                                                         <i class="fa"></i>
-                                                        <select ng-options="group.id as group.nameClassroom for group in groups"
-                                                                ng-model="userInstance.group.id" name="group"
-                                                                required></select>
+                                                        <select ng-options="group.id as group.nameClassroom for group in classroomList"
+                                                                ng-model="userInstance.group.id" name="group"></select>
                                                     </div>
                                                 </div>
                                                 <span class="help-block"
                                                       ng-show="editUser.group.$error.required||validator.group.hasError">
                                                     {{validator.role.message}}
                                                 </span>
+                                            </div>
+
+                                            <div ng-show="userInstance.authority.id==1" class="form-group">
+                                                <label class="control-label col-md-3">Ex Alumno: <span class="required">
+                                                    *</span>
+                                                </label>
+
+                                                <div class="col-md-4">
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <input type="checkbox" ng-model="userInstance.previousStudent" name="previousStudent">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="form-group"
@@ -244,7 +256,7 @@
                                                 <div class="input-icon right">
                                                     <i class="fa"></i>
                                                     <input type="text" ng-model="userInstance.state"
-                                                           class="form-control" name="state" required/>
+                                                           class="form-control" name="state" />
                                                 </div>
                                             </div>
                                             <span class="help-block"
@@ -265,7 +277,7 @@
                                                 <div class="input-icon right">
                                                     <i class="fa"></i>
                                                     <input type="text" ng-model="userInstance.city" class="form-control"
-                                                           name="city" required/>
+                                                           name="city" />
                                                 </div>
                                             </div>
                                             <span class="help-block"
@@ -285,7 +297,7 @@
                                                 <div class="input-icon right">
                                                     <i class="fa"></i>
                                                     <input type="text" ng-model="userInstance.town" class="form-control"
-                                                           name="town" required/>
+                                                           name="town" />
                                                 </div>
                                             </div>
                                             <span class="help-block"
@@ -305,7 +317,7 @@
                                                 <div class="input-icon right">
                                                     <i class="fa"></i>
                                                     <input type="text" ng-model="userInstance.zipCode"
-                                                           class="form-control" name="zipCode" required/>
+                                                           class="form-control" name="zipCode"/>
                                                 </div>
                                             </div>
                                             <span class="help-block"
@@ -325,7 +337,7 @@
                                                 <div class="input-icon right">
                                                     <i class="fa"></i>
                                                     <input type="text" ng-model="userInstance.street"
-                                                           class="form-control" name="street" required/>
+                                                           class="form-control" name="street"/>
                                                 </div>
                                             </div>
                                             <span class="help-block"
@@ -345,7 +357,7 @@
                                                 <div class="input-icon right">
                                                     <i class="fa"></i>
                                                     <input type="text" ng-model="userInstance.streetNumber"
-                                                           class="form-control" name="streetNumber" required/>
+                                                           class="form-control" name="streetNumber"/>
                                                 </div>
                                             </div>
                                             <span class="help-block"

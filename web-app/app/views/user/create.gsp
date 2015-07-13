@@ -151,8 +151,24 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <select ng-options="group.id as group.nameClassroom for group in groups"
+                                    <select ng-options="group.id as group.nameClassroom for group in classroomList"
                                             ng-model="userInstance.group.id" name="group" required></select>
+                                </div>
+                            </div>
+                            <span class="help-block" ng-show="editUser.group.$error.required||validator.group.hasError">
+                                {{validator.role.message}}
+                            </span>
+                        </div>
+
+                        <div ng-show="userInstance.authority.id==1" class="form-group">
+                            <label class="control-label col-md-3">Ex Alumno: <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <input type="checkbox" ng-model="userInstance.previousStudent" name="previousStudent">
                                 </div>
                             </div>
                             <span class="help-block" ng-show="editUser.group.$error.required||validator.group.hasError">
