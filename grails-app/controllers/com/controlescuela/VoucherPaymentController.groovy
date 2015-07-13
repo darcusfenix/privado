@@ -30,7 +30,7 @@ class VoucherPaymentController {
         Float subtraction = 0.0
 
 
-        StudentService.findAllByUser(User.findById( params.int("userId"))).each { StudentService ->
+        StudentService.findAllByUser(User.findById( params.int("userId") )).each { StudentService ->
 
             Service.findAllById(StudentService.service.id).each { service ->
                 totalRequired += service.cost
@@ -42,16 +42,16 @@ class VoucherPaymentController {
         }
 
 
-        //voucherPaymentInstance.pay = params.Float("pay")
-
-        /*
         if (totalPaid < totalRequired  ){
             subtraction = totalRequired - totalPaid
             if (voucherPaymentInstance.pay <= subtraction){
-*/
-                voucherPaymentInstance.studentService = StudentService.findByUser(User.findById(params.int("userId")))
+
+
+                voucherPaymentInstance.studentService = StudentService.findByUser(User.findById( params.int("userId")))
+                voucherPaymentInstance.pay = params.getFloat("pay")
                 voucherPaymentInstance.payDate = new java.util.Date()
                 voucherPaymentInstance.stateVoucher = StateVoucher.findById(params.int("stateVoucher"))
+
                 if (voucherPaymentInstance.save(flush: true, failOnError: true)) {
                     response.status = 200
                     render voucherPaymentInstance as JSON
@@ -59,7 +59,7 @@ class VoucherPaymentController {
                     response.status = 500
                     render voucherPaymentInstance.errors as JSON
                 }
-/*
+
             }else{
                 response.status = 500
                 render voucherPaymentInstance.errors as JSON
@@ -70,7 +70,7 @@ class VoucherPaymentController {
             render voucherPaymentInstance.errors as JSON
         }
 
-*/
+
     }
 
     def save(VoucherPayment voucherPaymentInstance) {

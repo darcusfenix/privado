@@ -9,8 +9,9 @@ class StudentServiceController {
     def index() {}
 
     def getServicesOfStudent() {
-
         render ( StudentService.findAllByUser(User.findAllById(params.int("userId")))  as JSON)
-
+    }
+    def getOneServiceOfStudent() {
+        render ( StudentService.findByUser(User.findById(params.int("userId")))  as JSON)
     }
 }
