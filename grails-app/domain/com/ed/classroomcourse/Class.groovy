@@ -5,16 +5,21 @@
 
 package com.ed.classroomcourse
 
+import java.sql.Time
+
 class Class implements Serializable{
 
     Date dateClass
-    String stHour
-    String endHour
+    Date stHour
+    Date endHour
     String name
     String description
     static belongsTo = [classroom: Classroom]
 
     static constraints = {
+        stHour nullable: true
+        endHour nullable: true
+        description nullable: true
     }
 
     static mapping = {
