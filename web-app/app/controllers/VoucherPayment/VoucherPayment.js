@@ -98,7 +98,7 @@ function VoucherPaymentShowStudentController($scope,  $routeParams, $location, V
 
 /****************************/
 
-function VoucherPaymentCreateController($scope,  $routeParams, $location, VoucherPayment, User, $rootScope, StudentService, Service, TypeService, $timeout, $route){
+function VoucherPaymentCreateController($scope,  $routeParams, $location, VoucherPayment, User, $rootScope, StudentService, Service, TypeService, $timeout, $route, StateVoucher){
     $rootScope.location = $location.path();
 
     $scope.message = {show:false,type:0,text:''}
@@ -148,15 +148,22 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
         });
     };
 
-    $scope.saveSingleVoucherPayment = function saveSingleVoucherPayment(voucherPayment, userId) {
-        $scope.voucherPaymentInstance = {};
-        $scope.voucherPaymentInstance = VoucherPayment.create();
-        $scope.voucherPaymentInstance = voucherPayment;
+    $scope.saveSingleVoucherPayment = function (pay, userId) {
+
+        $scope.voucherPaymentInstance = VoucherPayment.create(function(data){
+            $scope.voucherPaymentInstance = data;
+            $scope.voucherPaymentInstance.pay = pay;
+            $scope.voucherPaymentInstance.studentService = StudentService.getOneServiceOfStudent({userId:userId});
+            $scope.voucherPaymentInstance.stateVoucher = StateVoucher.get({id:2});
+
+        });
+
         console.log($scope.voucherPaymentInstance);
 
-        $scope.voucherPaymentInstance = $scope.voucherPaymentInstance.saveSingleVoucherPayment({
+        $scope.voucherPaymentInstance = $scope.voucherPaymentInstance.$saveSingleVoucherPayment({
             userId:userId,
-            stateVoucher: 2
+            stateVoucher:2,
+            pay:pay
         },function (data) {
             $scope.message.show = true;
             $scope.message.type = 1;
@@ -190,6 +197,8 @@ function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $loca
 
     $scope.typeServices= TypeService.query();
 
+
+
     $scope.recordVoucherPayment = VoucherPayment.vouchersStudenAndService({ 'userId':$routeParams.userId, 'serviceId': $routeParams.serviceId},function(data) {
         $scope.recordVoucherPayment = data;
         console.log($scope.recordVoucherPayment);
@@ -210,7 +219,7 @@ function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $loca
     $scope.getNameService = function(id){
 
         for(var j = 0; j< $scope.typeServices.length; j++){
-            if(parseInt($scope.service.typeService.id) === parseInt($scope.typeServices[j].id)){
+            if($scope.service.typeService.id == $scope.typeServices[j].id){
                 return $scope.typeServices[j].name;
            }
 
@@ -225,5 +234,6 @@ function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $loca
 
         }
     };
+
 
 };

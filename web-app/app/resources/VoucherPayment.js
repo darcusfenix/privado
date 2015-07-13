@@ -27,7 +27,7 @@ angular.module('ControlEscuela').factory('VoucherPayment', function ($resource) 
         },
         saveSingleVoucherPayment:{
             method: 'POST',
-            url: 'voucherPayment/saveSingleVourcherPayment/:userId'
+            url: 'voucherPayment/saveSingleVourcherPayment/'
         },
         getVuocherStudent: {
             method : "GET",

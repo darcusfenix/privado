@@ -30,12 +30,6 @@
                             Username
                         </th>
                         <th class="text-center">
-                            Teléfono
-                        </th>
-                        <th class="text-center">
-                            Teléfono Celular
-                        </th>
-                        <th class="text-center">
                             Correo Electrónico
                         </th>
                         <th class="text-center">
@@ -54,12 +48,10 @@
                     </thead>
                     <tbody>
 
-                        <tr ng-repeat="user in usersList | filter:filtro">
+                        <tr ng-repeat="user in usersList | filter:filtro" ng-if="user.totalRequired !== 0">
                             <td><a href="#/voucherPayment/student/{{user.id}}">{{user.name}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}">{{user.lastName}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}">{{user.username}}</a></td>
-                            <td><a href="#/voucherPayment/student/{{user.id}}">{{user.phoneNumber}}</a></td>
-                            <td><a href="#/voucherPayment/student/{{user.id}}">{{user.mobileNumber}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}">{{user.email}}</a></td>
                             <td class="text-right">
                                 {{user.totalRequired | currency:" $ " }}
@@ -69,13 +61,15 @@
                             </td>
                             <td class="text-center">
                                 <div class="input-icon text-left" ng-show="user.totalPaid <  user.totalRequired">
+
                                     <i class="fa fa-usd"></i>
+
                                     <input type="number" class="form-control" placeholder="Cantidad" ng-model="user.voucherPayment.pay" min="1.0" max="{{user.totalRequired}}">
                                 </div>
                                 <span class="text-success uppercase" ng-show="user.totalPaid >=  user.totalRequired">pagado</span>
                             </td>
                             <td class="text-center">
-                                <button ng-disabled="user.voucherPayment.pay <= 0" class="btn btn-primary uppercase" ng-click="saveSingleVoucherPayment(user.voucherPayment, user.id); " ng-show="user.totalPaid <  user.totalRequired"> Ingresar </button>
+                                <button ng-disabled="user.voucherPayment.pay <= 0" class="btn btn-primary uppercase" ng-click="saveSingleVoucherPayment(user.voucherPayment.pay, user.id); " ng-show="user.totalPaid <  user.totalRequired"> Ingresar </button>
                                 <span class="text-success uppercase" ng-show="user.totalPaid >=  user.totalRequired">pagado</span>
                             </td>
                         </tr>
@@ -83,6 +77,8 @@
                 </table>
             </div>
         </div>
+
         <!-- END EXAMPLE TABLE PORTLET-->
+
     </div>
 </div>

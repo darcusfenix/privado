@@ -6,10 +6,18 @@
 --%>
 
 
+<div class="row margin-top-10 text-right" ng-show="studentServices.length === 0">
+	<div class="col-md-4 col-md-offset-4">
+		<button class="btn btn-danger margin-top-10 margin-bottom-10" onclick="window.history.back();" > <i class="fa fa-arrow-left"></i> Regresar</button>
+		<div class="alert alert-danger }}  margin-bottom-10">
+			<strong> {{userSelected.name}} {{userSelected.lastName}} no está inscrito en un curso </strong>
+		</div>
+	</div>
+</div>
 
-<div class="row margin-top-10">
+<div class="row margin-top-10" ng-show="studentServices.length > 0">
 
-	<div class="col-md-10 col-sm-12 col-md-offset-1">
+	<div class="col-md-12 col-sm-12">
 
 		<div class="margin-top-10 text-right">
 			<button class="btn btn-success margin-top-10 margin-bottom-10" onclick="window.history.back();" > <i class="fa fa-arrow-left"></i> Regresar</button>
@@ -18,6 +26,7 @@
 	    <div class="alert {{ (message.type == 1 ) ? 'alert-success': 'alert-danger' }}  margin-bottom-10" ng-show="message.show">
 		    <strong> {{message.text}} </strong>
 		</div>
+
 		<div class="portlet box purple">
 			<div class="portlet-title">
 				<div class="caption">
