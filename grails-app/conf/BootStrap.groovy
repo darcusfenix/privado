@@ -24,6 +24,7 @@ class BootStrap {
         sc.setName("Cerrado")
         sc.setDescription("Cerrado")
         sc.save()
+
         Office office = new Office()
         office.setName("Oficina principal")
         office.setDescription("Oficina central")
@@ -38,10 +39,35 @@ class BootStrap {
         Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
         Role.findOrSaveWhere([authority: 'ROLE_SU'])
 
-        Classroom classroomA = new Classroom([nameClassroom: 'Grupo A', places: 50]).save(validate:false, flush:true)
-        Classroom classroomB = new Classroom([nameClassroom: 'Grupo B', places: 50]).save(validate:false, flush:true)
-        Classroom classroomC = new Classroom([nameClassroom: 'Grupo C', places: 50]).save(validate:false, flush:true)
-        Classroom classroomD = new Classroom([nameClassroom: 'Grupo D', places: 50]).save(validate:false, flush:true)
+        Classroom classroom = new Classroom()
+        classroom.nameClassroom = "Grupo A"
+        classroom.places = 50
+        classroom.typeClassroom = 0
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
+        classroom = new Classroom()
+        classroom.nameClassroom = "Grupo B"
+        classroom.places = 50
+        classroom.typeClassroom = 0
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
+        classroom = new Classroom()
+        classroom.nameClassroom = "Grupo C"
+        classroom.places = 50
+        classroom.typeClassroom = 0
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
+        InductionClass ic = new InductionClass()
+        ic.nombre = "Clase de inducción 1"
+        ic.cupo = 10
+        ic.Hora = new Date()
+        ic.save(flush: true)
 
         User pepo = new User()
         pepo.email = "jresendiz27@gmail.com"
@@ -58,6 +84,7 @@ class BootStrap {
         pepo.town = "Nezahualcóyotl"
         pepo.zipCode = "57820"
         pepo.previousStudent = true
+        pepo.inductionClass = ic
         pepo.save()
         UserRole.create(pepo, alumno, false)
 
@@ -76,6 +103,7 @@ class BootStrap {
         user.town = "Nezahualcóyotl"
         user.zipCode = "57820"
         user.previousStudent = true
+        user.inductionClass = ic
         user.save()
         UserRole.create(user, alumno, false)
 
@@ -95,6 +123,7 @@ class BootStrap {
         anotheruser.town = "Nezahualcóyotl"
         anotheruser.zipCode = "57820"
         anotheruser.previousStudent = true
+        anotheruser.inductionClass = ic
         anotheruser.save()
         UserRole.create(anotheruser, alumno, false)
 
@@ -192,7 +221,6 @@ class BootStrap {
         studentService_3.active = true
         studentService_3.fullPayment = 500.00
         studentService_3.save()
-
     }
     def destroy = {
 

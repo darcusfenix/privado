@@ -5,10 +5,14 @@
 
 package com.ed.service
 
+import com.ed.classroomcourse.Classroom
+
 class Office implements Serializable{
 
     String name
     String description
+    static hasMany = [classroom: Classroom]
+    static mappedBy = [classroom: 'office']
     //TODO: Think about of extra income for [ExtraService, ExtraIncome]
 
     static constraints = {

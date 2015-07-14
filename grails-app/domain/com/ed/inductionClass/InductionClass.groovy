@@ -8,8 +8,10 @@ class InductionClass implements Serializable{
     Integer cupo
     Date Hora
 
+    static hasMany = [user: User]
 
     static constraints = {
+        cupo nullable: true
     }
 
     static mapping = {
@@ -17,5 +19,7 @@ class InductionClass implements Serializable{
         id column: 'id_induction_class', generator: 'identity'
         nombre column: 'nb_name'
         hora column: 'fh_time'
+        cupo column: 'nu_cupo'
+        versio false
     }
 }

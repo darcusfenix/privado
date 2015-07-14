@@ -5,15 +5,18 @@
 
 package com.ed.classroomcourse
 
+import com.ed.service.Office
+
 class Classroom implements Serializable{
 
     String nameClassroom
     Integer places
     // 0 is New Student 1 old Student
-    Integer typeClassroom = 0
+    Integer typeClassroom
     StateClassroom stateClassroom
     static hasMany = [clazz: Class]
     static mappedBy = [clazz: 'classroom']
+    static belongsTo = [office: Office]
 
     static constraints = {
         clazz nullable: true
@@ -30,6 +33,5 @@ class Classroom implements Serializable{
         places column: 'nu_places'
         typeClassroom column: 'st_typeClassroom'
         version false
-        stateClassroom lazy: false
     }
 }

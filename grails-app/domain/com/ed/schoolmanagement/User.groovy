@@ -22,7 +22,7 @@ class User {
     String street
     String streetNumber
 
-    static hasMany = [inductionClass: InductionClass]
+    InductionClass inductionClass
 
     // Spring security methods
     @Override
