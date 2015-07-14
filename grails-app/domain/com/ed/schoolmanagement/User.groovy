@@ -14,6 +14,7 @@ class User {
     String email
     String socialNetworkUrl
     boolean previousStudent
+    boolean active = false
     // Address
     String state
     String city
