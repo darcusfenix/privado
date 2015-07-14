@@ -115,5 +115,7 @@ log4j.main = {
             'org.hibernate',
             'net.sf.ehcache.hibernate'
 }
-
-
+sendgrid {
+    username = 'de_preparacion_ipn'
+    password = 'n0m3l0s3'
+}
