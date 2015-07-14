@@ -8,14 +8,22 @@ import uk.co.desirableobjects.sendgrid.SendGridEmailBuilder
 class EMailService {
 
     def sendGridService
+    def grailsApplication
 
     def sendEmail(User user) {
+        log.error grailsApplication.config.files.htmlMailContent
+        log.error grailsApplication.config.files.htmlMailContent
+        log.error grailsApplication.config.files.htmlMailContent
+        log.error grailsApplication.config.files.htmlMailContent
+        log.error grailsApplication.config.files.htmlMailContent
+        String htmlContent = new File(grailsApplication.config.files.htmlMailContent).text
         String activationToken = "$user.email|$user.id".encodeAsBase64()
         SendGridEmail email = new SendGridEmailBuilder()
-                .from('antony@example.com')
-                .to('jresendiz27@gmail.com')
-                .subject('This is the subject line')
-                .withText('This is our message body')
+                .from('noreply@cursopreparacionipn.com')
+                .to(user.email)
+                .subject('Curso de preparación IPN')
+                .withHtml(htmlContent)
+                .addAttachment("PreparacionIPNCroquis.pdf",new File(grailsApplication.config.files.pdfFile))
                 .build()
         sendGridService.send(email)
         return true
