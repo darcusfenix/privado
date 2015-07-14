@@ -1,5 +1,7 @@
 package com.ed.schoolmanagement
 
+import com.ed.classroomcourse.Class
+import com.ed.classroomcourse.Classroom
 import grails.converters.JSON
 
 class UserController {
@@ -16,19 +18,13 @@ class UserController {
 
     def save() {
         def userInstance = new User(request.JSON)
-        log.error(request.JSON)
-        log.error(userInstance.validate())
         if (userInstance.validate()) {
-            log.error("IS VALID");
             userInstance.save()
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.created.message")] as JSON)
         } else {
             response.status = 500
-            log.error("ERROR")
-            log.error(userInstance.errors)
-            log.error("ERROR")
             render(userInstance.errors as JSON)
         }
     }
@@ -44,10 +40,12 @@ class UserController {
     def update() {
         User userInstance = User.findById(request.JSON.id)
         userInstance.properties = request.JSON
-        if (!userInstance.hasErrors()) {
+        if (userInstance.validate()) {
             userInstance.save()
             UserRole.removeAll(userInstance)
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
+            //TODO: Remove all the services and groups related to the user
+            //TODO: Create again all the relationships between classroom and users
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.updated.message")] as JSON)
         } else {
@@ -59,8 +57,14 @@ class UserController {
     def delete(Integer id) {
         def user = User.findById(id ?: params.int("id"))
         UserRole.removeAll(user, false)
+        //TODO: Remove all the services and groups related to the user
         user.delete(flush: true)
         response.status = 200
         render([message: message(code: 'de.user.deleted.message')] as JSON)
+    }
+
+    // TODO: Will be removed
+    def getGroups(){
+        render(Classroom.list() as JSON)
     }
 }

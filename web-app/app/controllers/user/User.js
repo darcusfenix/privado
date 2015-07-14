@@ -8,14 +8,16 @@ function UserListController($scope, $location, $rootScope, User, Role) {
     $scope.roles = Role.query();
 };
 
-function UserEditController($scope, $location, $routeParams, $rootScope, User, Role) {
+function UserEditController($scope, $location, $routeParams, $rootScope, User, Role, Classroom) {
     $rootScope.location = $location.path();
     User.get({id: $routeParams.id}, function (data) {
-        $scope.userInstance = data.user;
+        $scope.userInstance = data;
     });
+
     $scope.roles = Role.query(function roles(data) {
         $scope.roles = data;
     });
+    $scope.classroomList = Classroom.query();
     $scope.updateUser = function updateUser(valid, $event) {
         $event.preventDefault();
         if (valid) {
@@ -57,7 +59,7 @@ function UserShowController($scope, $location, $routeParams, $rootScope, User) {
         });
     };
 };
-function UserCreateController($scope, $location, $rootScope, User, Role) {
+function UserCreateController($scope, $location, $rootScope, User, Role, Classroom) {
     $rootScope.location = $location.path();
     $scope.errors = [];
     $scope.validator = {};
@@ -65,6 +67,7 @@ function UserCreateController($scope, $location, $rootScope, User, Role) {
     $scope.roles = Role.query(function roles(data) {
         $scope.roles = data;
     });
+    $scope.classroomList = Classroom.query();
     $scope.saveUser = function saveUser(valid, $event) {
         $event.preventDefault();
         if (valid) {

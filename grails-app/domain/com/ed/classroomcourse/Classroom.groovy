@@ -10,12 +10,14 @@ class Classroom implements Serializable{
     String nameClassroom
     Integer places
     // 0 is New Student 1 old Student
-    Integer typeClassroom
+    Integer typeClassroom = 0
     StateClassroom stateClassroom
     static hasMany = [clazz: Class]
     static mappedBy = [clazz: 'classroom']
 
     static constraints = {
+        clazz nullable: true
+        stateClassroom nullable: true
         typeClassroom nullable: false
         places nullable: false
         nameClassroom nullable: false

@@ -1,4 +1,4 @@
-import com.controlescuela.User
+import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.StateClassroom
 import com.ed.service.Office
 
@@ -37,8 +37,13 @@ class BootStrap {
         Role.findOrSaveWhere([authority: 'ROLE_EMPLEADO'])
         Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
         Role.findOrSaveWhere([authority: 'ROLE_SU'])
+
+        Classroom classroomA = new Classroom([nameClassroom: 'Grupo A', places: 50]).save(validate:false, flush:true)
+        Classroom classroomB = new Classroom([nameClassroom: 'Grupo B', places: 50]).save(validate:false, flush:true)
+        Classroom classroomC = new Classroom([nameClassroom: 'Grupo C', places: 50]).save(validate:false, flush:true)
+        Classroom classroomD = new Classroom([nameClassroom: 'Grupo D', places: 50]).save(validate:false, flush:true)
+
         User pepo = new User()
-        pepo.address = "test"
         pepo.email = "jresendiz27@gmail.com"
         pepo.enabled = true
         pepo.name = "Alberto"
@@ -47,11 +52,16 @@ class BootStrap {
         pepo.phoneNumber = "12345679"
         pepo.password = "test"
         pepo.username = "pepo27"
+        pepo.street = "Ahuehuetes"
+        pepo.streetNumber = "53"
+        pepo.city = "Mexico"
+        pepo.town = "Nezahualcóyotl"
+        pepo.zipCode = "57820"
+        pepo.previousStudent = true
         pepo.save()
         UserRole.create(pepo, alumno, false)
 
         User user = new User()
-        user.address = "test address"
         user.email = "juancvfenix@gmail.com"
         user.enabled = true
         user.name = "Juan"
@@ -60,12 +70,17 @@ class BootStrap {
         user.phoneNumber = "5530271655"
         user.password = "test"
         user.username = "darcusfenix"
+        user.street = "Ahuehuetes"
+        user.streetNumber = "53"
+        user.city = "Mexico"
+        user.town = "Nezahualcóyotl"
+        user.zipCode = "57820"
+        user.previousStudent = true
         user.save()
         UserRole.create(user, alumno, false)
 
 
         User anotheruser = new User()
-        anotheruser.address = "muy cerca del metro"
         anotheruser.email = "gerard@gmail.com"
         anotheruser.enabled = true
         anotheruser.name = "Gerard"
@@ -74,6 +89,12 @@ class BootStrap {
         anotheruser.phoneNumber = "55881763"
         anotheruser.password = "test"
         anotheruser.username = "chochoz"
+        anotheruser.street = "Ahuehuetes"
+        anotheruser.streetNumber = "53"
+        anotheruser.city = "Mexico"
+        anotheruser.town = "Nezahualcóyotl"
+        anotheruser.zipCode = "57820"
+        anotheruser.previousStudent = true
         anotheruser.save()
         UserRole.create(anotheruser, alumno, false)
 
@@ -86,8 +107,6 @@ class BootStrap {
         anotherstateVoucher.name = "aprobado"
         anotherstateVoucher.description = "este comprobante ha sido revisado y aprobado"
         anotherstateVoucher.save();
-
-
 
         TypeService typeService = new TypeService()
         typeService.description = "esta es otra descripción"
