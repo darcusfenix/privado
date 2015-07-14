@@ -19,11 +19,13 @@ class Service implements Serializable{
     TypeService typeService
 
     static constraints = {
+
         cost nullable: false
         period nullable: false, matches: "\\d{4}-\\d{2}"
         active nullable: true
         stDate nullable: true, blank: true
         endDate nullable: true, blank: true
+
     }
 
     static mapping = {

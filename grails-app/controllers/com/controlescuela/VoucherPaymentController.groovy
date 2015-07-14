@@ -9,37 +9,83 @@ import grails.converters.JSON
 
 class VoucherPaymentController {
 
-    static allowedMethods = [save: "POST", create: "GET"]
+    static allowedMethods = [save: "POST", create: "GET", saveSingleVourcherPayment: "POST"]
 
-    def index() { }
+    def index() {}
 
     def create() {
         render new VoucherPayment() as JSON
     }
 
+
+    def vouchersPaymentStudentAndService() {
+
+        render VoucherPayment.findAllByStudentService(StudentService.findByUserAndService(User.findById(params.int("userId")), Service.findById(params.int("serviceId")))) as JSON
+    }
+
+    def saveSingleVourcherPayment(VoucherPayment voucherPaymentInstance) {
+
+        Float totalPaid = 0.0
+        Float totalRequired = 0.0
+        Float subtraction = 0.0
+
+
+        StudentService.findAllByUser(User.findById( params.int("userId") )).each { StudentService ->
+
+            Service.findAllById(StudentService.service.id).each { service ->
+                totalRequired += service.cost
+            }
+
+            VoucherPayment.findAllByStudentService(StudentService).each { voucherPayment ->
+                totalPaid += voucherPayment.pay
+            }
+        }
+
+
+        if (totalPaid < totalRequired  ){
+            subtraction = totalRequired - totalPaid
+            if (voucherPaymentInstance.pay <= subtraction){
+
+
+                voucherPaymentInstance.studentService = StudentService.findByUser(User.findById( params.int("userId")))
+                voucherPaymentInstance.pay = params.getFloat("pay")
+                voucherPaymentInstance.payDate = new java.util.Date()
+                voucherPaymentInstance.stateVoucher = StateVoucher.findById(params.int("stateVoucher"))
+
+                if (voucherPaymentInstance.save(flush: true, failOnError: true)) {
+                    response.status = 200
+                    render voucherPaymentInstance as JSON
+                } else {
+                    response.status = 500
+                    render voucherPaymentInstance.errors as JSON
+                }
+
+            }else{
+                response.status = 500
+                render voucherPaymentInstance.errors as JSON
+            }
+
+        }else{
+            response.status = 500
+            render voucherPaymentInstance.errors as JSON
+        }
+
+
+    }
+
     def save(VoucherPayment voucherPaymentInstance) {
 
-
-
-
-        User otroU = User.findById(1)
-
-        Service otroS = Service.findById(1)
-
         //StudentService studentService = StudentService.find("from StudentService where user=:user and service=:service", [user : otroU, service: otroS])
-        StudentService studentService = StudentService.findByUserAndService(otroU, otroS)
+        StudentService studentService = StudentService.findByUserAndService(User.findById(params.int("userId")), Service.findById(params.int("serviceId")))
 
         voucherPaymentInstance.studentService = studentService
-        voucherPaymentInstance.id = 1
-        voucherPaymentInstance.image = null
         voucherPaymentInstance.payDate = new java.util.Date()
-        voucherPaymentInstance.stateVoucher = StateVoucher.findById(1)
+        voucherPaymentInstance.stateVoucher = StateVoucher.findById(params.int("stateVoucher"))
 
         if (voucherPaymentInstance.save(flush: true, failOnError: true)) {
             response.status = 200
             render voucherPaymentInstance as JSON
-        }
-        else {
+        } else {
             response.status = 500
             render voucherPaymentInstance.errors as JSON
         }

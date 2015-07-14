@@ -24,6 +24,19 @@ angular.module('ControlEscuela').factory('VoucherPayment', function ($resource) 
         save: {
             method: 'POST',
             url: 'voucherPayment/save'
+        },
+        saveSingleVoucherPayment:{
+            method: 'POST',
+            url: 'voucherPayment/saveSingleVourcherPayment/'
+        },
+        getVuocherStudent: {
+            method : "GET",
+            url:'voucherPayment/student/:id'
+        },
+        vouchersStudenAndService:{
+            method : 'GET',
+            isArray:true,
+            url: 'voucherPayment/vouchersPaymentStudentAndService/'
         }
     });
 });

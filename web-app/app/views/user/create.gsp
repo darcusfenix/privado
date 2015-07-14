@@ -174,7 +174,7 @@
 
                     <div class="form-actions">
                         <div class="row">
-                            <div class="col-md-offset-3 col-md-9">
+                            <div class="">
                                 <button type="submit" class="btn green" ng-disabled="createUser.$invalid">Registrar</button>
                                 <button type="button" class="btn default" ng-click="cancelar();">Cancelar</button>
                             </div>

@@ -17,7 +17,7 @@ class VoucherPayment implements Serializable{
 
         image blank: true, nullable: true
         payDate blank: true, nullable: true
-        pay blank: true, nullable: true
+        pay blank: false, nullable: false
 
     }
 

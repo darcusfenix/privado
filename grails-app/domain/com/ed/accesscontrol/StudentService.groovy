@@ -25,6 +25,7 @@ class StudentService implements Serializable {
         version false
         active column: 'st_active'
         fullPayment column: 'nu_full_payment'
+
     }
 
 }

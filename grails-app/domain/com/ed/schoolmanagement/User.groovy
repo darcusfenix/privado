@@ -1,5 +1,7 @@
 package com.ed.schoolmanagement
 
+import com.ed.inductionClass.InductionClass
+
 class User {
     Integer id
     String name
@@ -12,6 +14,8 @@ class User {
     String mobileNumber
     String email
     String socialNetworkUrl
+
+    static hasMany = [inductionClass: InductionClass]
 
     // Spring security methods
 
