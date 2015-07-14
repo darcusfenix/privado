@@ -1,10 +1,10 @@
 package com.ed.schoolmanagement
 
-import com.ed.classroomcourse.Class
-import com.ed.classroomcourse.Classroom
 import grails.converters.JSON
 
 class UserController {
+
+    def EMailService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -63,8 +63,19 @@ class UserController {
         render([message: message(code: 'de.user.deleted.message')] as JSON)
     }
 
-    // TODO: Will be removed
-    def getGroups(){
-        render(Classroom.list() as JSON)
+    def activate(String validationToken) {
+        def status = EMailService.validateAccount(validationToken)
+        if(status){
+            render([message:'Usuario verificado'] as JSON)
+            return
+        } else {
+            render([message:'No se pudo verificar el usuario'] as JSON)
+            return
+        }
+    }
+
+    def sendWelcomeMail(Integer id){
+        EMailService.sendEmail(User.findById(1))
+        render ([message:"OK"] as JSON)
     }
 }
