@@ -6,8 +6,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <h2>Bienvenido</h2>
-<div class="row">
-    <div class="col-md-6">
+<div class="row margin-top-30">
+    <div class="col-md-10 col-md-offset-1">
         <div class="portlet blue box">
             <div class="portlet-title">
                 <div class="caption">
@@ -30,21 +30,11 @@
                 <p>
                     Mejorar la calidad de la enseñanza en México. Crear métodos divertidos para comprender temas, en apariencia, complejos, que los alumnos no se aburran mientras aprenden. Inspirar a los alumnos a dar lo mejor sí y motivarlos a adquirir más y mejores conocimientos en cualquier área de la ciencia.
                 </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="portlet purple box">
-            <div class="portlet-title">
-                <div class="tools">
-                    <a href="javascript:;" class="collapse" data-original-title="" title="">
-                    </a>
-                    <a href="javascript:;" class="remove" data-original-title="" title="">
-                    </a>
+                <br/>
+                <hr/>
+                <div class="text-center">
+                    <img src="assets/tema/img/pipn.jpg"/>
                 </div>
-            </div>
-            <div class="portlet-body">
-                <img src="assets/tema/img/pipn.jpg"/>
             </div>
         </div>
     </div>
