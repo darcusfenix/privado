@@ -2,9 +2,11 @@ package com.ed.schoolmanagement
 
 import grails.converters.JSON
 
+import javax.servlet.ServletContext
+
 class UserController {
 
-    def EMailService
+    def notificationService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -64,7 +66,7 @@ class UserController {
     }
 
     def activate(String validationToken) {
-        def status = EMailService.validateAccount(validationToken)
+        def status = notificationService.validateAccount(validationToken)
         if(status){
             render([message:'Usuario verificado'] as JSON)
             return
@@ -75,7 +77,9 @@ class UserController {
     }
 
     def sendWelcomeMail(Integer id){
-        EMailService.sendEmail(User.findById(1))
+        ServletContext servletContext = getServletContext();
+        String contextPath = servletContext.getRealPath(File.separator);
+        notificationService.sendEmail(User.findById(id), contextPath)
         render ([message:"OK"] as JSON)
     }
 }
