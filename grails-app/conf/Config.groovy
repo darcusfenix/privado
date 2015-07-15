@@ -120,5 +120,5 @@ sendgrid {
     password = 'n0m3l0s3'
 }
 
-files.htmlMailContent ='./files/MailContent.html'
-files.pdfFile = './files/Preparacion_Croquis.pdf'
+files.htmlMailContent ='files/MailContent.html'
+files.pdfFile = 'files/Preparacion_Croquis.pdf'
