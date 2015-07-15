@@ -72,4 +72,8 @@ class User {
         table 't_user'
         email unique: true
     }
+
+    String getFullName(){
+        return this.name + " " +this.lastName
+    }
 }
