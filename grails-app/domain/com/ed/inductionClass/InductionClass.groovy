@@ -20,6 +20,6 @@ class InductionClass implements Serializable{
         nombre column: 'nb_name'
         hora column: 'fh_time'
         cupo column: 'nu_cupo'
-        versio false
+        version false
     }
 }
