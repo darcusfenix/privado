@@ -5,18 +5,18 @@ import com.ed.schoolmanagement.User
 import uk.co.desirableobjects.sendgrid.SendGridEmail
 import uk.co.desirableobjects.sendgrid.SendGridEmailBuilder
 
-class EMailService {
+class NotificationService {
 
     def sendGridService
     def grailsApplication
 
-    def sendEmail(User user) {
+    def sendEmail(User user, def request) {
         log.error grailsApplication.config.files.htmlMailContent
         log.error grailsApplication.config.files.htmlMailContent
         log.error grailsApplication.config.files.htmlMailContent
         log.error grailsApplication.config.files.htmlMailContent
         log.error grailsApplication.config.files.htmlMailContent
-        String htmlContent = new File(grailsApplication.config.files.htmlMailContent).text
+        String htmlContent = new File(request.contextPath +  grailsApplication.config.files.htmlMailContent).text
         String activationToken = "$user.email|$user.id".encodeAsBase64()
         SendGridEmail email = new SendGridEmailBuilder()
                 .from('noreply@cursopreparacionipn.com')
