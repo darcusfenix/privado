@@ -4,7 +4,7 @@
     <div class="page-sidebar-wrapper">
         <div class="page-sidebar md-shadow-z-2-i  navbar-collapse collapse">
             <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                <li class="start"  ng-class="($root.location === '/') ? 'active open' : ''">
+                <li class="start" ng-class="($root.location === '/') ? 'active open' : ''">
                     <a href="#/">
                         <i class="icon-home"></i>
                         <span class="title">Inicio</span>
@@ -57,23 +57,61 @@
                         </li>
                     </ul>
                 </li>
-                <li ng-class="($root.location == '/service/' || $root.location == '/service/create') ? 'active open' : ''">
+
+                <li ng-class="($root.location === '/type-service/' || $root.location === '/type-service/create') ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="icon-folder"></i>
-                        <span class="title">Servicios</span>
-                        <span class="arrow {{$root.location == '/service/' ? 'open' : ''}}"></span>
+                        <span class="title">Tipos de Servicio</span>
+                        <span class="arrow {{$root.location === '/type-service/' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li ng-class="($root.location == '/service/') ? 'active' : ''">
-                            <a href="#/service/">
+                        <li ng-class="($root.location === '/type-service/') ? 'active' : ''">
+                            <a href="#/type-service/">
                                 Ver todos</a>
                         </li>
-                        <li ng-class="($root.location == '/service/create') ? 'active' : ''">
-                            <a href="#/service/create">
-                                Registrar Servicio</a>
+                        <li ng-class="($root.location === '/type-service/create') ? 'active' : ''">
+                            <a href="#/type-service/create">
+                                Agregar un tipo de servicio</a>
                         </li>
                     </ul>
                 </li>
+
+                <li ng-class="($root.location === '/service/' || $root.location === '/service/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="icon-folder"></i>
+                        <span class="title">Servicios</span>
+                        <span class="arrow {{$root.location === '/service/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location === '/service/') ? 'active' : ''">
+                            <a href="#/service/">
+                                Ver todos</a>
+                        </li>
+                        <li ng-class="($root.location === '/service/create') ? 'active' : ''">
+                            <a href="#/service/create">
+                                Agregar un servicio</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li ng-class="($root.location === '/type-course/' || $root.location === '/type-course/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="icon-folder"></i>
+                        <span class="title">Tipos de Curso</span>
+                        <span class="arrow {{$root.location === '/type-course/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location === '/type-course/') ? 'active' : '' ">
+                            <a href="#/type-course/">
+                                Ver todos</a>
+                        </li>
+                        <li ng-class="($root.location === '/type-course/create') ? 'active' : '' ">
+                            <a href="#/type-course/create">
+                                Agregar un tipo de curso</a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

@@ -1,4 +1,4 @@
-package com.controlescuela
+package com.service
 
 import com.ed.accesscontrol.StudentService
 import com.ed.paycontrol.VoucherPayment
@@ -8,12 +8,17 @@ import grails.converters.JSON
 
 class ServiceController {
 
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
     def index() {
         render Service.list() as JSON
     }
+
+
     def show(Integer id){
         render (Service.findById(id ?: params.int("id")) as JSON)
     }
+
     def getTotalRequiredByUser(Integer userId) {
 
         Float totalRequired = 0.0
@@ -27,5 +32,6 @@ class ServiceController {
         def mapa = [ total : totalRequired]
 
         render mapa as JSON
+
     }
 }
