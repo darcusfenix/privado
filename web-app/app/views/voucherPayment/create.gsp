@@ -11,7 +11,7 @@
             <strong> {{message.text}} </strong>
         </div>
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
-        <div class="portlet box green-haze">
+        <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-globe"></i>Alumnos del grupo

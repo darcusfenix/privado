@@ -167,22 +167,22 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
             $scope.message.show = true;
             $scope.message.type = 1;
             $scope.message.text = success.message;
-            /*
+
             $timeout(function() {
                 $route.reload();
-            }, 5000);
-            */
+            }, 3000);
+
 
         }, function (error){
             console.log(error);
             $scope.message.show = true;
             $scope.message.type = 0;
             $scope.message.text = error.data.message;
-            /*
+
             $timeout(function() {
                 $scope.message.show = false;
-            }, 5000);
-            */
+            }, 4000);
+
         });
 
 

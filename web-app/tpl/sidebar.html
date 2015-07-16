@@ -57,6 +57,23 @@
                         </li>
                     </ul>
                 </li>
+                <li ng-class="($root.location == '/service/' || $root.location == '/service/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="icon-folder"></i>
+                        <span class="title">Servicios</span>
+                        <span class="arrow {{$root.location == '/service/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location == '/service/') ? 'active' : ''">
+                            <a href="#/service/">
+                                Ver todos</a>
+                        </li>
+                        <li ng-class="($root.location == '/service/create') ? 'active' : ''">
+                            <a href="#/service/create">
+                                Registrar Servicio</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>
