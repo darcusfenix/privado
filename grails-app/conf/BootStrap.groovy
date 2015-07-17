@@ -1,5 +1,6 @@
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.StateClassroom
+import com.ed.service.ClassroomCourse
 import com.ed.service.Office
 
 import com.controlescuela.*
@@ -161,6 +162,16 @@ class BootStrap {
         service.endDate = new Date()
         service.typeService = typeService
         service.save()
+
+        ClassroomCourse classroomCourse = new ClassroomCourse()
+        classroomCourse.active = true
+        classroomCourse.cost = 300.00
+        classroomCourse.period = "2015-02"
+        classroomCourse.stDate = new Date()
+        classroomCourse.endDate = new Date()
+        classroomCourse.typeService = typeService
+        classroomCourse.save()
+
 
         Service anotherService = new Service()
         anotherService.active = true;

@@ -35,6 +35,7 @@ class TypeCourseController {
         }
     }
     def save(){
+
         def typeCourseInstance = new TypeCourse(request.JSON)
         if (typeCourseInstance.validate()) {
             typeCourseInstance.save(flush: true)
@@ -44,6 +45,7 @@ class TypeCourseController {
             response.status = 500
             render(typeCourseInstance.errors as JSON)
         }
+
     }
     def delete(){
 
