@@ -20,9 +20,13 @@ function ClassroomListController($scope, Classroom, StateClassroom, $location, $
 
 };
 
-function ClassroomCreateController($scope, $location, Classroom, $rootScope) {
+function ClassroomCreateController($scope, $location, Classroom, Office, $rootScope) {
 
     ComponentsPickers.init();
+
+    $scope.varSlc = 0;
+
+    $scope.officeList = Office.query()
 
     $scope.validatorFecha = {
         hasError: false,
@@ -45,11 +49,13 @@ function ClassroomCreateController($scope, $location, Classroom, $rootScope) {
     $rootScope.location = $location.path();
     $scope.lesson = [];
     $scope.errors = [];
-    $scope.classroomInstance = Classroom.create();
+    $scope.classroomInstance = Classroom.create(function(data){
+        $scope.classrromInstance = data;
+    });
     $scope.saveGroup = function saveGroup(valid, $event) {
         $event.preventDefault();
         if (valid) {
-            $scope.classroomInstance.$save({lista:crearJSON($scope.lessonList)}, function (data) { // 200 HTTP OK
+            $scope.classroomInstance.$save({lista:crearJSON($scope.lessonList), idOffice: $scope.varSlc}, function (data) { // 200 HTTP OK
                     $scope.classroomInstance = data.classroom;
                     $location.path("/classroom/");
                     $rootScope.message = data.message;
@@ -58,6 +64,7 @@ function ClassroomCreateController($scope, $location, Classroom, $rootScope) {
                         message : error.data.message,
                         estatus : true
                     };
+                    $('.modal').modal('toggle');
                     $scope.errors = error.data.errors;
                     for (var i = 0; i < $scope.errors.length; i++) {
                         $scope.validator[$scope.errors[i].field] = {
@@ -65,16 +72,15 @@ function ClassroomCreateController($scope, $location, Classroom, $rootScope) {
                             message: $scope.errors[i].message
                         }
                     }
-                    console.log($scope.validator);
                 });
             return false;
         } else {
             return false;
         }
 
-        $scope.classroomInstance = $scope.classroomInstance.$save(function savedClassroom(data) {
+        /*$scope.classroomInstance = $scope.classroomInstance.$save(function savedClassroom(data) {
             $location.path("/classroom/create");
-        });
+        });*/
     };
     $scope.cancelar = function cancelar() {
         $location.path("/classroom/");

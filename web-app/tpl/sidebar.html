@@ -57,6 +57,19 @@
                         </li>
                     </ul>
                 </li>
+                <li ng-class="($root.location == '/office/' || $root.location == '/office/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="fa fa-building-o"></i>
+                        <span class="title">Sucursal</span>
+                        <span class="arrow {{$root.location == '/office/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location == '/office/') ? 'active' : ''">
+                            <a href="#/office/">
+                                Ver todas</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

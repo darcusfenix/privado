@@ -4,7 +4,7 @@
 
 angular.module('ControlEscuela').config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/office/', {
-        controller: 'OfiiceListController',
+        controller: 'OfficeListController',
         templateUrl: 'app/views/office/index.gsp'
     }).when('/office/create', {
         controller: 'OfficeCreateController',
