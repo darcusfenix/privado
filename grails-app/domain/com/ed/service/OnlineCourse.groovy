@@ -5,7 +5,7 @@
 
 package com.ed.service
 
-class Website extends Service{
+class OnlineCourse extends Service{
 
     static constraints = {
     }
