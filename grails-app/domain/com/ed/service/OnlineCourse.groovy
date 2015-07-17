@@ -11,7 +11,7 @@ class OnlineCourse extends Service{
     }
 
     static mapping = {
-        table 't_website_tab'
+        table 't_online_website_tab'
         version false
     }
 }

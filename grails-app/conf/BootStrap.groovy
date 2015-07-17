@@ -1,6 +1,7 @@
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.StateClassroom
 import com.ed.service.ClassroomCourse
+import com.ed.service.MockExam
 import com.ed.service.Office
 
 import com.controlescuela.*
@@ -10,7 +11,9 @@ import com.ed.paycontrol.StateVoucher
 import com.ed.schoolmanagement.Role
 import com.ed.schoolmanagement.User
 import com.ed.schoolmanagement.UserRole
+import com.ed.service.OnlineCourse
 import com.ed.service.Service
+import com.ed.service.TypeCourse
 import com.ed.service.TypeService
 import org.springframework.web.context.support.WebApplicationContextUtils
 
@@ -140,7 +143,7 @@ class BootStrap {
 
         TypeService typeService = new TypeService()
         typeService.description = "esta es otra descripción"
-        typeService.name = "Curso Intensio"
+        typeService.name = "Curso presencial"
         typeService.save();
 
         TypeService anothertypeService = new TypeService()
@@ -153,85 +156,103 @@ class BootStrap {
         othertypeService.name = "Examen simulacro"
         othertypeService.save();
 
+        TypeService otherAgaintypeService = new TypeService()
+        otherAgaintypeService.description = "esta es otra descripción"
+        otherAgaintypeService.name = "Servicio Extra"
+        otherAgaintypeService.save();
 
-        Service service = new Service()
-        service.active = true;
-        service.cost = 1500.00
-        service.period = "2015-02"
-        service.stDate = new Date()
-        service.endDate = new Date()
-        service.typeService = typeService
-        service.save()
+
+
+        TypeCourse typeCourse = new TypeCourse()
+        typeCourse.name = "Curso normal cat"
+        typeCourse.description = "este es un curso normal de muchos meses"
+        typeCourse.save()
+
+        TypeCourse anotherTypeCourse = new TypeCourse()
+        anotherTypeCourse.name = "Curso Intensivo  cat"
+        anotherTypeCourse.description = "este es un curso intensivo de tres semanas"
+        anotherTypeCourse.save()
+
+
+        // SERVICES
 
         ClassroomCourse classroomCourse = new ClassroomCourse()
         classroomCourse.active = true
-        classroomCourse.cost = 300.00
+        classroomCourse.cost = 2500.00
         classroomCourse.period = "2015-02"
         classroomCourse.stDate = new Date()
         classroomCourse.endDate = new Date()
         classroomCourse.typeService = typeService
+        classroomCourse.numberClasses = 50
+        classroomCourse.typeCourse = typeCourse
         classroomCourse.save()
 
+        OnlineCourse onlineCourse = new OnlineCourse()
+        onlineCourse.active = true;
+        onlineCourse.cost = 1500.00
+        onlineCourse.period = "2015-02"
+        onlineCourse.stDate = new Date()
+        onlineCourse.endDate = new Date()
+        onlineCourse.typeService = anothertypeService
+        onlineCourse.save()
 
-        Service anotherService = new Service()
-        anotherService.active = true;
-        anotherService.cost = 900.00
-        anotherService.period = "2015-01"
-        anotherService.stDate = new Date()
-        anotherService.endDate = new Date()
-        anotherService.typeService = anothertypeService
-        anotherService.save()
+        MockExam mockExam = new MockExam()
+        mockExam.active = true;
+        mockExam.cost = 600.00
+        mockExam.period = "2015-02"
+        mockExam.stDate = new Date()
+        mockExam.endDate = new Date()
+        mockExam.term = 1.26
+        mockExam.name = "primer examen"
+        mockExam.active = false
+        mockExam.typeService = othertypeService
+        mockExam.save()
 
-        Service abcService = new Service()
-        abcService.active = true;
-        abcService.cost = 600.00
-        abcService.period = "2015-01"
-        abcService.stDate = new Date()
-        abcService.endDate = new Date()
-        abcService.typeService = othertypeService
-        abcService.save()
+
+        // STUDENTS WITH SERVICES
 
         StudentService studentService = new StudentService()
-        studentService.service = service
+        studentService.service = mockExam
         studentService.user = pepo
         studentService.active = true
         studentService.fullPayment = 500.00
         studentService.save()
 
         StudentService anotherstudentService = new StudentService()
-        anotherstudentService.service = anotherService
+        anotherstudentService.service = classroomCourse
         anotherstudentService.user = pepo
         anotherstudentService.active = true
         anotherstudentService.fullPayment = 500.00
         anotherstudentService.save()
 
         StudentService SecondStudentService = new StudentService()
-        SecondStudentService.service = abcService
+        SecondStudentService.service = onlineCourse
         SecondStudentService.user = pepo
         SecondStudentService.active = true
         SecondStudentService.fullPayment = 500.00
         SecondStudentService.save()
 
         StudentService studentService_1 = new StudentService()
-        studentService_1.service = service
+        studentService_1.service = mockExam
         studentService_1.user = user
         studentService_1.active = true
         studentService_1.fullPayment = 500.00
         studentService_1.save()
 
         StudentService studentService_2 = new StudentService()
-        studentService_2.service = anotherService
+        studentService_2.service = classroomCourse
         studentService_2.user = user
         studentService_2.active = true
         studentService_2.fullPayment = 500.00
-        studentService_2.save(flush: true)
+        studentService_2.save()
 
         StudentService studentService_3 = new StudentService()
-        studentService_3.service = abcService
+        studentService_3.service = onlineCourse
         studentService_3.user = user
         studentService_3.active = true
         studentService_3.fullPayment = 500.00
-        studentService_3.save()
+        studentService_3.save(flush: true)
+
     }
     def destroy = {
 

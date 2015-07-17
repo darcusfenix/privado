@@ -117,14 +117,16 @@
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Service.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'TypeService.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'TypeCourse.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'ClassroomCourse.js')}"></script>
 
 
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ClassroomRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'VoucherPaymentRoutes.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'Service.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'TypeService.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'TypeCourse.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ServiceRoutes.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'TypeServiceRoutes.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'TypeCourseRoutes.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ClassroomCourseRoutes.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/VoucherPayment', file: 'VoucherPayment.js')}"></script>
@@ -134,6 +136,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/controllers/service', file: 'Service.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/typeService', file: 'typeService.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/typeCourse', file: 'TypeCourse.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/controllers/classroomCourse', file: 'ClassroomCourse.js')}"></script>
 
 
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->

@@ -1,6 +1,8 @@
 package com.service
 
 import com.ed.service.ClassroomCourse
+import com.ed.service.TypeCourse
+import com.ed.service.TypeService
 import grails.converters.JSON
 
 class ClassroomCourseController {
@@ -11,7 +13,7 @@ class ClassroomCourseController {
         render (ClassroomCourse.list() as JSON)
     }
     def show(Integer id){
-        render (ClassroomCourse.findById(1) as JSON)
+        render( ClassroomCourse.findById(id ?: params.int("id")) as JSON)
     }
     def save(){
 

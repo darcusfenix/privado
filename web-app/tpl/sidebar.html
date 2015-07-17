@@ -83,13 +83,61 @@
                         <span class="arrow {{$root.location === '/service/' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
+                        <li>
+                            <a href="javascript:;">
+                                Cursos <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#/classroomCourse"> Ver todos</a>
+                                </li>
+                                <li>
+                                    <a href="#/classroomCourse/create"> Agregar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                Curso Online <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#"> Ver todos</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Agregar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                Exámenes simulacro <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#"> Ver todos</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Agregar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                Servicio Extra <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#"> Ver todos</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Agregar</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li ng-class="($root.location === '/service/') ? 'active' : ''">
                             <a href="#/service/">
-                                Ver todos</a>
-                        </li>
-                        <li ng-class="($root.location === '/service/create') ? 'active' : ''">
-                            <a href="#/service/create">
-                                Agregar un servicio</a>
+                                Historial</a>
                         </li>
                     </ul>
                 </li>
