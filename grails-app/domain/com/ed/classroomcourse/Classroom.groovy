@@ -6,6 +6,7 @@
 package com.ed.classroomcourse
 
 import com.ed.service.Office
+import com.ed.service.UserClassroom
 
 class Classroom implements Serializable{
 
@@ -23,7 +24,7 @@ class Classroom implements Serializable{
         stateClassroom nullable: true
         typeClassroom nullable: false
         places nullable: false
-        nameClassroom nullable: false
+        nameClassroom nullable: false, matches: "Grupo\\s[\\d{1}||[A-Z]]"
     }
 
     static mapping = {
@@ -33,5 +34,17 @@ class Classroom implements Serializable{
         places column: 'nu_places'
         typeClassroom column: 'st_typeClassroom'
         version false
+    }
+
+    String getNameOffice(Long id){
+        Office.findById(id).name
+    }
+
+    String getStateClassroomName(Long id){
+        StateClassroom.findById(id).getName()
+    }
+
+    Integer getFreePlaces(Long id){
+        UserClassroom.findAllByClassroom(Classroom.findById(id)).size()
     }
 }

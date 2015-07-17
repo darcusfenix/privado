@@ -11,7 +11,7 @@
         <div class="portlet box green-haze">
             <div class="portlet-title">
                 <div class="caption">
-                    Gestión de grupos de la sucursal "{{officeInstance.name}}"
+                    Gestión de grupos en la sucursal "{{officeInstance.name}}"
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                         Lugares
                     </th>
                     <th>
-                        Estatus
+                        Tipo
                     </th>
                 </tr>
                 <tr>

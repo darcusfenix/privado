@@ -1,3 +1,4 @@
+import com.ed.schoolmanagement.marshallers.ClassroomMarshaller
 import com.ed.schoolmanagement.marshallers.CustomObjectMarshallers
 import com.ed.schoolmanagement.marshallers.UserMarshaller
 
@@ -5,7 +6,8 @@ import com.ed.schoolmanagement.marshallers.UserMarshaller
 beans = {
     customObjectMarshallers(CustomObjectMarshallers) {
         marshallers = [
-                new UserMarshaller()
+                new UserMarshaller(),
+                new ClassroomMarshaller()
         ]
     }
 

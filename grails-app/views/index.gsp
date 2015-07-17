@@ -117,6 +117,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'StudentService.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'StateVoucher.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Office.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Class.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ClassroomRoutes.js')}"></script>

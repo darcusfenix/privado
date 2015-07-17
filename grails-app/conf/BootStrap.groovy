@@ -1,5 +1,6 @@
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.StateClassroom
+import com.ed.classroomcourse.UserClass
 import com.ed.service.Office
 
 import com.controlescuela.*
@@ -11,6 +12,7 @@ import com.ed.schoolmanagement.User
 import com.ed.schoolmanagement.UserRole
 import com.ed.service.Service
 import com.ed.service.TypeService
+import com.ed.service.UserClassroom
 import org.springframework.web.context.support.WebApplicationContextUtils
 
 class BootStrap {
@@ -88,6 +90,11 @@ class BootStrap {
         pepo.save()
         UserRole.create(pepo, alumno, false)
 
+        UserClassroom uc = new UserClassroom()
+        uc.classroom = classroom
+        uc.user = pepo
+        uc.save()
+
         User user = new User()
         user.email = "juancvfenix@gmail.com"
         user.enabled = true
@@ -107,6 +114,10 @@ class BootStrap {
         user.save()
         UserRole.create(user, alumno, false)
 
+        uc = new UserClassroom()
+        uc.classroom = classroom
+        uc.user = user
+        uc.save()
 
         User anotheruser = new User()
         anotheruser.email = "gerard@gmail.com"
