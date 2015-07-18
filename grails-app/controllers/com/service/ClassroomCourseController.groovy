@@ -27,10 +27,17 @@ class ClassroomCourseController {
 
     def save(){
         SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
-        def classroomCourseInstance = new ClassroomCourse(request.JSON)
+        def classroomCourseInstance = new ClassroomCourse()
+        def jsonMap = [:]
+        jsonMap = request.JSON
+        Date stDate = sdf.parse(request.JSON.stDate)
+        Date endDate = sdf.parse(request.JSON.endDate)
+        classroomCourseInstance.stDate = stDate
+        classroomCourseInstance.endDate = endDate
+        jsonMap.remove('stDate')
+        jsonMap.remove('endDate')
+        classroomCourseInstance.properties = jsonMap
 
-        //classroomCourseInstance.stDate = new Date().parse("dd/MM/yyyy", request.JSON.stDate)
-        //classroomCourseInstance.endDate = new Date().parse("dd/MM/yyyy", request.JSON.stDate)
 
         if (classroomCourseInstance.validate()) {
 
@@ -45,9 +52,13 @@ class ClassroomCourseController {
 
     }
     def update(){
-
+        log.error request.JSON
+        SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
         ClassroomCourse classroomCourseInstance = ClassroomCourse.findById(request.JSON.id)
+
         classroomCourseInstance.properties = request.JSON
+        classroomCourseInstance.stDate = sdf.parse(request.JSON.stDate)
+        classroomCourseInstance.endDate = sdf.parse(request.JSON.endtDate)
 
         List<StudentService> lista = new ArrayList<StudentService>();
 
