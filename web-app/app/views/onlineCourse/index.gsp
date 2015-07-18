@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: darcusfenix
   Date: 17/07/15
-  Time: 12:59 AM
+  Time: 09:33 PM
 --%>
 
 <div class="row">
@@ -12,7 +12,7 @@
                 <div class="caption">
                     <i class="icon-settings font-purple-studio"></i>
                     <span class="caption-subject bold font-purple-studio uppercase">
-                        Cursos presenciales</span>
+                        Cursos online</span>
                 </div>
             </div>
             <div class="portlet-body">
@@ -42,51 +42,39 @@
                                 Fecha final
                             </th>
                             <th class="text-center" >
-                                Clases
-                            </th>
-                            <th class="text-center" >
-                                Tipo de curso
-                            </th>
-                            <th class="text-center" >
                                 Alumnos Inscritos
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="course in classroomCourseList ">
+                        <tr ng-repeat="course in onlineCourseList ">
                             <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{$index + 1}} </a>
+                                <a href="#/onlineCourse/show/{{course.id}}"> {{$index + 1}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{ getNameService( course.typeService.id ) }} </a>
+                                <a href="#/onlineCourse/show/{{course.id}}"> {{ getNameService( course.typeService.id ) }} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.cost | currency: " $ " }} </a>
+                                <a href="#/onlineCourse/show/{{course.id}}"> {{course.cost | currency: " $ " }} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.period}} </a>
+                                <a href="#/onlineCourse/show/{{course.id}}"> {{course.period}} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}">
+                                <a href="#/onlineCourse/show/{{course.id}}">
                                     <span ng-class=" (course.active) ? 'text-success' : 'text-danger' ">
                                         {{ (course.active) ? "Activo" : "Bloqueado" }}
                                     </span>
                                 </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.stDate}} </a>
+                                <a href="#/onlineCourse/show/{{course.id}}"> {{course.stDate}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.endDate}} </a>
+                                <a href="#/onlineCourse/show/{{course.id}}"> {{course.endDate}} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.numberClasses}} </a>
-                            </td>
-                            <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{ getNameCourse(course.typeCourse.id) }} </a>
-                            </td>
-                            <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.studentService.length}} </a>
+                                <a href="#/onlineCourse/show/{{course.id}}"> {{course.studentService.length}} </a>
                             </td>
                         </tr>
                         </tbody>

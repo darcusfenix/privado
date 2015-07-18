@@ -17,6 +17,8 @@ import com.ed.service.TypeCourse
 import com.ed.service.TypeService
 import org.springframework.web.context.support.WebApplicationContextUtils
 
+import java.text.SimpleDateFormat
+
 class BootStrap {
 
     def init = { servletContext ->
@@ -175,6 +177,9 @@ class BootStrap {
 
 
         // SERVICES
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
 
         ClassroomCourse classroomCourse = new ClassroomCourse()
         classroomCourse.active = true

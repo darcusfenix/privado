@@ -22,7 +22,7 @@ angular.module('ControlEscuela').config(['$routeProvider', function ($routeProvi
     }).when('/classroomCourse/show/:id', {
 
         controller: 'ClassroomCourseShowController',
-        templateUrl: 'app/views/classroom/show.gsp'
+        templateUrl: 'app/views/classroomCourse/show.gsp'
 
     }).otherwise({
 

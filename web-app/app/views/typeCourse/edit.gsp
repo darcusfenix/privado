@@ -16,8 +16,10 @@
                 </div>
 
             </div>
+
             <div class="portlet-body form">
-                <form name="createTypeCourse" ng-submit="savetypeCourse(createTypeCourse.$valid, $event)" novalidate class="form-horizontal">
+                <form name="createTypeCourse" ng-submit="savetypeCourse(createTypeCourse.$valid, $event)" novalidate
+                      class="form-horizontal">
                     <div class="form-body">
 
                         <div class="form-group"
@@ -44,14 +46,16 @@
                             <label class="control-label col-md-3">Descripción: <span class="required">
                                 *</span>
                             </label>
+
                             <div class="col-md-9">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <textarea   ng-model="typeCourseInstance.description" class="form-control" name="name"
-                                                required></textarea>
+                                    <textarea ng-model="typeCourseInstance.description" class="form-control" name="name"
+                                              required></textarea>
                                 </div>
                             </div>
-                            <span class="help-block" ng-show="createTypeCourse.name.$error.required||validator.name.hasError">
+                            <span class="help-block"
+                                  ng-show="createTypeCourse.name.$error.required||validator.name.hasError">
                                 {{validator.name.message}}
                             </span>
                         </div>
@@ -61,7 +65,7 @@
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
                                 <button type="submit" class="btn green"
-                                        ng-disabled="createTypeCourse.$invalid" >Guardar cambios</button>
+                                        ng-disabled="createTypeCourse.$invalid">Guardar cambios</button>
                                 <button type="button" class="btn default" ng-click="cancelar();">Cancelar</button>
                             </div>
                         </div>

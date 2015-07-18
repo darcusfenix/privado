@@ -58,24 +58,6 @@
                     </ul>
                 </li>
 
-                <li ng-class="($root.location === '/type-service/' || $root.location === '/type-service/create') ? 'active open' : ''" >
-                    <a href="javascript:;">
-                        <i class="icon-folder"></i>
-                        <span class="title">Tipos de Servicio</span>
-                        <span class="arrow {{$root.location === '/type-service/' ? 'open' : ''}}"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li ng-class="($root.location === '/type-service/') ? 'active' : ''">
-                            <a href="#/type-service/">
-                                Ver todos</a>
-                        </li>
-                        <li ng-class="($root.location === '/type-service/create') ? 'active' : ''">
-                            <a href="#/type-service/create">
-                                Agregar un tipo de servicio</a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li ng-class="($root.location === '/service/' || $root.location === '/service/create') ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="icon-folder"></i>
@@ -85,14 +67,14 @@
                     <ul class="sub-menu">
                         <li>
                             <a href="javascript:;">
-                                Cursos <span class="arrow"></span>
+                                Curso presencial <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
                                 <li>
                                     <a href="#/classroomCourse"> Ver todos</a>
                                 </li>
                                 <li>
-                                    <a href="#/classroomCourse/create"> Agregar</a>
+                                    <a href="#/classroomCourse/create"> Registar Curso</a>
                                 </li>
                             </ul>
                         </li>
@@ -102,10 +84,10 @@
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="#"> Ver todos</a>
+                                    <a href="#/onlineCourse"> Ver todos</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Agregar</a>
+                                    <a href="#/onlineCourse/create"> Registar curso online</a>
                                 </li>
                             </ul>
                         </li>
@@ -115,10 +97,10 @@
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="#"> Ver todos</a>
+                                    <a href="#/mockExam"> Ver todos</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Agregar</a>
+                                    <a href="#mockExam/create"> Registrar Examen</a>
                                 </li>
                             </ul>
                         </li>
@@ -131,7 +113,7 @@
                                     <a href="#"> Ver todos</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Agregar</a>
+                                    <a href="#"> Registrar Servicio</a>
                                 </li>
                             </ul>
                         </li>
@@ -143,21 +125,17 @@
                 </li>
 
                 <li ng-class="($root.location === '/type-course/' || $root.location === '/type-course/create') ? 'active open' : ''">
-                    <a href="javascript:;">
+                    <a href="#/type-course/">
                         <i class="icon-folder"></i>
                         <span class="title">Tipos de Curso</span>
-                        <span class="arrow {{$root.location === '/type-course/' ? 'open' : ''}}"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li ng-class="($root.location === '/type-course/') ? 'active' : '' ">
-                            <a href="#/type-course/">
-                                Ver todos</a>
-                        </li>
-                        <li ng-class="($root.location === '/type-course/create') ? 'active' : '' ">
-                            <a href="#/type-course/create">
-                                Agregar un tipo de curso</a>
-                        </li>
-                    </ul>
+                </li>
+
+                <li ng-class="($root.location === '/type-service/' || $root.location === '/type-service/create') ? 'active open' : ''" >
+                    <a href="#/type-service/">
+                        <i class="icon-folder"></i>
+                        <span class="title">Tipos de Servicio</span>
+                    </a>
                 </li>
 
             </ul>

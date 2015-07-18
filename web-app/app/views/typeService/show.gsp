@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-actions noborder">
                     <button type="button" class="btn blue" ng-click="editTypeService();">Editar</button>
-                    <button type="button" class="btn btn-danger" ng-click="deleteTypeService();">Eliminar</button>
+                    <!--<button type="button" class="btn btn-danger" ng-click="deleteTypeService();">Eliminar</button>-->
                     <button type="button" class="btn default"  ng-click="cancelar();">Cancelar</button>
                 </div>
             </div>

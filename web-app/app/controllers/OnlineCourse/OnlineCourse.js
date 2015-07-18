@@ -3,44 +3,30 @@
  */
 
 
-function ClassroomCourseListController($scope, $location, $rootScope, ClassroomCourse, TypeCourse, TypeService){
+function OnlineCourseListController($scope, $location, $rootScope, OnlineCourse, TypeService){
 
     $rootScope.location = $location.path();
-    $scope.classroomCourseList = ClassroomCourse.query( function(data){
-        $scope.classroomCourseList = data;
+    $scope.onlineCourseList = OnlineCourse.query(function(data){
+        $scope.onlineCourseList = data;
     }, function(err){
         $location.path("/");
     });
-
-    $scope.typeCourseList = TypeCourse.query();
     $scope.typeServiceList = TypeService.query();
 
-    $scope.getNameCourse = function(idCourse){
-        for(var i = 0; i < $scope.typeCourseList.length; i++)
-            if($scope.typeCourseList[i].id === idCourse)
-                return $scope.typeCourseList[i].name;
-    };
 
     $scope.getNameService = function(idService){
         for(var i = 0; i < $scope.typeServiceList.length; i++)
             if($scope.typeServiceList[i].id === idService)
                 return $scope.typeServiceList[i].name;
     };
-
-};
-function ClassroomCourseCreateController($scope, $location, $rootScope, $routeParams, ClassroomCourse, TypeCourse, TypeService){
+}
+function OnlineCourseCreateController($scope, $location, $rootScope, $routeParams, ClassroomCourse, TypeService){
 
     ComponentsPickers.init();
 
-    $scope.classroomCourseInstance = ClassroomCourse.create();
-    $scope.typeCourseList = TypeCourse.query();
+    $scope.onlineCourseInstance = ClassroomCourse.create();
     $scope.typeServiceList = TypeService.query();
 
-    $scope.getNameCourse = function(idCourse){
-        for(var i = 0; i < $scope.typeCourseList.length; i++)
-            if($scope.typeCourseList[i].id === idCourse)
-                return $scope.typeCourseList[i].name;
-    };
 
     $scope.getNameService = function(idService){
         for(var i = 0; i < $scope.typeServiceList.length; i++)
@@ -48,16 +34,16 @@ function ClassroomCourseCreateController($scope, $location, $rootScope, $routePa
                 return $scope.typeServiceList[i].name;
     };
 
-    $scope.saveClassroomCourse = function saveClassroomCourse(valid, $event) {
+    $scope.saveOnlineCourse = function saveOnlineCourse(valid, $event) {
         $event.preventDefault();
         if (valid) {
-            $scope.classroomCourseInstance.$save(
+            $scope.online.$save(
                 function (data) { // 200 HTTP OK
                     console.log(data);
                     /*
                      $scope.classroomCourseInstance = data.classroomCourseInstance;
                      */
-                    $location.path("/classroomCourse/show/" + data.classroomCourseInstance.id);
+                    $location.path("/onlineCourse/show/" + data.onlineCourseInstance.id);
 
                     $rootScope.message = data.message;
                 }, function (error) { // 50* HTTP ERROR
@@ -80,30 +66,23 @@ function ClassroomCourseCreateController($scope, $location, $rootScope, $routePa
     };
 
     $('#endDate').datepicker().on('changeDate', function(ev){
-        $scope.classroomCourseInstance.endDate = $(ev.target).val();
+        $scope.onlineCourseInstance.endDate = $(ev.target).val();
     });
     $('#stDate').datepicker().on('changeDate', function(ev){
-        $scope.classroomCourseInstance.stDate = $(ev.target).val();
+        $scope.onlineCourseInstance.stDate = $(ev.target).val();
     });
 };
-function ClassroomCourseEditController($scope, $location, $rootScope, $routeParams, ClassroomCourse, TypeCourse, TypeService){
+
+function OnlineCourseEditController($scope, $location, $rootScope, $routeParams, OnlineCourse, TypeService){
 
     ComponentsPickers.init();
-
-    $scope.classroomCourseInstance = ClassroomCourse.get({id: $routeParams.id}, function(data){
-        $scope.classroomCourseInstance = data;
+    $scope.onlineCourseInstance = OnlineCourse.get({id: $routeParams.id}, function(data){
+        $scope.onlineCourseInstance = data;
     }, function(err){
-        $location.path("/classroomCourse");
+        $location.path("/onlineCourse");
     });
 
-    $scope.typeCourseList = TypeCourse.query();
     $scope.typeServiceList = TypeService.query();
-
-    $scope.getNameCourse = function(idCourse){
-        for(var i = 0; i < $scope.typeCourseList.length; i++)
-            if($scope.typeCourseList[i].id === idCourse)
-                return $scope.typeCourseList[i].name;
-    };
 
     $scope.getNameService = function(idService){
         for(var i = 0; i < $scope.typeServiceList.length; i++)
@@ -111,16 +90,16 @@ function ClassroomCourseEditController($scope, $location, $rootScope, $routePara
                 return $scope.typeServiceList[i].name;
     };
 
-    $scope.saveClassroomCourse = function saveClassroomCourse(valid, $event) {
+    $scope.saveOnlineCourse = function saveOnlineCourse(valid, $event) {
         $event.preventDefault();
         if (valid) {
-            $scope.classroomCourseInstance.$update(
+            $scope.onlineCourseInstance.$update(
                 function (data) { // 200 HTTP OK
                     console.log(data);
                     /*
-                    $scope.classroomCourseInstance = data.classroomCourseInstance;
-                    */
-                    $location.path("/classroomCourse/show/" + data.classroomCourseInstance.id);
+                     $scope.classroomCourseInstance = data.classroomCourseInstance;
+                     */
+                    $location.path("/onlineCourse/show/" + data.onlineCourseInstance.id);
 
                     $rootScope.message = data.message;
                 }, function (error) { // 50* HTTP ERROR
@@ -143,30 +122,22 @@ function ClassroomCourseEditController($scope, $location, $rootScope, $routePara
     };
 
     $('#endDate').datepicker().on('changeDate', function(ev){
-        $scope.classroomCourseInstance.endDate = $(ev.target).val();
+        $scope.onlineCourseInstance.endDate = $(ev.target).val();
     });
     $('#stDate').datepicker().on('changeDate', function(ev){
-        $scope.classroomCourseInstance.stDate = $(ev.target).val();
+        $scope.onlineCourseInstance.stDate = $(ev.target).val();
     });
 };
-function ClassroomCourseShowController($scope, $location, $rootScope, $routeParams, ClassroomCourse, TypeCourse, TypeService){
 
-    $scope.classroomCourseInstance = ClassroomCourse.get({id: $routeParams.id}, function(data){
-        $scope.classroomCourseInstance = data;
+
+function OnlineCourseShowController($scope, $location, $rootScope, $routeParams, OnlineCourse, TypeService){
+
+    $scope.onlineCourseInstance = OnlineCourse.get({id: $routeParams.id}, function(data){
+        $scope.onlineCourseInstance = data;
     }, function(err){
-        $location.path("/classroomCourse");
+        $location.path("/onlineCourse");
     });
-
-    console.log($scope.classroomCourseInstance);
-
-    $scope.typeCourseList = TypeCourse.query();
     $scope.typeServiceList = TypeService.query();
-
-    $scope.getNameCourse = function(idCourse){
-        for(var i = 0; i < $scope.typeCourseList.length; i++)
-            if($scope.typeCourseList[i].id === idCourse)
-                return $scope.typeCourseList[i].name;
-    };
 
     $scope.getNameService = function(idService){
         for(var i = 0; i < $scope.typeServiceList.length; i++)

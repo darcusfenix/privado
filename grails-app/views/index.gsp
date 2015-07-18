@@ -118,6 +118,8 @@
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'TypeService.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'TypeCourse.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'ClassroomCourse.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'OnlineCourse.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'MockExam.js')}"></script>
 
 
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
@@ -127,6 +129,8 @@
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'TypeServiceRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'TypeCourseRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ClassroomCourseRoutes.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'OnlineCourseRoutes.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'MockExamRoutes.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/VoucherPayment', file: 'VoucherPayment.js')}"></script>
@@ -137,6 +141,8 @@
 <script type="text/javascript" src="${resource(dir: 'app/controllers/typeService', file: 'typeService.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/typeCourse', file: 'TypeCourse.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/classroomCourse', file: 'ClassroomCourse.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/controllers/OnlineCourse', file: 'OnlineCourse.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/controllers/mockExam', file: 'MockExam.js')}"></script>
 
 
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->

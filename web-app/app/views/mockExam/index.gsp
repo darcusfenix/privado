@@ -2,9 +2,8 @@
   Created by IntelliJ IDEA.
   User: darcusfenix
   Date: 17/07/15
-  Time: 12:59 AM
+  Time: 10:59 PM
 --%>
-
 <div class="row">
     <div class="col-md-12 ">
         <div class="portlet light bordered">
@@ -12,7 +11,7 @@
                 <div class="caption">
                     <i class="icon-settings font-purple-studio"></i>
                     <span class="caption-subject bold font-purple-studio uppercase">
-                        Cursos presenciales</span>
+                        Exámenes Simulacro</span>
                 </div>
             </div>
             <div class="portlet-body">
@@ -42,51 +41,39 @@
                                 Fecha final
                             </th>
                             <th class="text-center" >
-                                Clases
-                            </th>
-                            <th class="text-center" >
-                                Tipo de curso
-                            </th>
-                            <th class="text-center" >
                                 Alumnos Inscritos
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="course in classroomCourseList ">
+                        <tr ng-repeat="exam in mockExamList ">
                             <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{$index + 1}} </a>
+                                <a href="#/mockExam/show/{{exam.id}}"> {{$index + 1}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{ getNameService( course.typeService.id ) }} </a>
+                                <a href="#/mockExam/show/{{exam.id}}"> {{ getNameService( exam.typeService.id ) }} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.cost | currency: " $ " }} </a>
+                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.cost | currency: " $ " }} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.period}} </a>
+                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.period}} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}">
-                                    <span ng-class=" (course.active) ? 'text-success' : 'text-danger' ">
-                                        {{ (course.active) ? "Activo" : "Bloqueado" }}
+                                <a href="#/mockExam/show/{{exam.id}}">
+                                    <span ng-class=" (exam.active) ? 'text-success' : 'text-danger' ">
+                                        {{ (exam.active) ? "Activo" : "Bloqueado" }}
                                     </span>
                                 </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.stDate}} </a>
+                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.stDate}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.endDate}} </a>
+                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.endDate}} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.numberClasses}} </a>
-                            </td>
-                            <td class="text-right">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{ getNameCourse(course.typeCourse.id) }} </a>
-                            </td>
-                            <td class="text-center">
-                                <a href="#/classroomCourse/show/{{course.id}}"> {{course.studentService.length}} </a>
+                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.studentService.length}} </a>
                             </td>
                         </tr>
                         </tbody>
