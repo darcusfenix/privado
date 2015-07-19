@@ -70,6 +70,19 @@
                         </li>
                     </ul>
                 </li>
+                <li ng-class="($root.location == '/inductionClass/' || $root.location == '/inductionClass/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="fa fa-users"></i>
+                        <span class="title">Clases de inducción</span>
+                        <span class="arrow {{$root.location == '/inductionClass/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location == '/inductionClass/') ? 'active' : ''">
+                            <a href="#/inductionClass/">
+                                Ver clases</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

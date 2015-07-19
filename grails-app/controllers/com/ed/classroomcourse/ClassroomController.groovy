@@ -82,10 +82,15 @@ class ClassroomController {
 
     def delete(Integer id) {
         def classroomInstance = Classroom.findById(id ?: params.int("id"))
-        Class.executeUpdate("delete Class c where c.classroom = :classroom", [classroom: classroomInstance])
-        classroomInstance.delete(flush: true)
-        response.status = 200
-        render([message: message(code: 'de.user.deleted.message')] as JSON)
+        if(UserClassroom.findByClassroom(classroomInstance) == null) {
+            Class.executeUpdate("delete Class c where c.classroom = :classroom", [classroom: classroomInstance])
+            classroomInstance.delete(flush: true)
+            response.status = 200
+            render([message: message(code: 'de.classroom.deleted.message')] as JSON)
+        }else{
+            response.status = 500
+            render([message: message(code: 'de.classroomUser', args: [classroomInstance.nameClassroom])] as JSON)
+        }
     }
 
     def edit(Integer id){

@@ -1,6 +1,5 @@
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.StateClassroom
-import com.ed.classroomcourse.UserClass
 import com.ed.service.Office
 
 import com.controlescuela.*
@@ -14,6 +13,8 @@ import com.ed.service.Service
 import com.ed.service.TypeService
 import com.ed.service.UserClassroom
 import org.springframework.web.context.support.WebApplicationContextUtils
+
+import java.time.LocalDateTime
 
 class BootStrap {
 
@@ -65,10 +66,12 @@ class BootStrap {
         classroom.office = office
         classroom.save()
 
+
         InductionClass ic = new InductionClass()
-        ic.nombre = "Clase de inducción 1"
-        ic.cupo = 10
-        ic.Hora = new Date()
+        ic.date = null
+        ic.name  = "Clase de inducción 1"
+        ic.places = 100
+        ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)
 
         User pepo = new User()
@@ -232,6 +235,7 @@ class BootStrap {
         studentService_3.active = true
         studentService_3.fullPayment = 500.00
         studentService_3.save()
+
     }
     def destroy = {
 
