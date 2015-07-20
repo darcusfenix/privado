@@ -194,6 +194,38 @@
                                                 </div>
                                             </div>
 
+                                            <div ng-show="userInstance.authority.id==1" class="form-group">
+                                                <label class="control-label col-md-3">Comentario: <span class="required">
+                                                    *</span>
+                                                </label>
+
+                                                <div class="col-md-4">
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <input type="text" ng-model="userInstance.comment" name="comment">
+                                                    </div>
+                                                </div>
+                                                <span class="help-block" ng-show="editUser.comment.$error.required||validator.group.hasError">
+                                                    {{validator.comment.message}}
+                                                </span>
+                                            </div>
+
+                                            <div ng-show="userInstance.authority.id==1" class="form-group">
+                                                <label class="control-label col-md-3">Red Social: <span class="required">
+                                                    *</span>
+                                                </label>
+
+                                                <div class="col-md-4">
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <input type="text" ng-model="userInstance.socialNetworkUrl" name="socialNetworkUrl">
+                                                    </div>
+                                                </div>
+                                                <span class="help-block" ng-show="editUser.socialNetworkUrl.$error.required||validator.socialNetworkUrl.hasError">
+                                                    {{validator.socialNetworkUrl.message}}
+                                                </span>
+                                            </div>
+
                                             <div class="form-group"
                                                  ng-class="{'has-error': editUser.role.$error.required||validator.role.hasError}">
                                                 <label class="control-label col-md-3">Contraseña: <span
