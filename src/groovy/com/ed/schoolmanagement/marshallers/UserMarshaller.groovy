@@ -28,6 +28,7 @@ class UserMarshaller {
                     mobileNumber    : user.mobileNumber,
                     email           : user.email,
                     socialNetworkUrl: user.socialNetworkUrl,
+                    comment         : user.comment,
                     previousStudent : user.previousStudent,
                     authority       : user.getAuthorities()[0],
 
