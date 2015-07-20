@@ -13,6 +13,7 @@ class User {
     String mobileNumber
     String email
     String socialNetworkUrl
+    String comment
     boolean previousStudent
     boolean active = false
     // Address
@@ -66,6 +67,7 @@ class User {
         blank: false
         state nullable: true, blank: true
         previousStudent nullable: true, blank: true
+        comment nullable:true, blank: true
     }
     static mapping = {
         version false
