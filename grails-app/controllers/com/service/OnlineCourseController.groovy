@@ -94,4 +94,15 @@ class OnlineCourseController {
             render(onlineCourseInstance.errors as JSON)
         }
     }
+    def delete(){
+        OnlineCourse onlineCourse = OnlineCourse.findById(params.int("id"))
+        if (StudentService.findAllByService(onlineCourse).isEmpty()){
+            onlineCourse.delete(flush: true)
+            response.status = 200
+            render([success: message(code: 'onlineCourse.deleted')] as JSON)
+        }else{
+            response.status = 500
+            render([error: message(code: 'onlineCourse.canNotRemove')] as JSON)
+        }
+    }
 }

@@ -100,6 +100,14 @@ class ClassroomCourseController {
 
     }
     def delete(){
-
+        ClassroomCourse classroomCourse = ClassroomCourse.findById(params.int("id"))
+        if (StudentService.findAllByService(classroomCourse).isEmpty()){
+            classroomCourse.delete(flush: true)
+            response.status = 200
+            render([success: message(code: 'classroomCourse.deleted')] as JSON)
+        }else{
+            response.status = 500
+            render([error: message(code: 'classroomCourse.canNotRemove')] as JSON)
+        }
     }
 }

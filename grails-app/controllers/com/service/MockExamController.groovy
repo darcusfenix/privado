@@ -96,6 +96,14 @@ class MockExamController {
         }
     }
     def delete(){
-
+        MockExam mockExam = MockExam.findById(params.int("id"))
+        if (StudentService.findAllByService(mockExam).isEmpty()){
+            mockExam.delete(flush: true)
+            response.status = 200
+            render([success: message(code: 'mockExam.deleted')] as JSON)
+        }else{
+            response.status = 500
+            render([error: message(code: 'mockExam.canNotRemove')] as JSON)
+        }
     }
 }

@@ -1,7 +1,10 @@
 package com.service
 
+import com.ed.accesscontrol.StudentService
+import com.ed.schoolmanagement.User
 import com.ed.service.ExtraService
 import com.ed.service.MockExam
+import com.ed.service.OnlineCourse
 import grails.converters.JSON
 
 import java.text.SimpleDateFormat
@@ -40,28 +43,28 @@ class ExtraServiceController {
 
         extraServiceInstance.properties = jsonMap
 
-        /*
+
         List<StudentService> lista = new ArrayList<StudentService>();
 
-        StudentService.findAllByService(onlineCourseInstance) { das ->
+        StudentService.findAllByService(extraServiceInstance) { das ->
             StudentService studentServiceAux = new StudentService()
-            studentServiceAux.service = onlineCourseInstance
+            studentServiceAux.service = extraServiceInstance
             studentServiceAux.user = User.findById(das.user.id)
             studentServiceAux.active = das.active
             studentServiceAux.fullPayment = das.fullPayment
             lista.add(studentServiceAux)
         }
-        */
+
 
         if (extraServiceInstance.validate()) {
-            //onlineCourseInstance.studentService = null
+            extraServiceInstance.studentService = null
             extraServiceInstance.save(flush: true)
             //StudentService.executeUpdate("delete StudentService ss where ss.service = :service", [service: classroomCourseInstance])
-            /*
+
             lista.each { studentService ->
                 studentService.save(flush: true)
             }
-            */
+
             response.status = 200
             render([extraServiceInstance: extraServiceInstance, message: message(code: "extraService.updated")] as JSON)
         }else{
@@ -98,6 +101,18 @@ class ExtraServiceController {
         } else {
             response.status = 500
             render(extraServiceInstance.errors as JSON)
+        }
+    }
+
+    def delete(){
+        ExtraService extraService = ExtraService.findById(params.int("id"))
+        if (extraService.studentService.empty && extraService.extraIncome.empty){
+            extraService.delete(flush: true)
+            response.status = 200
+            render([success: message(code: 'extraService.deleted')] as JSON)
+        }else{
+            response.status = 500
+            render([error: message(code: 'extraService.canNotRemove')] as JSON)
         }
     }
 }
