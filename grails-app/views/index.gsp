@@ -50,6 +50,7 @@
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/tema/css', file: 'layout.css')}">
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/tema/css/themes', file: 'light.css')}">
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'assets/tema/css', file: 'custom.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'spinnerTest.css')}">
     <!-- END THEME STYLES -->
 
     <link rel="shortcut icon" href="favicon.ico"/>
@@ -58,6 +59,11 @@
 </head>
 
 <body ng-app="ControlEscuela" class="page-md page-header-fixed page-sidebar-closed-hide-logo">
+
+<div id="divSpinner" class="hidden">
+    <img src="${resource(dir: 'images', file: 'ajax-loading.gif')}" class="ajax-loader"/>
+</div>
+
 <!-- BEGIN HEADER -->
 <g:include view="tpl/header.html"/>
 <!-- END HEADER -->
@@ -81,6 +87,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
                 <strong>{{$root.message}}</strong> </a>
             </div>
+
             <g:include view="tpl/page-head.html"/>
             <!-- END PAGE HEAD -->
 
@@ -170,7 +177,10 @@
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-daterangepicker', file: 'daterangepicker.js')}"></script>
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-colorpicker/js', file: 'bootstrap-colorpicker.js')}"></script>
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-datetimepicker/js', file: 'bootstrap-datetimepicker.min.js')}"></script>
-
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins', file: 'jquery.pulsate.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/jquery-bootpag', file: 'jquery.bootpag.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/countdown', file: 'jquery.countdown.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/backstretch', file: 'jquery.backstretch.min.js')}"></script>
 <!-- FIN DE TODOS LOS RECURSOS JS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
 
@@ -180,12 +190,25 @@
 <script type="text/javascript" src="${resource(dir: 'assets/tema/scripts', file: 'demo.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/scripts', file: 'table-advanced.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/pages/scripts', file: 'components-pickers.js')}"></script>
-
+<script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'ui-general.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'coming-soon.js')}"></script>
 <script>
     jQuery(document).ready(function () {
         Metronic.init(); // init metronic core components
         Layout.init(); // init current layout
         Demo.init(); // init demo features
+
+       /*
+        ComingSoon.init();
+         $.backstretch([
+            "${resource(dir: 'assets/admin/pages', file: '1.jpg')}",
+            "${resource(dir: 'assets/admin/pages', file: '2.jpg')}",
+            "${resource(dir: 'assets/admin/pages', file: '3.jpg')}",
+            "${resource(dir: 'assets/admin/pages', file: '4.jpg')}",
+        ], {
+            fade: 1000,
+            duration: 10000
+        });*/
     });
 </script>
 <!-- END JAVASCRIPTS -->

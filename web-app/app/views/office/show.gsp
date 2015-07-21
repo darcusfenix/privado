@@ -23,7 +23,8 @@
     <div class="caption">
         Grupos en la sucursal "{{officeInstance.name}}"
     </div>
-</div></div>
+</div>
+</div>
 
 <div class="portlet-body">
 <table class="table table-striped table-bordered table-hover table-responsive table-scrollable"
@@ -66,6 +67,43 @@
     </tr>
     </tbody>
 </table>
+<br/>
+<div class="portlet box green-haze">
+    <div class="portlet-title">
+        <div class="caption">
+            Clases de inducción en la sucursal "{{officeInstance.name}}"
+        </div>
+    </div>
+</div>
+<table class="table table-striped table-bordered table-hover table-responsive table-scrollable"
+       id="tablaInductionClass">
+    <thead>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Lugares
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <input type="text" ng-model="filtro2.name" placeholder="Filtrar por nombre">
+        </th>
+        <th>
+            <input type="text" ng-model="filtro2.places" placeholder="Filtrar por lugares">
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="inductionClass in inductionClassByOffice|filter:filtro2">
+        <td><a href="#/inductionClass/show/{{inductionClass.id}}">{{inductionClass.name}}</a></td>
+        <td><a href="#/inductionClass/show/{{inductionClass.id}}">{{inductionClass.places}}</a></td>
+    </tr>
+    </tbody>
+</table>
+
+
 </div>
 
 

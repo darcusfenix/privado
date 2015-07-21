@@ -2,6 +2,7 @@ package com.ed.inductionClass
 
 import com.ed.classroomcourse.StateClassroom
 import com.ed.schoolmanagement.User
+import com.ed.service.Office
 
 import java.time.LocalDateTime
 
@@ -13,10 +14,11 @@ class InductionClass implements Serializable {
 
     StateClassroom stateClassroom
     static hasMany = [user: User]
+    static belongsTo = [office: Office]
 
     static constraints = {
         places nullable: true
-        date nullable: true, blank:true
+        date nullable: true, blank: true
         user nullable: true
     }
 
@@ -27,5 +29,13 @@ class InductionClass implements Serializable {
         date column: 'fh_time'
         places column: 'nu_places'
         version false
+    }
+
+    def getPlaces(Long id){
+        User.findAllByInductionClass(InductionClass.findById(id)).size()
+    }
+
+    def getStudents(Long id){
+        User.findAllByInductionClass(InductionClass.findById(id))
     }
 }

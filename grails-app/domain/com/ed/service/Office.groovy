@@ -6,13 +6,14 @@
 package com.ed.service
 
 import com.ed.classroomcourse.Classroom
+import com.ed.inductionClass.InductionClass
 
 class Office implements Serializable{
 
     String name
     String description
-    static hasMany = [classroom: Classroom]
-    static mappedBy = [classroom: 'office']
+    static hasMany = [classroom: Classroom, inductionClass: InductionClass]
+    static mappedBy = [classroom: 'office', inductionClass: 'office']
     //TODO: Think about of extra income for [ExtraService, ExtraIncome]
 
     static constraints = {

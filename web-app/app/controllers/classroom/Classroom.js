@@ -3,9 +3,13 @@
  */
 
 function ClassroomListController($scope, Classroom, StateClassroom, $location, $rootScope) {
+    UIGeneral.init();
+    $('#divSpinner').removeClass('hidden');
     $rootScope.location = $location.path();
     $scope.classroomList = Classroom.query();
-    $scope.stateClassroomList = StateClassroom.query();
+    $scope.stateClassroomList = StateClassroom.query(function(){
+        $('#divSpinner').addClass('hidden');
+    });
     $rootScope.nameSpace = 'Grupos';
 
     $scope.getNameState = function (idState) {
@@ -54,6 +58,7 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
         $scope.classrromInstance = data;
     });
     $scope.saveGroup = function saveGroup(valid, $event) {
+        $('#divSpinner').removeClass('hidden');
         $event.preventDefault();
         if (valid) {
             $scope.classroomInstance.$save({
@@ -63,6 +68,7 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
                 $scope.classroomInstance = data.classroom;
                 $location.path("/classroom/");
                 $rootScope.message = data.message;
+                $('#divSpinner').addClass('hidden');
             }, function (error) { // 50* HTTP ERROR
                 if (error.data.idError == 1) {
                     $scope.errorDate = {
@@ -78,6 +84,7 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
                         message: $scope.errors[i].message
                     }
                 }
+                $('#divSpinner').addClass('hidden');
             });
             return false;
         } else {
@@ -142,11 +149,13 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
 
 
 function ClassroomShowController($scope, $location, $routeParams, $rootScope, Classroom, Class) {
-
+    UIGeneral.init();
     $rootScope.nameSpace = 'Grupos';
     $rootScope.location = $location.path();
+    $('#divSpinner').removeClass('hidden');
     $scope.classroomInstance = Classroom.get({id: $routeParams.id}, function (data) {
-        $scope.lessonList = Class.getClassByClassroom({id: data.id})
+        $scope.lessonList = Class.getClassByClassroom({id: data.id});
+        $('#divSpinner').addClass('hidden');
     });
 
     $scope.editClassroom = function editClassroom() {
@@ -154,11 +163,14 @@ function ClassroomShowController($scope, $location, $routeParams, $rootScope, Cl
     };
 
     $scope.deleteClassroom = function deleteClassroom() {
+        $('#divSpinner').removeClass('hidden');
         $scope.classroomInstance.$delete({id: $routeParams.id}, function deletedResource(data) {
             $rootScope.message = data.message;
             $location.path('/classroom/');
+            $('#divSpinner').addClass('hidden');
         }, function (error) {
-            $scope.errorMessage = w
+            $scope.errorMessage = error.data.message;
+            $('#divSpinner').addClass('hidden');
         });
     };
 };
@@ -199,6 +211,7 @@ function ClassroomEditController($scope, $location, Classroom, Class, Office, $r
     $scope.errors = [];
 
     $scope.updateGroup = function updateGroup(valid, $event) {
+        $('#divSpinner').removeClass('hidden');
         $event.preventDefault();
         if (valid) {
             $scope.classroomInstance.$update({
@@ -208,6 +221,7 @@ function ClassroomEditController($scope, $location, Classroom, Class, Office, $r
                 $scope.classroomInstance = data.classroom;
                 $location.path("/classroom/");
                 $rootScope.message = data.message;
+                $('#divSpinner').addClass('hidden');
             }, function (error) { // 50* HTTP ERROR
                 if (error.data.idError == 1) {
                     $scope.errorDate = {
@@ -223,6 +237,7 @@ function ClassroomEditController($scope, $location, Classroom, Class, Office, $r
                         message: $scope.errors[i].message
                     }
                 }
+                $('#divSpinner').addClass('hidden');
             });
             return false;
         } else {

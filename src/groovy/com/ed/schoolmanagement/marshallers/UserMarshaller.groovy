@@ -30,6 +30,7 @@ class UserMarshaller {
                     socialNetworkUrl: user.socialNetworkUrl,
                     previousStudent : user.previousStudent,
                     authority       : user.getAuthorities()[0],
+                    group           : user.getGroup(user.id),
 
             ]
         }

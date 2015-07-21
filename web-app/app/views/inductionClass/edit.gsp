@@ -4,19 +4,21 @@
   Date: 7/18/15
   Time: 12:47 PM
 --%>
+
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <!-- BEGIN VALIDATION STATES-->
         <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">
-                    Crear clase de inducción
+                    Actualizar clase de inducción
                 </div>
             </div>
 
+
             <div class="portlet-body form">
-                <form name="createInductionClass" class="form-horizontal"
-                      ng-submit="saveInductionClass(createInductionClass.$valid, $event)" novalidate>
+                <form name="editInductionClass" class="form-horizontal"
+                      ng-submit="updateInductionClass(editInductionClass.$valid, $event)" novalidate>
                     <div class="form-body">
 
                         <div class="form-group" ng-class="{'has-error': varSlc == 0}">
@@ -38,7 +40,7 @@
 
 
                         <div class="form-group"
-                             ng-class="{'has-error': createInductionClass.name.$error.required||validator.name.hasError}">
+                             ng-class="{'has-error': editInductionClass.name.$error.required||validator.name.hasError}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Nombre de la clase de inducción:
                             </label>
@@ -52,13 +54,13 @@
                             </div>
 
                             <p class="help-block"
-                               ng-show="createInductionClass.name.$error.required||validator.name.hasError">
+                               ng-show="editInductionClass.name.$error.required||validator.name.hasError">
                                 {{validator.name.message}}
                             </p>
                         </div>
 
                         <div class="form-group"
-                             ng-class="{'has-error': createInductionClass.places.$error.required||validator.places.hasError}">
+                             ng-class="{'has-error': editInductionClass.places.$error.required||validator.places.hasError}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Cupo:
                             </label>
@@ -72,7 +74,7 @@
                             </div>
 
                             <p class="help-block"
-                               ng-show="createInductionClass.places.$error.required||validator.places.hasError">
+                               ng-show="editInductionClass.places.$error.required||validator.places.hasError">
                                 {{validator.places.message}}
                             </p>
                         </div>
@@ -100,14 +102,13 @@
                                 {{validatorFecha.message}}
                             </span>
                         </div>
-
                     </div>
 
                     <div class="form-actions">
                         <div class="row">
                             <div class="text-center">
                                 <button type="submit" class="btn green"
-                                        ng-disabled="createInductionClass.$invalid || varSlc == 0">Registrar</button>
+                                        ng-disabled="editInductionClass.$invalid || (!editInductionClass.$dirty) || varSlc == 0">Actualizar</button>
                                 <button type="button" class="btn default" ng-click="cancelar();">Cancelar</button>
                             </div>
                         </div>

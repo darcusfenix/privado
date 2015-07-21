@@ -8,6 +8,10 @@ angular.module('ControlEscuela').factory('InductionClass', function ($resource) 
             method: 'GET',
             url: 'inductionClass/show/:id'
         },
+        edit: {
+            method: 'GET',
+            url: 'inductionClass/edit/:id'
+        },
         update: {
             method: 'PUT',
             url: 'inductionClass/update/'
@@ -23,6 +27,11 @@ angular.module('ControlEscuela').factory('InductionClass', function ($resource) 
         save: {
             method: 'POST',
             url: 'inductionClass/save'
+        },
+        getInductionClassByOffice: {
+            method: 'GET',
+            isArray: true,
+            url: 'inductionClass/getInductionClassByOffice/:id'
         }
     });
 });

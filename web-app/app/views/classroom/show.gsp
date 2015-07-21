@@ -101,7 +101,7 @@
                         <b>{{classroomInstance.nameStateClassroom}}</b>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" id="pulsate-regular" style="padding:5px;">
                         <label class="control-label col-md-3">Lugares disponibles:
                         </label>
                         <b>{{classroomInstance.places-classroomInstance.placesOccupied}}</b>
@@ -113,64 +113,6 @@
 
                 <h3 class="form form-section">Horario del grupo<hr/></h3>
 
-                <!--<div class="form-group">
-                            <label class="control-label col-md-2"><span class="required">
-                                *</span> Fecha:
-                            </label>
-
-                            <div class="col-md-4">
-                                <input type="text" ng-model="lesson.dateClass" data-date-start-date="+0d" readonly placeholder="Check out" name="dateClass" size="14"  class="form-control dp"/>
-                            </div>
-                            <span class="text-danger" ng-show="validatorFecha.hasError">
-                                {{validatorFecha.message}}
-                            </span>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Hora inicial:
-                            </label>
-
-                            <div class="col-md-3">
-                                <div class="input-icon">
-                                    <i class="fa fa-clock-o"></i>
-                                    <input name="stHour" ng-model="leasson.stHour" class="form-control timepicker timepicker-default tp" readonly type="text">
-                                </div>
-                            </div>
-
-                            <label class="control-label col-md-2">Hora final:
-                            </label>
-
-
-
-                            <div class="col-md-3">
-                                <div class="input-icon">
-                                    <i class="fa fa-clock-o"></i>
-                                    <input name="endHour" ng-model="leasson.endHour" class="form-control timepicker timepicker-default tp2" readonly type="text">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2"><span class="required">
-                                *</span>Tema:
-                            </label>
-
-                            <div class="col-md-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <input type="text" ng-model="lesson.name" class="form-control" name="name"/>
-                                </div>
-                            </div>
-                            <span class="text-danger" ng-show="validatorTema.hasError">
-                                {{validatorTema.message}}
-                            </span>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="text-center">
-                                <button ng-click="agregarFila(lesson)" class="btn blue-madison" type="button">Agregar clase</button>
-                            </div>
-                        </div>-->
                 <div class="panel panel-default">
                     <table class="table table-striped table-bordered table-hover" id="tableClass">
                         <thead>

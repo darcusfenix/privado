@@ -14,6 +14,9 @@ class InductionClassMarshaller {
                     date              : ic.date.toString(),
                     idStateClassroom  : ic.stateClassroom.id,
                     nameStateClassroom: ic.stateClassroom.name,
+                    placesOccupied    : ic.getPlaces(ic.id),
+                    students          : ic.getStudents(ic.id),
+                    office            : ic.office,
             ]
         }
     }

@@ -49,7 +49,7 @@
                     <tr ng-repeat="classroom in classroomList|filter:filtro">
                         <td class="text-center"><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameOffice}}</a></td>
                         <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameClassroom}}</a></td>
-                        <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.places}} - {{classroom.placesOccupied}} = {{classroom.places-classroom.placesOccupied}}</a></td>
+                        <td><a  href="#/classroom/show/{{classroom.id}}">{{classroom.places}} - {{classroom.placesOccupied}} = {{classroom.places-classroom.placesOccupied}}</a></td>
                         <td><span ng-if="classroom.typeClassroom == 0">Alumnos nuevos</span>
                         <span ng-if="classroom.typeClassroom == 1">Alumnos inscritos</span></td>
                         <td><span ng-class="classroom.idStateClassroom != 2 ? 'text-success' : 'text-danger'">{{classroom.nameStateClassroom}}</span></td>

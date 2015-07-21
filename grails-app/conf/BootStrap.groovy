@@ -71,6 +71,7 @@ class BootStrap {
         ic.date = null
         ic.name  = "Clase de inducción 1"
         ic.places = 100
+        ic.office = office
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)
 
@@ -140,6 +141,11 @@ class BootStrap {
         anotheruser.inductionClass = ic
         anotheruser.save()
         UserRole.create(anotheruser, alumno, false)
+
+        uc = new UserClassroom()
+        uc.classroom = classroom
+        uc.user = anotheruser
+        uc.save()
 
         StateVoucher stateVoucher = new StateVoucher()
         stateVoucher.name = "pendiente"

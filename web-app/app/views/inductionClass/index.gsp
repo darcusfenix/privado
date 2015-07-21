@@ -26,7 +26,7 @@
         </div>
 
         <div class="tiles text-center">
-            <a style="width: 33% !important;" ng-repeat="inductionClass in inductionClassList"
+            <a style="width: 32% !important;" ng-repeat="inductionClass in inductionClassList"
                href="#/inductionClass/show/{{inductionClass.id}}"
                class="tile double bg-blue-madison">
                 <!--<img alt="" src="../../assets/admin/pages/media/profile/photo1.jpg">-->

@@ -1,6 +1,8 @@
 package com.ed.schoolmanagement
 
+import com.ed.classroomcourse.Classroom
 import com.ed.inductionClass.InductionClass
+import com.ed.service.UserClassroom
 
 class User {
     Integer id
@@ -70,5 +72,14 @@ class User {
         version false
         table 't_user'
         email unique: true
+    }
+
+    def getGroup(Long id) {
+        UserClassroom uc = UserClassroom.findByUser(User.findById(id))
+        if (uc != null) {
+            uc.getClassroom()
+        }else{
+            null
+        }
     }
 }

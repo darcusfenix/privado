@@ -3,17 +3,23 @@
  */
 
 function OfficeListController($scope, Office, $location, $rootScope) {
+    $('#divSpinner').removeClass('hidden');
     $rootScope.location = $location.path();
     $rootScope.nameSpace = 'Sucursales';
-    $scope.officeList = Office.query();
+    $scope.officeList = Office.query(function(){
+        $('#divSpinner').addClass('hidden');
+    });
 }
 
-function OfficeShowController($scope, $location, $routeParams, $rootScope, Office, Classroom) {
+function OfficeShowController($scope, $location, $routeParams, $rootScope, Office, Classroom, InductionClass) {
+    $('#divSpinner').removeClass('hidden');
     $rootScope.nameSpace = 'Sucursales';
     $rootScope.location = $location.path();
     $scope.officeInstance = Office.get({id: $routeParams.id}, function (data) {
         $scope.officeInstance = data;
         $scope.classroomByOffice = Classroom.getClassroomByOffice({id: $scope.officeInstance.id});
+        $scope.inductionClassByOffice = InductionClass.getInductionClassByOffice({id: $scope.officeInstance.id});
+        $('#divSpinner').addClass('hidden');
     });
 
     $scope.editOffice = function editOffice() {
@@ -21,10 +27,13 @@ function OfficeShowController($scope, $location, $routeParams, $rootScope, Offic
     };
 
     $scope.deleteOffice = function deleteOffice() {
+        $('#divSpinner').removeClass('hidden');
         $scope.officeInstance.$delete({id: $routeParams.id}, function deletedResource(data) {
             $rootScope.message = data.message;
             $location.path('/office/');
+            $('#divSpinner').addClass('hidden');
         }, function (error) {
+            $('#divSpinner').addClass('hidden');
             $scope.messageOfficeClass = error.data.message;
         });
     };
@@ -37,12 +46,14 @@ function OfficeCreateController($scope, $location, $routeParams, $rootScope, Off
         $scope.officeInstance = data;
     });
     $scope.saveOffice = function saveOffice(valid, $event) {
+        $('#divSpinner').removeClass('hidden');
         $event.preventDefault();
         if (valid) {
             $scope.officeInstance.$save(function (data) {
                 $scope.officeInstance = data;
                 $rootScope.message = data.message;
                 $location.path("/office/");
+                $('#divSpinner').addClass('hidden');
             }, function (error) {
                 $scope.errors = error.data.errors;
                 for (var i = 0; i < $scope.errors.length; i++) {
@@ -51,6 +62,7 @@ function OfficeCreateController($scope, $location, $routeParams, $rootScope, Off
                         message: $scope.errors[i].message
                     }
                 }
+                $('#divSpinner').addClass('hidden');
             });
         }
     }
@@ -69,12 +81,14 @@ function OfficeEditController($scope, $location, $routeParams, $rootScope, Offic
     });
 
     $scope.updateOffice = function updateOffice(valid, $event) {
+        $('#divSpinner').removeClass('hidden');
         $event.preventDefault();
         if (valid) {
             $scope.officeInstance.$update(function (data) {
                 $scope.officeInstance = data;
                 $rootScope.message = data.message;
                 $location.path("/office/");
+                $('#divSpinner').addClass('hidden');
             }, function (error) {
                 $scope.errors = error.data.errors;
                 for (var i = 0; i < $scope.errors.length; i++) {
@@ -83,6 +97,7 @@ function OfficeEditController($scope, $location, $routeParams, $rootScope, Offic
                         message: $scope.errors[i].message
                     }
                 }
+                $('#divSpinner').addClass('hidden');
             });
         }
     }
