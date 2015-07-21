@@ -83,6 +83,8 @@
                             </span>
                         </div>
 
+
+
                         <div class="form-group"
                              ng-class="{'has-error': editonlineCourse.active.$error.required || validator.active.hasError}">
                             <label class="control-label col-md-3">Estado: <span class="required">

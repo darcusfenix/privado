@@ -1,20 +1,23 @@
 /**
- * Created by darcusfenix on 17/07/15.
+ * Created by darcusfenix on 20/07/15.
  */
 
 
-function OnlineCourseListController($scope, $location, $rootScope, $filter, OnlineCourse, TypeService){
+function ExtraServiceListController($scope, $location, $rootScope, $filter, ExtraService, TypeService){
 
     $rootScope.location = $location.path();
-    $scope.onlineCourseList = OnlineCourse.query(function(data){
-        $scope.onlineCourseList = data;
-        for (var i = 0; i < $scope.onlineCourseList.length; i++){
-            $scope.onlineCourseList[i].stDate = $filter('date')($scope.onlineCourseList[i].stDate, 'MM/dd/yyyy');
-            $scope.onlineCourseList[i].endDate = $filter('date')($scope.onlineCourseList[i].endDate, 'MM/dd/yyyy');
+    $scope.extraServiceList = ExtraService.query( function(data){
+        $scope.extraServiceList = data;
+
+        for (var i = 0; i < $scope.extraServiceList.length; i++){
+            $scope.extraServiceList[i].stDate = $filter('date')($scope.extraServiceList[i].stDate, 'MM/dd/yyyy');
+            $scope.extraServiceList[i].endDate = $filter('date')($scope.extraServiceList[i].endDate, 'MM/dd/yyyy');
         }
+        console.log($scope.extraServiceList)
     }, function(err){
         $location.path("/");
     });
+
     $scope.typeServiceList = TypeService.query();
 
 
@@ -24,13 +27,13 @@ function OnlineCourseListController($scope, $location, $rootScope, $filter, Onli
                 return $scope.typeServiceList[i].name;
     };
 }
-function OnlineCourseCreateController($scope, $location, $rootScope , OnlineCourse, TypeService){
+function ExtraServiceCreateController($scope, $location, $rootScope, ExtraService, TypeService){
+    $rootScope.location = $location.path();
 
     ComponentsPickers.init();
 
-    $scope.onlineCourseInstance = OnlineCourse.create();
+    $scope.extraServiceInstance = ExtraService.create();
     $scope.typeServiceList = TypeService.query();
-
 
     $scope.getNameService = function(idService){
         for(var i = 0; i < $scope.typeServiceList.length; i++)
@@ -38,16 +41,16 @@ function OnlineCourseCreateController($scope, $location, $rootScope , OnlineCour
                 return $scope.typeServiceList[i].name;
     };
 
-    $scope.saveOnlineCourse = function saveOnlineCourse(valid, $event) {
+    $scope.saveExtraService = function saveExtraService(valid, $event) {
         $event.preventDefault();
         if (valid) {
-            $scope.onlineCourseInstance.$save(
+            $scope.extraServiceInstance.$save(
                 function (data) { // 200 HTTP OK
                     console.log(data);
                     /*
                      $scope.classroomCourseInstance = data.classroomCourseInstance;
                      */
-                    $location.path("/onlineCourse/show/" + data.onlineCourseInstance.id);
+                    $location.path("/extraService/show/" + data.extraServiceInstance.id);
 
                     $rootScope.message = data.message;
                 }, function (error) { // 50* HTTP ERROR
@@ -70,42 +73,47 @@ function OnlineCourseCreateController($scope, $location, $rootScope , OnlineCour
     };
 
     $('#endDate').datepicker().on('changeDate', function(ev){
-        $scope.onlineCourseInstance.endDate = $(ev.target).val();
+        $scope.extraServiceInstance.endDate = $(ev.target).val();
     });
     $('#stDate').datepicker().on('changeDate', function(ev){
-        $scope.onlineCourseInstance.stDate = $(ev.target).val();
+        $scope.extraServiceInstance.stDate = $(ev.target).val();
     });
 };
 
-function OnlineCourseEditController($scope, $location, $rootScope, $routeParams, $filter, OnlineCourse, TypeService){
 
+
+function ExtraServiceEditController($scope, $location, $rootScope, $routeParams, $filter, ExtraService, TypeService) {
+    $rootScope.location = $location.path();
     ComponentsPickers.init();
-    $scope.onlineCourseInstance = OnlineCourse.get({id: $routeParams.id}, function(data){
-        $scope.onlineCourseInstance = data;
-        $scope.onlineCourseInstance.stDate = $filter('date')($scope.onlineCourseInstance.stDate, 'MM/dd/yyyy');
-        $scope.onlineCourseInstance.endDate = $filter('date')($scope.onlineCourseInstance.endDate, 'MM/dd/yyyy');
-    }, function(err){
-        $location.path("/onlineCourse");
+
+    $scope.extraServiceInstance = ExtraService.get({id: $routeParams.id}, function (data) {
+        $scope.extraServiceInstance = data;
+        $scope.extraServiceInstance.stDate = $filter('date')($scope.extraServiceInstance.stDate, 'MM/dd/yyyy');
+        $scope.extraServiceInstance.endDate = $filter('date')($scope.extraServiceInstance.endDate, 'MM/dd/yyyy');
+    }, function (err) {
+        $location.path("/classroomCourse");
     });
 
     $scope.typeServiceList = TypeService.query();
 
-    $scope.getNameService = function(idService){
-        for(var i = 0; i < $scope.typeServiceList.length; i++)
-            if($scope.typeServiceList[i].id === idService)
+    $scope.getNameService = function (idService) {
+        for (var i = 0; i < $scope.typeServiceList.length; i++)
+            if ($scope.typeServiceList[i].id === idService)
                 return $scope.typeServiceList[i].name;
     };
 
-    $scope.saveOnlineCourse = function saveOnlineCourse(valid, $event) {
+    $scope.saveExtraService = function ExtraService(valid, $event) {
         $event.preventDefault();
         if (valid) {
-            $scope.onlineCourseInstance.$update(
+            $scope.extraServiceInstance.stDate = $filter('date')($scope.extraServiceInstance.stDate, 'MM/dd/yyyy');
+            $scope.extraServiceInstance.endDate = $filter('date')($scope.extraServiceInstance.endDate, 'MM/dd/yyyy');
+            $scope.extraServiceInstance.$update(
                 function (data) { // 200 HTTP OK
                     console.log(data);
                     /*
                      $scope.classroomCourseInstance = data.classroomCourseInstance;
                      */
-                    $location.path("/onlineCourse/show/" + data.onlineCourseInstance.id);
+                    $location.path("/extraService/show/" + data.extraServiceInstance.id);
 
                     $rootScope.message = data.message;
                 }, function (error) { // 50* HTTP ERROR
@@ -127,25 +135,26 @@ function OnlineCourseEditController($scope, $location, $rootScope, $routeParams,
         }
     };
 
-    $('#endDate').datepicker().on('changeDate', function(ev){
-        $scope.onlineCourseInstance.endDate = $(ev.target).val();
+    $('#endDate').datepicker().on('changeDate', function (ev) {
+        $scope.extraServiceInstance.endDate = $(ev.target).val();
     });
-    $('#stDate').datepicker().on('changeDate', function(ev){
-        $scope.onlineCourseInstance.stDate = $(ev.target).val();
+    $('#stDate').datepicker().on('changeDate', function (ev) {
+        $scope.extraServiceInstance.stDate = $(ev.target).val();
     });
 };
 
-
-function OnlineCourseShowController($scope, $location, $filter, $routeParams, OnlineCourse, TypeService){
-
-    $scope.onlineCourseInstance = OnlineCourse.get({id: $routeParams.id}, function(data){
-        $scope.onlineCourseInstance = data;
-        $scope.onlineCourseInstance.stDate = $filter('date')($scope.onlineCourseInstance.stDate, 'MM/dd/yyyy');
-        $scope.onlineCourseInstance.endDate = $filter('date')($scope.onlineCourseInstance.endDate, 'MM/dd/yyyy');
+function ExtraServiceShowController($scope, $location, $rootScope, $routeParams, $filter, ExtraService, TypeService){
+    $rootScope.location = $location.path();
+    $scope.extraServiceInstance = ExtraService.get({id: $routeParams.id}, function(data){
+        $scope.extraServiceInstance = data;
+        $scope.extraServiceInstance.stDate = $filter('date')($scope.extraServiceInstance.stDate, 'MM/dd/yyyy');
+        $scope.extraServiceInstance.endDate = $filter('date')($scope.extraServiceInstance.endDate, 'MM/dd/yyyy');
     }, function(err){
-        $location.path("/onlineCourse");
+        $location.path("/extraService");
     });
+
     $scope.typeServiceList = TypeService.query();
+
 
     $scope.getNameService = function(idService){
         for(var i = 0; i < $scope.typeServiceList.length; i++)

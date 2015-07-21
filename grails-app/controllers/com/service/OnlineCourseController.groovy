@@ -5,6 +5,8 @@ import com.ed.schoolmanagement.User
 import com.ed.service.OnlineCourse
 import grails.converters.JSON
 
+import java.text.SimpleDateFormat
+
 class OnlineCourseController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -19,9 +21,52 @@ class OnlineCourseController {
     def create (){
         render new OnlineCourse() as JSON
     }
+
+    def save (){
+        SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
+        def onlineCourseInstance = new OnlineCourse()
+        def jsonMap = [:]
+        jsonMap = request.JSON
+        Date stDate = sdf.parse(request.JSON.stDate)
+        Date endDate = sdf.parse(request.JSON.endDate)
+        onlineCourseInstance.stDate = stDate
+        onlineCourseInstance.endDate = endDate
+        jsonMap.remove('stDate')
+        jsonMap.remove('endDate')
+        onlineCourseInstance.properties = jsonMap
+
+        if (onlineCourseInstance.validate()) {
+
+            onlineCourseInstance.save(flush: true)
+            response.status = 200
+            render([onlineCourseInstance: onlineCourseInstance, message: message(code: "onlineCourse.created")] as JSON)
+
+        } else {
+            response.status = 500
+            render(onlineCourseInstance.errors as JSON)
+        }
+    }
+
     def update (){
-        OnlineCourse onlineCourseInstance = OnlineCourse.findById(request.JSON.id)
-        onlineCourseInstance.properties = request.JSON
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
+        def onlineCourseInstance = OnlineCourse.findById(request.JSON.id)
+        def jsonMap = [:]
+
+        jsonMap = request.JSON
+
+        Date stDate = sdf.parse(request.JSON.stDate)
+        Date endDate = sdf.parse(request.JSON.endDate)
+
+        onlineCourseInstance.stDate = stDate
+        onlineCourseInstance.endDate = endDate
+
+        jsonMap.remove('stDate')
+        jsonMap.remove('endDate')
+
+        onlineCourseInstance.properties = jsonMap
+
 
         List<StudentService> lista = new ArrayList<StudentService>();
 

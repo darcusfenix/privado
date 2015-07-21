@@ -48,55 +48,78 @@
                         <tbody>
                         <tr ng-repeat="course in servicesList ">
                             <td class="text-center">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                (( course.typeService.id == 2) ? 'onlineCourse':
-                                (( course.typeService.id == 3) ? 'mockExam': '') ) }}/show/{{course.id}}"> {{$index + 1}} </a>
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}"> {{$index + 1}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                 (( course.typeService.id == 2) ? 'onlineCourse':
-                                  (( course.typeService.id == 3) ? 'mockExam': '') ) }}/show/{{course.id}}"> {{ getNameService( course.typeService.id ) }} </a>
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}"> {{ getNameService( course.typeService.id ) }} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                 (( course.typeService.id == 2) ? 'onlineCourse': (( course.typeService.id == 3) ? 'mockExam': '') ) }}/show/{{course.id}}"> {{course.cost | currency: " $ " }} </a>
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}"> {{course.cost | currency: " $ " }} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                 (( course.typeService.id == 2) ? 'onlineCourse': (( course.typeService.id == 3) ? 'mockExam': '') ) }}/show/{{course.id}}"> {{course.period}} </a>
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}"> {{course.period}} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                 (( course.typeService.id == 2) ? 'onlineCourse': (( course.typeService.id == 3) ? 'mockExam': '') ) }}/show/{{course.id}}">
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}">
                                     <span ng-class=" (course.active) ? 'text-success' : 'text-danger' ">
                                         {{ (course.active) ? "DISPONIBLE" : "BLOQUEADO" }}
                                     </span>
                                 </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                 (( course.typeService.id == 2) ? 'onlineCourse': (( course.typeService.id == 3) ? 'mockExam':
-                                  '') ) }}/show/{{course.id}}"> {{course.stDate}} </a>
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}"> {{course.stDate}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                 (( course.typeService.id == 2) ? 'onlineCourse': (( course.typeService.id == 3) ? 'mockExam':
-                                  '') ) }}/show/{{course.id}}"> {{course.endDate}} </a>
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}"> {{course.endDate}} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                 (( course.typeService.id == 2) ? 'onlineCourse': (( course.typeService.id == 3) ? 'mockExam':
-                                  '') ) }}/show/{{course.id}}"> {{course.numberClasses ? course.numberClasses : 'No aplica'}} </a>
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}"> {{course.numberClasses ? course.numberClasses : 'No aplica'}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                 (( course.typeService.id == 2) ? 'onlineCourse': (( course.typeService.id == 3) ? 'mockExam':
-                                  '') ) }}/show/{{course.id}}"> {{ course.typeCourse.id ? getNameCourse(course.typeCourse.id) : 'No aplica' }} </a>
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}"> {{ course.typeCourse.id ? getNameCourse(course.typeCourse.id) : 'No aplica' }} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/{{ ( course.typeService.id == 1) ? 'classroomCourse' :
-                                 (( course.typeService.id == 2) ? 'onlineCourse': (( course.typeService.id == 3) ? 'mockExam':
-                                  '') ) }}/show/{{course.id}}"> {{course.studentService.length}} </a>
+                                <a href="#/{{ ( course.typeService.id === 1) ? 'classroomCourse' :
+                                (( course.typeService.id === 2) ? 'onlineCourse':
+                                (( course.typeService.id === 3) ? 'mockExam':
+                                (( course.typeService.id === 4) ? 'extraService': '')
+                                ) ) }}/show/{{course.id}}"> {{course.studentService.length}} </a>
                             </td>
                         </tr>
                         </tbody>

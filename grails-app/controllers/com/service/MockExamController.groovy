@@ -5,6 +5,8 @@ import com.ed.schoolmanagement.User
 import com.ed.service.MockExam
 import grails.converters.JSON
 
+import java.text.SimpleDateFormat
+
 class MockExamController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -20,11 +22,52 @@ class MockExamController {
         render (new MockExam() as JSON)
     }
     def save(){
+        SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
+        def mockExamInstance = new MockExam()
+        def jsonMap = [:]
+        jsonMap = request.JSON
+        Date stDate = sdf.parse(request.JSON.stDate)
+        Date endDate = sdf.parse(request.JSON.endDate)
+        mockExamInstance.stDate = stDate
+        mockExamInstance.endDate = endDate
+        jsonMap.remove('stDate')
+        jsonMap.remove('endDate')
+        mockExamInstance.properties = jsonMap
 
+
+        if (mockExamInstance.validate()) {
+
+            mockExamInstance.save(flush: true)
+            response.status = 200
+            render([mockExamInstance: mockExamInstance, message: message(code: "mockExam.created")] as JSON)
+
+        } else {
+            response.status = 500
+            render(mockExamInstance.errors as JSON)
+        }
     }
     def update(){
+        /*
         MockExam mockExamInstance = MockExam.findById(request.JSON.id)
         mockExamInstance.properties = request.JSON
+        */
+
+        SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
+        def mockExamInstance = MockExam.findById(request.JSON.id)
+        def jsonMap = [:]
+
+        jsonMap = request.JSON
+
+        Date stDate = sdf.parse(request.JSON.stDate)
+        Date endDate = sdf.parse(request.JSON.endDate)
+
+        mockExamInstance.stDate = stDate
+        mockExamInstance.endDate = endDate
+
+        jsonMap.remove('stDate')
+        jsonMap.remove('endDate')
+
+        mockExamInstance.properties = jsonMap
 
         List<StudentService> lista = new ArrayList<StudentService>();
 

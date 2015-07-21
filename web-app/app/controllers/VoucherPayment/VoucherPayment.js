@@ -194,7 +194,7 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
 
 /****************************/
 
-function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $location, VoucherPayment, User, $rootScope, StudentService, Service, TypeService, $timeout, $route){
+function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $location, VoucherPayment, User, $rootScope, $filter, Service, TypeService, $timeout, $route){
     $rootScope.location = $location.path();
     $scope.errors = [];
     $scope.validator = {};
@@ -205,6 +205,9 @@ function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $loca
 
     $scope.recordVoucherPayment = VoucherPayment.vouchersStudenAndService({ 'userId':$routeParams.userId, 'serviceId': $routeParams.serviceId},function(data) {
         $scope.recordVoucherPayment = data;
+        for(var i = 0; $scope.recordVoucherPayment.length; i++){
+            $scope.recordVoucherPayment[i].payDate = $filter('date')($scope.recordVoucherPayment[i].payDate, 'short');
+        }
         console.log($scope.recordVoucherPayment);
     });
 
@@ -216,6 +219,8 @@ function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $loca
 
     $scope.service = Service.get({id: $routeParams.serviceId}, function (data) {
         $scope.service = data;
+        $scope.service.stDate = $filter('date')($scope.service.stDate, 'MM/dd/yyyy');
+        $scope.service.endDate = $filter('date')($scope.service.endDate, 'MM/dd/yyyy');
     }, function (err) {
         $location.path("voucherPayment/create");
     });

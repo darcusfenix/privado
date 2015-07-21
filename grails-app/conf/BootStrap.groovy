@@ -1,6 +1,7 @@
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.StateClassroom
 import com.ed.service.ClassroomCourse
+import com.ed.service.ExtraService
 import com.ed.service.MockExam
 import com.ed.service.Office
 
@@ -165,6 +166,7 @@ class BootStrap {
 
 
 
+
         TypeCourse typeCourse = new TypeCourse()
         typeCourse.name = "Curso normal cat"
         typeCourse.description = "este es un curso normal de muchos meses"
@@ -212,6 +214,16 @@ class BootStrap {
         mockExam.active = false
         mockExam.typeService = othertypeService
         mockExam.save()
+
+        ExtraService extraService = new ExtraService()
+        extraService.stDate = new Date()
+        extraService.endDate = new Date()
+        extraService.fullIncome = 0
+        extraService.active = false
+        extraService.period = "2015-02"
+        extraService.typeService = otherAgaintypeService
+        extraService.cost = 500
+        extraService.save()
 
 
         // STUDENTS WITH SERVICES

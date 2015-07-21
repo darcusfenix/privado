@@ -4,6 +4,8 @@ import com.ed.service.ExtraService
 import com.ed.service.MockExam
 import grails.converters.JSON
 
+import java.text.SimpleDateFormat
+
 class ExtraServiceController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -12,7 +14,90 @@ class ExtraServiceController {
         render (ExtraService.list() as JSON )
     }
 
+    def create(){
+        render(new ExtraService() as JSON)
+    }
+
     def show (Integer id){
-        render(MockExam.findById(id ?: params.int("id") ) as JSON)
+        render(ExtraService.findById(id ?: params.int("id") ) as JSON)
+    }
+
+    def update(){
+        SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
+        def extraServiceInstance = ExtraService.findById(request.JSON.id)
+        def jsonMap = [:]
+
+        jsonMap = request.JSON
+
+        Date stDate = sdf.parse(request.JSON.stDate)
+        Date endDate = sdf.parse(request.JSON.endDate)
+
+        extraServiceInstance.stDate = stDate
+        extraServiceInstance.endDate = endDate
+
+        jsonMap.remove('stDate')
+        jsonMap.remove('endDate')
+
+        extraServiceInstance.properties = jsonMap
+
+        /*
+        List<StudentService> lista = new ArrayList<StudentService>();
+
+        StudentService.findAllByService(onlineCourseInstance) { das ->
+            StudentService studentServiceAux = new StudentService()
+            studentServiceAux.service = onlineCourseInstance
+            studentServiceAux.user = User.findById(das.user.id)
+            studentServiceAux.active = das.active
+            studentServiceAux.fullPayment = das.fullPayment
+            lista.add(studentServiceAux)
+        }
+        */
+
+        if (extraServiceInstance.validate()) {
+            //onlineCourseInstance.studentService = null
+            extraServiceInstance.save(flush: true)
+            //StudentService.executeUpdate("delete StudentService ss where ss.service = :service", [service: classroomCourseInstance])
+            /*
+            lista.each { studentService ->
+                studentService.save(flush: true)
+            }
+            */
+            response.status = 200
+            render([extraServiceInstance: extraServiceInstance, message: message(code: "extraService.updated")] as JSON)
+        }else{
+            response.status = 500
+            render(extraServiceInstance.errors as JSON)
+        }
+    }
+
+    def save (){
+        SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
+        def extraServiceInstance = new ExtraService()
+        def jsonMap = [:]
+        jsonMap = request.JSON
+
+        Date stDate = sdf.parse(request.JSON.stDate)
+        Date endDate = sdf.parse(request.JSON.endDate)
+
+        extraServiceInstance.stDate = stDate
+        extraServiceInstance.endDate = endDate
+        extraServiceInstance.fullIncome = 0
+
+        jsonMap.remove('stDate')
+        jsonMap.remove('endDate')
+        jsonMap.remove('fullIncome')
+
+        extraServiceInstance.properties = jsonMap
+
+        if (extraServiceInstance.validate()) {
+
+            extraServiceInstance.save(flush: true)
+            response.status = 200
+            render([extraServiceInstance: extraServiceInstance, message: message(code: "extraService.created")] as JSON)
+
+        } else {
+            response.status = 500
+            render(extraServiceInstance.errors as JSON)
+        }
     }
 }

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: darcusfenix
-  Date: 17/07/15
-  Time: 10:59 PM
+  Date: 20/07/15
+  Time: 10:06 PM
 --%>
 
 <div class="row">
@@ -10,7 +10,7 @@
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-cogs"></i>Información del Examen Simulacro
+                    <i class="fa fa-cogs"></i>Información del Servicio Extra
                 </div>
             </div>
 
@@ -21,37 +21,7 @@
                     </div>
 
                     <div class="col-md-7 value uppercase">
-                        {{ getNameService(mockExamInstance.typeService.id) }}
-                    </div>
-                </div>
-
-                <div class="row static-info">
-                    <div class="col-md-5 name">
-                        Nombre:
-                    </div>
-
-                    <div class="col-md-7 value uppercase">
-                        {{mockExamInstance.name}}
-                    </div>
-                </div>
-
-                <div class="row static-info">
-                    <div class="col-md-5 name">
-                        Duración (min):
-                    </div>
-
-                    <div class="col-md-7 value uppercase">
-                        {{mockExamInstance.term}} minutos
-                    </div>
-                </div>
-
-                <div class="row static-info">
-                    <div class="col-md-5 name">
-                        Periodo:
-                    </div>
-
-                    <div class="col-md-7 value uppercase">
-                        {{mockExamInstance.period}}
+                        {{ getNameService(extraServiceInstance.typeService.id) }}
                     </div>
                 </div>
 
@@ -61,7 +31,27 @@
                     </div>
 
                     <div class="col-md-7 value uppercase">
-                        {{mockExamInstance.cost | currency: " $ "}}
+                        {{extraServiceInstance.cost | currency: " $ "}}
+                    </div>
+                </div>
+
+                <div class="row static-info">
+                    <div class="col-md-5 name">
+                        Periodo:
+                    </div>
+
+                    <div class="col-md-7 value uppercase">
+                        {{extraServiceInstance.period}}
+                    </div>
+                </div>
+
+                <div class="row static-info">
+                    <div class="col-md-5 name">
+                        Monto total:
+                    </div>
+
+                    <div class="col-md-7 value uppercase">
+                        {{extraServiceInstance.fullIncome}}
                     </div>
                 </div>
 
@@ -71,8 +61,8 @@
                     </div>
 
                     <div class="col-md-7 value uppercase">
-                        <span ng-class=" (mockExamInstance.active) ? 'text-success' : 'text-danger' ">
-                            {{ (mockExamInstance.active) ? "Activo" : "Bloqueado" }}
+                        <span ng-class=" (extraServiceInstance.active) ? 'text-success' : 'text-danger' ">
+                            {{ (extraServiceInstance.active) ? "Activo" : "Bloqueado" }}
                         </span>
                     </div>
                 </div>
@@ -83,7 +73,7 @@
                     </div>
 
                     <div class="col-md-7 value uppercase">
-                        {{mockExamInstance.stDate}}
+                        {{extraServiceInstance.stDate}}
                     </div>
                 </div>
 
@@ -93,26 +83,26 @@
                     </div>
 
                     <div class="col-md-7 value uppercase">
-                        {{mockExamInstance.endDate}}
+                        {{extraServiceInstance.endDate}}
                     </div>
                 </div>
 
                 <div class="row static-info">
                     <div class="col-md-5 name">
-                        Alumnos Inscritos:
+                        Alumnos que han pagado:
                     </div>
 
                     <div class="col-md-7 value uppercase">
-                        {{mockExamInstance.studentService.length}}
+                        {{extraServiceInstance.studentService.length}}
                     </div>
                 </div>
             </div>
 
             <div class="form-actions noborder">
-                <a href="#/mockExam/edit/{{mockExamInstance.id}}" type="button"
+                <a href="#/extraService/edit/{{extraServiceInstance.id}}" type="button"
                    class="btn btn-primary">Editar</a>
-                <!--<button type="button" class="btn btn-danger" ng-click="deleteonlineCourse();">Eliminar</button>-->
-                <a href="#/mockExam" type="button" class="btn btn-default" ng-click="cancelar();">Cancelar</a>
+                <!--<button type="button" class="btn btn-danger" ng-click="deleteextraService();">Eliminar</button>-->
+                <a href="#/extraService" type="button" class="btn btn-default" ng-click="cancelar();">Cancelar</a>
             </div>
         </div>
     </div>

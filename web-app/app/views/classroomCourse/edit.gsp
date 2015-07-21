@@ -114,7 +114,7 @@
                                 <div class="input-icon right">
                                     <i class="fa"></i>
                                     <input type="text" ng-model="classroomCourseInstance.stDate" data-date-start-date="+0d"
-                                           readonly placeholder="{{classroomCourseInstance.stDate | date :'yyyy / MM / dd' }}" name="stDate" size="14"
+                                           readonly placeholder="{{classroomCourseInstance.stDate }}" name="stDate" size="14"
                                            class="form-control" id="stDate"/>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                 <div class="input-icon right">
                                     <i class="fa"></i>
                                     <input type="text" ng-model="classroomCourseInstance.endDate" data-date-start-date="+0d"
-                                           readonly placeholder="{{classroomCourseInstance.endDate  | date:'MM/dd/yyyy' }}" name="endDate" size="14"
+                                           readonly placeholder="{{classroomCourseInstance.endDate  }}" name="endDate" size="14"
                                            class="form-control" id="endDate"/>
                                 </div>
                             </div>

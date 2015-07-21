@@ -1,17 +1,21 @@
 <%--
   Created by IntelliJ IDEA.
   User: darcusfenix
-  Date: 17/07/15
-  Time: 10:59 PM
+  Date: 20/07/15
+  Time: 10:06 PM
 --%>
+
 <div class="row">
     <div class="col-md-12 ">
-        <div class="portlet light bordered">
+        <div class="alert alert-warning  margin-bottom-10" ng-show="extraServiceList.length === 0">
+            <strong> No hay servicios registrados </strong>
+        </div>
+        <div class="portlet light bordered" ng-hide="extraServiceList.length === 0">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-settings font-purple-studio"></i>
                     <span class="caption-subject bold font-purple-studio uppercase">
-                        Exámenes Simulacro</span>
+                        Servicios Extra</span>
                 </div>
             </div>
             <div class="portlet-body">
@@ -24,12 +28,6 @@
                             </th>
                             <th class="text-center" >
                                 Tipo de Servicio
-                            </th>
-                            <th class="text-center" >
-                                Nombre
-                            </th>
-                            <th class="text-center" >
-                                Duración (min)
                             </th>
                             <th class="text-center" >
                                 Costo individual
@@ -47,45 +45,45 @@
                                 Fecha final
                             </th>
                             <th class="text-center" >
-                                Alumnos Inscritos
+                                Monto total
+                            </th>
+                            <th class="text-center" >
+                                Alumnos que han pagado
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="exam in mockExamList ">
+                        <tr ng-repeat="course in extraServiceList ">
                             <td class="text-center">
-                                <a href="#/mockExam/show/{{exam.id}}"> {{$index + 1}} </a>
+                                <a href="#/extraService/show/{{course.id}}"> {{$index + 1}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/mockExam/show/{{exam.id}}"> {{ getNameService( exam.typeService.id ) }} </a>
+                                <a href="#/extraService/show/{{course.id}}"> {{ getNameService( course.typeService.id ) }} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.name}} </a>
+                                <a href="#/extraService/show/{{course.id}}"> {{course.cost | currency: " $ " }} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.term}} </a>
-                            </td>
-                            <td class="text-right">
-                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.cost | currency: " $ " }} </a>
+                                <a href="#/extraService/show/{{course.id}}"> {{course.period}} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.period}} </a>
-                            </td>
-                            <td class="text-center">
-                                <a href="#/mockExam/show/{{exam.id}}">
-                                    <span ng-class=" (exam.active) ? 'text-success' : 'text-danger' ">
-                                        {{ (exam.active) ? "Activo" : "Bloqueado" }}
+                                <a href="#/extraService/show/{{course.id}}">
+                                    <span ng-class=" (course.active) ? 'text-success' : 'text-danger' ">
+                                        {{ (course.active) ? "Activo" : "Bloqueado" }}
                                     </span>
                                 </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.stDate}} </a>
+                                <a href="#/extraService/show/{{course.id}}"> {{course.stDate}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.endDate}} </a>
+                                <a href="#/extraService/show/{{course.id}}"> {{course.endDate}} </a>
+                            </td>
+                            <td class="text-right">
+                                <a href="#/extraService/show/{{course.id}}"> {{ course.fullIncome }} </a>
                             </td>
                             <td class="text-center">
-                                <a href="#/mockExam/show/{{exam.id}}"> {{exam.studentService.length}} </a>
+                                <a href="#/extraService/show/{{course.id}}"> {{course.studentService.length}} </a>
                             </td>
                         </tr>
                         </tbody>

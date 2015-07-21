@@ -3,11 +3,17 @@
  */
 
 
-function ClassroomCourseListController($scope, $location, $rootScope, ClassroomCourse, TypeCourse, TypeService){
+function ClassroomCourseListController($scope, $location, $rootScope, $filter, ClassroomCourse, TypeCourse, TypeService){
 
     $rootScope.location = $location.path();
     $scope.classroomCourseList = ClassroomCourse.query( function(data){
         $scope.classroomCourseList = data;
+
+        for (var i = 0; i < $scope.classroomCourseList.length; i++){
+            $scope.classroomCourseList[i].stDate = $filter('date')($scope.classroomCourseList[i].stDate, 'MM/dd/yyyy');
+            $scope.classroomCourseList[i].endDate = $filter('date')($scope.classroomCourseList[i].endDate, 'MM/dd/yyyy');
+        }
+
     }, function(err){
         $location.path("/");
     });
@@ -28,7 +34,8 @@ function ClassroomCourseListController($scope, $location, $rootScope, ClassroomC
     };
 
 };
-function ClassroomCourseCreateController($scope, $location, $rootScope, $routeParams, ClassroomCourse, TypeCourse, TypeService){
+function ClassroomCourseCreateController($scope, $location, $rootScope, ClassroomCourse, TypeCourse, TypeService){
+    $rootScope.location = $location.path();
 
     ComponentsPickers.init();
 
@@ -86,15 +93,19 @@ function ClassroomCourseCreateController($scope, $location, $rootScope, $routePa
         $scope.classroomCourseInstance.stDate = $(ev.target).val();
     });
 };
-function ClassroomCourseEditController($scope, $location, $rootScope, $routeParams, ClassroomCourse, TypeCourse, TypeService){
 
+function ClassroomCourseEditController($scope, $location, $rootScope, $routeParams, $filter, ClassroomCourse, TypeCourse, TypeService){
+    $rootScope.location = $location.path();
     ComponentsPickers.init();
 
     $scope.classroomCourseInstance = ClassroomCourse.get({id: $routeParams.id}, function(data){
         $scope.classroomCourseInstance = data;
+        $scope.classroomCourseInstance.stDate = $filter('date')($scope.classroomCourseInstance.stDate, 'MM/dd/yyyy');
+        $scope.classroomCourseInstance.endDate = $filter('date')($scope.classroomCourseInstance.endDate, 'MM/dd/yyyy');
     }, function(err){
         $location.path("/classroomCourse");
     });
+
 
     $scope.typeCourseList = TypeCourse.query();
     $scope.typeServiceList = TypeService.query();
@@ -114,6 +125,8 @@ function ClassroomCourseEditController($scope, $location, $rootScope, $routePara
     $scope.saveClassroomCourse = function saveClassroomCourse(valid, $event) {
         $event.preventDefault();
         if (valid) {
+            $scope.classroomCourseInstance.stDate = $filter('date')($scope.classroomCourseInstance.stDate, 'MM/dd/yyyy');
+            $scope.classroomCourseInstance.endDate = $filter('date')($scope.classroomCourseInstance.endDate, 'MM/dd/yyyy');
             $scope.classroomCourseInstance.$update(
                 function (data) { // 200 HTTP OK
                     console.log(data);
@@ -149,15 +162,17 @@ function ClassroomCourseEditController($scope, $location, $rootScope, $routePara
         $scope.classroomCourseInstance.stDate = $(ev.target).val();
     });
 };
-function ClassroomCourseShowController($scope, $location, $rootScope, $routeParams, ClassroomCourse, TypeCourse, TypeService){
-
+function ClassroomCourseShowController($scope, $location, $rootScope, $routeParams, $filter, ClassroomCourse, TypeCourse, TypeService){
+    $rootScope.location = $location.path();
     $scope.classroomCourseInstance = ClassroomCourse.get({id: $routeParams.id}, function(data){
         $scope.classroomCourseInstance = data;
+        $scope.classroomCourseInstance.stDate = $filter('date')($scope.classroomCourseInstance.stDate, 'MM/dd/yyyy');
+        $scope.classroomCourseInstance.endDate = $filter('date')($scope.classroomCourseInstance.endDate, 'MM/dd/yyyy');
     }, function(err){
         $location.path("/classroomCourse");
     });
 
-    console.log($scope.classroomCourseInstance);
+    console.log($scope.classroomCourseInstance.stDate =  $filter('date')($scope.classroomCourseInstance.stDate, 'yyyy-MM-dd'));
 
     $scope.typeCourseList = TypeCourse.query();
     $scope.typeServiceList = TypeService.query();

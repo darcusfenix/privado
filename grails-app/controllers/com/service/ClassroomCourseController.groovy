@@ -18,7 +18,8 @@ class ClassroomCourseController {
         render (ClassroomCourse.list() as JSON)
     }
     def show(Integer id){
-        render( ClassroomCourse.findById(id ?: params.int("id")) as JSON)
+
+        render(  ClassroomCourse.findById(id ?: params.int("id")) as JSON)
     }
 
     def create(){
@@ -52,13 +53,23 @@ class ClassroomCourseController {
 
     }
     def update(){
-        log.error request.JSON
-        SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
-        ClassroomCourse classroomCourseInstance = ClassroomCourse.findById(request.JSON.id)
 
-        classroomCourseInstance.properties = request.JSON
-        classroomCourseInstance.stDate = sdf.parse(request.JSON.stDate)
-        classroomCourseInstance.endDate = sdf.parse(request.JSON.endtDate)
+        SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
+        def classroomCourseInstance = ClassroomCourse.findById(request.JSON.id)
+        def jsonMap = [:]
+
+        jsonMap = request.JSON
+
+        Date stDate = sdf.parse(request.JSON.stDate)
+        Date endDate = sdf.parse(request.JSON.endDate)
+
+        classroomCourseInstance.stDate = stDate
+        classroomCourseInstance.endDate = endDate
+
+        jsonMap.remove('stDate')
+        jsonMap.remove('endDate')
+
+        classroomCourseInstance.properties = jsonMap
 
         List<StudentService> lista = new ArrayList<StudentService>();
 
@@ -71,14 +82,15 @@ class ClassroomCourseController {
             lista.add(studentServiceAux)
         }
 
-
         if (classroomCourseInstance.validate()) {
             classroomCourseInstance.studentService = null
             classroomCourseInstance.save(flush: true)
             //StudentService.executeUpdate("delete StudentService ss where ss.service = :service", [service: classroomCourseInstance])
+
             lista.each { studentService ->
                 studentService.save(flush: true)
             }
+
             response.status = 200
             render([classroomCourseInstance: classroomCourseInstance, message: message(code: "classroomCourse.updated")] as JSON)
         }else{
