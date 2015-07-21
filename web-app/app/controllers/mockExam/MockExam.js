@@ -169,4 +169,14 @@ function MockExamShowController($scope, $location, $rootScope, $filter, $routePa
             if ($scope.typeServiceList[i].id === idService)
                 return $scope.typeServiceList[i].name;
     };
+
+    $scope.delete = function(){
+        $scope.mockExamInstance.$delete({id: $routeParams.id}, function (success) {
+            $rootScope.message = success.success;
+            $location.path('/mockExam/');
+        }, function (err){
+            $rootScope.message = err.error;
+        });
+    };
+
 };

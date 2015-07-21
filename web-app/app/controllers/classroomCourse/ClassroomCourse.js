@@ -188,4 +188,15 @@ function ClassroomCourseShowController($scope, $location, $rootScope, $routePara
             if($scope.typeServiceList[i].id === idService)
                 return $scope.typeServiceList[i].name;
     };
+
+
+    $scope.delete = function(){
+        $scope.classroomCourseInstance.$delete({id: $routeParams.id}, function (success) {
+            $rootScope.message = success.success;
+            $location.path('/classroomCourse/');
+        }, function (err){
+            $rootScope.message = err.error;
+        });
+    };
+
 };

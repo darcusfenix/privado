@@ -149,6 +149,7 @@ function ExtraServiceShowController($scope, $location, $rootScope, $routeParams,
         $scope.extraServiceInstance = data;
         $scope.extraServiceInstance.stDate = $filter('date')($scope.extraServiceInstance.stDate, 'MM/dd/yyyy');
         $scope.extraServiceInstance.endDate = $filter('date')($scope.extraServiceInstance.endDate, 'MM/dd/yyyy');
+        console.log($scope.extraServiceInstance);
     }, function(err){
         $location.path("/extraService");
     });
@@ -161,4 +162,14 @@ function ExtraServiceShowController($scope, $location, $rootScope, $routeParams,
             if($scope.typeServiceList[i].id === idService)
                 return $scope.typeServiceList[i].name;
     };
+
+    $scope.delete = function(){
+        $scope.extraServiceInstance.$delete({id: $routeParams.id}, function (success) {
+            $rootScope.message = success.success;
+            $location.path('/extraService/');
+        }, function (err){
+            $rootScope.message = err.error;
+        });
+    };
+
 };

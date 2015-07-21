@@ -136,7 +136,7 @@ function OnlineCourseEditController($scope, $location, $rootScope, $routeParams,
 };
 
 
-function OnlineCourseShowController($scope, $location, $filter, $routeParams, OnlineCourse, TypeService){
+function OnlineCourseShowController($scope, $location, $filter, $routeParams, $rootScope, OnlineCourse, TypeService){
 
     $scope.onlineCourseInstance = OnlineCourse.get({id: $routeParams.id}, function(data){
         $scope.onlineCourseInstance = data;
@@ -152,4 +152,14 @@ function OnlineCourseShowController($scope, $location, $filter, $routeParams, On
             if($scope.typeServiceList[i].id === idService)
                 return $scope.typeServiceList[i].name;
     };
+
+    $scope.delete = function(){
+        $scope.onlineCourseInstance.$delete({id: $routeParams.id}, function (success) {
+            $rootScope.message = success.success;
+            $location.path('/onlineCourse/');
+        }, function (err){
+            $rootScope.message = err.error;
+        });
+    };
+
 };

@@ -74,7 +74,7 @@
                             <div class="col-md-9">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input ng-model="classroomCourseInstance.period" class="form-control" name="period"
+                                    <input ng-model="classroomCourseInstance.period" class="form-control" name="period" placeholder="ejemplo: 2015-02"
                                            required/>
                                 </div>
                             </div>

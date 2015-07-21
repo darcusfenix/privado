@@ -73,7 +73,7 @@
                             <div class="col-md-9">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input ng-model="onlineCourseInstance.period" class="form-control" name="period"
+                                    <input ng-model="onlineCourseInstance.period" class="form-control" name="period" placeholder="ejemplo: 2015-02"
                                            required/>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
                                 <button type="submit" class="btn green"
-                                        ng-disabled="editonlineCourse.$invalid">Crear cambios</button>
+                                        ng-disabled="editonlineCourse.$invalid">Registrar</button>
                                 <a href="#/onlineCourse" type="button"
                                    class="btn default">Cancelar</a>
                             </div>
