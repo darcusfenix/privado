@@ -37,11 +37,11 @@
                                             name="classroomCourseInstance.typeService" required  class="form-control">
                                     </select>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editClassroomCourse.typeService.$error.required||validator.typeService.hasError">
+                                    {{validator.typeService.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editClassroomCourse.typeService.$error.required||validator.typeService.hasError">
-                                {{validator.typeService.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -53,14 +53,14 @@
                             <div class="col-md-9">
                                 <div class="input-icon left">
                                     <i class="fa fa-usd"></i>
-                                    <input ng-model="classroomCourseInstance.cost" class="form-control" name="cost"
+                                    <input type="number" ng-model="classroomCourseInstance.cost" class="form-control" name="cost"
                                               required />
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editClassroomCourse.cost.$error.required || validator.cost.hasError">
+                                    {{validator.cost.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editClassroomCourse.cost.$error.required || validator.cost.hasError">
-                                {{validator.cost.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -75,11 +75,11 @@
                                     <input ng-model="classroomCourseInstance.period" class="form-control" name="period"
                                               required />
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editClassroomCourse.period.$error.required || validator.period.hasError">
+                                    {{validator.period.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editClassroomCourse.period.$error.required || validator.period.hasError">
-                                {{validator.period.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -97,11 +97,11 @@
                                         {{ (classroomCourseInstance.active) ? 'Activo' : 'bloqueado'}}
                                     </button>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editClassroomCourse.active.$error.required || validator.active.hasError">
+                                    {{validator.active.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editClassroomCourse.active.$error.required || validator.active.hasError">
-                                {{validator.active.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -117,11 +117,11 @@
                                            readonly placeholder="{{classroomCourseInstance.stDate }}" name="stDate" size="14"
                                            class="form-control" id="stDate"/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editClassroomCourse.stDate.$error.required||validator.stDate.hasError">
+                                    {{validator.stDate.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editClassroomCourse.stDate.$error.required||validator.stDate.hasError">
-                                {{validator.stDate.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -137,11 +137,11 @@
                                            readonly placeholder="{{classroomCourseInstance.endDate  }}" name="endDate" size="14"
                                            class="form-control" id="endDate"/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editClassroomCourse.endDate.$error.required||validator.endDate.hasError">
+                                    {{validator.endDate.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editClassroomCourse.endDate.$error.required||validator.endDate.hasError">
-                                {{validator.endDate.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -153,14 +153,14 @@
                             <div class="col-md-9">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input ng-model="classroomCourseInstance.numberClasses" class="form-control" name="numberClasses"
+                                    <input type="number" ng-model="classroomCourseInstance.numberClasses" class="form-control" name="numberClasses"
                                               required />
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editClassroomCourse.numberClasses.$error.required||validator.numberClasses.hasError">
+                                    {{validator.numberClasses.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editClassroomCourse.numberClasses.$error.required||validator.numberClasses.hasError">
-                                {{validator.numberClasses.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -176,11 +176,11 @@
                                             ng-model="classroomCourseInstance.typeCourse.id" name="classroomCourseInstance.typeCourse" required  class="form-control">
                                     </select>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editClassroomCourse.typeCourse.$error.required||validator.typeCourse.hasError">
+                                    {{validator.typeCourse.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editClassroomCourse.typeCourse.$error.required||validator.typeCourse.hasError">
-                                {{validator.typeCourse.message}}
-                            </span>
                         </div>
 
                     </div>

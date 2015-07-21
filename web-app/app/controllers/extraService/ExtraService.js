@@ -29,7 +29,7 @@ function ExtraServiceListController($scope, $location, $rootScope, $filter, Extr
 }
 function ExtraServiceCreateController($scope, $location, $rootScope, ExtraService, TypeService){
     $rootScope.location = $location.path();
-
+    $scope.validator = {};
     ComponentsPickers.init();
 
     $scope.extraServiceInstance = ExtraService.create();
@@ -45,26 +45,22 @@ function ExtraServiceCreateController($scope, $location, $rootScope, ExtraServic
         $event.preventDefault();
         if (valid) {
             $scope.extraServiceInstance.$save(
-                function (data) { // 200 HTTP OK
-                    console.log(data);
-                    /*
-                     $scope.classroomCourseInstance = data.classroomCourseInstance;
-                     */
+                function (data) {
                     $location.path("/extraService/show/" + data.extraServiceInstance.id);
 
                     $rootScope.message = data.message;
-                }, function (error) { // 50* HTTP ERROR
-                    /*
-                     $scope.errors = error.data.errors;
-                     for (var i = 0; i < $scope.errors.length; i++) {
-                     $scope.validator[$scope.errors[i].field] = {
-                     hasError: true,
-                     message: $scope.errors[i].message
-                     }
-                     }
-                     console.log($scope.validator);
-                     */
-                    console.log(error);
+                }, function (err) {
+
+                    $scope.errors = err.data.errors;
+
+                    for (var i = 0; i < $scope.errors.length; i++) {
+
+                        $scope.validator[$scope.errors[i].field] = {
+                            hasError: true,
+                            message: $scope.errors[i].message
+                        }
+
+                    }
                 });
             return false;
         } else {
@@ -84,6 +80,7 @@ function ExtraServiceCreateController($scope, $location, $rootScope, ExtraServic
 
 function ExtraServiceEditController($scope, $location, $rootScope, $routeParams, $filter, ExtraService, TypeService) {
     $rootScope.location = $location.path();
+    $scope.validator = {};
     ComponentsPickers.init();
 
     $scope.extraServiceInstance = ExtraService.get({id: $routeParams.id}, function (data) {
@@ -108,26 +105,22 @@ function ExtraServiceEditController($scope, $location, $rootScope, $routeParams,
             $scope.extraServiceInstance.stDate = $filter('date')($scope.extraServiceInstance.stDate, 'MM/dd/yyyy');
             $scope.extraServiceInstance.endDate = $filter('date')($scope.extraServiceInstance.endDate, 'MM/dd/yyyy');
             $scope.extraServiceInstance.$update(
-                function (data) { // 200 HTTP OK
-                    console.log(data);
-                    /*
-                     $scope.classroomCourseInstance = data.classroomCourseInstance;
-                     */
+                function (data) {
                     $location.path("/extraService/show/" + data.extraServiceInstance.id);
 
                     $rootScope.message = data.message;
-                }, function (error) { // 50* HTTP ERROR
-                    /*
-                     $scope.errors = error.data.errors;
-                     for (var i = 0; i < $scope.errors.length; i++) {
-                     $scope.validator[$scope.errors[i].field] = {
-                     hasError: true,
-                     message: $scope.errors[i].message
-                     }
-                     }
-                     console.log($scope.validator);
-                     */
-                    console.log(error);
+                }, function (err) {
+
+                    $scope.errors = err.data.errors;
+
+                    for (var i = 0; i < $scope.errors.length; i++) {
+
+                        $scope.validator[$scope.errors[i].field] = {
+                            hasError: true,
+                            message: $scope.errors[i].message
+                        }
+
+                    }
                 });
             return false;
         } else {

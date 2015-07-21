@@ -36,11 +36,11 @@
                                             name="extraServiceInstance.typeService" required  class="form-control">
                                     </select>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editExtraService.typeService.$error.required||validator.typeService.hasError">
+                                    {{validator.typeService.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editExtraService.typeService.$error.required||validator.typeService.hasError">
-                                {{validator.typeService.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -52,14 +52,54 @@
                             <div class="col-md-9">
                                 <div class="input-icon left">
                                     <i class="fa fa-usd"></i>
-                                    <input ng-model="extraServiceInstance.cost" class="form-control" name="cost"
+                                    <input type="number" ng-model="extraServiceInstance.cost" class="form-control" name="cost" min="1"
                                            required />
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editExtraService.cost.$error.required || validator.cost.hasError">
+                                    {{validator.cost.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editExtraService.cost.$error.required || validator.cost.hasError">
-                                {{validator.cost.message}}
-                            </span>
+                        </div>
+
+                        <div class="form-group"
+                             ng-class="{'has-error': editExtraService.stDate.$error.required || validator.stDate.hasError}">
+                            <label class="control-label col-md-3">Fecha de inicio: <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <input type="text" ng-model="extraServiceInstance.stDate" data-date-start-date="+0d" required
+                                           readonly placeholder="{{extraServiceInstance.stDate | date :'yyyy / MM / dd' }}" name="stDate" size="14"
+                                           class="form-control" id="stDate"/>
+                                </div>
+                                <span class="help-block"
+                                      ng-show="editExtraService.stDate.$error.required||validator.stDate.hasError">
+                                    {{validator.stDate.message}}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                             ng-class="{'has-error': editExtraService.endDate.$error.required||validator.endDate.hasError}">
+                            <label class="control-label col-md-3">Fecha final: <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <input type="text" ng-model="extraServiceInstance.endDate" data-date-start-date="+0d" required
+                                           readonly placeholder="{{extraServiceInstance.endDate  | date:'MM/dd/yyyy' }}" name="endDate" size="14"
+                                           class="form-control" id="endDate"/>
+                                </div>
+                                <span class="help-block"
+                                      ng-show="editExtraService.endDate.$error.required||validator.endDate.hasError">
+                                    {{validator.endDate.message}}
+                                </span>
+                            </div>
                         </div>
 
                         <div class="form-group"
@@ -74,11 +114,11 @@
                                     <input ng-model="extraServiceInstance.period" class="form-control" name="period" placeholder="ejemplo: 2015-02"
                                            required />
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editExtraService.period.$error.required || validator.period.hasError">
+                                    {{validator.period.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editExtraService.period.$error.required || validator.period.hasError">
-                                {{validator.period.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -96,51 +136,11 @@
                                         {{ (extraServiceInstance.active) ? 'Activo' : 'bloqueado'}}
                                     </button>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editExtraService.active.$error.required || validator.active.hasError">
+                                    {{validator.active.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editExtraService.active.$error.required || validator.active.hasError">
-                                {{validator.active.message}}
-                            </span>
-                        </div>
-
-                        <div class="form-group"
-                             ng-class="{'has-error': editExtraService.stDate.$error.required || validator.stDate.hasError}">
-                            <label class="control-label col-md-3">Fecha de inicio: <span class="required">
-                                *</span>
-                            </label>
-
-                            <div class="col-md-9">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <input type="text" ng-model="extraServiceInstance.stDate" data-date-start-date="+0d"
-                                           readonly placeholder="{{extraServiceInstance.stDate | date :'yyyy / MM / dd' }}" name="stDate" size="14"
-                                           class="form-control" id="stDate"/>
-                                </div>
-                            </div>
-                            <span class="help-block"
-                                  ng-show="editExtraService.stDate.$error.required||validator.stDate.hasError">
-                                {{validator.stDate.message}}
-                            </span>
-                        </div>
-
-                        <div class="form-group"
-                             ng-class="{'has-error': editExtraService.endDate.$error.required||validator.endDate.hasError}">
-                            <label class="control-label col-md-3">Fecha final: <span class="required">
-                                *</span>
-                            </label>
-
-                            <div class="col-md-9">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <input type="text" ng-model="extraServiceInstance.endDate" data-date-start-date="+0d"
-                                           readonly placeholder="{{extraServiceInstance.endDate  | date:'MM/dd/yyyy' }}" name="endDate" size="14"
-                                           class="form-control" id="endDate"/>
-                                </div>
-                            </div>
-                            <span class="help-block"
-                                  ng-show="editExtraService.endDate.$error.required||validator.endDate.hasError">
-                                {{validator.endDate.message}}
-                            </span>
                         </div>
                     </div>
 

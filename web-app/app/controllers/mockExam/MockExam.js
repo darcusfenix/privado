@@ -28,6 +28,7 @@ function MockExamListController($scope, $location, $rootScope, $filter, MockExam
 
 function MockExamCreateController($scope, $location, $rootScope, MockExam, TypeService) {
     $rootScope.location = $location.path();
+    $scope.validator = {};
     ComponentsPickers.init();
 
     $scope.mockExamInstance = MockExam.create();
@@ -49,26 +50,22 @@ function MockExamCreateController($scope, $location, $rootScope, MockExam, TypeS
         $event.preventDefault();
         if (valid) {
             $scope.mockExamInstance.$save(
-                function (data) { // 200 HTTP OK
-                    console.log(data);
-                    /*
-                     $scope.classroomCourseInstance = data.classroomCourseInstance;
-                     */
+                function (data) {
                     $location.path("/mockExam/show/" + data.mockExamInstance.id);
 
                     $rootScope.message = data.message;
-                }, function (error) { // 50* HTTP ERROR
-                    /*
-                     $scope.errors = error.data.errors;
-                     for (var i = 0; i < $scope.errors.length; i++) {
-                     $scope.validator[$scope.errors[i].field] = {
-                     hasError: true,
-                     message: $scope.errors[i].message
-                     }
-                     }
-                     console.log($scope.validator);
-                     */
-                    console.log(error);
+                }, function (err) {
+
+                    $scope.errors = err.data.errors;
+
+                    for (var i = 0; i < $scope.errors.length; i++) {
+
+                        $scope.validator[$scope.errors[i].field] = {
+                            hasError: true,
+                            message: $scope.errors[i].message
+                        }
+
+                    }
                 });
             return false;
         } else {
@@ -86,6 +83,7 @@ function MockExamCreateController($scope, $location, $rootScope, MockExam, TypeS
 
 function MockExamEditController($scope, $location, $rootScope, $routeParams, $filter, MockExam, TypeService) {
     $rootScope.location = $location.path();
+    $scope.validator = {};
     ComponentsPickers.init();
 
     $scope.mockExamInstance = MockExam.get({id: $routeParams.id}, function (data) {
@@ -109,25 +107,22 @@ function MockExamEditController($scope, $location, $rootScope, $routeParams, $fi
         if (valid) {
             $scope.mockExamInstance.$update(
                 function (data) { // 200 HTTP OK
-                    console.log(data);
-                    /*
-                     $scope.classroomCourseInstance = data.classroomCourseInstance;
-                     */
+
                     $location.path("/mockExam/show/" + data.mockExamInstance.id);
 
                     $rootScope.message = data.message;
-                }, function (error) { // 50* HTTP ERROR
-                    /*
-                     $scope.errors = error.data.errors;
-                     for (var i = 0; i < $scope.errors.length; i++) {
-                     $scope.validator[$scope.errors[i].field] = {
-                     hasError: true,
-                     message: $scope.errors[i].message
-                     }
-                     }
-                     console.log($scope.validator);
-                     */
-                    console.log(error);
+                }, function (err) {
+
+                    $scope.errors = err.data.errors;
+
+                    for (var i = 0; i < $scope.errors.length; i++) {
+
+                        $scope.validator[$scope.errors[i].field] = {
+                            hasError: true,
+                            message: $scope.errors[i].message
+                        }
+
+                    }
                 });
             return false;
         } else {

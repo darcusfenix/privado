@@ -38,11 +38,11 @@
                                             name="onlineCourseInstance.typeService" required class="form-control">
                                     </select>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editonlineCourse.typeService.$error.required||validator.typeService.hasError">
+                                    {{validator.typeService.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editonlineCourse.typeService.$error.required||validator.typeService.hasError">
-                                {{validator.typeService.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -57,11 +57,11 @@
                                     <input ng-model="onlineCourseInstance.cost" class="form-control" name="cost" type="number" min="1"
                                            required/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editonlineCourse.cost.$error.required || validator.cost.hasError">
+                                    {{validator.cost.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editonlineCourse.cost.$error.required || validator.cost.hasError">
-                                {{validator.cost.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -76,11 +76,11 @@
                                     <input ng-model="onlineCourseInstance.period" class="form-control" name="period" placeholder="ejemplo: 2015-02"
                                            required/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editonlineCourse.period.$error.required || validator.period.hasError">
+                                    {{validator.period.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editonlineCourse.period.$error.required || validator.period.hasError">
-                                {{validator.period.message}}
-                            </span>
                         </div>
 
 
@@ -100,11 +100,11 @@
                                         {{ (onlineCourseInstance.active) ? 'Activo' : 'bloqueado'}}
                                     </button>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editonlineCourse.active.$error.required || validator.active.hasError">
+                                    {{validator.active.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editonlineCourse.active.$error.required || validator.active.hasError">
-                                {{validator.active.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -116,17 +116,17 @@
                             <div class="col-md-9">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input type="text" ng-model="onlineCourseInstance.stDate"
+                                    <input type="text" ng-model="onlineCourseInstance.stDate" required
                                            data-date-start-date="+0d"
                                            readonly placeholder="{{onlineCourseInstance.stDate}}" name="stDate"
                                            size="14"
                                            class="form-control" id="stDate"/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editonlineCourse.stDate.$error.required||validator.stDate.hasError">
+                                    {{validator.stDate.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editonlineCourse.stDate.$error.required||validator.stDate.hasError">
-                                {{validator.stDate.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -138,17 +138,17 @@
                             <div class="col-md-9">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input type="text" ng-model="onlineCourseInstance.endDate"
+                                    <input type="text" ng-model="onlineCourseInstance.endDate" required
                                            data-date-start-date="+0d"
                                            readonly placeholder="{{onlineCourseInstance.endDate}}" name="endDate"
                                            size="14"
                                            class="form-control" id="endDate"/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editonlineCourse.endDate.$error.required||validator.endDate.hasError">
+                                    {{validator.endDate.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editonlineCourse.endDate.$error.required||validator.endDate.hasError">
-                                {{validator.endDate.message}}
-                            </span>
                         </div>
 
                     </div>

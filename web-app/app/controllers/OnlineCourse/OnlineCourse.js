@@ -25,7 +25,8 @@ function OnlineCourseListController($scope, $location, $rootScope, $filter, Onli
     };
 }
 function OnlineCourseCreateController($scope, $location, $rootScope , OnlineCourse, TypeService){
-
+    $rootScope.location = $location.path();
+    $scope.validator = {};
     ComponentsPickers.init();
 
     $scope.onlineCourseInstance = OnlineCourse.create();
@@ -50,18 +51,18 @@ function OnlineCourseCreateController($scope, $location, $rootScope , OnlineCour
                     $location.path("/onlineCourse/show/" + data.onlineCourseInstance.id);
 
                     $rootScope.message = data.message;
-                }, function (error) { // 50* HTTP ERROR
-                    /*
-                     $scope.errors = error.data.errors;
-                     for (var i = 0; i < $scope.errors.length; i++) {
-                     $scope.validator[$scope.errors[i].field] = {
-                     hasError: true,
-                     message: $scope.errors[i].message
-                     }
-                     }
-                     console.log($scope.validator);
-                     */
-                    console.log(error);
+                }, function (err) {
+
+                    $scope.errors = err.data.errors;
+
+                    for (var i = 0; i < $scope.errors.length; i++) {
+
+                        $scope.validator[$scope.errors[i].field] = {
+                            hasError: true,
+                            message: $scope.errors[i].message
+                        }
+
+                    }
                 });
             return false;
         } else {
@@ -78,7 +79,8 @@ function OnlineCourseCreateController($scope, $location, $rootScope , OnlineCour
 };
 
 function OnlineCourseEditController($scope, $location, $rootScope, $routeParams, $filter, OnlineCourse, TypeService){
-
+    $rootScope.location = $location.path();
+    $scope.validator = {};
     ComponentsPickers.init();
     $scope.onlineCourseInstance = OnlineCourse.get({id: $routeParams.id}, function(data){
         $scope.onlineCourseInstance = data;
@@ -108,18 +110,18 @@ function OnlineCourseEditController($scope, $location, $rootScope, $routeParams,
                     $location.path("/onlineCourse/show/" + data.onlineCourseInstance.id);
 
                     $rootScope.message = data.message;
-                }, function (error) { // 50* HTTP ERROR
-                    /*
-                     $scope.errors = error.data.errors;
-                     for (var i = 0; i < $scope.errors.length; i++) {
-                     $scope.validator[$scope.errors[i].field] = {
-                     hasError: true,
-                     message: $scope.errors[i].message
-                     }
-                     }
-                     console.log($scope.validator);
-                     */
-                    console.log(error);
+                }, function (err) {
+
+                    $scope.errors = err.data.errors;
+
+                    for (var i = 0; i < $scope.errors.length; i++) {
+
+                        $scope.validator[$scope.errors[i].field] = {
+                            hasError: true,
+                            message: $scope.errors[i].message
+                        }
+
+                    }
                 });
             return false;
         } else {
@@ -137,7 +139,8 @@ function OnlineCourseEditController($scope, $location, $rootScope, $routeParams,
 
 
 function OnlineCourseShowController($scope, $location, $filter, $routeParams, $rootScope, OnlineCourse, TypeService){
-
+    $rootScope.location = $location.path();
+    
     $scope.onlineCourseInstance = OnlineCourse.get({id: $routeParams.id}, function(data){
         $scope.onlineCourseInstance = data;
         $scope.onlineCourseInstance.stDate = $filter('date')($scope.onlineCourseInstance.stDate, 'MM/dd/yyyy');

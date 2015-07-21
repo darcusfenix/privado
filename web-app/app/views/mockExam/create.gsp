@@ -39,11 +39,11 @@
                                             name="mockExamInstance.typeService" required class="form-control">
                                     </select>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editmockExam.typeService.$error.required||validator.typeService.hasError">
+                                    {{validator.typeService.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editmockExam.typeService.$error.required||validator.typeService.hasError">
-                                {{validator.typeService.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -58,15 +58,59 @@
                                     <input ng-model="mockExamInstance.name" class="form-control" name="name"
                                            required/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editmockExam.name.$error.required || validator.name.hasError">
+                                    {{validator.term.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editmockExam.name.$error.required || validator.name.hasError">
-                                {{validator.term.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
-                             ng-class="{'has-error': editmockExam.name.$error.required || validator.name.hasError}">
+                             ng-class="{'has-error': editmockExam.stDate.$error.required || validator.stDate.hasError}">
+                            <label class="control-label col-md-3">Fecha de inicio: <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <input type="text" ng-model="mockExamInstance.stDate" required
+                                           data-date-start-date="+0d"
+                                           readonly placeholder="{{mockExamInstance.stDate}}" name="stDate"
+                                           size="14"
+                                           class="form-control" id="stDate"/>
+                                </div>
+                                <span class="help-block"
+                                      ng-show="editmockExam.stDate.$error.required||validator.stDate.hasError">
+                                    {{validator.stDate.message}}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                             ng-class="{'has-error': editmockExam.endDate.$error.required||validator.endDate.hasError}">
+                            <label class="control-label col-md-3">Fecha final: <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <input type="text" ng-model="mockExamInstance.endDate" required
+                                           data-date-start-date="+0d"
+                                           readonly placeholder="{{mockExamInstance.endDate}}" name="endDate"
+                                           size="14"
+                                           class="form-control" id="endDate"/>
+                                </div>
+                                <span class="help-block"
+                                      ng-show="editmockExam.endDate.$error.required||validator.endDate.hasError">
+                                    {{validator.endDate.message}}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                             ng-class="{'has-error': editmockExam.term.$error.required || validator.term.hasError}">
                             <label class="control-label col-md-3">Duración: <span class="required">
                                 *</span>
                             </label>
@@ -74,14 +118,14 @@
                             <div class="col-md-9">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input type="number" ng-model="mockExamInstance.term" class="form-control" name="term" min="1" placeholder="TIempo en minutos"
+                                    <input type="number" ng-model="mockExamInstance.term" class="form-control" name="term" min="1" placeholder="Tiempo en minutos"
                                            required/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editmockExam.term.$error.required || validator.term.hasError">
+                                    {{validator.term.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editmockExam.term.$error.required || validator.term.hasError">
-                                {{validator.term.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -93,14 +137,14 @@
                             <div class="col-md-9">
                                 <div class="input-icon left">
                                     <i class="fa fa-usd"></i>
-                                    <input ng-model="mockExamInstance.cost" class="form-control" name="cost" type="number" min="1"
+                                    <input  ng-model="mockExamInstance.cost" class="form-control" name="cost" type="number" min="1"
                                            required/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editmockExam.cost.$error.required || validator.cost.hasError">
+                                    {{validator.cost.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editmockExam.cost.$error.required || validator.cost.hasError">
-                                {{validator.cost.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -115,11 +159,11 @@
                                     <input ng-model="mockExamInstance.period" class="form-control" name="period" placeholder="ejemplo: 2015-02"
                                            required/>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editmockExam.period.$error.required || validator.period.hasError">
+                                    {{validator.period.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editmockExam.period.$error.required || validator.period.hasError">
-                                {{validator.period.message}}
-                            </span>
                         </div>
 
                         <div class="form-group"
@@ -137,55 +181,11 @@
                                         {{ (mockExamInstance.active) ? 'Activo' : 'bloqueado'}}
                                     </button>
                                 </div>
+                                <span class="help-block"
+                                      ng-show="editmockExam.active.$error.required || validator.active.hasError">
+                                    {{validator.active.message}}
+                                </span>
                             </div>
-                            <span class="help-block"
-                                  ng-show="editmockExam.active.$error.required || validator.active.hasError">
-                                {{validator.active.message}}
-                            </span>
-                        </div>
-
-                        <div class="form-group"
-                             ng-class="{'has-error': editmockExam.stDate.$error.required || validator.stDate.hasError}">
-                            <label class="control-label col-md-3">Fecha de inicio: <span class="required">
-                                *</span>
-                            </label>
-
-                            <div class="col-md-9">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <input type="text" ng-model="mockExamInstance.stDate"
-                                           data-date-start-date="+0d"
-                                           readonly placeholder="{{mockExamInstance.stDate}}" name="stDate"
-                                           size="14"
-                                           class="form-control" id="stDate"/>
-                                </div>
-                            </div>
-                            <span class="help-block"
-                                  ng-show="editmockExam.stDate.$error.required||validator.stDate.hasError">
-                                {{validator.stDate.message}}
-                            </span>
-                        </div>
-
-                        <div class="form-group"
-                             ng-class="{'has-error': editmockExam.endDate.$error.required||validator.endDate.hasError}">
-                            <label class="control-label col-md-3">Fecha final: <span class="required">
-                                *</span>
-                            </label>
-
-                            <div class="col-md-9">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <input type="text" ng-model="mockExamInstance.endDate"
-                                           data-date-start-date="+0d"
-                                           readonly placeholder="{{mockExamInstance.endDate}}" name="endDate"
-                                           size="14"
-                                           class="form-control" id="endDate"/>
-                                </div>
-                            </div>
-                            <span class="help-block"
-                                  ng-show="editmockExam.endDate.$error.required||validator.endDate.hasError">
-                                {{validator.endDate.message}}
-                            </span>
                         </div>
 
                     </div>
