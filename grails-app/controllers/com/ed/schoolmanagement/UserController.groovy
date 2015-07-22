@@ -8,7 +8,7 @@ class UserController {
 
     def notificationService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST"]
 
     def index() {
         render User.listOrderById([max: params.int('max')]) as JSON
@@ -90,6 +90,8 @@ class UserController {
     }
 
     def enroll(){
+        log.error "OK"
         User userInstance = new User(request.JSON)
+
     }
 }
