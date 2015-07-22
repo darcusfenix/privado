@@ -146,7 +146,7 @@
 							</div>
 						</li>
 					</ol>
-					<button class="fs-submit" type="submit" name="horarioGrupo" id="confirm">Enviar datos</button>
+					<button class="fs-submit" type="submit" ng-click="registrar()" name="horarioGrupo" id="confirm">Enviar datos</button>
 				</form>
 			</div>
 		</div><!-- /container -->
@@ -177,8 +177,11 @@
 			registro.controller('RegistroController',['$scope','$http', function($scope, $http){
 				$scope.userInstance = {};
 				$scope.registrar = function Registrar(){
-					$http.post('user/enroll',
-							$scope.userInstance
+					console.log("User Instance");
+					console.log($scope.userInstance);
+					console.log("User Instance");
+					$http.post('/user/enroll',
+						$scope.userInstance
 					).success(function (data) {
 						$location.path("/vehiculo/");
 					}).error(function (data) {
