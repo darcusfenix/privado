@@ -65,12 +65,13 @@ class UserController {
         render([message: message(code: 'de.user.deleted.message')] as JSON)
     }
 
-    def activate(String validationToken) {
-        def status = notificationService.validateAccount(validationToken)
+    def activate(String activationToken) {
+        def status = notificationService.validateAccount(activationToken)
         if(status){
             render([message:'Usuario verificado'] as JSON)
             return
         } else {
+            response.status = 500
             render([message:'No se pudo verificar el usuario'] as JSON)
             return
         }
@@ -79,7 +80,16 @@ class UserController {
     def sendWelcomeMail(Integer id){
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
-        notificationService.sendEmail(User.findById(id), contextPath)
-        render ([message:"OK"] as JSON)
+        def status = notificationService.sendEmail(User.findById(id), contextPath)
+        if(status){
+            render ([message:status] as JSON)
+        } else {
+            response.status = 500
+            render ([message:status] as JSON)
+        }
+    }
+
+    def enroll(){
+        User userInstance = new User(request.JSON)
     }
 }
