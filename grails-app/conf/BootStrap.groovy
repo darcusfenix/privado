@@ -1,5 +1,7 @@
 import com.ed.classroomcourse.Classroom
+import com.ed.classroomcourse.Class
 import com.ed.classroomcourse.StateClassroom
+import com.ed.classroomcourse.UserClass
 import com.ed.service.Office
 
 import com.controlescuela.*
@@ -66,6 +68,14 @@ class BootStrap {
         classroom.office = office
         classroom.save()
 
+        Class c = new Class()
+        c.name = "Clase 1"
+        c.classroom = classroom
+        c.dateClass = new Date()
+        c.endHour = new Date()
+        c.stClass = Boolean.FALSE
+        c.stHour = new Date()
+        c.save()
 
         InductionClass ic = new InductionClass()
         ic.date = null
@@ -98,6 +108,11 @@ class BootStrap {
         uc.classroom = classroom
         uc.user = pepo
         uc.save()
+
+        UserClass userClass = new UserClass()
+        userClass.clazz = c
+        userClass.user = pepo
+        userClass.save()
 
         User user = new User()
         user.email = "juancvfenix@gmail.com"

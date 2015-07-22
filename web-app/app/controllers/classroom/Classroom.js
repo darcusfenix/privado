@@ -75,6 +75,7 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
                         message: error.data.message,
                         estatus: true
                     };
+                    $('#divSpinner').addClass('hidden');
                     $('.modal').modal('toggle');
                 }
                 $scope.errors = error.data.errors;
@@ -84,6 +85,9 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
                         message: $scope.errors[i].message
                     }
                 }
+                $('html,body').animate({
+                    scrollTop: $("#divError").offset().top
+                }, 500);
                 $('#divSpinner').addClass('hidden');
             });
             return false;
@@ -176,18 +180,17 @@ function ClassroomShowController($scope, $location, $routeParams, $rootScope, Cl
 };
 
 function ClassroomEditController($scope, $location, Classroom, Class, Office, $rootScope, $routeParams, $timeout, $route, $filter) {
-
+    $scope.varSlc = 0;
     ComponentsPickers.init();
+    $scope.officeList = Office.query()
 
-    Classroom.get({id: $routeParams.id}, function (data) {
+    $scope.classroomInstance  = Classroom.get({id: $routeParams.id}, function (data) {
         $scope.classroomInstance = data;
-        $scope.varSlc = $scope.classroomInstance.officeId;
         $scope.lessonList = Class.getClassByClassroom({id: data.id})
+        $scope.varSlc = $scope.classroomInstance.officeId;
     });
 
     $scope.validator = {};
-
-    $scope.officeList = Office.query()
 
     $scope.validatorFecha = {
         hasError: false,
@@ -228,6 +231,7 @@ function ClassroomEditController($scope, $location, Classroom, Class, Office, $r
                         message: error.data.message,
                         estatus: true
                     };
+                    $('#divSpinner').addClass('hidden');
                     $('.modal').modal('toggle');
                 }
                 $scope.errors = error.data.errors;
@@ -237,6 +241,9 @@ function ClassroomEditController($scope, $location, Classroom, Class, Office, $r
                         message: $scope.errors[i].message
                     }
                 }
+                $('html,body').animate({
+                    scrollTop: $("#divError").offset().top
+                }, 500);
                 $('#divSpinner').addClass('hidden');
             });
             return false;
@@ -257,8 +264,9 @@ function ClassroomEditController($scope, $location, Classroom, Class, Office, $r
         $scope.lesson.endHour = $('.tp2').val();
         if ($scope.lesson.dateClass != null) {
             if ($scope.lesson.name != null) {
+                $scope.lesson.nofS = 0;
                 $scope.lessonList.push(fila);
-                crearJSON($scope.lessonList)
+                crearJSON($scope.lessonList);
                 $scope.validatorTema.hasError = false;
             } else {
                 $scope.validatorTema.hasError = true;

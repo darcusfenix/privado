@@ -17,6 +17,9 @@
                             Sucursal
                         </th>
                         <th>
+                            Periodo
+                        </th>
+                        <th>
                             Nombre
                         </th>
                         <th>
@@ -31,6 +34,7 @@
                     </tr>
                     <tr>
                         <th><input type="text" ng-model="filtro.nameOffice" placeholder="Filtrar por sucursal"></th>
+                        <th><input type="text" ng-model="filtro.period" placeholder="Filtrar por periodo"></th>
                         <th>
                             <input type="text" ng-model="filtro.nameClassroom" placeholder="Filtrar por nombre">
                         </th>
@@ -48,6 +52,7 @@
                     <tbody>
                     <tr ng-repeat="classroom in classroomList|filter:filtro">
                         <td class="text-center"><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameOffice}}</a></td>
+                        <td class="text-center"><a href="#/classroom/show/{{classroom.id}}">{{classroom.period}}</a></td>
                         <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameClassroom}}</a></td>
                         <td><a  href="#/classroom/show/{{classroom.id}}">{{classroom.places}} - {{classroom.placesOccupied}} = {{classroom.places-classroom.placesOccupied}}</a></td>
                         <td><span ng-if="classroom.typeClassroom == 0">Alumnos nuevos</span>

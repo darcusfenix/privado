@@ -1,3 +1,5 @@
+import com.ed.classroomcourse.Class
+import com.ed.schoolmanagement.marshallers.ClassMarshaller
 import com.ed.schoolmanagement.marshallers.ClassroomMarshaller
 import com.ed.schoolmanagement.marshallers.CustomObjectMarshallers
 import com.ed.schoolmanagement.marshallers.InductionClassMarshaller
@@ -9,7 +11,8 @@ beans = {
         marshallers = [
                 new UserMarshaller(),
                 new ClassroomMarshaller(),
-                new InductionClassMarshaller()
+                new InductionClassMarshaller(),
+                new ClassMarshaller()
         ]
     }
 

@@ -82,6 +82,12 @@
                         <h3 class="form form-section">Información base<hr/></h3>
 
                         <div class="form-group">
+                            <label class="control-label col-md-3">Periodo del curso:
+                            </label>
+                            <b>{{classroomInstance.period}}</b>
+                        </div>
+
+                        <div class="form-group">
                             <label class="control-label col-md-3">Capacidad del grupo:
                             </label>
                             <b>{{classroomInstance.places}}</b>

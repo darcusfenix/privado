@@ -30,7 +30,7 @@
             <div class="portlet-body form">
                 <form name="createGroup" class="form-horizontal" ng-submit="saveGroup(createGroup.$valid, $event)"
                       novalidate>
-                    <div class="form-body">
+                    <div  id="divError" class="form-body">
 
                         <h3 class="form form-section">Información base<hr/></h3>
 
@@ -69,6 +69,27 @@
                             <p class="help-block"
                                ng-show="createGroup.nameClassroom.$error.required||validator.nameClassroom.hasError">
                                 {{validator.nameClassroom.message}}
+                            </p>
+                        </div>
+
+                        <div class="form-group"
+                             ng-class="{'has-error': createGroup.period.$error.required||validator.period.hasError}">
+                            <label class="control-label col-md-3"><span class="required">
+                                *</span> Periodo del curso:
+                            </label>
+
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <input type="text" ng-model="classroomInstance.period" class="form-control"
+                                           name="period" required
+                                           placeholder="Introducir el periodo"/> <h6>[2015-01]</h6>
+                                </div>
+                            </div>
+
+                            <p class="help-block"
+                               ng-show="createGroup.period.$error.required||validator.period.hasError">
+                                {{validator.period.message}}
                             </p>
                         </div>
 

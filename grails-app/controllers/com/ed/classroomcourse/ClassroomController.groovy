@@ -22,10 +22,10 @@ class ClassroomController {
     }
 
     def create() {
-        render (new Classroom() as JSON)
+        render(new Classroom() as JSON)
     }
 
-    def getClassroomByOffice(Integer id){
+    def getClassroomByOffice(Integer id) {
         render Classroom.findAllByOffice(Office.findById(id)) as JSON;
     }
 
@@ -35,15 +35,13 @@ class ClassroomController {
 
         def criteriaClassroom = Classroom.createCriteria()
         def res = criteriaClassroom.get {
-            eq("nameClassroom", classroomInstance.nameClassroom) and {
-                eq("office", Office.findById(idOffice))
-            }
+            eq("nameClassroom", classroomInstance.nameClassroom).eq("office", Office.findById(idOffice)).eq("period", classroomInstance.period)
         }
 
-        if(res != null){
+        if (res != null) {
             response.status = 500
-            render([idError: 1, message: message(code: "de.classroom.errorNameClassroom.message")] as JSON)
-        }else {
+            render([idError: 1, message: message(code: "de.classroom.errorNameClassroom.message", args: [Office.findById(idOffice).name, classroomInstance.period])] as JSON)
+        } else {
             classroomInstance.stateClassroom = StateClassroom.findByName("Abierto");
             classroomInstance.office = Office.findById(idOffice);
 
@@ -63,12 +61,13 @@ class ClassroomController {
                         clazz.setStHour(formatter.parse(json.stHour))
                         clazz.setEndHour(formatter.parse(json.endHour))
                         clazz.classroom = classroomInstance
+                        clazz.stClass = Boolean.FALSE
                         clazz.save(flush: true)
                     } catch (ParseException pe) {
                         Class.executeUpdate("delete Class c where c.classroom = :classroom", [classroom: classroomInstance])
                         classroomInstance.delete(flush: true)
                         response.status = 500
-                        render([idError: 1, message: message(code: "de.classroom.errorDate.message")] as JSON)
+                        render([idError: 1, message: message(code: "de.classroom.errorDate.message", args: [json.name])] as JSON)
                     }
                 }
                 response.status = 200
@@ -82,68 +81,86 @@ class ClassroomController {
 
     def delete(Integer id) {
         def classroomInstance = Classroom.findById(id ?: params.int("id"))
-        if(UserClassroom.findByClassroom(classroomInstance) == null) {
+        if (UserClassroom.findByClassroom(classroomInstance) == null) {
             Class.executeUpdate("delete Class c where c.classroom = :classroom", [classroom: classroomInstance])
             classroomInstance.delete(flush: true)
             response.status = 200
             render([message: message(code: 'de.classroom.deleted.message')] as JSON)
-        }else{
+        } else {
             response.status = 500
             render([message: message(code: 'de.classroomUser', args: [classroomInstance.nameClassroom])] as JSON)
         }
     }
 
-    def edit(Integer id){
+    def edit(Integer id) {
         render(Classroom.findById(id ?: params.int("id")) as JSON)
     }
 
     def update(String lista, Integer idOffice) {
 
+        def i = 0
         Classroom classroomInstance = Classroom.findById(request.JSON.id)
         classroomInstance.properties = request.JSON
 
         def criteriaClassroom = Classroom.createCriteria()
 
         def res = criteriaClassroom.get {
-            eq("nameClassroom", classroomInstance.nameClassroom).eq("office", Office.findById(idOffice)).ne("id", classroomInstance.id)
+            eq("nameClassroom", classroomInstance.nameClassroom).eq("office", Office.findById(idOffice)).ne("id", classroomInstance.id).eq("period", classroomInstance.period)
         }
 
-        if(res != null){
+        if (res != null) {
             response.status = 500
-            render([idError: 1, message: message(code: "de.classroom.errorNameClassroom.message")] as JSON)
-        }else {
-            if(UserClassroom.findAllByClassroom(classroomInstance).size() < classroomInstance.places){
+            render([idError: 1, message: message(code: "de.classroom.errorNameClassroom.message", args: [Office.findById(idOffice).name, classroomInstance.period])] as JSON)
+        } else {
+            if (UserClassroom.findAllByClassroom(classroomInstance).size() < classroomInstance.places) {
                 classroomInstance.stateClassroom = StateClassroom.findByName("Abierto");
-            }else{
+            } else {
                 classroomInstance.stateClassroom = StateClassroom.findByName("Cerrado");
             }
 
             classroomInstance.office = Office.findById(idOffice);
 
             if (classroomInstance.validate()) {
+
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss a");
                 classroomInstance.save()
+
+                def listClass = Class.findAllByClassroom(classroomInstance)
+                for (Class c : listClass) {
+                    c.stClass = Boolean.FALSE
+                    c.save(flush: true)
+                }
+
                 def arrayClass = lista.split(",,")
                 Class clazz = null
 
                 for (String a : arrayClass) {
                     def json = JSON.parse(a)
                     clazz = new Class()
-                    clazz.setName(json.name)
+                    i = listClass.indexOf(Class.findByName(json.name))
                     try {
-                        clazz.setDateClass(sdf.parse(json.dateClass))
-                        clazz.setStHour(formatter.parse(json.stHour))
-                        clazz.setEndHour(formatter.parse(json.endHour))
-                        clazz.classroom = classroomInstance
-                        clazz.save(flush: true)
+                        if (i != -1) {
+                            listClass[i].stClass = Boolean.TRUE
+                            listClass[i].save(flush: true)
+                        } else {
+                            clazz.setName(json.name)
+                            clazz.setDateClass(sdf.parse(json.dateClass))
+                            clazz.setStHour(formatter.parse(json.stHour))
+                            clazz.setEndHour(formatter.parse(json.endHour))
+                            clazz.classroom = classroomInstance
+                            clazz.stClass = Boolean.TRUE
+                            clazz.save(flush: true)
+                        }
                     } catch (ParseException pe) {
-                        Class.executeUpdate("delete Class c where c.classroom = :classroom", [classroom: classroomInstance])
+                        //Class.executeUpdate("delete Class c where c.classroom = :classroom", [classroom: classroomInstance])
                         //classroomInstance.delete(flush: true)
                         response.status = 500
-                        render([idError: 1, message: message(code: "de.classroom.errorDate.message")] as JSON)
+                        render([idError: 1, message: message(code: "de.classroom.errorDate.message", args: [json.name])] as JSON)
                     }
+
                 }
+                Class.executeUpdate("delete Class c where c.classroom = :classroom and c.stClass = :stClass", [classroom: classroomInstance, stClass: Boolean.FALSE])
                 response.status = 200
                 render([classroom: classroomInstance, message: message(code: "de.classroom.updated.message")] as JSON)
             } else {

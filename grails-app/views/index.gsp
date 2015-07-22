@@ -198,9 +198,8 @@
         Layout.init(); // init current layout
         Demo.init(); // init demo features
 
-       /*
-        ComingSoon.init();
-         $.backstretch([
+       /**
+        *  $.backstretch([
             "${resource(dir: 'assets/admin/pages', file: '1.jpg')}",
             "${resource(dir: 'assets/admin/pages', file: '2.jpg')}",
             "${resource(dir: 'assets/admin/pages', file: '3.jpg')}",

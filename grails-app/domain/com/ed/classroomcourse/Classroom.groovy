@@ -12,6 +12,7 @@ class Classroom implements Serializable{
 
     String nameClassroom
     Integer places
+    String period
     // 0 is New Student 1 old Student
     Integer typeClassroom
     StateClassroom stateClassroom
@@ -25,6 +26,7 @@ class Classroom implements Serializable{
         typeClassroom nullable: false
         places nullable: false
         nameClassroom nullable: false, matches: "Grupo\\s[\\d{1}||[A-Z]]"
+        period nullable: true, matches: "\\d{4}-\\d{2}"
     }
 
     static mapping = {
@@ -33,6 +35,7 @@ class Classroom implements Serializable{
         nameClassroom column: 'nb_classroom'
         places column: 'nu_places'
         typeClassroom column: 'st_typeClassroom'
+        period column: "tx_period"
         version false
     }
 
