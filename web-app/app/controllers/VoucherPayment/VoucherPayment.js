@@ -93,7 +93,6 @@ function VoucherPaymentShowStudentController($scope,  $routeParams, $location, V
 
     };
 
-
     $scope.servicesWithStudent();
 };
 

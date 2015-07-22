@@ -1,8 +1,10 @@
 import com.ed.classroomcourse.Classroom
+import com.ed.classroomcourse.Class
 import com.ed.classroomcourse.StateClassroom
 import com.ed.service.ClassroomCourse
 import com.ed.service.ExtraService
 import com.ed.service.MockExam
+import com.ed.classroomcourse.UserClass
 import com.ed.service.Office
 
 import com.controlescuela.*
@@ -16,9 +18,12 @@ import com.ed.service.OnlineCourse
 import com.ed.service.Service
 import com.ed.service.TypeCourse
 import com.ed.service.TypeService
+import com.ed.service.UserClassroom
 import org.springframework.web.context.support.WebApplicationContextUtils
 
 import java.text.SimpleDateFormat
+
+import java.time.LocalDateTime
 
 class BootStrap {
 
@@ -48,6 +53,7 @@ class BootStrap {
 
         Classroom classroom = new Classroom()
         classroom.nameClassroom = "Grupo A"
+        classroom.period = "2015-02"
         classroom.places = 50
         classroom.typeClassroom = 0
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
@@ -56,6 +62,7 @@ class BootStrap {
 
         classroom = new Classroom()
         classroom.nameClassroom = "Grupo B"
+        classroom.period = "2015-02"
         classroom.places = 50
         classroom.typeClassroom = 0
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
@@ -64,16 +71,28 @@ class BootStrap {
 
         classroom = new Classroom()
         classroom.nameClassroom = "Grupo C"
+        classroom.period = "2015-02"
         classroom.places = 50
         classroom.typeClassroom = 0
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
         classroom.office = office
         classroom.save()
 
+        Class c = new Class()
+        c.name = "Clase 1"
+        c.classroom = classroom
+        c.dateClass = new Date()
+        c.endHour = new Date()
+        c.stClass = Boolean.FALSE
+        c.stHour = new Date()
+        c.save()
+
         InductionClass ic = new InductionClass()
-        ic.nombre = "Clase de inducción 1"
-        ic.cupo = 10
-        ic.Hora = new Date()
+        ic.date = null
+        ic.name  = "Clase de inducción 1"
+        ic.places = 100
+        ic.office = office
+        ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)
 
         User pepo = new User()
@@ -95,6 +114,16 @@ class BootStrap {
         pepo.save()
         UserRole.create(pepo, alumno, false)
 
+        UserClassroom uc = new UserClassroom()
+        uc.classroom = classroom
+        uc.user = pepo
+        uc.save()
+
+        UserClass userClass = new UserClass()
+        userClass.clazz = c
+        userClass.user = pepo
+        userClass.save()
+
         User user = new User()
         user.email = "juancvfenix@gmail.com"
         user.enabled = true
@@ -114,6 +143,10 @@ class BootStrap {
         user.save()
         UserRole.create(user, alumno, false)
 
+        uc = new UserClassroom()
+        uc.classroom = classroom
+        uc.user = user
+        uc.save()
 
         User anotheruser = new User()
         anotheruser.email = "gerard@gmail.com"
@@ -133,6 +166,11 @@ class BootStrap {
         anotheruser.inductionClass = ic
         anotheruser.save()
         UserRole.create(anotheruser, alumno, false)
+
+        uc = new UserClassroom()
+        uc.classroom = classroom
+        uc.user = anotheruser
+        uc.save()
 
         StateVoucher stateVoucher = new StateVoucher()
         stateVoucher.name = "pendiente"
@@ -164,8 +202,32 @@ class BootStrap {
         otherAgaintypeService.name = "Servicio Extra"
         otherAgaintypeService.save();
 
+        Service service = new Service()
+        service.active = true;
+        service.cost = 1500.00
+        service.period = "2015-02"
+        service.stDate = new Date()
+        service.endDate = new Date()
+        service.typeService = typeService
+        service.save()
 
+        Service anotherService = new Service()
+        anotherService.active = true;
+        anotherService.cost = 900.00
+        anotherService.period = "2015-01"
+        anotherService.stDate = new Date()
+        anotherService.endDate = new Date()
+        anotherService.typeService = anothertypeService
+        anotherService.save()
 
+        Service abcService = new Service()
+        abcService.active = true;
+        abcService.cost = 600.00
+        abcService.period = "2015-01"
+        abcService.stDate = new Date()
+        abcService.endDate = new Date()
+        abcService.typeService = othertypeService
+        abcService.save()
 
         TypeCourse typeCourse = new TypeCourse()
         typeCourse.name = "Curso normal cat"

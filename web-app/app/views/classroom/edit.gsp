@@ -18,9 +18,14 @@
 </div>
 
 <div class="row">
+    <div class="text-right">
+        <button class="btn blue margin-top-10 margin-bottom-10" onclick="window.history.back();"><i
+                class="fa fa-arrow-left"></i> Regresar</button>
+    </div>
+
     <div class="col-md-10 col-md-offset-1">
         <!-- BEGIN VALIDATION STATES-->
-        <div class="portlet box green">
+        <div class="portlet box green light">
             <div class="portlet-title">
                 <div class="caption">
                     Registro de Grupo
@@ -28,9 +33,9 @@
             </div>
 
             <div class="portlet-body form">
-                <form name="createGroup" class="form-horizontal" ng-submit="saveGroup(createGroup.$valid, $event)"
+                <form name="editGroup" class="form-horizontal" ng-submit="updateGroup(editGroup.$valid, $event)"
                       novalidate>
-                    <div  id="divError" class="form-body">
+                    <div id="divError" class="form-body">
 
                         <h3 class="form form-section">Información base<hr/></h3>
 
@@ -52,7 +57,7 @@
                         </div>
 
                         <div class="form-group"
-                             ng-class="{'has-error': createGroup.nameClassroom.$error.required||validator.nameClassroom.hasError}">
+                             ng-class="{'has-error': editGroup.nameClassroom.$error.required||validator.nameClassroom.hasError}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Nombre de Grupo:
                             </label>
@@ -67,13 +72,13 @@
                             </div>
 
                             <p class="help-block"
-                               ng-show="createGroup.nameClassroom.$error.required||validator.nameClassroom.hasError">
+                               ng-show="editGroup.nameClassroom.$error.required||validator.nameClassroom.hasError">
                                 {{validator.nameClassroom.message}}
                             </p>
                         </div>
 
                         <div class="form-group"
-                             ng-class="{'has-error': createGroup.period.$error.required||validator.period.hasError}">
+                             ng-class="{'has-error': editGroup.period.$error.required||validator.period.hasError}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Periodo del curso:
                             </label>
@@ -88,13 +93,13 @@
                             </div>
 
                             <p class="help-block"
-                               ng-show="createGroup.period.$error.required||validator.period.hasError">
+                               ng-show="editGroup.period.$error.required||validator.period.hasError">
                                 {{validator.period.message}}
                             </p>
                         </div>
 
                         <div class="form-group"
-                             ng-class="{'has-error': createGroup.places.$error.required||validator.places.hasError}">
+                             ng-class="{'has-error': editGroup.places.$error.required||validator.places.hasError}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Capacidad del grupo:
                             </label>
@@ -107,7 +112,7 @@
                                 </div>
                             </div>
                             <span class="help-block"
-                                  ng-show="createGroup.places.$error.required||validator.places.hasError">
+                                  ng-show="editGroup.places.$error.required||validator.places.hasError">
                                 {{validator.places.message}}
                             </span>
                         </div>
@@ -130,12 +135,13 @@
                                 </div>
                             </div>
                             <span class="help-block"
-                                  ng-show="createGroup.typeClassroom.$error.required||validator.typeClassroom.hasError">
+                                  ng-show="editGroup.typeClassroom.$error.required||validator.typeClassroom.hasError">
                                 {{validator.typeClassroom.message}}
                             </span>
                         </div>
 
                         <br/>
+
 
                         <h3 class="form form-section">Horario del grupo<hr/></h3>
 
@@ -161,7 +167,8 @@
                                 <div class="input-icon">
                                     <i class="fa fa-clock-o"></i>
                                     <input name="stHour" ng-model="leasson.stHour"
-                                           class="form-control timepicker timepicker-default tp" readonly type="text">
+                                           class="form-control timepicker timepicker-default tp" readonly
+                                           type="text">
                                 </div>
                             </div>
 
@@ -173,7 +180,8 @@
                                 <div class="input-icon">
                                     <i class="fa fa-clock-o"></i>
                                     <input name="endHour" ng-model="leasson.endHour"
-                                           class="form-control timepicker timepicker-default tp2" readonly type="text">
+                                           class="form-control timepicker timepicker-default tp2" readonly
+                                           type="text">
                                 </div>
                                 <!--<input type="text" ng-model="lesson.endHour" name="endHour"  data-format="hh:mm A" readonly class="form-control clockface_1 tp2"/>-->
                             </div>
@@ -225,32 +233,51 @@
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="lesson in lessonList">
-                                    <td>{{lesson.dateClass}}</td>
-                                    <td>{{lesson.stHour}}</td>
-                                    <td>{{lesson.endHour}}</td>
+                                    <td>{{lesson.dateClass | date:'MM/dd/yyyy'}}</td>
+                                    <td>{{lesson.stHour | date:'hh:mm:ss a'}}</td>
+                                    <td>{{lesson.endHour | date:'hh:mm:ss a'}}</td>
                                     <td>{{lesson.name}}</td>
-                                    <td class="text-center"><button ng-click="eliminarFila($index)"
+                                    <td class="text-center"><button ng-show="lesson.nofS == 0"
+                                                                    ng-click="eliminarFila($index)"
                                                                     class="btn-sm btn-danger"><i
-                                                class="fa fa-trash-o"></i></button></td>
+                                                class="fa fa-trash-o"></i></button><span class="text-danger"
+                                            ng-show="lesson.nofS != 0">Alumnos en clase</span></td>
                                 </tr>
                                 </tbody>
                             </table>
 
                         </div>
 
-                        </div>
-                        <div class="form-actions">
-                            <div class="row">
-                                <div class="text-center">
-                                    <button type="submit" class="btn green"
-                                            ng-disabled=" !(varSlc !=0) ||  createGroup.$invalid || !(lessonList.length != 0)">Registrar</button>
-                                    <button type="button" class="btn default" ng-click="cancelar();">Cancelar</button>
-                                </div>
+
+                        <!-- <div class="text-center padding-top-10px padding-button-10px"
+                             ng-show="classroomInstance.placesOccupied != 0">
+
+                            <div class="note note-info">
+                                <i class="fa fa-info-circle"></i> Las clases no pueden ser editadas en esta sección, ya que cuentan con alumnos registrados.
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label">Editar clases:
+                                </label>
+                                <a type="button" href="#" class="btn btn-info disabled">Ver clases</a>
+                            </div>
+                        </div>-->
+                    </div>
+
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="text-center">
+                                <button type="submit" class="btn green"
+                                        ng-disabled=" !(varSlc !=0) ||  editGroup.$invalid || !editGroup.$dirty || !(lessonList.length != 0)">Actualizar</button>
+                                <button type="button" class="btn default" ng-click="cancelar();">Cancelar</button>
                             </div>
                         </div>
+                    </div>
                 </form>
+            </div>
+            <!-- END VALIDATION STATES-->
         </div>
-        <!-- END VALIDATION STATES-->
     </div>
 </div>
 

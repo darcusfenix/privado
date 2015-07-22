@@ -22,6 +22,11 @@ angular.module('ControlEscuela').factory('Classroom', function ($resource) {
         save: {
             method: 'POST',
             url: 'classroom/save'
+        },
+        getClassroomByOffice: {
+            method: 'GET',
+            isArray: true,
+            url: 'classroom/getClassroomByOffice/:id'
         }
     });
 });

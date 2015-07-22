@@ -1,4 +1,3 @@
-
 <div class="row margin-top-10">
     <div class="col-md-12">
 
@@ -6,19 +5,25 @@
         <div class="portlet box green-haze">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i>Gestión de grupos
+                    <i class="fa"></i>Gestión de grupos
                 </div>
             </div>
 
-            <div class="portlet-body">
-                <table class="table table-striped table-bordered table-hover table-responsive table-scrollable" id="tabla">
+            <div class="portlet-body table-responsive table-scrollable">
+                <table class="table table-striped table-bordered table-hover" id="tabla">
                     <thead>
                     <tr>
+                        <th>
+                            Sucursal
+                        </th>
+                        <th>
+                            Periodo
+                        </th>
                         <th>
                             Nombre
                         </th>
                         <th>
-                            Lugares
+                            Lugares disponibles
                         </th>
                         <th>
                             Tipo
@@ -28,6 +33,8 @@
                         </th>
                     </tr>
                     <tr>
+                        <th><input type="text" ng-model="filtro.nameOffice" placeholder="Filtrar por sucursal"></th>
+                        <th><input type="text" ng-model="filtro.period" placeholder="Filtrar por periodo"></th>
                         <th>
                             <input type="text" ng-model="filtro.nameClassroom" placeholder="Filtrar por nombre">
                         </th>
@@ -38,18 +45,19 @@
                             <input type="text" ng-model="filtro.typeClassroom" placeholder="Filtrar por tipo de grupo">
                         </th>
                         <th>
-                            <input type="text" ng-model="filtro.stateClassroom.id" placeholder="Filtrar por estado">
+                            <input type="text" ng-model="filtro.nameStateClassroom" placeholder="Filtrar por estado">
                         </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="classroom in classroomList|filter:filtro">
+                        <td class="text-center"><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameOffice}}</a></td>
+                        <td class="text-center"><a href="#/classroom/show/{{classroom.id}}">{{classroom.period}}</a></td>
                         <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameClassroom}}</a></td>
-                        <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.places}}</a></td>
+                        <td><a  href="#/classroom/show/{{classroom.id}}">{{classroom.places}} - {{classroom.placesOccupied}} = {{classroom.places-classroom.placesOccupied}}</a></td>
                         <td><span ng-if="classroom.typeClassroom == 0">Alumnos nuevos</span>
-                            <span ng-if="classroom.typeClassroom == 1">Alumnos inscritos</span></td>
-                        <td><span ng-class="classroom.stateClassroom.id != 2 ? 'text-success' : 'text-danger'">{{getNameState(classroom.stateClassroom.id)}}</span></td>
-
+                        <span ng-if="classroom.typeClassroom == 1">Alumnos inscritos</span></td>
+                        <td><span ng-class="classroom.idStateClassroom != 2 ? 'text-success' : 'text-danger'">{{classroom.nameStateClassroom}}</span></td>
                     </tr>
                     </tbody>
                 </table>

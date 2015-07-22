@@ -4,7 +4,7 @@
     <div class="page-sidebar-wrapper">
         <div class="page-sidebar md-shadow-z-2-i  navbar-collapse collapse">
             <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                <li class="start" ng-class="($root.location === '/') ? 'active open' : ''">
+                <li class="start"  ng-class="($root.location === '/') ? 'active open' : ''">
                     <a href="#/">
                         <i class="icon-home"></i>
                         <span class="title">Inicio</span>
@@ -138,6 +138,32 @@
                     </a>
                 </li>
 
+                <li ng-class="($root.location == '/office/' || $root.location == '/office/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="fa fa-building-o"></i>
+                        <span class="title">Sucursal</span>
+                        <span class="arrow {{$root.location == '/office/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location == '/office/') ? 'active' : ''">
+                            <a href="#/office/">
+                                Ver todas</a>
+                        </li>
+                    </ul>
+                </li>
+                <li ng-class="($root.location == '/inductionClass/' || $root.location == '/inductionClass/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="fa fa-users"></i>
+                        <span class="title">Clases de inducción</span>
+                        <span class="arrow {{$root.location == '/inductionClass/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location == '/inductionClass/') ? 'active' : ''">
+                            <a href="#/inductionClass/">
+                                Ver clases</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>
