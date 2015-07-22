@@ -16,6 +16,8 @@ class User {
     String comment
     boolean previousStudent
     boolean active = false
+    String activationToken
+    Date activationDate
     // Address
     String state
     String city
@@ -68,6 +70,8 @@ class User {
         state nullable: true, blank: true
         previousStudent nullable: true, blank: true
         comment nullable:true, blank: true
+        activationToken nullable:true, blank: true
+        activationDate nullable: true, blank: true
     }
     static mapping = {
         version false
@@ -77,5 +81,9 @@ class User {
 
     String getFullName(){
         return this.name + " " +this.lastName
+    }
+
+    def beforeInsert(){
+        this.activationToken = "${this.email}|${this.username}|${this.fullName}".encodeAsMD5().substring(0,20)
     }
 }
