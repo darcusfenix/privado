@@ -202,32 +202,6 @@ class BootStrap {
         otherAgaintypeService.name = "Servicio Extra"
         otherAgaintypeService.save();
 
-        Service service = new Service()
-        service.active = true;
-        service.cost = 1500.00
-        service.period = "2015-02"
-        service.stDate = new Date()
-        service.endDate = new Date()
-        service.typeService = typeService
-        service.save()
-
-        Service anotherService = new Service()
-        anotherService.active = true;
-        anotherService.cost = 900.00
-        anotherService.period = "2015-01"
-        anotherService.stDate = new Date()
-        anotherService.endDate = new Date()
-        anotherService.typeService = anothertypeService
-        anotherService.save()
-
-        Service abcService = new Service()
-        abcService.active = true;
-        abcService.cost = 600.00
-        abcService.period = "2015-01"
-        abcService.stDate = new Date()
-        abcService.endDate = new Date()
-        abcService.typeService = othertypeService
-        abcService.save()
 
         TypeCourse typeCourse = new TypeCourse()
         typeCourse.name = "Curso normal cat"
