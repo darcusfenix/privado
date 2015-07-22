@@ -14,10 +14,19 @@ class NotificationService {
     def grailsApplication
 
     def sendEmail(User user, String contextPath) {
-        DateFormat formatter = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", new Locale("es", "MX"));
+        //TODO consider the hour, check the image!!!!
+        //TODO consider the hour, check the image!!!!
+        DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy", new Locale("es", "MX"));
         String htmlContent = new File(contextPath + grailsApplication.config.files.htmlMailContent).text
-        String activationToken = "$user.email|$user.id".encodeAsBase64()
-        def binding = [userFullName: user.fullName, inductionDate: formatter.format(new Date()), activationToken: activationToken]
+        user.activationToken = "${user.email}|${user.username}|${user.fullName}".encodeAsMD5().substring(0,20)
+        user.save(flush:true);
+        def activationToken = user.activationToken
+        def binding = [:]
+        binding.userFullName = user.fullName
+        binding.assignedGroup = "ABC"[(int)3*Math.random()] //TODO: assign specific group
+        binding.inductionDate = formatter.format(new Date())
+        binding.enrollmentUrl= activationToken
+        binding.price = 1500
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
         log.error(template.toString())
@@ -26,16 +35,19 @@ class NotificationService {
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
-                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.pdfFile))
                 .build()
-        sendGridService.send(email)
-        return true
+        try{
+            sendGridService.send(email)
+            return true
+        } catch (Exception e){
+            return false
+        }
     }
 
-    def validateAccount(String validationToken) {
-        List components = validationToken.decodeBase64().split("|")
-        User user = User.findByEmailAndId(components[0], Integer.parseInt(components[1]))
+    def validateAccount(String activationToken) {
+        User user = User.findByActivationToken(activationToken)
         user.active = true
+        user.activationDate = new Date();
         if (user.save(flush: true)) {
             return true
         } else {
