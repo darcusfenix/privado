@@ -46,6 +46,7 @@ class BootStrap {
 
         Classroom classroom = new Classroom()
         classroom.nameClassroom = "Grupo A"
+        classroom.period = "2015-02"
         classroom.places = 50
         classroom.typeClassroom = 0
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
@@ -54,6 +55,7 @@ class BootStrap {
 
         classroom = new Classroom()
         classroom.nameClassroom = "Grupo B"
+        classroom.period = "2015-02"
         classroom.places = 50
         classroom.typeClassroom = 0
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
@@ -62,6 +64,7 @@ class BootStrap {
 
         classroom = new Classroom()
         classroom.nameClassroom = "Grupo C"
+        classroom.period = "2015-02"
         classroom.places = 50
         classroom.typeClassroom = 0
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
