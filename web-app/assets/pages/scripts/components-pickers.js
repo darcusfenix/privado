@@ -8,6 +8,18 @@ var ComponentsPickers = function () {
                 orientation: "left",
                 autoclose: true
             });
+
+            $('.timepicker-year').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'MM yy',
+                onClose: function(dateText, inst) {
+                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year, month, 1));
+                }
+            });
             //$('body').removeClass("modal-open"); // fix bug when inline picker is used in modal
         }
 
@@ -22,6 +34,8 @@ var ComponentsPickers = function () {
                 showSeconds: true,
                 minuteStep: 1
             });
+
+
 
             $('.timepicker-no-seconds').timepicker({
                 autoclose: true,
@@ -60,7 +74,8 @@ var ComponentsPickers = function () {
             function (start, end) {
                 $('#defaultrange input').val(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             }
-        );        
+        );
+
 
         $('#defaultrange_modal').daterangepicker({
                 opens: (Metronic.isRTL() ? 'left' : 'right'),

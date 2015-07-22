@@ -6,7 +6,7 @@
 --%>
 
 
-<div class="row margin-top-10 text-right" ng-show="studentServices.length === 0">
+<div class="row margin-top-10 text-right hide" ng-show="studentServices.length === 0" ng-class="(studentServices.length === 0) ? 'show' : '' ">
 	<div class="col-md-4 col-md-offset-4">
 		<button class="btn btn-danger margin-top-10 margin-bottom-10" onclick="window.history.back();" > <i class="fa fa-arrow-left"></i> Regresar</button>
 		<div class="alert alert-danger }}  margin-bottom-10">
@@ -75,7 +75,7 @@
 								<span class="text-success uppercase" ng-show="studentService.abonado >=  studentService.service.totalRequired">pagado</span>
                             </td>
                             <td class="text-center ">
-                                <span class="uppercase" ng-class="(studentService.active) ? 'text-success' : 'text-danger' " >{{ studentService.active ? 'servicio disponible' : 'servicio bloquedado' }}</span>
+                                <span class="uppercase" ng-class="(studentService.active) ? 'text-success' : 'text-danger' " >{{ studentService.active ? 'disponible' : 'bloquedado' }}</span>
                             </td>
 							<td class="text-center">
 								<a href="#/voucherPayment/student/{{userSelected.id}}/service/{{studentService.service.id}}/record/" class="btn blue-hoki uppercase" ng-show="studentService.abonado > 0">Ver</a>

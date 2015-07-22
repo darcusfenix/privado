@@ -1,6 +1,8 @@
 package com.ed.schoolmanagement
 
+import com.ed.classroomcourse.Classroom
 import com.ed.inductionClass.InductionClass
+import com.ed.service.UserClassroom
 
 class User {
     Integer id
@@ -26,7 +28,7 @@ class User {
     String street
     String streetNumber
 
-    static hasMany = [inductionClass: InductionClass]
+    InductionClass inductionClass
 
     // Spring security methods
     @Override
@@ -83,7 +85,16 @@ class User {
         return this.name + " " +this.lastName
     }
 
-    def beforeInsert(){
-        this.activationToken = "${this.email}|${this.username}|${this.fullName}".encodeAsMD5().substring(0,20)
+    def beforeInsert() {
+        this.activationToken = "${this.email}|${this.username}|${this.fullName}".encodeAsMD5().substring(0, 20)
+    }
+
+    def getGroup() {
+        UserClassroom uc = UserClassroom.findByUser(this)
+        if (uc != null) {
+            uc.getClassroom()
+        }else{
+            null
+        }
     }
 }

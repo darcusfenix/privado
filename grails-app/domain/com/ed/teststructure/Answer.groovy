@@ -7,7 +7,7 @@ package com.ed.teststructure
 
 import java.sql.Blob
 
-class Answer {
+class Answer implements Serializable{
 
     Boolean state
     String textAnswer

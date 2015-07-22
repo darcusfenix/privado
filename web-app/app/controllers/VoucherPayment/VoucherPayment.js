@@ -56,18 +56,19 @@ function VoucherPaymentShowStudentController($scope,  $routeParams, $location, V
         },function savedVoucherPayment(data) {
             $scope.message.show = true;
             $scope.message.type = 1;
-            $scope.message.text = "Bien!, Se ha registrado el pago"
+            $scope.message.text = data.message;
             $timeout(function() {
                 $route.reload();
-            }, 3000);
+            }, 4000);
 
         }, function (error){
+            console.log(error);
             $scope.message.show = true;
             $scope.message.type = 0;
-            $scope.message.text = "Upps!, Ingresa una cantidad válida o el valor rebasa el total a pagar"
+            $scope.message.text = error.data.message;
             $timeout(function() {
                 $scope.message.show = false;
-            }, 3000);
+            }, 4000);
         });
 
     };
@@ -91,7 +92,6 @@ function VoucherPaymentShowStudentController($scope,  $routeParams, $location, V
         });
 
     };
-
 
     $scope.servicesWithStudent();
 };
@@ -119,7 +119,6 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
     $scope.addVoucherPayment = function(index){
         $scope.usersList[index].voucherPayment = VoucherPayment.create();
         $scope.usersList[index].voucherPayment.pay = 0;
-        //console.log($scope.usersList[index].voucherPayment.pay);
     };
 
     $scope.addServices = function(id, index){
@@ -158,27 +157,31 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
 
         });
 
-        console.log($scope.voucherPaymentInstance);
 
         $scope.voucherPaymentInstance = $scope.voucherPaymentInstance.$saveSingleVoucherPayment({
             userId:userId,
             stateVoucher:2,
             pay:pay
-        },function (data) {
+        },function (success) {
             $scope.message.show = true;
             $scope.message.type = 1;
-            $scope.message.text = "Bien!, Se ha registrado el pago"
+            $scope.message.text = success.message;
+
             $timeout(function() {
                 $route.reload();
-            }, 500);
+            }, 3000);
+
 
         }, function (error){
+            console.log(error);
             $scope.message.show = true;
             $scope.message.type = 0;
-            $scope.message.text = "Upps!, Ingresa una cantidad válida o el valor rebasa el total a pagar"
+            $scope.message.text = error.data.message;
+
             $timeout(function() {
                 $scope.message.show = false;
-            }, 5000);
+            }, 4000);
+
         });
 
 
@@ -190,7 +193,7 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
 
 /****************************/
 
-function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $location, VoucherPayment, User, $rootScope, StudentService, Service, TypeService, $timeout, $route){
+function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $location, VoucherPayment, User, $rootScope, $filter, Service, TypeService, $timeout, $route){
     $rootScope.location = $location.path();
     $scope.errors = [];
     $scope.validator = {};
@@ -201,6 +204,9 @@ function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $loca
 
     $scope.recordVoucherPayment = VoucherPayment.vouchersStudenAndService({ 'userId':$routeParams.userId, 'serviceId': $routeParams.serviceId},function(data) {
         $scope.recordVoucherPayment = data;
+        for(var i = 0; $scope.recordVoucherPayment.length; i++){
+            $scope.recordVoucherPayment[i].payDate = $filter('date')($scope.recordVoucherPayment[i].payDate, 'short');
+        }
         console.log($scope.recordVoucherPayment);
     });
 
@@ -212,6 +218,8 @@ function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $loca
 
     $scope.service = Service.get({id: $routeParams.serviceId}, function (data) {
         $scope.service = data;
+        $scope.service.stDate = $filter('date')($scope.service.stDate, 'MM/dd/yyyy');
+        $scope.service.endDate = $filter('date')($scope.service.endDate, 'MM/dd/yyyy');
     }, function (err) {
         $location.path("voucherPayment/create");
     });

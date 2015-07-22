@@ -31,6 +31,7 @@ class UserMarshaller {
                     comment         : user.comment,
                     previousStudent : user.previousStudent,
                     authority       : user.getAuthorities()[0],
+                    group           : user.getGroup(),
 
             ]
         }

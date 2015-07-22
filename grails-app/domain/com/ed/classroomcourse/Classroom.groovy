@@ -5,22 +5,28 @@
 
 package com.ed.classroomcourse
 
+import com.ed.service.Office
+import com.ed.service.UserClassroom
+
 class Classroom implements Serializable{
 
     String nameClassroom
     Integer places
+    String period
     // 0 is New Student 1 old Student
-    Integer typeClassroom = 0
+    Integer typeClassroom
     StateClassroom stateClassroom
     static hasMany = [clazz: Class]
     static mappedBy = [clazz: 'classroom']
+    static belongsTo = [office: Office]
 
     static constraints = {
         clazz nullable: true
         stateClassroom nullable: true
         typeClassroom nullable: false
         places nullable: false
-        nameClassroom nullable: false
+        nameClassroom nullable: false, matches: "Grupo\\s[\\d{1}||[A-Z]]"
+        period nullable: true, matches: "\\d{4}-\\d{2}"
     }
 
     static mapping = {
@@ -29,7 +35,19 @@ class Classroom implements Serializable{
         nameClassroom column: 'nb_classroom'
         places column: 'nu_places'
         typeClassroom column: 'st_typeClassroom'
+        period column: "tx_period"
         version false
-        stateClassroom lazy: false
+    }
+
+    String getNameOffice(Long id){
+        Office.findById(id).name
+    }
+
+    String getStateClassroomName(Long id){
+        StateClassroom.findById(id).getName()
+    }
+
+    Integer getFreePlaces(Long id){
+        UserClassroom.findAllByClassroom(Classroom.findById(id)).size()
     }
 }

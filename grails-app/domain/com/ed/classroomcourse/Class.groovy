@@ -14,6 +14,7 @@ class Class implements Serializable{
     Date endHour
     String name
     String description
+    Boolean stClass
     static belongsTo = [classroom: Classroom]
 
     static constraints = {
@@ -32,4 +33,9 @@ class Class implements Serializable{
         description column: 'ds_class'
         version false
     }
+
+    def getStudents(Long id){
+        UserClass.findAllByClazz(Class.findById(id)).size()
+    }
+
 }

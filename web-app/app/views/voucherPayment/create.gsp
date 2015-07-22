@@ -7,9 +7,11 @@
 
 <div class="row margin-top-10">
     <div class="col-md-12">
-
+        <div class="alert {{ (message.type == 1 ) ? 'alert-success': 'alert-danger' }}  margin-bottom-10" ng-show="message.show">
+            <strong> {{message.text}} </strong>
+        </div>
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
-        <div class="portlet box green-haze">
+        <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-globe"></i>Alumnos del grupo

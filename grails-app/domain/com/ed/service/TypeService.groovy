@@ -11,6 +11,8 @@ class TypeService {
     String description
 
     static constraints = {
+        name nullable: false
+        description nullable: false
     }
 
     static mapping = {
