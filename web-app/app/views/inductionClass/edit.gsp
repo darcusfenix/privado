@@ -79,7 +79,7 @@
                             </p>
                         </div>
 
-                        <div class="form-group" ng-class="{'has-error': validatorFecha.hasError}">
+                        <div class="form-group" ng-class="{'has-error': validatorFecha.hasError || varDate == 0}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Fecha:
                             </label>
@@ -96,7 +96,7 @@
                                 </div>
                                 <!-- /input-group -->
                             </div>
-
+                            <input ng-model="varDate" type="hidden">
                             <span class="text-danger"
                                   ng-show="validatorFecha.hasError">
                                 {{validatorFecha.message}}
@@ -108,7 +108,7 @@
                         <div class="row">
                             <div class="text-center">
                                 <button type="submit" class="btn green"
-                                        ng-disabled="editInductionClass.$invalid || (!editInductionClass.$dirty) || varSlc == 0">Actualizar</button>
+                                        ng-disabled="editInductionClass.$invalid || (!editInductionClass.$dirty) || varSlc == 0 || varDate == 0">Actualizar</button>
                                 <button type="button" class="btn default" ng-click="cancelar();">Cancelar</button>
                             </div>
                         </div>

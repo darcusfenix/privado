@@ -5,7 +5,7 @@
 function InductionClassListController($scope, InductionClass, $location, $rootScope) {
     $('#divSpinner').removeClass('hidden');
     $rootScope.location = $location.path();
-    $scope.inductionClassList = InductionClass.query(function(){
+    $scope.inductionClassList = InductionClass.query(function () {
         $('#divSpinner').addClass('hidden');
     });
     $rootScope.nameSpace = 'Clase de inducción';
@@ -17,6 +17,7 @@ function InductionClassCreateController($scope, $location, $routeParams, $rootSc
     $rootScope.location = $location.path();
 
     $scope.varSlc = 0;
+    $scope.varDate = 0;
     $scope.officeList = Office.query()
 
     $scope.validatorFecha = {
@@ -31,6 +32,7 @@ function InductionClassCreateController($scope, $location, $routeParams, $rootSc
         $('#divSpinner').removeClass('hidden');
         $event.preventDefault();
         if ($(".dtime").val() == "") {
+            $('#divSpinner').addClass('hidden');
             $scope.validatorFecha.hasError = true;
         } else {
             $scope.validatorFecha.hasError = false;
@@ -55,6 +57,15 @@ function InductionClassCreateController($scope, $location, $routeParams, $rootSc
         }
 
     }
+
+    $(".dtime").change(function () {
+        if ($(".dtime").val() != "") {
+            $scope.varDate = 1;
+        }else{
+            $scope.varDate = 0;
+        }
+        $scope.$apply();
+    });
 
     $scope.cancelar = function cancelar() {
         $location.path("/inductionClass/");
@@ -85,9 +96,9 @@ function InductionClassShowController($scope, $location, $routeParams, $rootScop
         });
     };
 
-    $scope.showStudent = function(id){
+    $scope.showStudent = function (id) {
         $('#model-user').modal('hide');
-        $location.path('/user/show/'+id);
+        $location.path('/user/show/' + id);
     }
 
 }
@@ -96,6 +107,7 @@ function InductionClassEditController($scope, $location, $routeParams, $rootScop
 
     ComponentsPickers.init();
     $rootScope.location = $location.path();
+    $scope.varDate = 1;
 
     $scope.officeList = Office.query()
 
@@ -106,7 +118,7 @@ function InductionClassEditController($scope, $location, $routeParams, $rootScop
 
     $scope.inductionClassInstance = InductionClass.get({id: $routeParams.id}, function (data) {
         $scope.inductionClassInstance = data;
-        $(".dtime").val($filter('date')(data.date , 'dd MMMM yyyy - hh:mm a'))
+        $(".dtime").val($filter('date')(data.date, 'dd MMMM yyyy - hh:mm a'))
         $scope.varSlc = $scope.inductionClassInstance.office.id;
     });
 
@@ -139,6 +151,16 @@ function InductionClassEditController($scope, $location, $routeParams, $rootScop
         }
 
     }
+
+    $(".dtime").change(function () {
+        if ($(".dtime").val() != "") {
+            $scope.varDate = 1;
+            $scope.editInductionClass.$dirty = true;
+        }else{
+            $scope.varDate = 0;
+        }
+        $scope.$apply();
+    });
 
     $scope.cancelar = function cancelar() {
         $location.path("/inductionClass/");
