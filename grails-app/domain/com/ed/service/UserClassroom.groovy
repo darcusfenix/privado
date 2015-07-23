@@ -16,4 +16,8 @@ class UserClassroom implements Serializable {
         id composite: ['user', 'classroom']
         version false
     }
+
+    def beforeInsert(){
+        classroom.places --
+    }
 }
