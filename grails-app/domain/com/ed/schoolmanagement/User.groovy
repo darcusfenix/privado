@@ -1,6 +1,5 @@
 package com.ed.schoolmanagement
 
-import com.ed.classroomcourse.Classroom
 import com.ed.inductionClass.InductionClass
 import com.ed.service.UserClassroom
 
@@ -27,6 +26,7 @@ class User {
     String zipCode
     String street
     String streetNumber
+    String internalNumber
 
     InductionClass inductionClass
 
@@ -64,6 +64,7 @@ class User {
         street nullable: false;
         blank: false
         streetNumber nullable: false;
+        internalNumber nullable: true, blank:true
         blank: false
         city nullable: false;
         blank: false
