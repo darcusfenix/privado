@@ -8,6 +8,8 @@ package com.ed.classroomcourse
 import com.ed.service.Office
 import com.ed.service.UserClassroom
 
+import javax.swing.plaf.nimbus.State
+
 class Classroom implements Serializable{
 
     String nameClassroom
@@ -24,7 +26,7 @@ class Classroom implements Serializable{
         clazz nullable: true
         stateClassroom nullable: true
         typeClassroom nullable: false
-        places nullable: false
+        places nullable: false, min:0
         nameClassroom nullable: false, matches: "Grupo\\s[\\d{1}||[A-Z]]"
         period nullable: true, matches: "\\d{4}-\\d{2}"
     }
@@ -37,6 +39,12 @@ class Classroom implements Serializable{
         typeClassroom column: 'st_typeClassroom'
         period column: "tx_period"
         version false
+    }
+
+    def beforeInsert(){
+        if(this.places==0){
+            stateClassroom = StateClassroom.findByName("Cerrado");
+        }
     }
 
     String getNameOffice(Long id){
