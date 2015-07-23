@@ -21,35 +21,39 @@
                       ng-submit="updateInductionClass(editInductionClass.$valid, $event)" novalidate>
                     <div class="form-body">
 
-                        <div class="form-group" ng-class="{'has-error': varSlc == 0}">
+                        <div class="form-group form-md-line-input" ng-class="{'has-error': varSlc == 0}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Sucursal:
                             </label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-5">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <select class="form-control input-medium" ng-model="varSlc">
+                                    <select class="form-control" ng-model="varSlc">
                                         <option value="0">Seleccione</option>
                                         <option ng-repeat="office in officeList"
                                                 value="{{office.id}}">{{office.name}}</option>
                                     </select>
+                                    <div class="form-control-focus">
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="form-group"
+                        <div class="form-group form-md-line-input"
                              ng-class="{'has-error': editInductionClass.name.$error.required||validator.name.hasError}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Nombre de la clase de inducción:
                             </label>
 
-                            <div class="col-md-4">
+                            <div class="col-sm-5">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
                                     <input type="text" ng-model="inductionClassInstance.name" class="form-control"
-                                           name="name" required placeholder="Nombre"/>
+                                           name="name" required placeholder="Nombre de la clase"/>
+                                    <div class="form-control-focus">
+                                    </div>
                                 </div>
                             </div>
 
@@ -59,17 +63,19 @@
                             </p>
                         </div>
 
-                        <div class="form-group"
+                        <div class="form-group form-md-line-input"
                              ng-class="{'has-error': editInductionClass.places.$error.required||validator.places.hasError}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Cupo:
                             </label>
 
-                            <div class="col-md-4">
+                            <div class="col-sm-2">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
                                     <input type="number" min="1" ng-model="inductionClassInstance.places"
                                            class="form-control" name="places" required/>
+                                    <div class="form-control-focus">
+                                    </div>
                                 </div>
                             </div>
 
@@ -79,20 +85,20 @@
                             </p>
                         </div>
 
-                        <div class="form-group" ng-class="{'has-error': validatorFecha.hasError || varDate == 0}">
+                        <div class="form-group form-md-line-input" ng-class="{'has-error': validatorFecha.hasError || varDate == 0}">
                             <label class="control-label col-md-3"><span class="required">
                                 *</span> Fecha:
                             </label>
 
-                            <div class="col-md-5">
+                            <div class="col-sm-5">
                                 <div class="input-group date form_meridian_datetime" data-date="2012-12-21T15:25:00Z">
                                     <input type="text" size="16" class="form-control dtime">
                                     <span class="input-group-btn">
-                                        <button class="btn default date-reset" type="button"><i class="fa fa-times"></i>
-                                        </button>
                                         <button class="btn default date-set" type="button"><i
                                                 class="fa fa-calendar"></i></button>
                                     </span>
+                                    <div class="form-control-focus">
+                                    </div>
                                 </div>
                                 <!-- /input-group -->
                             </div>

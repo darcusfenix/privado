@@ -183,7 +183,16 @@
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/backstretch', file: 'jquery.backstretch.min.js')}"></script>
 <!-- FIN DE TODOS LOS RECURSOS JS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
+<!--  -->
 
+<script type="text/javascript" src="${resource(dir: '/exportTables', file: 'jquery.base64.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/exportTables', file: 'html2canvas.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/exportTables', file: 'tableExport.js')}"></script>
+
+<script type="text/javascript" src="${resource(dir: '/exportTables/jspdf', file: 'jspdf.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/exportTables/jspdf/libs', file: 'base64.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/exportTables/jspdf/libs', file: 'sprintf.js')}"></script>
+<!--  -->
 
 <script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'metronic.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/tema/scripts', file: 'layout.js')}"></script>

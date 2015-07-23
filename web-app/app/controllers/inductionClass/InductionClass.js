@@ -61,7 +61,7 @@ function InductionClassCreateController($scope, $location, $routeParams, $rootSc
     $(".dtime").change(function () {
         if ($(".dtime").val() != "") {
             $scope.varDate = 1;
-        }else{
+        } else {
             $scope.varDate = 0;
         }
         $scope.$apply();
@@ -99,6 +99,15 @@ function InductionClassShowController($scope, $location, $routeParams, $rootScop
     $scope.showStudent = function (id) {
         $('#model-user').modal('hide');
         $location.path('/user/show/' + id);
+    }
+
+    $scope.exportData = function exportData(nameT) {
+        $('#' + nameT).tableExport({
+            type: 'pdf',
+            pdfFontSize: '12',
+            escape: 'false',
+            titlePDF: "[" + $scope.inductionClassInstance.name + "]"
+        });
     }
 
 }
@@ -156,7 +165,7 @@ function InductionClassEditController($scope, $location, $routeParams, $rootScop
         if ($(".dtime").val() != "") {
             $scope.varDate = 1;
             $scope.editInductionClass.$dirty = true;
-        }else{
+        } else {
             $scope.varDate = 0;
         }
         $scope.$apply();

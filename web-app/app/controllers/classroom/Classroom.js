@@ -31,6 +31,8 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
     $scope.varSlc = 0;
     $scope.validator = {};
 
+    $scope.nofClassroom = Classroom.getNumberClassRoom();
+
     $scope.officeList = Office.query()
 
     $scope.validatorFecha = {
@@ -149,6 +151,11 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
         return jsonClassroom;
     }
 
+    $scope.inputR = function() {
+        $scope.classroomInstance.typeClassroom = 0;
+        $scope.classroomInstance.priority = 1;
+    }
+
 };
 
 
@@ -182,7 +189,8 @@ function ClassroomShowController($scope, $location, $routeParams, $rootScope, Cl
 function ClassroomEditController($scope, $location, Classroom, Class, Office, $rootScope, $routeParams, $timeout, $route, $filter) {
     $scope.varSlc = 0;
     ComponentsPickers.init();
-    $scope.officeList = Office.query()
+    $scope.officeList = Office.query();
+    $scope.nofClassroom = Classroom.getNumberClassRoom();
 
     $scope.classroomInstance  = Classroom.get({id: $routeParams.id}, function (data) {
         $scope.classroomInstance = data;
@@ -304,6 +312,11 @@ function ClassroomEditController($scope, $location, Classroom, Class, Office, $r
             }
         }
         return jsonClassroom;
+    }
+
+    $scope.inputR = function() {
+        $scope.classroomInstance.typeClassroom = 0;
+        $scope.classroomInstance.priority = 1;
     }
 
 };

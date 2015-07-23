@@ -83,9 +83,12 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title text-danger">Información de alumnos</h4>
+                        <div class="actions text-right">
+								<button class="btn btn-default btn-sm" ng-click="exportData('tableStudent');">to PDF</button>
+						</div>
                     </div>
                     <div class="modal-body table-responsive table-scrollable">
-                    <table class="table table-striped table-bordered table-hover" id="tableUser">
+                    <table class="table table-striped table-bordered table-hover" id="tableStudent">
                         <thead>
                         <tr>
                             <th>
@@ -101,7 +104,7 @@
                         <tr>
                             <th><input type="text" ng-model="filtro.name" placeholder="Filtrar por Nombre"></th>
                             <th><input type="text" ng-model="filtro.lastName" placeholder="Filtrar por Apellido"></th>
-                            <th><input type="text" ng-model="filtro.group.nameClassroom" placeholder="Filtrar por grupo"></th>
+                            <th><input type="text" ng-model="filtro.group" placeholder="Filtrar por grupo"></th>
                         </tr>
                         </thead>
                         <tbody>
