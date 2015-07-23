@@ -56,6 +56,8 @@ class BootStrap {
         classroom.period = "2015-02"
         classroom.places = 50
         classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 1
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
         classroom.office = office
         classroom.save()
@@ -65,6 +67,8 @@ class BootStrap {
         classroom.period = "2015-02"
         classroom.places = 50
         classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 1
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
         classroom.office = office
         classroom.save()
@@ -74,6 +78,8 @@ class BootStrap {
         classroom.period = "2015-02"
         classroom.places = 50
         classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 1
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
         classroom.office = office
         classroom.save()

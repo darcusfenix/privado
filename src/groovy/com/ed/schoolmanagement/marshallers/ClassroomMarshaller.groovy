@@ -13,6 +13,8 @@ class ClassroomMarshaller {
                     places            : classroom.places,
                     idStateClassroom  : classroom.stateClassroom.id,
                     typeClassroom     : classroom.typeClassroom,
+                    typeClassroomP    : classroom.typeClassroomP,
+                    priority          : classroom.priority,
                     nameStateClassroom: classroom.getStateClassroomName(classroom.stateClassroomId),
                     nameOffice        : classroom.getNameOffice(classroom.office.id),
                     officeId          : classroom.office.id,
