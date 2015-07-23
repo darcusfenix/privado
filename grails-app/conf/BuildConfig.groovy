@@ -62,6 +62,8 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.1"
         runtime ":resources:1.2.14"
         compile ":sendgrid:1.3"
+        //Schedule task cronjobs
+        compile ":quartz:1.0.2"
         //compile ":angularjs-resources:1.4.1"
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
