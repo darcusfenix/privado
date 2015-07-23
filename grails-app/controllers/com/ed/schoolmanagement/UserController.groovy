@@ -1,6 +1,11 @@
 package com.ed.schoolmanagement
 
+import com.ed.classroomcourse.Classroom
+import com.ed.inductionClass.InductionClass
+import com.ed.service.UserClassroom
 import grails.converters.JSON
+import grails.transaction.Transactional
+import groovy.json.JsonOutput
 
 import javax.servlet.ServletContext
 
@@ -65,33 +70,43 @@ class UserController {
         render([message: message(code: 'de.user.deleted.message')] as JSON)
     }
 
-    def activate(String activationToken) {
-        def status = notificationService.validateAccount(activationToken)
-        if(status){
-            render([message:'Usuario verificado'] as JSON)
+    def activate() {
+        def status = notificationService.validateAccount(params.token)
+        if (status) {
+            render([message: 'Usuario verificado'] as JSON)
             return
         } else {
             response.status = 500
-            render([message:'No se pudo verificar el usuario'] as JSON)
+            render([message: 'No se pudo verificar el usuario'] as JSON)
             return
         }
     }
 
-    def sendWelcomeMail(Integer id){
+    @Transactional
+    def enroll() {
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
-        def status = notificationService.sendEmail(User.findById(id), contextPath)
-        if(status){
-            render ([message:status] as JSON)
-        } else {
-            response.status = 500
-            render ([message:status] as JSON)
-        }
-    }
 
-    def enroll(){
-        log.error "OK"
-        User userInstance = new User(request.JSON)
+        User userInstance = new User()
+        userInstance.properties = request.JSON
+        userInstance.password = "test"
+        userInstance.username = userInstance.email
+        //TODO Change according to the hour
+        //TODO Generate the four induction classes on bootstrap file!
+        userInstance.inductionClass = InductionClass.first();
+        userInstance.save(flush: true, insert: true, failOnError: true)
 
+        Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
+        UserClassroom uc = new UserClassroom()
+        uc.classroom = classroomInstance
+        uc.user = userInstance
+        uc.save(flush: true)
+
+        def tokenUrl = "http://" + request.getServerName()
+            + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}")
+            + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/user/activate/?token="
+            + userInstance.activationToken
+        notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
+        render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
     }
 }
