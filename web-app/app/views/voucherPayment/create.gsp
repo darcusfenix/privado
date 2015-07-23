@@ -47,6 +47,32 @@
                             Confirmar pago único
                         </th>
                     </tr>
+                    <tr>
+                        <th>
+                            <input type="text" ng-model="filtro.name" placeholder="Filtrar por nombre">
+                        </th>
+                        <th>
+                            <input type="text" ng-model="filtro.lastName" placeholder="Filtrar por Apellido">
+                        </th>
+                        <th>
+                            <input type="text" ng-model="filtro.username" placeholder="Filtrar por nombre de suario">
+                        </th>
+                        <th>
+                            <input type="text" ng-model="filtro.email" placeholder="Filtrar por correo electrónico">
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
 
