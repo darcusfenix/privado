@@ -171,7 +171,7 @@ class ClassroomController {
                 }
                 Class.executeUpdate("delete Class c where c.classroom = :classroom and c.stClass = :stClass", [classroom: classroomInstance, stClass: Boolean.FALSE])
                 response.status = 200
-                render([classroom: classroomInstance, message: message(code: "de.classroom.updated.message")] as JSON)
+                render([classroom: classroomInstance, message: message(code: "de.classroom.change.message")] as JSON)
             } else {
                 response.status = 500
                 render(classroomInstance.errors as JSON)

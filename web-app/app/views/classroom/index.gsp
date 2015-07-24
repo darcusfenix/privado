@@ -45,7 +45,7 @@
                             <input type="text" ng-model="filtro.places" placeholder="Filtrar por lugares">
                         </th>
                         <th>
-                            <input type="text" ng-model="filtro.typeClassroom" placeholder="Filtrar por tipo de grupo">
+                            <input type="text" ng-model="filtro.typeClassroomP" placeholder="Filtrar por tipo de grupo">
                         </th>
                         <th>
                             <input type="text" ng-model="filtro.typeClassroom" placeholder="Filtrar por tipo de alumnos">
