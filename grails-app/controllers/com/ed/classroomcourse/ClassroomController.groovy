@@ -29,6 +29,15 @@ class ClassroomController {
         render Classroom.findAllByOffice(Office.findById(id)) as JSON;
     }
 
+    def getNumberClassRoom() {
+
+        render([nofCr: Classroom.createCriteria().get {
+            projections {
+                max "priority"
+            }
+        } as Integer] as JSON)
+    }
+
     def save(String lista, Integer idOffice) {
 
         def classroomInstance = new Classroom(request.JSON)

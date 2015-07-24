@@ -29,6 +29,9 @@
                             Tipo
                         </th>
                         <th>
+                            Tipo de alumnos
+                        </th>
+                        <th>
                             Estatus
                         </th>
                     </tr>
@@ -45,6 +48,9 @@
                             <input type="text" ng-model="filtro.typeClassroom" placeholder="Filtrar por tipo de grupo">
                         </th>
                         <th>
+                            <input type="text" ng-model="filtro.typeClassroom" placeholder="Filtrar por tipo de alumnos">
+                        </th>
+                        <th>
                             <input type="text" ng-model="filtro.nameStateClassroom" placeholder="Filtrar por estado">
                         </th>
                     </tr>
@@ -55,8 +61,10 @@
                         <td class="text-center"><a href="#/classroom/show/{{classroom.id}}">{{classroom.period}}</a></td>
                         <td><a href="#/classroom/show/{{classroom.id}}">{{classroom.nameClassroom}}</a></td>
                         <td><a  href="#/classroom/show/{{classroom.id}}">{{classroom.places}} - {{classroom.placesOccupied}} = {{classroom.places-classroom.placesOccupied}}</a></td>
+                        <td><span ng-if="classroom.typeClassroomP == 0">Curso presencial</span>
+                        <span ng-if="classroom.typeClassroomP == 1">Examen simulacro</span></td>
                         <td><span ng-if="classroom.typeClassroom == 0">Alumnos nuevos</span>
-                        <span ng-if="classroom.typeClassroom == 1">Alumnos inscritos</span></td>
+                            <span ng-if="classroom.typeClassroom == 1">Alumnos inscritos</span></td>
                         <td><span ng-class="classroom.idStateClassroom != 2 ? 'text-success' : 'text-danger'">{{classroom.nameStateClassroom}}</span></td>
                     </tr>
                     </tbody>

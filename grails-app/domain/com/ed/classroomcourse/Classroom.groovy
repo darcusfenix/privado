@@ -17,6 +17,9 @@ class Classroom implements Serializable{
     String period
     // 0 is New Student 1 old Student
     Integer typeClassroom
+    // 0 is Class 1 MockExam
+    Integer typeClassroomP
+    Integer priority
     StateClassroom stateClassroom
     static hasMany = [clazz: Class]
     static mappedBy = [clazz: 'classroom']
@@ -37,7 +40,9 @@ class Classroom implements Serializable{
         nameClassroom column: 'nb_classroom'
         places column: 'nu_places'
         typeClassroom column: 'st_typeClassroom'
-        period column: "tx_period"
+        typeClassroomP column: 'st_typeClassroomP'
+        period column: 'tx_period'
+        priority column: 'nu_priority'
         version false
     }
 
