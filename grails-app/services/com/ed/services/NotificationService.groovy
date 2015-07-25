@@ -54,15 +54,4 @@ class NotificationService {
             return false
         }
     }
-
-    def validateAccount(String activationToken) {
-        User user = User.findByActivationToken(activationToken)
-        user.active = true
-        user.activationDate = new Date();
-        if (user.save(flush: true)) {
-            return true
-        } else {
-            return false
-        }
-    }
 }
