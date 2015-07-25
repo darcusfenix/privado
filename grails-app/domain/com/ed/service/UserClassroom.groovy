@@ -7,7 +7,7 @@ class UserClassroom implements Serializable {
 
     User user
     Classroom classroom
-
+    boolean activated = false
     static constraints = {
     }
 
@@ -17,7 +17,9 @@ class UserClassroom implements Serializable {
         version false
     }
 
-    def beforeInsert(){
-        classroom.places --
+    def beforeUpdate(){
+        if(activated){
+            classroom.places --
+        }
     }
 }

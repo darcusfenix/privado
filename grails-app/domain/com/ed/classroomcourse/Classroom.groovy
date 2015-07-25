@@ -46,7 +46,7 @@ class Classroom implements Serializable{
         version false
     }
 
-    def beforeInsert(){
+    def beforeUpdate(){
         if(this.places==0){
             stateClassroom = StateClassroom.findByName("Cerrado");
         }
