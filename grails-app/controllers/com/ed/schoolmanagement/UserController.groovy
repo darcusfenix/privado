@@ -12,6 +12,7 @@ import javax.servlet.ServletContext
 class UserController {
 
     def notificationService
+    def enrollmentService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST"]
 
@@ -71,13 +72,13 @@ class UserController {
     }
 
     def activate() {
-        def status = notificationService.validateAccount(params.token)
+        def status = enrollmentService.validateAccount(params.token)
         if (status) {
             render([message: 'Usuario verificado'] as JSON)
             return
         } else {
             response.status = 500
-            render([message: 'No se pudo verificar el usuario'] as JSON)
+            render([message: message(code:'de.enrollment.couldNotValidate')] as JSON)
             return
         }
     }
@@ -91,21 +92,17 @@ class UserController {
         userInstance.properties = request.JSON
         userInstance.password = "test"
         userInstance.username = userInstance.email
-        //TODO Change according to the hour
-        //TODO Generate the four induction classes on bootstrap file!
-        userInstance.inductionClass = InductionClass.first();
         userInstance.save(flush: true, insert: true, failOnError: true)
-
+        //Assigning a Classroom to a user, it's not activated 'til the user activates his account
         Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
         UserClassroom uc = new UserClassroom()
         uc.classroom = classroomInstance
         uc.user = userInstance
+        uc.activated = false
         uc.save(flush: true)
-
-        def tokenUrl = "http://" + request.getServerName()
-            + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}")
-            + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/user/activate/?token="
-            + userInstance.activationToken
+        //
+        String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/registro/#/activate/" + userInstance.activationToken
+        //
         notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
         render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
     }
