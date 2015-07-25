@@ -75,6 +75,7 @@ class User {
         comment nullable:true, blank: true
         activationToken nullable:true, blank: true
         activationDate nullable: true, blank: true
+        inductionClass nullable: true, blank: true
     }
     static mapping = {
         version false
