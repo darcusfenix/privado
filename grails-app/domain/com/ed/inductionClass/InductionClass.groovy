@@ -10,14 +10,14 @@ class InductionClass implements Serializable {
 
     String name
     Integer places
-    LocalDateTime date
+    Date date
 
     StateClassroom stateClassroom
     static hasMany = [user: User]
     static belongsTo = [office: Office]
 
     static constraints = {
-        places nullable: true
+        places nullable: true, min:0
         date nullable: true, blank: true
         user nullable: true
     }
@@ -31,11 +31,7 @@ class InductionClass implements Serializable {
         version false
     }
 
-    def getPlaces(Long id){
-        User.findAllByInductionClass(InductionClass.findById(id)).size()
-    }
-
-    def getStudents(Long id){
-        User.findAllByInductionClass(InductionClass.findById(id))
+    def getStudents(){
+        User.findAllByInductionClass(this)
     }
 }
