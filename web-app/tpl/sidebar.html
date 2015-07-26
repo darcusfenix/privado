@@ -164,6 +164,23 @@
                         </li>
                     </ul>
                 </li>
+                <li ng-class="($root.location == '/extraIncome/' || $root.location == '/extraIncome/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="icon-folder"></i>
+                        <span class="title">Ingresos Extra</span>
+                        <span class="arrow {{$root.location == '/extraIncome/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location == '/extraIncome/') ? 'active' : ''">
+                            <a href="#/extraIncome/">
+                                Ver todos</a>
+                        </li>
+                        <li ng-class="($root.location == '/extraIncome/create') ? 'active' : ''">
+                            <a href="#/extraIncome/create">
+                                Registrar Ingreso</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

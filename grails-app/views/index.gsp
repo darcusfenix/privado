@@ -116,8 +116,6 @@
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Role.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Classroom.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'StateClassroom.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/controllers/classroom', file: 'Classroom.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'TypeService.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Service.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'VoucherPayment.js')}"></script>
@@ -133,6 +131,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Office.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Class.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'InductionClass.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'ExtraIncome.js')}"></script>
 
 
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
@@ -147,11 +146,11 @@
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ExtraServiceRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'Office.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'InductionClassRoutes.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ExtraIncomeRoutes.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/VoucherPayment', file: 'VoucherPayment.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/main', file: 'Main.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/classroom', file: 'Classroom.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/service', file: 'Service.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/typeService', file: 'typeService.js')}"></script>
@@ -162,6 +161,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/controllers/extraService', file: 'ExtraService.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/office', file: 'Office.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/inductionClass', file: 'InductionClass.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/controllers/extraIncome', file: 'ExtraIncome.js')}"></script>
 
 
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->

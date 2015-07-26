@@ -32,7 +32,10 @@ function ExtraServiceCreateController($scope, $location, $rootScope, ExtraServic
     $scope.validator = {};
     ComponentsPickers.init();
 
-    $scope.extraServiceInstance = ExtraService.create();
+    $scope.extraServiceInstance = ExtraService.create(function (data) {
+        $scope.extraServiceInstance = data;
+        $scope.extraServiceInstance.active = false;
+    });
     $scope.typeServiceList = TypeService.query();
 
     $scope.getNameService = function(idService){

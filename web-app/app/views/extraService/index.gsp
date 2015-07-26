@@ -30,6 +30,9 @@
                                 Tipo de Servicio
                             </th>
                             <th class="text-center" >
+                                Descripción
+                            </th>
+                            <th class="text-center" >
                                 Costo individual
                             </th>
                             <th class="text-center" >
@@ -59,6 +62,9 @@
                             </td>
                             <td class="text-right">
                                 <a href="#/extraService/show/{{course.id}}"> {{ getNameService( course.typeService.id ) }} </a>
+                            </td>
+                            <td class="text-right">
+                                <a href="#/extraService/show/{{course.id}}"> {{ course.description }} </a>
                             </td>
                             <td class="text-right">
                                 <a href="#/extraService/show/{{course.id}}"> {{course.cost | currency: " $ " }} </a>
