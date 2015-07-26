@@ -29,6 +29,19 @@ class ClassroomController {
         render Classroom.findAllByOffice(Office.findById(id)) as JSON;
     }
 
+    def getUsersByClassroom(Integer id) {
+        def UserClassroomList = UserClassroom.findAllByClassroom(Classroom.findById(id))
+        List<User> userList = new ArrayList<User>()
+        for (UserClassroom uc : UserClassroomList) {
+            userList.add(uc.user)
+        }
+        render userList as JSON
+    }
+
+    def getUsersInClassroom(Integer id) {
+        render UserClass.findAllByClazz(Class.findById(id)) as JSON;
+    }
+
     def getNumberClassRoom() {
 
         render([nofCr: Classroom.createCriteria().get {
