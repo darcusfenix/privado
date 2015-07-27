@@ -27,6 +27,16 @@
 
                 <div class="row static-info">
                     <div class="col-md-5 name">
+                        Descripción:
+                    </div>
+
+                    <div class="col-md-7 value uppercase">
+                        {{ extraServiceInstance.description }}
+                    </div>
+                </div>
+
+                <div class="row static-info">
+                    <div class="col-md-5 name">
                         Costo individual:
                     </div>
 

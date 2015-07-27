@@ -44,6 +44,25 @@
                         </div>
 
                         <div class="form-group"
+                             ng-class="{'has-error': editExtraService.description.$error.required || validator.description.hasError}">
+                            <label class="control-label col-md-3">Descripción: <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <input ng-model="extraServiceInstance.description" class="form-control" name="description"
+                                           required />
+                                </div>
+                                <span class="help-block"
+                                      ng-show="editExtraService.description.$error.required || validator.description.hasError">
+                                    {{validator.description.message}}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
                              ng-class="{'has-error': editExtraService.cost.$error.required || validator.cost.hasError}">
                             <label class="control-label col-md-3">Costo individual: <span class="required">
                                 *</span>

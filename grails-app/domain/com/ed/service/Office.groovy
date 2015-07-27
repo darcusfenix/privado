@@ -12,8 +12,8 @@ class Office implements Serializable{
 
     String name
     String description
-    static hasMany = [classroom: Classroom, inductionClass: InductionClass]
-    static mappedBy = [classroom: 'office', inductionClass: 'office']
+    static hasMany = [classroom: Classroom, inductionClass: InductionClass, extraIncome: ExtraIncome]
+    static mappedBy = [classroom: 'office', inductionClass: 'office', extraIncome: 'office']
     //TODO: Think about of extra income for [ExtraService, ExtraIncome]
 
     static constraints = {

@@ -33,13 +33,11 @@ function VoucherPaymentShowStudentController($scope,  $routeParams, $location, V
             for(var i = 0; i< $scope.studentServices.length; i++){
                 $scope.studentServices[i].abonado = 0;
                 $scope.studentServices[i].service.totalRequired = 0.0;
-                //console.log($scope.studentServices[i].service.totalRequired);
                 $scope.vouchersPaymentInstances.push(VoucherPayment.create());
                 $scope.vouchersPaymentInstances[i].pay = null;
                 $scope.getVouchersPaymentStudentAndService( $scope.studentServices[i].service.id, i);
                 $scope.setTotalCostService($scope.studentServices[i].service.id, i);
             }
-
         });
     }
 
@@ -114,6 +112,7 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
             $scope.addServices($scope.usersList[i].id, i);
             $scope.addVoucherPayment(i);
         }
+        console.log($scope.usersList);
     });
 
     $scope.addVoucherPayment = function(index){

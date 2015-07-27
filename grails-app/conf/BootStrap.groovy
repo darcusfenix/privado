@@ -261,6 +261,7 @@ class BootStrap {
         extraService.stDate = new Date()
         extraService.endDate = new Date()
         extraService.fullIncome = 0
+        extraService.description = "venta de guias"
         extraService.active = false
         extraService.period = "2015-02"
         extraService.typeService = otherAgaintypeService

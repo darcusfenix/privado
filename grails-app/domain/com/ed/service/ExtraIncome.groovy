@@ -9,6 +9,8 @@ class ExtraIncome implements Serializable{
 
     Date incomeDate
     Float income
+    Office office
+
     static belongsTo = [extraService: ExtraService]
 
     static constraints = {

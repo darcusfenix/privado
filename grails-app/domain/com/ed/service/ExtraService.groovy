@@ -8,6 +8,7 @@ package com.ed.service
 class ExtraService extends Service{
 
     Float fullIncome
+    String description
     static hasMany = [extraIncome: ExtraIncome]
     static mappedBy = [extraIncome: 'extraService']
 
