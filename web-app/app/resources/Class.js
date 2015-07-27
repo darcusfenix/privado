@@ -27,6 +27,10 @@ angular.module('ControlEscuela').factory('Class', function ($resource) {
             method: 'GET',
             isArray: true,
             url: 'class/getClassByClassroom/:id'
+        },
+        saveStudents: {
+            method: 'POST',
+            url: 'class/saveStudents/'
         }
     });
 });

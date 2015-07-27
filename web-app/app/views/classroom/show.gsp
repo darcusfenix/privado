@@ -15,13 +15,13 @@
             <div class="progress-info">
                 <div class="progress">
                     <span class="progress-bar progress-bar-success purple-soft"
-                          style="width:{{(classroomInstance.placesOccupied*100)/classroomInstance.places}}%">
+                          style="width:{{(classroomInstance.placesOccupied*100)/(classroomInstance.places+classroomInstance.placesOccupied)}}%">
                 </div>
 
                 <div class="status">
                     <div class="status-title">Ocupabilidad</div>
 
-                    <div class="status-number">{{(classroomInstance.placesOccupied*100)/classroomInstance.places}}%</div>
+                    <div class="status-number">{{(classroomInstance.placesOccupied*100)/(classroomInstance.places+classroomInstance.placesOccupied)}}%</div>
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Capacidad del grupo:
                             </label>
-                            <b>{{classroomInstance.places}}</b>
+                            <b>{{classroomInstance.places+classroomInstance.placesOccupied}}</b>
                         </div>
 
                         <div class="form-group">
@@ -110,7 +110,7 @@
                     <div class="form-group" id="pulsate-regular" style="padding:5px;">
                         <label class="control-label col-md-3">Lugares disponibles:
                         </label>
-                        <b>{{classroomInstance.places-classroomInstance.placesOccupied}}</b>
+                        <b>{{classroomInstance.places}}</b>
                     </div>
 
                 </div>
@@ -119,7 +119,11 @@
 
                 <h3 class="form form-section">Horario del grupo<hr/></h3>
 
-                <div class="panel panel-default">
+                <div class="text-success text-center" ng-show="messageUsersList">
+                    <strong>{{messageUsersList}}</strong> </a>
+                </div>
+
+                <div class="panel panel-default table-responsive table-scrollable">
                     <table class="table table-striped table-bordered table-hover" id="tableClass">
                         <thead>
                         <tr>
@@ -135,6 +139,7 @@
                             <th>
                                 Tema
                             </th>
+                            <th>Lista</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -143,6 +148,15 @@
                             <td>{{lesson.stHour | date:'h:mm:ss a'}}</td>
                             <td>{{lesson.endHour | date:'h:mm:ss a'}}</td>
                             <td>{{lesson.name}}</td>
+                            <td class="text-center"><button ng-show="classroomInstance.placesOccupied > 0"
+                                                            title="Pasar Lista" class="btn btn-primary"
+                                                            ng-click="pasarLista(lesson.id,lesson.name);"><span><i
+                                        class="fa fa-list-alt"></i></span></button><button disabled
+                                                                                           ng-show="classroomInstance.placesOccupied == 0"
+                                                                                           title="Aún no existen alumnos registrados"
+                                                                                           class="btn btn-default"
+                                                                                           ng-click="pasarLista(lesson.id,lesson.name);"><span><i
+                                        class="fa fa-list-alt"></i></span></button></td>
                         </tr>
                         </tbody>
                     </table>
@@ -176,9 +190,59 @@
                 </div>
                 <!-- /.modal-dialog -->
             </div>
+
+            <div class="modal fade" id="model-list" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title text-danger">Pase de lista en la clase {{nameLista}}</h4>
+                        </div>
+
+                        <div class="modal-body ">
+                            <div class="panel panel-default table-responsive table-scrollable">
+                                <table class="table table-striped table-bordered table-hover" id="tableList">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            Nombre
+                                        </th>
+                                        <th>
+                                            Apellido Paterno
+                                        </th>
+                                        <th>
+                                            Apellido Materno
+                                        </th>
+                                        <th>
+                                            Asistencia
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="student in studentList">
+                                        <td>{{student.name}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><input type="checkbox" id="{{student.id}}" name="student"
+                                                   value="{{student.id}}"/></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal"
+                                    ng-click="guardarLista();">Guardar</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
         </div>
     </div>
     <!-- END VALIDATION STATES-->
-</div>
 </div>
 
