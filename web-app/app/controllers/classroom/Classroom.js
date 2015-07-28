@@ -161,6 +161,7 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
 
 function ClassroomShowController($scope, $location, $routeParams, $rootScope, Classroom, Class) {
     UIGeneral.init();
+    $scope.messageUsersList = null;
     $rootScope.nameSpace = 'Grupos';
     $rootScope.location = $location.path();
     $('#divSpinner').removeClass('hidden');
@@ -188,6 +189,7 @@ function ClassroomShowController($scope, $location, $routeParams, $rootScope, Cl
     $scope.idClass = undefined;
     $scope.nameLista = undefined;
     $scope.pasarLista = function pasarLista(idClass, name) {
+        $scope.messageUsersList = null;
         $scope.idClass = idClass;
         $scope.nameLista = name;
         $scope.studentList = Classroom.getUsersByClassroom({id: $scope.classroomInstance.id}, function () {
