@@ -14,8 +14,6 @@ class EnrollmentService {
         if (user) {
             user.active = true
             user.activationDate = new Date();
-            //TODO activate induction class just when the token is valid!
-            user.inductionClass = this.getInductionClass()
             //TODO assign group or activated just after the user is valid!
             UserClassroom userClassroom = UserClassroom.findByUser(user)
             userClassroom.activated = true
@@ -37,8 +35,7 @@ class EnrollmentService {
         cal.set(2015, Calendar.AUGUST, 8);
         Date currentDate = new Date();
         Date sundayDate = cal.getTime();
-        // Still being sunday? 08/08/2015
-        Date dateDifference = TimeCategory.minus(currentDate, sundayDate)
+
         if (TimeCategory.minus(currentDate, sundayDate).days == 0) { //Still sunday!
             cal.set(2015, Calendar.AUGUST, 8, 9, 30) // 11:00
             Date firstInductionDate = cal.getTime()
@@ -51,10 +48,10 @@ class EnrollmentService {
             if (currentDate < firstInductionDate) { //Induction class 1
                 inductionClass = InductionClass.findByName("Clase de Inducción 1")
             }
-            if (currentDate > firstInductionDate && currentDate < secondInductionDate) { //Induction class 2
+            if (currentDate >= firstInductionDate && currentDate < secondInductionDate) { //Induction class 2
                 inductionClass = InductionClass.findByName("Clase de Inducción 2")
             }
-            if (currentDate > secondInductionDate && currentDate < thirdInductionDate) { //Induction class 3
+            if (currentDate >= secondInductionDate && currentDate < thirdInductionDate) { //Induction class 3
                 inductionClass = InductionClass.findByName("Clase de Inducción 3")
             } else { // Induction class 4
                 inductionClass = InductionClass.findByName("Clase de Inducción 4")
