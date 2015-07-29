@@ -17,9 +17,9 @@ class Section implements Serializable{
 
     static mapping = {
         table 't_section_tab'
-        id column: 'id_structure', generator: 'identity'
-        name column: 'nb_structure'
-        description column: 'ds_structure'
+        id column: 'id_section', generator: 'identity'
+        name column: 'nb_section'
+        description column: 'ds_section'
         version false
     }
 }

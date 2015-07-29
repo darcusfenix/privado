@@ -14,7 +14,7 @@ class StructureSection implements Serializable{
     }
 
     static mapping = {
-        table: 't_structure_section_tab'
+        table 't_structure_section_tab'
         id composite: ['structure', 'section']
         version false
     }

@@ -17,6 +17,7 @@ class Question implements Serializable{
     static mappedBy = [answer: 'question']
 
     static constraints = {
+        image nullable: true, blank: true
     }
 
     static mapping = {
