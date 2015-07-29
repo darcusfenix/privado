@@ -107,6 +107,7 @@ class UserController {
         userInstance.properties = request.JSON
         userInstance.password = "test"
         userInstance.username = userInstance.email
+        userInstance.inductionClass = enrollmentService.getInductionClass()
         userInstance.save(flush: true, insert: true, failOnError: true)
         //Assigning a Classroom to a user, it's not activated 'til the user activates his account
         Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
