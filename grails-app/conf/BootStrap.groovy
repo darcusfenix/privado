@@ -19,6 +19,10 @@ import com.ed.service.Service
 import com.ed.service.TypeCourse
 import com.ed.service.TypeService
 import com.ed.service.UserClassroom
+import com.ed.teststructure.Question
+import com.ed.teststructure.Section
+import com.ed.teststructure.Structure
+import com.ed.teststructure.StructureSection
 import org.springframework.web.context.support.WebApplicationContextUtils
 
 import java.text.SimpleDateFormat
@@ -267,6 +271,42 @@ class BootStrap {
         extraService.typeService = otherAgaintypeService
         extraService.cost = 500
         extraService.save()
+
+        // TESTS
+
+        Structure structure = new Structure()
+        structure.name = "examen 1"
+        structure.description = "una descripción al examen"
+        structure.mockExam = mockExam
+        structure.save()
+
+        Structure anotherstructure = new Structure()
+        anotherstructure.name = "examen 2"
+        anotherstructure.description = "otra descripción al examen"
+        anotherstructure.mockExam = mockExam
+        anotherstructure.save()
+
+        Section section = new Section()
+        section.name = "Matemáticas"
+        section.description = "muchas matemáticas"
+        section.save()
+
+        Section anothersection = new Section()
+        anothersection.name = "Ciencias experimentales"
+        anothersection.description = "muchas ciencias experimentales"
+        anothersection.save()
+
+        StructureSection structureSection = new StructureSection()
+        structureSection.structure = structure;
+        structureSection.section = section;
+        structureSection.save()
+
+        Question question = new Question()
+        question.image = null
+        question.number = 1
+        question.section = section
+        question.text = "soy un pregunta"
+        question.save()
 
 
         // STUDENTS WITH SERVICES

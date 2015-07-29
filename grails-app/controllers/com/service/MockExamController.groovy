@@ -47,11 +47,6 @@ class MockExamController {
         }
     }
     def update(){
-        /*
-        MockExam mockExamInstance = MockExam.findById(request.JSON.id)
-        mockExamInstance.properties = request.JSON
-        */
-
         SimpleDateFormat sdf = new SimpleDateFormat ("MM/dd/yyyy");
         def mockExamInstance = MockExam.findById(request.JSON.id)
         def jsonMap = [:]

@@ -100,7 +100,7 @@
                                     <a href="#/mockExam"> Ver todos</a>
                                 </li>
                                 <li>
-                                    <a href="#mockExam/create"> Registrar Examen</a>
+                                    <a href="#/mockExam/create"> Registrar Examen</a>
                                 </li>
                             </ul>
                         </li>
@@ -178,6 +178,68 @@
                         <li ng-class="($root.location == '/extraIncome/create') ? 'active' : ''">
                             <a href="#/extraIncome/create">
                                 Registrar Ingreso</a>
+                        </li>
+                    </ul>
+                </li>
+                <li ng-class="($root.location === '/section/' || $root.location === '/section/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="icon-folder"></i>
+                        <span class="title">Exámenes</span>
+                        <span class="arrow {{$root.location === '/section/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="javascript:;">
+                                Estructuras <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#/"> Ver todas</a>
+                                </li>
+                                <li>
+                                    <a href="#/"> Agregar Estructura</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li ng-class="($root.location == '/section/' || $root.location == '/section/create') ? 'active open' : ''">
+                            <a href="javascript:;">
+                                Secciones
+                                <span class="arrow {{ ($root.location === '/section/' || $root.location === '/section/create') ? 'open' : ''}}"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li ng-class="($root.location == '/section/') ? 'active' : ''">
+                                    <a href="#/section/"> Ver todas</a>
+                                </li>
+                                <li ng-class="($root.location == '/section/create') ? 'active' : ''">
+                                    <a href="#/section/create"> Agregar Sección</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                Preguntas <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#/"> Ver todas</a>
+                                </li>
+                                <li>
+                                    <a href="#/"> Agregar pregunta</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                Respuestas <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#/"> Ver todas</a>
+                                </li>
+                                <li>
+                                    <a href="#/"> Agregar respuesta</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
