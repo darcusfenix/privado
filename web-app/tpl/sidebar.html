@@ -4,7 +4,7 @@
     <div class="page-sidebar-wrapper">
         <div class="page-sidebar md-shadow-z-2-i  navbar-collapse collapse">
             <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                <li class="start"  ng-class="($root.location === '/') ? 'active open' : ''">
+                <li class="start" ng-class="($root.location === '/') ? 'active open' : ''">
                     <a href="#/">
                         <i class="icon-home"></i>
                         <span class="title">Inicio</span>
@@ -42,7 +42,7 @@
                 </li>
                 <li ng-class="($root.location == '/classroom/' || $root.location == '/classroom/create') ? 'active open' : ''">
                     <a href="javascript:;">
-                        <i class="icon-folder"></i>
+                        <i class="fa fa-archive"></i>
                         <span class="title">Grupos</span>
                         <span class="arrow {{$root.location == '/classroom/' ? 'open' : ''}}"></span>
                     </a>
@@ -60,7 +60,7 @@
 
                 <li ng-class="($root.location === '/service/' || $root.location === '/service/create') ? 'active open' : ''">
                     <a href="javascript:;">
-                        <i class="icon-folder"></i>
+                        <i class="fa fa-cogs"></i>
                         <span class="title">Servicios</span>
                         <span class="arrow {{$root.location === '/service/' ? 'open' : ''}}"></span>
                     </a>
@@ -131,7 +131,7 @@
                     </a>
                 </li>
 
-                <li ng-class="($root.location === '/type-service/' || $root.location === '/type-service/create') ? 'active open' : ''" >
+                <li ng-class="($root.location === '/type-service/' || $root.location === '/type-service/create') ? 'active open' : ''">
                     <a href="#/type-service/">
                         <i class="icon-folder"></i>
                         <span class="title">Tipos de Servicio</span>
@@ -166,7 +166,7 @@
                 </li>
                 <li ng-class="($root.location == '/extraIncome/' || $root.location == '/extraIncome/create') ? 'active open' : ''">
                     <a href="javascript:;">
-                        <i class="icon-folder"></i>
+                        <i class="fa fa-usd"></i>
                         <span class="title">Ingresos Extra</span>
                         <span class="arrow {{$root.location == '/extraIncome/' ? 'open' : ''}}"></span>
                     </a>
@@ -178,6 +178,23 @@
                         <li ng-class="($root.location == '/extraIncome/create') ? 'active' : ''">
                             <a href="#/extraIncome/create">
                                 Registrar Ingreso</a>
+                        </li>
+                    </ul>
+                </li>
+                <li ng-class="($root.location == '/structure/' || $root.location == '/structure/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span class="title">Examen simulacro</span>
+                        <span class="arrow {{$root.location == '/structure/' ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location == '/structure/') ? 'active' : ''">
+                            <a href="#/structure/">
+                                Ver todos</a>
+                        </li>
+                        <li ng-class="($root.location == '/structure/create') ? 'active' : ''">
+                            <a href="#/structure/create">
+                                Registrar Examen</a>
                         </li>
                     </ul>
                 </li>
