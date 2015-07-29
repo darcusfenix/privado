@@ -1,6 +1,8 @@
 package com.ed.schoolmanagement
 
+import com.ed.accesscontrol.StudentService
 import com.ed.classroomcourse.Classroom
+import com.ed.classroomcourse.UserClass
 import com.ed.inductionClass.InductionClass
 import com.ed.service.UserClassroom
 import grails.converters.JSON
@@ -65,10 +67,23 @@ class UserController {
     def delete(Integer id) {
         def user = User.findById(id ?: params.int("id"))
         UserRole.removeAll(user, false)
-        //TODO: Remove all the services and groups related to the user
-        user.delete(flush: true)
-        response.status = 200
-        render([message: message(code: 'de.user.deleted.message')] as JSON)
+        // Return an error just if the user cant be removed! Checking all the services related
+        boolean hasService = true;
+        hasService = hasService && StudentService.findByUser(user)
+        hasService = hasService && UserClass.findByUser(user)
+        hasService = hasService && UserClassroom.findByUser(user)
+        if (hasService) {
+            response.status = 500
+            render([message: message(code: 'de.user.cant.delete.message')] as JSON)
+        } else {
+            // Removing the roles assigned to the user
+            UserRole.removeAll(user, false)
+            user.delete(flush: true)
+            response.status = 200
+            render([message: message(code: 'de.user.deleted.message')] as JSON)
+            return
+        }
+
     }
 
     def activate() {
@@ -78,7 +93,7 @@ class UserController {
             return
         } else {
             response.status = 500
-            render([message: message(code:'de.enrollment.couldNotValidate')] as JSON)
+            render([message: message(code: 'de.enrollment.couldNotValidate')] as JSON)
             return
         }
     }
