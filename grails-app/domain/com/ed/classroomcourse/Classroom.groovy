@@ -52,7 +52,7 @@ class Classroom implements Serializable{
         StateClassroom.findById(id).getName()
     }
 
-    Integer getFreePlaces(Long id){
-        UserClassroom.findAllByClassroom(Classroom.findById(id)).size()
+    Integer getFreePlaces(){
+        UserClassroom.findAllByClassroom(this).size()
     }
 }

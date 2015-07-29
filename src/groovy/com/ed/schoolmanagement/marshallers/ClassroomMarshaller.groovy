@@ -18,7 +18,7 @@ class ClassroomMarshaller {
                     nameStateClassroom: classroom.getStateClassroomName(classroom.stateClassroomId),
                     nameOffice        : classroom.getNameOffice(classroom.office.id),
                     officeId          : classroom.office.id,
-                    placesOccupied    : classroom.getFreePlaces(classroom.id),
+                    placesOccupied    : classroom.getFreePlaces(),
                     period            : classroom.period,
             ]
         }

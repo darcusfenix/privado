@@ -29,6 +29,19 @@ class ClassroomController {
         render Classroom.findAllByOffice(Office.findById(id)) as JSON;
     }
 
+    def getUsersByClassroom(Integer id) {
+        def UserClassroomList = UserClassroom.findAllByClassroom(Classroom.findById(id))
+        List<User> userList = new ArrayList<User>()
+        for (UserClassroom uc : UserClassroomList) {
+            userList.add(uc.user)
+        }
+        render userList as JSON
+    }
+
+    def getUsersInClassroom(Integer id) {
+        render UserClass.findAllByClazz(Class.findById(id)) as JSON;
+    }
+
     def getNumberClassRoom() {
 
         render([nofCr: Classroom.createCriteria().get {
@@ -171,7 +184,7 @@ class ClassroomController {
                 }
                 Class.executeUpdate("delete Class c where c.classroom = :classroom and c.stClass = :stClass", [classroom: classroomInstance, stClass: Boolean.FALSE])
                 response.status = 200
-                render([classroom: classroomInstance, message: message(code: "de.classroom.updated.message")] as JSON)
+                render([classroom: classroomInstance, message: message(code: "de.classroom.change.message")] as JSON)
             } else {
                 response.status = 500
                 render(classroomInstance.errors as JSON)

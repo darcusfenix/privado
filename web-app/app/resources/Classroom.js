@@ -31,6 +31,16 @@ angular.module('ControlEscuela').factory('Classroom', function ($resource) {
         getNumberClassRoom: {
             method: 'GET',
             url: 'classroom/getNumberClassRoom/'
+        },
+        getUsersByClassroom: {
+            method: 'GET',
+            isArray: true,
+            url: 'classroom/getUsersByClassroom/:id'
+        },
+        getUsersInClassroom: {
+            method: 'GET',
+            isArray: true,
+            url: 'classroom/getUsersInClassroom/:id'
         }
     });
 });

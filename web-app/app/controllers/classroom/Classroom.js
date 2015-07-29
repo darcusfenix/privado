@@ -7,7 +7,7 @@ function ClassroomListController($scope, Classroom, StateClassroom, $location, $
     $('#divSpinner').removeClass('hidden');
     $rootScope.location = $location.path();
     $scope.classroomList = Classroom.query();
-    $scope.stateClassroomList = StateClassroom.query(function(){
+    $scope.stateClassroomList = StateClassroom.query(function () {
         $('#divSpinner').addClass('hidden');
     });
     $rootScope.nameSpace = 'Grupos';
@@ -151,7 +151,7 @@ function ClassroomCreateController($scope, $location, Classroom, Office, $rootSc
         return jsonClassroom;
     }
 
-    $scope.inputR = function() {
+    $scope.inputR = function () {
         $scope.classroomInstance.typeClassroom = 0;
         $scope.classroomInstance.priority = 1;
     }
@@ -184,6 +184,31 @@ function ClassroomShowController($scope, $location, $routeParams, $rootScope, Cl
             $('#divSpinner').addClass('hidden');
         });
     };
+
+    $scope.idClass = undefined;
+    $scope.nameLista = undefined;
+    $scope.pasarLista = function pasarLista(idClass, name) {
+        $scope.idClass = idClass;
+        $scope.nameLista = name;
+        $scope.studentList = Classroom.getUsersByClassroom({id: $scope.classroomInstance.id}, function () {
+            $scope.studentListCheck = Classroom.getUsersInClassroom({id: $scope.idClass}, function () {
+                $($scope.studentListCheck).each(function () {
+                    $("#" + $(this)[0].user.id).attr('checked', true);
+                });
+            });
+        });
+        $('#model-list').modal('toggle');
+    };
+
+    $scope.guardarLista = function guardarLista() {
+        studentIds = new Array();
+        $("input:checkbox[name=student]:checked").each(function () {
+            studentIds.push($(this).val());
+        });
+        Class.saveStudents({id: $scope.idClass, students: studentIds}, function (data) {
+            $scope.messageUsersList = data.message;
+        });
+    };
 };
 
 function ClassroomEditController($scope, $location, Classroom, Class, Office, $rootScope, $routeParams, $timeout, $route, $filter) {
@@ -192,7 +217,7 @@ function ClassroomEditController($scope, $location, Classroom, Class, Office, $r
     $scope.officeList = Office.query();
     $scope.nofClassroom = Classroom.getNumberClassRoom();
 
-    $scope.classroomInstance  = Classroom.get({id: $routeParams.id}, function (data) {
+    $scope.classroomInstance = Classroom.get({id: $routeParams.id}, function (data) {
         $scope.classroomInstance = data;
         $scope.lessonList = Class.getClassByClassroom({id: data.id})
         $scope.varSlc = $scope.classroomInstance.officeId;
@@ -314,7 +339,7 @@ function ClassroomEditController($scope, $location, Classroom, Class, Office, $r
         return jsonClassroom;
     }
 
-    $scope.inputR = function() {
+    $scope.inputR = function () {
         $scope.classroomInstance.typeClassroom = 0;
         $scope.classroomInstance.priority = 1;
     }

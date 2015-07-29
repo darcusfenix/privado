@@ -322,7 +322,7 @@
                             </div>
                         </div>
 
-                        <div class="panel panel-default">
+                        <div class="panel panel-default table-responsive table-scrollable">
                             <table class="table table-striped table-bordered table-hover" id="tableClass">
                                 <thead>
                                 <tr>
