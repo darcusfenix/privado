@@ -33,7 +33,7 @@
                                 Oficina
                             </th>
                             <th class="text-center" >
-                                Fecha
+                                Fecha y Hora
                             </th>
                             <th class="text-center" >
                                 Cantidad
@@ -43,19 +43,19 @@
                         <tbody>
                         <tr ng-repeat="course in extraIncomeList ">
                             <td class="text-center">
-                                 {{$index + 1}} 
+                                 <a href="#/extraIncome/show/{{course.id}}">{{$index + 1}} </a>
                             </td>
                             <td class="text-right">
-                                 {{ getNameService( course.extraService.id ) }} 
+                                <a href="#/extraIncome/show/{{course.id}}">{{ getNameService( course.extraService.id ) }}  </a>
                             </td>
                             <td class="text-right">
-                                 {{ getNameOffice( course.office.id ) }} 
+                                <a href="#/extraIncome/show/{{course.id}}">{{ getNameOffice( course.office.id ) }}  </a>
                             </td>
                             <td class="text-center">
-                                 {{course.incomeDate}} 
+                                <a href="#/extraIncome/show/{{course.id}}">{{course.incomeDate}}  </a>
                             </td>
                             <td class="text-right">
-                                 {{course.income | currency: " $ " }} 
+                                <a href="#/extraIncome/show/{{course.id}}">{{course.income | currency: " $ " }} </a>
                             </td>
                         </tr>
                         </tbody>
