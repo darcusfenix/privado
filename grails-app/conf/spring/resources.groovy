@@ -3,6 +3,7 @@ import com.ed.schoolmanagement.marshallers.ClassMarshaller
 import com.ed.schoolmanagement.marshallers.ClassroomMarshaller
 import com.ed.schoolmanagement.marshallers.CustomObjectMarshallers
 import com.ed.schoolmanagement.marshallers.InductionClassMarshaller
+import com.ed.schoolmanagement.marshallers.StructureMarshaller
 import com.ed.schoolmanagement.marshallers.UserMarshaller
 
 // Place your Spring DSL code here
@@ -12,7 +13,8 @@ beans = {
                 new UserMarshaller(),
                 new ClassroomMarshaller(),
                 new InductionClassMarshaller(),
-                new ClassMarshaller()
+                new ClassMarshaller(),
+                new StructureMarshaller()
         ]
     }
 
