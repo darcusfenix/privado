@@ -98,6 +98,10 @@ class BootStrap {
         ic.name  = "Clase de Inducción 1"
         ic.places = 100
         ic.office = office
+        //
+        Calendar cal = Calendar.getInstance()
+        cal.set(2015, Calendar.AUGUST, 8, 11, 30);
+        ic.date = cal.getTime();
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)
 
