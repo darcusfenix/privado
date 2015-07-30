@@ -53,7 +53,8 @@ class EnrollmentService {
             }
             if (currentDate >= secondInductionDate && currentDate < thirdInductionDate) { //Induction class 3
                 inductionClass = InductionClass.findByName("Clase de Inducción 3")
-            } else { // Induction class 4
+            }
+            if(currentDate >= thirdInductionDate && currentDate < fourthInductionDate) { // Induction class 4
                 inductionClass = InductionClass.findByName("Clase de Inducción 4")
             }
             //There's at least one place on the induction class
