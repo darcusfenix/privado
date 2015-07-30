@@ -95,7 +95,7 @@ class BootStrap {
 
         InductionClass ic = new InductionClass()
         ic.date = null
-        ic.name  = "Clase de inducción 1"
+        ic.name  = "Clase de Inducción 1"
         ic.places = 100
         ic.office = office
         ic.stateClassroom = StateClassroom.findByName("Abierto")
