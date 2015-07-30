@@ -1,4 +1,4 @@
-package com.service
+package com.ed.service
 
 import com.ed.service.ExtraIncome
 import com.ed.service.ExtraService

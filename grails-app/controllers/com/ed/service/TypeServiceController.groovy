@@ -1,4 +1,4 @@
-package com.service
+package com.ed.service
 
 import com.ed.service.TypeService
 import grails.converters.JSON

@@ -1,4 +1,4 @@
-package com.test
+package com.ed.teststructure
 
 import com.ed.teststructure.Section
 import com.ed.teststructure.StructureSection

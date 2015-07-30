@@ -1,14 +1,13 @@
-package com.test
+package com.ed.teststructure
 
-import com.ed.teststructure.SectionController
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(SectionController)
-class SectionControllerSpec extends Specification {
+@TestFor(AnswerController)
+class AnswerControllerSpec extends Specification {
 
     def setup() {
     }

@@ -10,48 +10,48 @@
                         <span class="title">Inicio</span>
                     </a>
                 </li>
-                <li ng-class="($root.location == '/user/' || $root.location == '/user/create') ? 'active open' : ''">
+                <li ng-class="($root.location === '/user/' || $root.location === '/user/create') ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="fa fa-child"></i>
                         <span class="title">Alumnos</span>
-                        <span class="arrow {{$root.location == '/user/' ? 'open' : ''}}"></span>
+                        <span class="arrow {{$root.location === '/user/' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li ng-class="($root.location == '/user/') ? 'active' : ''">
+                        <li ng-class="($root.location === '/user/') ? 'active' : ''">
                             <a href="#/user/">
                                 Ver todos</a>
                         </li>
-                        <li ng-class="($root.location == '/user/create') ? 'active' : ''">
+                        <li ng-class="($root.location === '/user/create') ? 'active' : ''">
                             <a href="#/user/create">
                                 Registrar Alumno</a>
                         </li>
                     </ul>
                 </li>
-                <li ng-class="($root.location == '/voucherPayment/create' ) ? 'active open' : ''">
+                <li ng-class="($root.location === '/voucherPayment/create' ) ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="fa fa-money"></i>
                         <span class="title">Comprobante de pago</span>
-                        <span class="arrow {{$root.location == '/voucherPayment/create' ? 'open' : ''}}"></span>
+                        <span class="arrow {{$root.location === '/voucherPayment/create' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li ng-class="($root.location == '/voucherPayment/create') ? 'active' : ''">
+                        <li ng-class="($root.location === '/voucherPayment/create') ? 'active' : ''">
                             <a href="#/voucherPayment/create/">
                                 Agregar comprobante</a>
                         </li>
                     </ul>
                 </li>
-                <li ng-class="($root.location == '/classroom/' || $root.location == '/classroom/create') ? 'active open' : ''">
+                <li ng-class="($root.location === '/classroom/' || $root.location === '/classroom/create') ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="fa fa-archive"></i>
                         <span class="title">Grupos</span>
-                        <span class="arrow {{$root.location == '/classroom/' ? 'open' : ''}}"></span>
+                        <span class="arrow {{$root.location === '/classroom/' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li ng-class="($root.location == '/classroom/') ? 'active' : ''">
+                        <li ng-class="($root.location === '/classroom/') ? 'active' : ''">
                             <a href="#/classroom/">
                                 Ver todos</a>
                         </li>
-                        <li ng-class="($root.location == '/classroom/create') ? 'active' : ''">
+                        <li ng-class="($root.location === '/classroom/create') ? 'active' : ''">
                             <a href="#/classroom/create">
                                 Registrar Grupo</a>
                         </li>
@@ -138,61 +138,61 @@
                     </a>
                 </li>
 
-                <li ng-class="($root.location == '/office/' || $root.location == '/office/create') ? 'active open' : ''">
+                <li ng-class="($root.location === '/office/' || $root.location === '/office/create') ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="fa fa-building-o"></i>
                         <span class="title">Sucursal</span>
-                        <span class="arrow {{$root.location == '/office/' ? 'open' : ''}}"></span>
+                        <span class="arrow {{$root.location === '/office/' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li ng-class="($root.location == '/office/') ? 'active' : ''">
+                        <li ng-class="($root.location === '/office/') ? 'active' : ''">
                             <a href="#/office/">
                                 Ver todas</a>
                         </li>
                     </ul>
                 </li>
-                <li ng-class="($root.location == '/inductionClass/' || $root.location == '/inductionClass/create') ? 'active open' : ''">
+                <li ng-class="($root.location === '/inductionClass/' || $root.location === '/inductionClass/create') ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="fa fa-users"></i>
                         <span class="title">Clases de inducción</span>
-                        <span class="arrow {{$root.location == '/inductionClass/' ? 'open' : ''}}"></span>
+                        <span class="arrow {{$root.location === '/inductionClass/' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li ng-class="($root.location == '/inductionClass/') ? 'active' : ''">
+                        <li ng-class="($root.location === '/inductionClass/') ? 'active' : ''">
                             <a href="#/inductionClass/">
                                 Ver clases</a>
                         </li>
                     </ul>
                 </li>
-                <li ng-class="($root.location == '/extraIncome/' || $root.location == '/extraIncome/create') ? 'active open' : ''">
+                <li ng-class="($root.location === '/extraIncome/' || $root.location === '/extraIncome/create') ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="fa fa-usd"></i>
                         <span class="title">Ingresos Extra</span>
-                        <span class="arrow {{$root.location == '/extraIncome/' ? 'open' : ''}}"></span>
+                        <span class="arrow {{$root.location === '/extraIncome/' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li ng-class="($root.location == '/extraIncome/') ? 'active' : ''">
+                        <li ng-class="($root.location === '/extraIncome/') ? 'active' : ''">
                             <a href="#/extraIncome/">
                                 Ver todos</a>
                         </li>
-                        <li ng-class="($root.location == '/extraIncome/create') ? 'active' : ''">
+                        <li ng-class="($root.location === '/extraIncome/create') ? 'active' : ''">
                             <a href="#/extraIncome/create">
                                 Registrar Ingreso</a>
                         </li>
                     </ul>
                 </li>
-                <li ng-class="($root.location == '/structure/' || $root.location == '/structure/create') ? 'active open' : ''">
+                <li ng-class="($root.location === '/structure/' || $root.location === '/structure/create') ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span class="title">Examen simulacro</span>
-                        <span class="arrow {{$root.location == '/structure/' ? 'open' : ''}}"></span>
+                        <span class="arrow {{$root.location === '/structure/' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li ng-class="($root.location == '/structure/') ? 'active' : ''">
+                        <li ng-class="($root.location === '/structure/') ? 'active' : ''">
                             <a href="#/structure/">
                                 Ver todos</a>
                         </li>
-                        <li ng-class="($root.location == '/structure/create') ? 'active' : ''">
+                        <li ng-class="($root.location === '/structure/create') ? 'active' : ''">
                             <a href="#/structure/create">
                                 Registrar Examen</a>
                         </li>
@@ -200,63 +200,29 @@
                 </li>
                 <li ng-class="($root.location === '/section/' || $root.location === '/section/create') ? 'active open' : ''">
                     <a href="javascript:;">
-                        <i class="icon-folder"></i>
-                        <span class="title">Exámenes</span>
-                        <span class="arrow {{$root.location === '/section/' ? 'open' : ''}}"></span>
+                        <span class="title">Secciones</span>
+                        <span class="arrow {{ ($root.location === '/section/' || $root.location === '/section/create') ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li>
-                            <a href="javascript:;">
-                                Estructuras <span class="arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="#/"> Ver todas</a>
-                                </li>
-                                <li>
-                                    <a href="#/"> Agregar Estructura</a>
-                                </li>
-                            </ul>
+                        <li ng-class="($root.location === '/section/') ? 'active' : ''">
+                            <a href="#/section/"> Ver todas</a>
                         </li>
-                        <li ng-class="($root.location == '/section/' || $root.location == '/section/create') ? 'active open' : ''">
-                            <a href="javascript:;">
-                                Secciones
-                                <span class="arrow {{ ($root.location === '/section/' || $root.location === '/section/create') ? 'open' : ''}}"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li ng-class="($root.location == '/section/') ? 'active' : ''">
-                                    <a href="#/section/"> Ver todas</a>
-                                </li>
-                                <li ng-class="($root.location == '/section/create') ? 'active' : ''">
-                                    <a href="#/section/create"> Agregar Sección</a>
-                                </li>
-                            </ul>
+                        <li ng-class="($root.location === '/section/create') ? 'active' : ''">
+                            <a href="#/section/create"> Agregar Sección</a>
                         </li>
-                        <li>
-                            <a href="javascript:;">
-                                Preguntas <span class="arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="#/"> Ver todas</a>
-                                </li>
-                                <li>
-                                    <a href="#/"> Agregar pregunta</a>
-                                </li>
-                            </ul>
+                    </ul>
+                </li>
+                <li ng-class="($root.location === '/answer/' || $root.location === '/answer/create') ? 'active open' : ''">
+                    <a href="javascript:;">
+                        <span class="title">Respuestas</span>
+                        <span class="arrow {{ ($root.location === '/answer/' || $root.location === '/answer/create') ? 'open' : ''}}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-class="($root.location === '/answer/') ? 'active' : ''">
+                            <a href="#/answer"> Ver todas</a>
                         </li>
-                        <li>
-                            <a href="javascript:;">
-                                Respuestas <span class="arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="#/"> Ver todas</a>
-                                </li>
-                                <li>
-                                    <a href="#/"> Agregar respuesta</a>
-                                </li>
-                            </ul>
+                        <li ng-class="($root.location === '/answer/create') ? 'active' : ''">
+                            <a href="#/answer/create"> Agregar respuesta</a>
                         </li>
                     </ul>
                 </li>

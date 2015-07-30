@@ -1,4 +1,4 @@
-package com.service
+package com.ed.service
 
 import com.ed.accesscontrol.StudentService
 import com.ed.schoolmanagement.User
