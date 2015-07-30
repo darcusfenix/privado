@@ -27,8 +27,6 @@ class NotificationService {
         binding.userFullName = user.fullName
         binding.assignedGroup = params?.classRoomName ?: "ABC"[(int) 3 * Math.random()]
         binding.dateHour = ""
-        //TODO consider the current date to generate the format string
-        Date currentDate = new Date()
         // There's an induction class
         if(user.inductionClass){
             binding.inductionDate = formatter.format(user.inductionClass.date)
@@ -42,7 +40,7 @@ class NotificationService {
             binding.dateHour = hourFormatter.format(halfHourBefore)
         }
         binding.enrollmentUrl = params.activationUrl
-        binding.price = 1500
+        binding.price = 1500 // TODO Get related user services to get the price
         if(binding.dateHour == ""){ // Loading other template and generationg a new appointment
             htmlContent = new File(contextPath + grailsApplication.config.files.htmlMailContent).text
         } else { // Simple template with validation token
