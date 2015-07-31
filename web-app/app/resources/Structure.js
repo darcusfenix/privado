@@ -23,6 +23,15 @@ angular.module('ControlEscuela').factory('Structure', function ($resource) {
         save: {
             method: 'POST',
             url: 'structure/save'
+        },
+        saveSections: {
+            method: 'POST',
+            url: 'structure/saveSections/'
+        },
+        getSectionsInStructure: {
+            method: 'GET',
+            isArray: true,
+            url: 'structure/getSectionsInStructure/:id'
         }
     });
 });

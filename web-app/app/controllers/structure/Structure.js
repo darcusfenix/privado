@@ -120,13 +120,34 @@ function StructureEditController($scope, $location, $rootScope, Structure, $rout
 
 };
 
-function StructureShowController($scope, $location, $rootScope, Structure, $routeParams) {
+function StructureShowController($scope, $location, $rootScope, Structure, $routeParams, Section) {
     $rootScope.location = $location.path();
     $('#divSpinner').removeClass('hidden');
+
+    //Section
+    $scope.varSection = true;
+    $scope.clickSection = function () {
+        $scope.varSection = false;
+        $scope.messagesSectionList = null;
+    };
 
     $scope.structureInstance = Structure.get({id: $routeParams.id}, function (data) {
         $('#divSpinner').addClass('hidden');
         $scope.structureInstance = data;
+
+        $scope.sectionList = Section.query(function (data) {
+            $scope.sectionList = data;
+
+            Structure.getSectionsInStructure({id: $scope.structureInstance.id}, function (data) {
+                $(data).each(function () {
+                    $("#" + $(this)[0].section.id).attr('checked', true);
+                });
+            });
+
+            console.log($scope.sectionList)
+        }, function (err) {
+            $location.path("/");
+        });
     });
 
     $scope.editStructure = function editStructure() {
@@ -139,6 +160,16 @@ function StructureShowController($scope, $location, $rootScope, Structure, $rout
             $location.path('/structure/');
         }, function (error) {
             $scope.messageStructure = error.data.message;
+        });
+    };
+
+    $scope.addSections = function () {
+        sectionsIds = new Array();
+        $("input:checkbox[name=chkSection]:checked").each(function () {
+            sectionsIds.push($(this).val());
+        });
+        Structure.saveSections({id: $scope.structureInstance.id, sections: sectionsIds}, function (data) {
+            $scope.messagesSectionList = data.message;
         });
     };
 

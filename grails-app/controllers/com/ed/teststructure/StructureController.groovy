@@ -70,7 +70,7 @@ class StructureController {
 
         if (res != null) {
             response.status = 500
-            render([idError: 1, message: message(code: "de.structure.errorNameStructure.message", args: [structure.name , structure.mockExam.period])] as JSON)
+            render([idError: 1, message: message(code: "de.structure.errorNameStructure.message", args: [structure.name, structure.mockExam.period])] as JSON)
         } else {
             if (structure.validate()) {
                 structure.save(flush: true)
@@ -96,4 +96,24 @@ class StructureController {
         }
     }
 
+    def saveSections(Integer id) {
+        print "----->"
+        print request.JSON.sections
+        List<Integer> listSections = request.JSON.sections
+        Structure s = Structure.findById(id)
+        StructureSection.executeUpdate("delete StructureSection ss where ss.structure = :structure", [structure: s])
+        StructureSection ss = null
+        for (int i = 0; i < listSections.size(); i = i + 1) {
+            ss = new StructureSection()
+            ss.structure = s
+            ss.section = Section.findById(listSections[i])
+            ss.save(flush: true)
+        }
+        response.status = 200
+        render([message: message(code: "de.structuresection.update", args: [s.name])] as JSON)
+    }
+
+    def getSectionsInStructure(Integer id) {
+        render StructureSection.findAllByStructure(Structure.findById(id)) as JSON;
+    }
 }

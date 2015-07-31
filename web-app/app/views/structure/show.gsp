@@ -42,6 +42,48 @@
                     </label>
                     <b>{{structureInstance.description}}</b>
                 </div>
+                <br/>
+                <div class="tab-pane active" id="tab_1_2">
+                    <h3 class="form form-section">Secciones asociadas<hr/></h3>
+                </div>
+                <div class="table-responsive col-md-10 col-md-offset-1">
+                    <div class="form-group text-center">
+                        <button class="btn btn-default" ng-disabled="varSection" ng-click="addSections();">Asociar secciones</button>
+                    </div>
+                    <div class="text-success text-center" ng-show="messagesSectionList">
+                        <strong>{{messagesSectionList}}</strong>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="text-center" >
+                                #
+                            </th>
+                            <th class="text-center" >
+                                Nombre
+                            </th>
+                            <th class="text-center container" >
+                                Descripción
+                            </th>
+                            <th class="text-center">Asociación</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="section in sectionList ">
+                            <td class="text-center">
+                                <a href="#/section/show/{{section.id}}">{{$index + 1}} </a>
+                            </td>
+                            <td class="text-right">
+                                <a href="#/section/show/{{section.id}}">{{ section.name }}  </a>
+                            </td>
+                            <td class="text-right">
+                                <a href="#/section/show/{{section.id}}">{{ section.description }}  </a>
+                            </td>
+                            <td class="text-center"><input ng-click="clickSection();" type="checkbox" id="{{section.id}}" value="{{section.id}}" name="chkSection"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <br/>
                 <div class="form-group text-center">
