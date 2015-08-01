@@ -45,14 +45,15 @@
                     <div class="col-md-5 name">
                         Pregunta:
                     </div>
+
                     <div class="col-md-7" id="textHTML">
                     </div>
                 </div>
 
-                <div class="tiles" ng-show="questionInstance.urlImg">
-                    <div class="tile image double selected">
+                <div class="row" ng-show="questionInstance.urlImg">
+                    <div class="col-md-12">
                         <div class="tile-body">
-                            <img src="{{questionInstance.urlImg}}" alt="">
+                            <img class="img-rounded img-responsive" src="{{questionInstance.urlImg}}" alt="">
                         </div>
                     </div>
                 </div>

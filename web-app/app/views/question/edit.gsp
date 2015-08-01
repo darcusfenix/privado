@@ -116,17 +116,16 @@
                         </div>
 
                         <div class="form-group" ng-show="questionInstance.urlImg">
-                            <p class="col-md-5">
+                            <p class="col-md-4">
                                 <span class="label label-danger">
                                     NOTE:</span> Si selecciona una nueva imagen la actual será eliminada.
                             </p>
 
-                            <div class="tiles col-md-7">
-                                <div class="tile image double selected">
+                            <div class="tiles col-md-8">
                                     <div class="tile-body">
-                                        <img id="imgFile" src="{{questionInstance.urlImg}}" alt="">
+                                        <img class="img-rounded img-responsive" src="{{questionInstance.urlImg}}"
+                                             alt="">
                                     </div>
-                                </div>
                             </div>
                         </div>
 
