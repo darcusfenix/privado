@@ -45,7 +45,7 @@ class QuestionController {
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
                 f.transferTo(new File(dir))
-                //dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
+                dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
                 questionInstance.urlImage = dir
             }
             questionInstance.save(flush: true)
@@ -84,7 +84,7 @@ class QuestionController {
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
                 f.transferTo(new File(dir))
-                //dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
+                dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
                 questionInstance.urlImage = dir
             } else {
                 questionInstance.urlImage = tempQI
