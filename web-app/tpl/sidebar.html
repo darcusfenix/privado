@@ -194,7 +194,7 @@
                         </li>
                         <li ng-class="($root.location === '/structure/create') ? 'active' : ''">
                             <a href="#/structure/create">
-                                Registrar Examen</a>
+                                Registrar examen</a>
                         </li>
                         <li ng-class="($root.location === '/section/' || $root.location === '/section/create') ? 'active open' : ''">
                             <a href="javascript:;">
@@ -207,11 +207,25 @@
                                     <a href="#/section/"> Ver secciones</a>
                                 </li>
                                 <li ng-class="($root.location === '/section/create') ? 'active' : ''">
-                                    <a href="#/section/create"> Agregar Sección</a>
+                                    <a href="#/section/create"> Agregar sección</a>
+                                </li>
+                                <li ng-class="($root.location === '/question/' || $root.location === '/question/create') ? 'active open' : ''">
+                                    <a href="javascript:;">
+                                        <i class="fa fa-question-circle"></i>
+                                        <span class="title">Preguntas</span>
+                                        <span class="arrow {{ ($root.location === '/question/' || $root.location === '/question/create') ? 'open' : ''}}"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li ng-class="($root.location === '/question/') ? 'active' : ''">
+                                            <a href="#/question/"> Ver preguntas</a>
+                                        </li>
+                                        <li ng-class="($root.location === '/question/create') ? 'active' : ''">
+                                            <a href="#/question/create"> Agregar pregunta</a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
-
                     </ul>
                 </li>
                 <li ng-class="($root.location === '/answer/' || $root.location === '/answer/create') ? 'active open' : ''">

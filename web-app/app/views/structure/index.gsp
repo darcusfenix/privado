@@ -15,8 +15,8 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-settings font-purple-studio"></i>
-                    <span class="caption-subject bold font-purple-studio uppercase">
-                        Estructura de examenes</span>
+                    <span class="caption-subject bold uppercase">
+                        Estructura de exámenes</span>
                 </div>
             </div>
 

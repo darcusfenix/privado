@@ -27,12 +27,12 @@ function SectionCreateController($scope, $location, $rootScope, Section) {
         if (valid) {
             $scope.sectionInstance.$save(
                 function (data) {
-                    $location.path("/section/show/"+ data.sectionInstance.id);
+                    $location.path("/section/show/" + data.sectionInstance.id);
 
                     $rootScope.message = data.message;
                 }, function (err) {
 
-                    if(err.data.errors){
+                    if (err.data.errors) {
                         $scope.errors = err.data.errors;
 
                         for (var i = 0; i < $scope.errors.length; i++) {
@@ -44,7 +44,7 @@ function SectionCreateController($scope, $location, $rootScope, Section) {
 
                         }
                     }
-                    if(err.data.error){
+                    if (err.data.error) {
                         $rootScope.message = err.data.error;
                     }
 
@@ -60,7 +60,7 @@ function SectionEditController($scope, $location, $routeParams, $rootScope, Sect
     $rootScope.location = $location.path();
     $scope.validator = {};
 
-    $scope.sectionInstance = Section.get({id: $routeParams.id},function(data){
+    $scope.sectionInstance = Section.get({id: $routeParams.id}, function (data) {
         $scope.sectionInstance = data;
     }, function (err) {
         $location.path('/');
@@ -72,11 +72,11 @@ function SectionEditController($scope, $location, $routeParams, $rootScope, Sect
         if (valid) {
             $scope.sectionInstance.$update(
                 function (data) {
-                    $location.path("/section/show/"+ data.sectionInstance.id);
+                    $location.path("/section/show/" + data.sectionInstance.id);
                     $rootScope.message = data.message;
                 }, function (err) {
 
-                    if(err.data.errors){
+                    if (err.data.errors) {
                         $scope.errors = err.data.errors;
 
                         for (var i = 0; i < $scope.errors.length; i++) {
@@ -88,7 +88,7 @@ function SectionEditController($scope, $location, $routeParams, $rootScope, Sect
 
                         }
                     }
-                    if(err.data.error){
+                    if (err.data.error) {
                         $rootScope.message = err.data.error;
                     }
 
@@ -101,18 +101,20 @@ function SectionEditController($scope, $location, $routeParams, $rootScope, Sect
 
 };
 
-function SectionShowController($scope, $location, $rootScope, $routeParams, Section) {
+function SectionShowController($scope, $location, $rootScope, $routeParams, Section, Question) {
     $rootScope.location = $location.path();
 
-    $scope.sectionInstance = Section.get({id: $routeParams.id});
+    $scope.sectionInstance = Section.get({id: $routeParams.id}, function (data) {
+        $scope.questionList = Question.getAllBySection({id: data.id});
+    });
 
     console.log($scope.sectionInstance);
 
-    $scope.delete = function(){
+    $scope.delete = function () {
         $scope.sectionInstance.$delete({id: $routeParams.id}, function (success) {
             $rootScope.message = success.success;
             $location.path('/section/');
-        }, function (err){
+        }, function (err) {
             $rootScope.message = err.error;
         });
     };

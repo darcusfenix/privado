@@ -40,6 +40,7 @@
     <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-colorpicker/css', file: 'colorpicker.css')}">
     <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-daterangepicker', file: 'daterangepicker-bs3.css')}">
     <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-datetimepicker/css', file: 'bootstrap-datetimepicker.min.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/dropzone', file: 'dropzone.css')}">
 
     <!-- FIN DE TODOS LOS ESTILOS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
@@ -109,6 +110,8 @@
 <script type="text/javascript" src="${resource(dir: 'js', file: 'angular-route.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'angular-resource.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'loading-bar.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js', file: 'ng-file-upload-shim.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js', file: 'ng-file-upload.min.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app', file: 'ControlEscolar.js')}"></script>
 
@@ -134,7 +137,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'ExtraIncome.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Section.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Structure.js')}"></script>
-
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Question.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ClassroomRoutes.js')}"></script>
@@ -151,6 +154,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ExtraIncomeRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'SectionRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'StructureRoutes.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'QuestionRoutes.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/VoucherPayment', file: 'VoucherPayment.js')}"></script>
@@ -169,7 +173,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/controllers/section', file: 'Section.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app/controllers/structure', file: 'Structure.js')}"></script>
-
+<script type="text/javascript" src="${resource(dir: 'app/controllers/question', file: 'Question.js')}"></script>
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 
 <!-- BEGIN CORE PLUGINS -->
@@ -212,6 +216,7 @@
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/jquery-bootpag', file: 'jquery.bootpag.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/countdown', file: 'jquery.countdown.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/backstretch', file: 'jquery.backstretch.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/dropzone', file: 'dropzone.js')}"></script>
 <!-- FIN DE TODOS LOS RECURSOS JS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
 <!--  -->
@@ -232,6 +237,7 @@
 <script type="text/javascript" src="${resource(dir: 'assets/pages/scripts', file: 'components-pickers.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'ui-general.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'coming-soon.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'form-dropzone.js')}"></script>
 <script>
     jQuery(document).ready(function () {
         Metronic.init(); // init metronic core components

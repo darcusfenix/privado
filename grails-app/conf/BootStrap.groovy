@@ -302,8 +302,8 @@ class BootStrap {
         structureSection.save()
 
         Question question = new Question()
-        question.image = null
-        question.number = 1
+        question.urlImage = ""
+        question.number = "1.1"
         question.section = section
         question.text = "soy un pregunta"
         question.save()

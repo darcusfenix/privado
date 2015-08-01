@@ -9,15 +9,15 @@ import java.sql.Blob
 
 class Question implements Serializable{
 
-    Integer number
+    String number
     String text
-    Blob image
+    String urlImage
     static belongsTo = [section: Section]
     static hasMany = [answer: Answer]
     static mappedBy = [answer: 'question']
 
     static constraints = {
-        image nullable: true, blank: true
+        urlImage nullable: true, blank: true
     }
 
     static mapping = {

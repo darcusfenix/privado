@@ -20,7 +20,7 @@
                     </a>
                 </div>
             </div>
-            <div class="portlet-body" id="blockui_sample_1_portlet_body">
+            <div class="portlet-body scroller" id="blockui_sample_1_portlet_body">
                 <p>
                     Preparación IPN es una asociación de jóvenes estudiantes del Politécnico que ayudamos a otros chavos a que puedan lograr la meta de ingresar a nuestra escuela.
                 </p>
@@ -32,7 +32,7 @@
                 </p>
                 <br/>
                 <hr/>
-                <div class="text-center">
+                <div class="text-center img-responsive">
                     <img src="assets/tema/img/pipn.jpg"/>
                 </div>
             </div>
