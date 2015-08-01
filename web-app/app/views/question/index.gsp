@@ -30,7 +30,7 @@
                                 Número de pregunta
                             </th>
                             <th class="text-center" >
-                                Pregunta
+                                Sección
                             </th>
                             <th class="text-center" >
                                 # Respuestas asociadas
@@ -46,7 +46,7 @@
                                 <a href="#/question/show/{{question.id}}">{{ question.number }}  </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/question/show/{{question.id}}">{{ question.text }}  </a>
+                                <a href="#/section/show/{{question.section}}">{{ question.sectionName }}  </a>
                             </td>
                             <td class="text-center">
                                 <a href="#/question/show/{{question.id}}">{{ question.answer.length }}  </a>

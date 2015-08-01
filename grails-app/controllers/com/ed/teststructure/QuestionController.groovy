@@ -33,19 +33,21 @@ class QuestionController {
         CommonsMultipartFile f = request.getFile('file')
         questionInstance.properties = jQuestion
         if (questionInstance.validate()) {
-            if (f.empty) {
-                response.status = 500
-                render([message: "Error al cargar la imagen"] as JSON)
-            }
+            if (f != null) {
+                if (f.empty) {
+                    response.status = 500
+                    render([message: "Error al cargar la imagen"] as JSON)
+                }
 
-            //def dir = System.getenv("HOME") + "/Desktop/" + questionInstance.section.id + "/"
-            def dir = "web-app/imgFiles/" + questionInstance.section.id + "/"
-            File folder = new File(dir)
-            folder.mkdirs()
-            dir = dir + f.getOriginalFilename()
-            f.transferTo(new File(dir))
-            dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
-            questionInstance.urlImage = dir
+                //def dir = System.getenv("HOME") + "/Desktop/" + questionInstance.section.id + "/"
+                def dir = "web-app/imgFiles/" + questionInstance.section.id + "/"
+                File folder = new File(dir)
+                folder.mkdirs()
+                dir = dir + f.getOriginalFilename()
+                f.transferTo(new File(dir))
+                dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
+                questionInstance.urlImage = dir
+            }
             questionInstance.save(flush: true)
             response.status = 200
             render([questionInstance: questionInstance, message: message(code: "de.question.created")] as JSON)

@@ -65,6 +65,16 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <div style="height:300px" class="col-md-10 col-md-offset-1" id="editorContainer"></div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control col-md-12" dir="ltr" id="result" rows="5"
+                                      spellcheck="false"></textarea>
+                        </div>
+
                         <div class="form-group"
                              ng-class="{'has-error': updateQuestion.text.$error.required || validator.text.hasError}">
                             <label class="control-label col-md-3">Pregunta: <span class="required">
@@ -102,7 +112,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" ng-show="questionInstance.urlImg">
                             <p class="col-md-5">
                                 <span class="label label-danger">
                                     NOTE:</span> Si selecciona una nueva imagen la actual será eliminada.

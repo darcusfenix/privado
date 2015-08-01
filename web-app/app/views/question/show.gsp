@@ -45,13 +45,11 @@
                     <div class="col-md-5 name">
                         Pregunta:
                     </div>
-
-                    <div class="col-md-7 value uppercase">
-                        {{questionInstance.text}}
+                    <div class="col-md-7" id="textHTML">
                     </div>
                 </div>
 
-                <div class="tiles">
+                <div class="tiles" ng-show="questionInstance.urlImg">
                     <div class="tile image double selected">
                         <div class="tile-body">
                             <img src="{{questionInstance.urlImg}}" alt="">

@@ -238,6 +238,7 @@
 <script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'ui-general.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'coming-soon.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'form-dropzone.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js', file: 'editorML.js')}"></script>
 <script>
     jQuery(document).ready(function () {
         Metronic.init(); // init metronic core components

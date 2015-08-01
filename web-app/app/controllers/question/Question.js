@@ -17,6 +17,18 @@ function QuestionListController($scope, $location, $rootScope, Question) {
 
 
 function QuestionCreateController($scope, $location, $rootScope, Section, Question, Upload) {
+
+    var editor;
+    editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en', 'toolbar': '<toolbar ref="chemistry"/>'});
+    editor.insertInto(document.getElementById('editorContainer'));
+    setInterval(function () {
+        $('#result').val(editor.getMathML());
+    }, 1500);
+
+    $(".wrs_linkButton").remove();
+    $(".wrs_imageContainer").remove();
+
+
     $rootScope.location = $location.path();
     FormDropzone.init();
     $scope.validator = {};
@@ -66,6 +78,16 @@ function QuestionCreateController($scope, $location, $rootScope, Section, Questi
 function QuestionEditController($scope, $location, $routeParams, $rootScope, Section, Question, Upload) {
     $rootScope.location = $location.path();
     $scope.validator = {};
+
+    var editor;
+    editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en', 'toolbar': '<toolbar ref="chemistry"/>'});
+    editor.insertInto(document.getElementById('editorContainer'));
+    setInterval(function () {
+        $('#result').val(editor.getMathML());
+    }, 1500);
+
+    $(".wrs_linkButton").remove();
+    $(".wrs_imageContainer").remove();
 
     $scope.sectionList = Section.query(function (data) {
         $scope.questionInstance = Question.get({id: $routeParams.id}, function (data) {
@@ -118,7 +140,9 @@ function QuestionEditController($scope, $location, $routeParams, $rootScope, Sec
 function QuestionShowController($scope, $location, $rootScope, $routeParams, Section, Question) {
     $rootScope.location = $location.path();
 
-    $scope.questionInstance = Question.get({id: $routeParams.id});
+    $scope.questionInstance = Question.get({id: $routeParams.id}, function (data) {
+        $("#textHTML").html(data.text);
+    });
 
     $scope.editQuestion = function editQuestion() {
         $location.path('/question/edit/' + $routeParams.id);

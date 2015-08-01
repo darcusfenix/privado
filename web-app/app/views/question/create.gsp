@@ -65,6 +65,14 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <div style="height:300px" class="col-md-10 col-md-offset-1" id="editorContainer"></div>
+
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control col-md-12" dir="ltr" id="result" rows="5"  spellcheck="false"></textarea>
+                        </div>
+
                         <div class="form-group"
                              ng-class="{'has-error': createQuestion.text.$error.required || validator.text.hasError}">
                             <label class="control-label col-md-3">Pregunta: <span class="required">
@@ -89,7 +97,7 @@
                         </div>
 
                         <div class="form-group"
-                             ng-class="{'has-error': file == null}">
+                             ng-class="{'text-info': file == null}">
                             <label class="control-label col-md-3">Imagen: <span class="required">
                                 *</span>
                             </label>
@@ -107,7 +115,7 @@
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
                                 <button type="submit" class="btn green"
-                                        ng-disabled="!(varSlc !=0) || createQuestion.$invalid || !(file !=null)">Registrar pregunta</button>
+                                        ng-disabled="!(varSlc !=0) || createQuestion.$invalid">Registrar pregunta</button>
                                 <a href="#/question" type="button" class="btn default">Cancelar</a>
                             </div>
                         </div>
