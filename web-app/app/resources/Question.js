@@ -1,6 +1,7 @@
 /**
- * Created by fernandoTapia on 31/07/15.
+ * Created by darcusfenix on 30/07/15.
  */
+
 
 angular.module('ControlEscuela').factory('Question', function ($resource) {
     return $resource('question/:id', {id: '@id'}, {
@@ -28,6 +29,11 @@ angular.module('ControlEscuela').factory('Question', function ($resource) {
             method: 'GET',
             isArray: true,
             url: 'question/getAllBySection/:id'
+        },
+        getBySection:{
+            method: 'GET',
+            isArray: true,
+            url: 'question/getBySection'
         }
     });
 });

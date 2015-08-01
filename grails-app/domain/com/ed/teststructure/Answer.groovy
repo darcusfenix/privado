@@ -11,10 +11,11 @@ class Answer implements Serializable{
 
     Boolean state
     String textAnswer
-    Blob image
+    String image
     static belongsTo = [question:Question]
 
     static constraints = {
+        image nullable: true, blank: true
     }
 
     static mapping = {
