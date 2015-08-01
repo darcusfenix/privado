@@ -69,8 +69,13 @@
                             <div style="height:300px" class="col-md-10 col-md-offset-1" id="editorContainer"></div>
 
                         </div>
+
                         <div class="form-group">
-                            <textarea class="form-control col-md-12" dir="ltr" id="result" rows="5"  spellcheck="false"></textarea>
+                            <input type="button" value="Obtener función" ng-click="getFuncion()"
+                                   class="btn btn-info col-md-2">
+                        </input>
+                            <textarea class="form-control col-md-10" dir="ltr" id="result" rows="5"
+                                      spellcheck="false"></textarea>
                         </div>
 
                         <div class="form-group"

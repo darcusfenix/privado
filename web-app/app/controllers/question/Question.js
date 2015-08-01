@@ -21,9 +21,10 @@ function QuestionCreateController($scope, $location, $rootScope, Section, Questi
     var editor;
     editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en', 'toolbar': '<toolbar ref="chemistry"/>'});
     editor.insertInto(document.getElementById('editorContainer'));
-    setInterval(function () {
+
+    $scope.getFuncion = function () {
         $('#result').val(editor.getMathML());
-    }, 1500);
+    };
 
     $(".wrs_linkButton").remove();
     $(".wrs_imageContainer").remove();
@@ -82,9 +83,10 @@ function QuestionEditController($scope, $location, $routeParams, $rootScope, Sec
     var editor;
     editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en', 'toolbar': '<toolbar ref="chemistry"/>'});
     editor.insertInto(document.getElementById('editorContainer'));
-    setInterval(function () {
+
+    $scope.getFuncion = function () {
         $('#result').val(editor.getMathML());
-    }, 1500);
+    };
 
     $(".wrs_linkButton").remove();
     $(".wrs_imageContainer").remove();

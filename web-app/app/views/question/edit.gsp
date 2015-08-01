@@ -71,7 +71,10 @@
                         </div>
 
                         <div class="form-group">
-                            <textarea class="form-control col-md-12" dir="ltr" id="result" rows="5"
+                            <input type="button" value="Obtener función" ng-click="getFuncion()"
+                                   class="btn btn-info col-md-2">
+                        </input>
+                            <textarea class="form-control col-md-10" dir="ltr" id="result" rows="5"
                                       spellcheck="false"></textarea>
                         </div>
 
