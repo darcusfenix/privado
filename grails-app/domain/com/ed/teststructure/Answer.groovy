@@ -15,7 +15,7 @@ class Answer implements Serializable{
     static belongsTo = [question:Question]
 
     static constraints = {
-
+        image nullable: true, blank: true
     }
 
     static mapping = {

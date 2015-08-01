@@ -51,7 +51,6 @@ class AnswerController {
             render(answerInstance.errors as JSON)
         }
 
-
     }
 
     def delete() {

@@ -104,26 +104,6 @@
                                 </span>
                             </div>
                         </div>
-
-                        <div class="form-group"
-                             ng-class="{'has-error': editAnswer.image.$error.required || validator.image.hasError}"
-                             ng-show="questionBySectionList.length > 0">
-                            <label class="control-label col-md-3">Imagen: <span class="required">
-                                *</span>
-                            </label>
-
-                            <div class="col-md-9">
-                                <div class="left">
-                                    <input type="file" ng-model="answerInstance.image" class="form-control" name="image"
-                                               />
-                                </div>
-                                <span class="help-block"
-                                      ng-show="editAnswer.image.$error.required || validator.image.hasError">
-                                </span>
-                            </div>
-                        </div>
-
-
                     </div>
 
                     <div class="form-actions">
