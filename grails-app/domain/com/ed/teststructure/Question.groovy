@@ -18,6 +18,7 @@ class Question implements Serializable{
 
     static constraints = {
         urlImage nullable: true, blank: true
+        text maxSize: 4096
     }
 
     static mapping = {
