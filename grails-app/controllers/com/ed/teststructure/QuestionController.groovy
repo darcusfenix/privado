@@ -40,12 +40,12 @@ class QuestionController {
                 }
 
                 //def dir = System.getenv("HOME") + "/Desktop/" + questionInstance.section.id + "/"
-                def dir = "web-app/imgFiles/" + questionInstance.section.id + "/"
+                def dir = "/usr/local/tomcat/ControlEscuela/imgFiles/" + questionInstance.section.id + "/"
                 File folder = new File(dir)
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
                 f.transferTo(new File(dir))
-                dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
+                //dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
                 questionInstance.urlImage = dir
             }
             questionInstance.save(flush: true)
@@ -79,12 +79,12 @@ class QuestionController {
                 File folder = new File("web-app/" + tempQI)
                 print(folder)
                 folder.delete()
-                def dir = "web-app/imgFiles/" + questionInstance.section.id + "/"
+                def dir = "/usr/local/tomcat/ControlEscuela/imgFiles/" + questionInstance.section.id + "/"
                 folder = new File(dir)
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
                 f.transferTo(new File(dir))
-                dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
+                //dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
                 questionInstance.urlImage = dir
             } else {
                 questionInstance.urlImage = tempQI

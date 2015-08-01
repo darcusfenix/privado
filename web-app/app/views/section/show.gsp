@@ -66,9 +66,6 @@
                             <th class="text-center">
                                 Identificador
                             </th>
-                            <th class="text-center container">
-                                Pregunta
-                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -79,9 +76,6 @@
                             </td>
                             <td class="text-right">
                                 <a href="#/question/show/{{question.id}}">{{ question.number }}</a>
-                            </td>
-                            <td class="text-right">
-                                <a href="#/question/show/{{section.id}}">{{ question.text }}</a>
                             </td>
                         </tr>
                         </tbody>
