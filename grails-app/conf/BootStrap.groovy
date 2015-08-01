@@ -310,7 +310,7 @@ class BootStrap {
         question.save()
 
         Question anotherquestion = new Question()
-        anotherquestion.image = null
+        anotherquestion.urlImage = ""
         anotherquestion.number = 1
         anotherquestion.section = section
         anotherquestion.text = "soy la segunda pregunta"
