@@ -40,7 +40,7 @@ class QuestionController {
                 }
 
                 //def dir = System.getenv("HOME") + "/Desktop/" + questionInstance.section.id + "/"
-                def dir = "/usr/local/tomcat/ControlEscuela/imgFiles/" + questionInstance.section.id + "/"
+                def dir = "/usr/local/tomcat/webapps/ControlEscuela/imgFiles/" + questionInstance.section.id + "/"
                 File folder = new File(dir)
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
@@ -79,7 +79,7 @@ class QuestionController {
                 File folder = new File("web-app/" + tempQI)
                 print(folder)
                 folder.delete()
-                def dir = "/usr/local/tomcat/ControlEscuela/imgFiles/" + questionInstance.section.id + "/"
+                def dir = "/usr/local/tomcat/webapps/ControlEscuela/imgFiles/" + questionInstance.section.id + "/"
                 folder = new File(dir)
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
