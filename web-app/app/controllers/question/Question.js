@@ -44,6 +44,15 @@ function QuestionCreateController($scope, $location, $rootScope, Section, Questi
                 $rootScope.message = data.message;
             }).error(function (error) {
                 $scope.messageImage = error.message;
+                if (error.errors) {
+                    $scope.errors = error.errors;
+                    for (var i = 0; i < $scope.errors.length; i++) {
+                        $scope.validator[$scope.errors[i].field] = {
+                            hasError: true,
+                            message: $scope.errors[i].message
+                        }
+                    }
+                }
             });
             return true;
         } else {
@@ -85,6 +94,15 @@ function QuestionEditController($scope, $location, $routeParams, $rootScope, Sec
                 $rootScope.message = data.message;
             }).error(function (error) {
                 $scope.messageImage = error.message;
+                if (error.errors) {
+                    $scope.errors = error.errors;
+                    for (var i = 0; i < $scope.errors.length; i++) {
+                        $scope.validator[$scope.errors[i].field] = {
+                            hasError: true,
+                            message: $scope.errors[i].message
+                        }
+                    }
+                }
             });
             return true;
         } else {

@@ -60,6 +60,7 @@
                                 </div>
                                 <span class="help-block"
                                       ng-show="updateQuestion.number.$error.required || validator.number.hasError">
+                                    {{validator.number.message}}
                                 </span>
                             </div>
                         </div>
@@ -78,6 +79,7 @@
                                 </div>
                                 <span class="help-block"
                                       ng-show="updateQuestion.text.$error.required || validator.text.hasError">
+                                    {{validator.text.message}}
                                 </span>
                             </div>
                         </div>

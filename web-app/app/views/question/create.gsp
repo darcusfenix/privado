@@ -46,7 +46,6 @@
                         </div>
 
 
-
                         <div class="form-group"
                              ng-class="{'has-error': createQuestion.number.$error.required || validator.number.hasError}">
                             <label class="control-label col-md-3">Identificador de pregunta: <span class="required">
@@ -61,6 +60,7 @@
                                 </div>
                                 <span class="help-block"
                                       ng-show="createQuestion.number.$error.required || validator.number.hasError">
+                                    {{validator.number.message}}
                                 </span>
                             </div>
                         </div>
@@ -79,6 +79,7 @@
                                 </div>
                                 <span class="help-block"
                                       ng-show="createQuestion.text.$error.required || validator.text.hasError">
+                                    {{validator.text.message}}
                                 </span>
                             </div>
                         </div>
@@ -86,6 +87,7 @@
                         <div class="text-success text-center" ng-show="messageImage">
                             <strong>{{messageImage}}</strong>
                         </div>
+
                         <div class="form-group"
                              ng-class="{'has-error': file == null}">
                             <label class="control-label col-md-3">Imagen: <span class="required">
@@ -94,11 +96,10 @@
 
                             <div class="col-md-9">
                                 <div class="left">
-                                    <input type="file" name="file" class="form-control" uploader-model="file" /> <br>
+                                    <input type="file" name="file" class="form-control" uploader-model="file"/> <br>
                                 </div>
                             </div>
                         </div>
-
 
                     </div>
 
