@@ -7,7 +7,7 @@ import com.ed.service.MockExam
 import com.ed.classroomcourse.UserClass
 import com.ed.service.Office
 
-import com.controlescuela.*
+
 import com.ed.accesscontrol.StudentService
 import com.ed.inductionClass.InductionClass
 import com.ed.paycontrol.StateVoucher
@@ -15,19 +15,20 @@ import com.ed.schoolmanagement.Role
 import com.ed.schoolmanagement.User
 import com.ed.schoolmanagement.UserRole
 import com.ed.service.OnlineCourse
-import com.ed.service.Service
+
 import com.ed.service.TypeCourse
 import com.ed.service.TypeService
 import com.ed.service.UserClassroom
+
 import com.ed.teststructure.Question
 import com.ed.teststructure.Section
 import com.ed.teststructure.Structure
 import com.ed.teststructure.StructureSection
 import org.springframework.web.context.support.WebApplicationContextUtils
 
+
 import java.text.SimpleDateFormat
 
-import java.time.LocalDateTime
 
 class BootStrap {
 
@@ -307,6 +308,22 @@ class BootStrap {
         question.section = section
         question.text = "soy un pregunta"
         question.save()
+
+        Question anotherquestion = new Question()
+        anotherquestion.image = null
+        anotherquestion.number = 1
+        anotherquestion.section = section
+        anotherquestion.text = "soy la segunda pregunta"
+        anotherquestion.save()
+
+
+        /*
+        Answer answer = new Answer()
+        answer.question = question
+        answer.state = false
+        answer.textAnswer = servletContext.contextPath
+        answer.save()
+        */
 
 
         // STUDENTS WITH SERVICES
