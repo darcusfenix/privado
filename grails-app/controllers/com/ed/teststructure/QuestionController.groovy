@@ -117,4 +117,7 @@ class QuestionController {
         render Question.findAllBySection(Section.findById(id)) as JSON;
     }
 
+    def getBySection(Integer id){
+        render( Question.findAllBySection(Section.findById(id ?: params.int("id"))) as JSON)
+    }
 }
