@@ -14,10 +14,6 @@ class EnrollmentService {
         if (user) {
             user.active = true
             user.activationDate = new Date();
-            //TODO assign group or activated just after the user is valid!
-            UserClassroom userClassroom = UserClassroom.findByUser(user)
-            userClassroom.activated = true
-            userClassroom.save()
             if (user.save(flush: true)) {
                 return true
             } else {
@@ -26,6 +22,13 @@ class EnrollmentService {
         } else {
             return false
         }
+    }
+
+    def activateClassroomPlace(User user){
+        //TODO assign group or activated just after the user is valid!
+        UserClassroom userClassroom = UserClassroom.findByUser(user)
+        userClassroom.activated = true
+        userClassroom.save()
     }
 
     def getInductionClass() {

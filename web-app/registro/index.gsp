@@ -9,12 +9,19 @@
           content="Fullscreen Form Interface: A distraction-free form concept with fancy animations"/>
     <meta name="keywords" content="Curso de nivel superior, "/>
     <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-responsive.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/vertical-rhythm.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="css/demo.css"/>
     <link rel="stylesheet" type="text/css" href="css/component.css"/>
     <link rel="stylesheet" type="text/css" href="css/cs-select.css"/>
     <link rel="stylesheet" type="text/css" href="css/cs-skin-boxes.css"/>
-    <script type="text/javascript" src="${resource(dir: 'assets/global/plugins', file: 'jquery.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'registro/js', file: 'jquery-1.11.1.min.js')}"></script>
     <script src="js/modernizr.custom.js"></script>
     <script src="./js/modales.js"></script>
     <!-- Requerimientos para modal-->

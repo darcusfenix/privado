@@ -145,7 +145,7 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function documentReady(){
-
+    alert("Ready!");
     var formWrap = document.getElementById('fs-form-wrap');
 
     [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
