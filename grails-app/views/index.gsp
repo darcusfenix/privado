@@ -111,6 +111,7 @@
 <script type="text/javascript" src="${resource(dir: 'js', file: 'loading-bar.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'ng-file-upload-shim.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'ng-file-upload.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js', file: 'angular-sanitize.min.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app', file: 'ControlEscolar.js')}"></script>
 

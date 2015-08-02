@@ -37,3 +37,4 @@ target
 *.war
 *.class
 grails-app/conf/DataSource.groovy
+web-app/imgFiles/

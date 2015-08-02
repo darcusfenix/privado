@@ -12,10 +12,12 @@ class Answer implements Serializable{
     Boolean state
     String textAnswer
     String image
+    Integer typeAnswer
     static belongsTo = [question:Question]
 
     static constraints = {
         image nullable: true, blank: true
+        textAnswer nullable: true, blank: true
     }
 
     static mapping = {
@@ -24,6 +26,7 @@ class Answer implements Serializable{
         state column: 'st_state'
         textAnswer column: 'tx_answer'
         image column: 'bl_image'
+        typeAnswer column: "tp_asnwer"
         version false
     }
 }
