@@ -25,7 +25,7 @@
 
                 <div class="lead">
                     <p>
-                        La cita para tu clase de inducción para el <strong>{{inscriptionInformation.group}}</strong> es el d&iacute;a <strong>{{inscriptionInformation.date}}</strong> a las <strong>{{inscriptionInformation.date}}</strong> en las instalaciones ubicadas cerca del metro Polit&eacute;cnico
+                        La cita para tu clase de inducción para el <strong>{{enrollmentInformation.group}}</strong> es el d&iacute;a <strong>{{enrollmentInformation.date}}</strong> a las <strong>{{enrollmentInformation.date}}</strong> en las instalaciones ubicadas cerca del metro Polit&eacute;cnico
                     </p>
                 </div>
 
