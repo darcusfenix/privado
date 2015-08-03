@@ -31,13 +31,15 @@ class NotificationService {
         if(user.inductionClass){
             binding.inductionDate = formatter.format(user.inductionClass.date)
         } else { // Assign half hour before the lesson hour for the next date
-            UserClass userClassroom = UserClassroom.findByUser(user)
+            log.error(">>>")
+            UserClassroom userClassroom = UserClassroom.findByUser(user)
             Date halfHourBefore
             use(TimeCategory){
-                halfHourBefore = userClassroom.clazz.stHour - 30.minutes
+                halfHourBefore = userClassroom.classroom - 30.minutes
             }
             binding.inductionDate = formatter.format(halfHourBefore)
             binding.dateHour = hourFormatter.format(halfHourBefore)
+            log.error(">>>")
         }
         binding.enrollmentUrl = params.activationUrl
         binding.price = 1500 // TODO Get related user services to get the price
@@ -55,6 +57,42 @@ class NotificationService {
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
+                .build()
+        try {
+            sendGridService.send(email)
+            return true
+        } catch (Exception e) {
+            UserMailHistory userMailHistory = new UserMailHistory()
+            userMailHistory.to = user.email;
+            userMailHistory.from = "no-reply@cursopreparacionipn.com"
+            userMailHistory.subject = "Curso de preparación IPN"
+            userMailHistory.htmlContent = template.toString()
+            userMailHistory.save(flush: true, failOnError: true)
+            return false
+        }
+    }
+
+    def sendSketchMail(String activationToken){
+        User user = User.findByActivationToken(activationToken)
+        String htmlContent
+        // Dates and calendar instances
+        Calendar cal = Calendar.getInstance()
+        DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy", new Locale("es", "MX"));
+        DateFormat hourFormatter = new SimpleDateFormat("hh:mm", new Locale("es", "MX"));
+
+        def binding = [:]
+        binding.userFullName = user.fullName
+
+        htmlContent = new File(contextPath + grailsApplication.config.files.nextDayMailContent).text
+
+        def engine = new groovy.text.SimpleTemplateEngine()
+        def template = engine.createTemplate(htmlContent).make(binding)
+        SendGridEmail email = new SendGridEmailBuilder()
+                .from('no-reply@cursopreparacionipn.com')
+                .to(user.email)
+                .subject('Curso de preparación IPN')
+                .withHtml(template.toString())
+                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.pdfFile))
                 .build()
         try {
             sendGridService.send(email)

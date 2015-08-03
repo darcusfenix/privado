@@ -117,8 +117,30 @@ class UserController {
         uc.activated = false
         uc.save(flush: true)
         //
-        String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/registro/#/activate/" + userInstance.activationToken
+        String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/registro/#/activation/" + userInstance.activationToken
         //
+        notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
+        render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
+    }
+
+    def activateClassroomPlace(){
+        def user = User.findByActivationToken(params.token)
+        def status = enrollmentService.activateClassroomPlace(user)
+        if (status) {
+            def responseMap = [:]
+            responseMap.group = UserClassroom.findByUserAndActivated(user,true).classroom.nameClassroom
+            responseMap.date = user.inductionClass.date
+            responseMap.message = 'Usuario verificado'
+            render(responseMap as JSON)
+            return
+        } else {
+            response.status = 500
+            render([message: message(code: 'de.enrollment.couldNotValidate')] as JSON)
+            return
+        }
+    }
+
+    def sketchMail(){
         notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
         render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
     }

@@ -29,6 +29,7 @@ class EnrollmentService {
         UserClassroom userClassroom = UserClassroom.findByUser(user)
         userClassroom.activated = true
         userClassroom.save()
+        return true
     }
 
     def getInductionClass() {
