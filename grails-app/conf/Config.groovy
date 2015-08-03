@@ -123,3 +123,4 @@ sendgrid {
 files.htmlMailContent ='files/MailContent.html'
 files.nextDayMailContent = 'files/nextDayMailContent.html'
 files.pdfFile = 'files/Preparacion_Croquis.pdf'
+files.sketchMail = 'files/SketchMail.html'
