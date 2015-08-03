@@ -65,27 +65,9 @@
                         </div>
 
                         <div class="form-group"
-                             ng-class="{'has-error': editAnswer.textAnswer.$error.required || validator.textAnswer.hasError}"
-                             ng-show="questionBySectionList.length > 0">
-                            <label class="control-label col-md-3">Respuesta (texto): <span class="required">
-                                *</span>
-                            </label>
-
-                            <div class="col-md-9">
-                                <div class="left">
-                                    <textarea type="text" ng-model="answerInstance.textAnswer" class="form-control" name="textAnswer" min="1"
-                                           required ></textarea>
-                                </div>
-                                <span class="help-block"
-                                      ng-show="editAnswer.textAnswer.$error.required || validator.textAnswer.hasError">
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="form-group"
                              ng-class="{'has-error': editAnswer.state.$error.required || validator.state.hasError}"
                              ng-show="questionBySectionList.length > 0">
-                            <label class="control-label col-md-3">Estado: <span class="required">
+                            <label class="control-label col-md-3">Solución: <span class="required">
                                 *</span>
                             </label>
 
@@ -104,13 +86,60 @@
                                 </span>
                             </div>
                         </div>
+
+                        <div class="form-group"
+                             ng-show="questionBySectionList.length > 0">
+                            <label class="control-label col-md-3">Respuesta en: </label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                        <a  class="btn blue" ng-click="answerInstance.typeAnswer = 1"> Imagen </a>
+                                        <a  class="btn blue" ng-click="answerInstance.typeAnswer = 2"> Texto </a>
+                                        <a  class="btn blue" ng-click="answerInstance.typeAnswer = 3"> Ecuación Matemática </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                             ng-class="{'has-error': editAnswer.textAnswer.$error.required || validator.textAnswer.hasError}"
+                             ng-show="questionBySectionList.length > 0 && answerInstance.typeAnswer === 2">
+                            <label class="control-label col-md-3">Respuesta (texto): <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-9">
+                                <div class="left">
+                                    <textarea type="text" ng-model="answerInstance.textAnswer" class="form-control" name="textAnswer" min="1"></textarea>
+                                </div>
+                                <span class="help-block"
+                                      ng-show="editAnswer.textAnswer.$error.required || validator.textAnswer.hasError">
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-show="questionBySectionList.length > 0 && answerInstance.typeAnswer === 3">
+                            <div style="height:300px" class="col-md-10 col-md-offset-1" id="editorContainer"></div>
+                        </div>
+
+                        <div class="form-group"
+                             ng-show="questionBySectionList.length > 0 && answerInstance.typeAnswer === 1">
+                            <label class="control-label col-md-3">Respuesta en Imagen: <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-9">
+                                <div class="left">
+                                    <input type="file" name="file" class="form-control" uploader-model="file"/>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
                                 <button type="submit" class="btn green"
-                                        ng-disabled="editAnswer.$invalid">Registrar sección</button>
+                                        ng-disabled="editAnswer.$invalid">Agregar Respuesta</button>
                                 <a href="#/answer" type="button" class="btn default">Cancelar</a>
                             </div>
                         </div>

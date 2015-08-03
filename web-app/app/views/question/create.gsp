@@ -67,7 +67,6 @@
 
                         <div class="form-group">
                             <div style="height:300px" class="col-md-10 col-md-offset-1" id="editorContainer"></div>
-
                         </div>
 
                         <div class="form-group">
