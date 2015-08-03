@@ -2,6 +2,7 @@ package com.ed.services
 
 import com.ed.inductionClass.InductionClass
 import com.ed.schoolmanagement.User
+import com.ed.schoolmanagement.Appointment
 import com.ed.service.UserClassroom
 import grails.transaction.Transactional
 import groovy.time.TimeCategory
@@ -24,7 +25,7 @@ class EnrollmentService {
         }
     }
 
-    def activateClassroomPlace(User user){
+    def activateClassroomPlace(User user) {
         //TODO assign group or activated just after the user is valid!
         UserClassroom userClassroom = UserClassroom.findByUser(user)
         userClassroom.activated = true
@@ -32,8 +33,18 @@ class EnrollmentService {
         return true
     }
 
-    def getInductionClass() {
-        InductionClass inductionClass =  null
+    def generateAppointment(User user, Date appointmentDate){
+        Appointment appointment = new Appointment()
+        appointment.user = user
+        use(TimeCategory) {
+            appointment.appointmentDate = appointmentDate ?: (new Date() - 30.minutes)
+        }
+        appointment.save()
+        return appointment
+    }
+
+    def getInductionClass(User user, Date appointmentDate = null) {
+        InductionClass inductionClass = null
         // Bussiness Rule 1, Just assign if it's sunday before 4:30 an induction class!
         Calendar cal = Calendar.getInstance()
         cal.set(2015, Calendar.AUGUST, 8);
@@ -58,22 +69,32 @@ class EnrollmentService {
             if (currentDate >= secondInductionDate && currentDate < thirdInductionDate) { //Induction class 3
                 inductionClass = InductionClass.findByName("Clase de Inducción 3")
             }
-            if(currentDate >= thirdInductionDate && currentDate < fourthInductionDate) { // Induction class 4
+            if (currentDate >= thirdInductionDate && currentDate < fourthInductionDate) { // Induction class 4
                 inductionClass = InductionClass.findByName("Clase de Inducción 4")
             }
-            //There's at least one place on the induction class
-            if(inductionClass.places>=1){
-                inductionClass.places--
-                inductionClass.save(flush: true) //Update the places of the induction class!
-            } else {
-                inductionClass = InductionClass.findByPlacesGreaterThan(1);
-                inductionClass.places--
-                inductionClass.save(flush: true) //Update the places of the induction class!
+
+            // Theres no inductionClass but still sunday!
+            if(!inductionClass){
+                use(TimeCategory){
+                    Date tomorrowDate = firstInductionDate + 1.day
+                    this.generateAppointment(user, tomorrowDate)
+                }
+
             }
-            return inductionClass
+            // There's at least one place on the induction class
+            if (inductionClass && inductionClass.places >= 1) {
+                inductionClass.places--
+                inductionClass.save(flush: true) // Update the places of the induction class!
+            } else {
+                inductionClass = InductionClass.findByPlacesGreaterThanEquals(1);
+                inductionClass.places--
+                inductionClass.save(flush: true) // Update the places of the induction class!
+            }
         } else { //No induction class assigned
-            return inductionClass
+            // Generating an appointment!
+            this.generateAppointment(user, appointmentDate)
         }
+        return inductionClass
 
     }
 }
