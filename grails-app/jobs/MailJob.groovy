@@ -14,12 +14,24 @@ class MailJob {
 
     def execute() {
         UserMailHistory.findAllBySend(false).each { mailHistory ->
-            SendGridEmail sendGridEmail = new SendGridEmailBuilder()
-                    .from(mailHistory.from)
-                    .to(mailHistory.to)
-                    .subject(mailHistory.subject)
-                    .withHtml(mailHistory.htmlContent ?: "")
-                    .build()
+            SendGridEmail sendGridEmail
+            if(!mailHistory.attachmentPath){
+                sendGridEmail= new SendGridEmailBuilder()
+                        .from(mailHistory.from)
+                        .to(mailHistory.to)
+                        .subject(mailHistory.subject)
+                        .withHtml(mailHistory.htmlContent ?: "")
+                        .build()
+            } else {
+                sendGridEmail= new SendGridEmailBuilder()
+                        .from(mailHistory.from)
+                        .to(mailHistory.to)
+                        .subject(mailHistory.subject)
+                        .withHtml(mailHistory.htmlContent ?: "")
+                        .addAttachment("Croquis.pdf",mailHistory.attachmentPath)
+                        .build()
+            }
+
             try {
                 sendGridService.send(sendGridEmail)
                 mailHistory.send = true
