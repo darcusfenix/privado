@@ -1,6 +1,7 @@
 package com.ed.services
 
 import com.ed.classroomcourse.UserClass
+import com.ed.schoolmanagement.Appointment
 import com.ed.schoolmanagement.User
 import com.ed.schoolmanagement.UserMailHistory
 import com.ed.service.UserClassroom
@@ -30,25 +31,17 @@ class NotificationService {
         // There's an induction class
         if(user.inductionClass){
             binding.inductionDate = formatter.format(user.inductionClass.date)
-        } else { // Assign half hour before the lesson hour for the next date
+        } else { //
             // Check for appointment!
-
-            log.error(">>>")
-            UserClassroom userClassroom = UserClassroom.findByUser(user)
-            Date halfHourBefore
-            use(TimeCategory){
-                halfHourBefore = userClassroom.classroom.clazz[0].stHour ?: params.appointmentDate - 30.minutes
-            }
-            binding.inductionDate = formatter.format(halfHourBefore)
-            binding.dateHour = hourFormatter.format(halfHourBefore)
-            log.error(">>>")
+            Appointment appointment = Appointment.findByUser(user)
+            binding.inductionDate = formatter.format(appointment.appointmentDate)
+            binding.dateHour = hourFormatter.format(appointment.appointmentDate)
         }
         binding.enrollmentUrl = params.activationUrl
         binding.price = 1500 // TODO Get related user services to get the price
         if(binding.dateHour == ""){ // Loading other template and generationg a new appointment
             htmlContent = new File(contextPath + grailsApplication.config.files.htmlMailContent).text
         } else { // Simple template with validation token
-            //TODO create and modify new html content for mail template
             htmlContent = new File(contextPath + grailsApplication.config.files.nextDayMailContent).text
         }
 
@@ -74,7 +67,7 @@ class NotificationService {
         }
     }
 
-    def sendSketchMail(String activationToken){
+    def sendSketchMail(String activationToken, String contextPath, def params = [:]){
         User user = User.findByActivationToken(activationToken)
         String htmlContent
         // Dates and calendar instances
@@ -85,7 +78,7 @@ class NotificationService {
         def binding = [:]
         binding.userFullName = user.fullName
 
-        htmlContent = new File(contextPath + grailsApplication.config.files.nextDayMailContent).text
+        htmlContent = new File(contextPath + grailsApplication.config.files.sketchMail).text
 
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
@@ -105,6 +98,7 @@ class NotificationService {
             userMailHistory.from = "no-reply@cursopreparacionipn.com"
             userMailHistory.subject = "Curso de preparación IPN"
             userMailHistory.htmlContent = template.toString()
+            userMailHistory.attachmentPath = contextPath + grailsApplication.config.files.pdfFile
             userMailHistory.save(flush: true, failOnError: true)
             return false
         }
