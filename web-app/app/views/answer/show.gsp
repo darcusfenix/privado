@@ -97,7 +97,7 @@
                 <h4 class="modal-title text-warning">Mensaje de confirmación</h4>
             </div>
             <div class="modal-body text-danger">
-                ¿Está se guro que desa eliminar el servicio?
+                ¿Está se guro que desa eliminar la pregunta?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"

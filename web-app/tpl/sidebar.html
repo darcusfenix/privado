@@ -222,26 +222,30 @@
                                         <li ng-class="($root.location === '/question/create') ? 'active' : ''">
                                             <a href="#/question/create"> Agregar pregunta</a>
                                         </li>
+
+                                            <li ng-class="($root.location === '/answer/' || $root.location === '/answer/create') ? 'active open' : ''">
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-check-square-o"></i>
+                                                    <span class="title">Respuestas</span>
+                                                    <span class="arrow {{ ($root.location === '/answer/' || $root.location === '/answer/create') ? 'open' : ''}}"></span>
+                                                </a>
+                                                <ul class="sub-menu">
+                                                    <li ng-class="($root.location === '/answer/') ? 'active' : ''">
+                                                        <a href="#/answer"> Ver todas</a>
+                                                    </li>
+                                                    <li ng-class="($root.location === '/answer/create') ? 'active' : ''">
+                                                        <a href="#/answer/create"> Agregar respuesta</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li ng-class="($root.location === '/answer/' || $root.location === '/answer/create') ? 'active open' : ''">
-                    <a href="javascript:;">
-                        <span class="title">Respuestas</span>
-                        <span class="arrow {{ ($root.location === '/answer/' || $root.location === '/answer/create') ? 'open' : ''}}"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li ng-class="($root.location === '/answer/') ? 'active' : ''">
-                            <a href="#/answer"> Ver todas</a>
-                        </li>
-                        <li ng-class="($root.location === '/answer/create') ? 'active' : ''">
-                            <a href="#/answer/create"> Agregar respuesta</a>
-                        </li>
-                    </ul>
-                </li>
+
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

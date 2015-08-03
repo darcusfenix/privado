@@ -44,6 +44,7 @@ function AnswerCreateController ($scope, $location, $rootScope, Answer, Section,
     editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en', 'toolbar': '<toolbar ref="chemistry"/>'});
     editor.insertInto(document.getElementById('editorContainer'));
 
+
     FormDropzone.init();
 
     $(".wrs_linkButton").remove();
@@ -62,6 +63,9 @@ function AnswerCreateController ($scope, $location, $rootScope, Answer, Section,
     $scope.answerInstance = Answer.create(function(data){
         $scope.answerInstance = data;
         $scope.answerInstance.state = false;
+
+
+        console.log($scope.answerInstance);
     });
 
     $scope.saveAnswer = function (valid, $event) {
@@ -123,6 +127,10 @@ function AnswerEditController ($scope, $location, $rootScope, $routeParams, Answ
     $scope.answerInstance = Answer.get({id: $routeParams.id}, function (data) {
 
         $scope.answerInstance = data;
+
+        if($scope.answerInstance.typeAnswer == 3){
+            editor.setMathML($scope.answerInstance.textAnswer);
+        }
 
         console.log($scope.answerInstance);
 

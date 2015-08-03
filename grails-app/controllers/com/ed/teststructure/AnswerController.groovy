@@ -4,6 +4,8 @@ import grails.converters.JSON
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
+import javax.validation.constraints.Null
+
 
 class AnswerController {
 
@@ -21,11 +23,16 @@ class AnswerController {
 
         def webRootDir = servletContext.getRealPath("/")
 
-        JSONObject jQuestion = new JSONObject(request.getParameter('data'))
+        JSONObject jAnswer = new JSONObject(request.getParameter('data'))
         CommonsMultipartFile f = request.getFile('file')
-        def answerInstance = Answer.findById(jQuestion.id)
+        def answerInstance = Answer.findById(jAnswer.id)
 
-        answerInstance.properties = jQuestion
+        answerInstance.state = (boolean)jAnswer.state
+        answerInstance.image = (String)jAnswer.image
+        answerInstance.textAnswer = jAnswer.textAnswer
+        answerInstance.typeAnswer = (Integer)jAnswer.typeAnswer
+        answerInstance.question = Question.findById((Integer)jAnswer.question.id)
+
 
         if (answerInstance.validate()) {
             if (f != null) {
@@ -56,10 +63,10 @@ class AnswerController {
     def save() {
         def webRootDir = servletContext.getRealPath("/")
         def answerInstance = new Answer()
-        
-        JSONObject jQuestion = new JSONObject(request.getParameter('data'))
+
+        JSONObject jAnswer = new JSONObject(request.getParameter('data'))
         CommonsMultipartFile f = request.getFile('file')
-        answerInstance.properties = jQuestion
+        answerInstance.properties = jAnswer
         
         if (answerInstance.validate()) {
             if (f != null) {

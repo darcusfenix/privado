@@ -27,6 +27,7 @@ class Answer implements Serializable{
         textAnswer column: 'tx_answer'
         image column: 'bl_image'
         typeAnswer column: "tp_asnwer"
+        textAnswer type: 'text'
         version false
     }
 }

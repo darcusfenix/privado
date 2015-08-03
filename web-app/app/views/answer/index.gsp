@@ -45,17 +45,40 @@
 
                             </th>
                         </tr>
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" ng-model="filtro.sectionName" placeholder="Filtrar por sección">
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" ng-model="filtro.questionName" placeholder="Filtrar por pregunta">
+                            </th>
+                            <th>
+
+                            </th>
+                            <th>
+
+                            </th>
+                            <th>
+
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="answer in answerList ">
+                        <tr ng-repeat="answer in answerList  | filter:filtro ">
                             <td class="text-center">
                                 <a href="#/answer/show/{{answer.id}}">{{$index + 1}} </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/answer/show/{{answer.id}}">{{ answer.question.id  }}  </a>
+                                <a href="#/answer/show/{{answer.id}}">{{ answer.sectionName  }}  </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/answer/show/{{answer.id}}">{{ answer.question.id }}  </a>
+                                <a href="#/answer/show/{{answer.id}}">{{ answer.questionName }}  </a>
                             </td>
                             <td class="text-center">
                                 <a href="#/answer/show/{{answer.id}}">

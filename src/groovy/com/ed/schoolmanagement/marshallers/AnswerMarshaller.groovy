@@ -10,10 +10,11 @@ class AnswerMarshaller {
                     id              : answer.id,
                     state           : answer.state,
                     textAnswer      : answer.textAnswer,
-                    sectionName     : answer.question.section.name,
                     question        : answer.question,
+                    image           : answer.image,
+                    typeAnswer      : answer.typeAnswer,
                     questionName    : answer.question.getText(),
-                    image           : answer.image
+                    sectionName      : answer.question.getSection().getName()
             ]
         }
     }

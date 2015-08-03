@@ -58,7 +58,7 @@
     <r:layoutResources/>
 </head>
 
-<body ng-app="ControlEscuela" class="page-md page-header-fixed page-sidebar-closed-hide-logo">
+<body ng-app="ControlEscuela" class="page-header-fixed page-sidebar-closed-hide-logo page-footer-fixed page-sidebar-fixed">
 
 <div id="divSpinner" class="hidden">
     <img src="${resource(dir: 'images', file: 'ajax-loading.gif')}" class="ajax-loader"/>
