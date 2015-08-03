@@ -1,4 +1,5 @@
 import com.ed.classroomcourse.Class
+import com.ed.schoolmanagement.marshallers.AnswerMarshaller
 import com.ed.schoolmanagement.marshallers.ClassMarshaller
 import com.ed.schoolmanagement.marshallers.ClassroomMarshaller
 import com.ed.schoolmanagement.marshallers.CustomObjectMarshallers
@@ -16,7 +17,8 @@ beans = {
                 new InductionClassMarshaller(),
                 new ClassMarshaller(),
                 new StructureMarshaller(),
-                new QuestionMarshaller()
+                new QuestionMarshaller(),
+                new AnswerMarshaller()
         ]
     }
 

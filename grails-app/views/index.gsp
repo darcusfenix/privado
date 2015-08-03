@@ -58,7 +58,7 @@
     <r:layoutResources/>
 </head>
 
-<body ng-app="ControlEscuela" class="page-md page-header-fixed page-sidebar-closed-hide-logo">
+<body ng-app="ControlEscuela" class="page-header-fixed page-sidebar-closed-hide-logo page-footer-fixed page-sidebar-fixed">
 
 <div id="divSpinner" class="hidden">
     <img src="${resource(dir: 'images', file: 'ajax-loading.gif')}" class="ajax-loader"/>
@@ -111,6 +111,7 @@
 <script type="text/javascript" src="${resource(dir: 'js', file: 'loading-bar.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'ng-file-upload-shim.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'ng-file-upload.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js', file: 'angular-sanitize.min.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app', file: 'ControlEscolar.js')}"></script>
 
