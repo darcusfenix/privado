@@ -9,32 +9,42 @@ registro.config(['$routeProvider', function ($routeProvider) {
         controller: 'RegistroController',
         templateUrl: 'app/views/registro.gsp'
 
-    }).when('/activate/:token', {
-
-        controller: 'ActivateController',
-        templateUrl: 'app/views/activate.gsp'
-
     }).when('/correo', {
 
         controller: 'CorreoController',
         templateUrl: 'app/views/correo.gsp'
 
-    }).when('/activacion', {
+    }).when('/activation/:token', {
 
         controller: 'ActivationController',
         templateUrl: 'app/views/activacion.gsp'
 
-    }).when('/classConfirmation', {
+    }).when('/classConfirmation', { // TODO change the controller
 
-        controller: 'ActivationController',
+        controller: 'ClassConfirmationController',
         templateUrl: 'app/views/croquis.gsp'
 
-    }).when('/cantAssistOption', {
+    }).when('/cantAssistOptions', { // TODO change the controller
 
         controller: 'ActivationController',
-        templateUrl: 'app/views/activacion.gsp'
+        templateUrl: 'app/views/PreparacionOpciones.gsp'
 
-    }).otherwise({
+    }).when('/scheduleIssue', { // TODO change the controller
+
+        controller: 'ActivationController',
+        templateUrl: 'app/views/paso31.gsp'
+
+    }).when('/foreignStudent', { // TODO change the controller
+
+        controller: 'ActivationController',
+        templateUrl: 'app/views/paso32.gsp'
+
+    }).when('/cantPay', { // TODO change the controller
+
+        controller: 'ActivationController',
+        templateUrl: 'app/views/paso33.gsp'
+
+    }).otherwise({ // #/
         redirectTo: '/'
     });
 }]);

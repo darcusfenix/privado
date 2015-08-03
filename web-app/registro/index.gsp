@@ -38,7 +38,7 @@
     <script src="app/Registro.js"></script>
     <script src="app/controllers/RegistroController.js"></script>
     <script src="app/controllers/CorreoController.js"></script>
-    <script src="app/controllers/ActivateController.js"></script>
+    <script src="app/controllers/ActivationController.js"></script>
 </head>
 
 <body ng-app="Registro">
