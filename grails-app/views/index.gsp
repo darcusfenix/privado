@@ -248,8 +248,8 @@
         Layout.init(); // init current layout
         Demo.init(); // init demo features
 
-       /**
-        *  $.backstretch([
+
+        $.backstretch([
             "${resource(dir: 'assets/admin/pages', file: '1.jpg')}",
             "${resource(dir: 'assets/admin/pages', file: '2.jpg')}",
             "${resource(dir: 'assets/admin/pages', file: '3.jpg')}",
@@ -257,7 +257,7 @@
         ], {
             fade: 1000,
             duration: 10000
-        });*/
+        });
     });
 </script>
 <!-- END JAVASCRIPTS -->
