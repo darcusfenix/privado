@@ -31,11 +31,13 @@ class NotificationService {
         if(user.inductionClass){
             binding.inductionDate = formatter.format(user.inductionClass.date)
         } else { // Assign half hour before the lesson hour for the next date
+            // Check for appointment!
+
             log.error(">>>")
             UserClassroom userClassroom = UserClassroom.findByUser(user)
             Date halfHourBefore
             use(TimeCategory){
-                halfHourBefore = userClassroom.classroom - 30.minutes
+                halfHourBefore = userClassroom.classroom.clazz[0].stHour ?: params.appointmentDate - 30.minutes
             }
             binding.inductionDate = formatter.format(halfHourBefore)
             binding.dateHour = hourFormatter.format(halfHourBefore)
