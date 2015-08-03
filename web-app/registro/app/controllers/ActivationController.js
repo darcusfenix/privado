@@ -10,9 +10,6 @@ angular.module('Registro').controller('ActivationController', ['$scope', '$http'
         data: { token: $routeParams.token }
     }).success(function (data) {
         console.log(data);
-        console.log(data);
-        console.log(data);
-        console.log(data);
         $scope.enrollmentInformation = data;
     }).error(function (data) {
         console.log(data);
