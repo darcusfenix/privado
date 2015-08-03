@@ -8,6 +8,7 @@ import com.ed.service.UserClassroom
 import grails.converters.JSON
 import grails.transaction.Transactional
 import groovy.json.JsonOutput
+import groovy.time.TimeCategory
 
 import javax.servlet.ServletContext
 
@@ -107,8 +108,9 @@ class UserController {
         userInstance.properties = request.JSON
         userInstance.password = "test"
         userInstance.username = userInstance.email
-        userInstance.inductionClass = enrollmentService.getInductionClass()
         userInstance.save(flush: true, insert: true, failOnError: true)
+        userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null)
+        userInstance.save(flush: true, failOnError: true)
         //Assigning a Classroom to a user, it's not activated 'til the user activates his account
         Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
         UserClassroom uc = new UserClassroom()
@@ -123,12 +125,12 @@ class UserController {
         render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
     }
 
-    def activateClassroomPlace(){
+    def activateClassroomPlace() {
         def user = User.findByActivationToken(params.token)
         def status = enrollmentService.activateClassroomPlace(user)
         if (status) {
             def responseMap = [:]
-            responseMap.group = UserClassroom.findByUserAndActivated(user,true).classroom.nameClassroom
+            responseMap.group = UserClassroom.findByUserAndActivated(user, true).classroom.nameClassroom
             responseMap.date = user.inductionClass.date
             responseMap.message = 'Usuario verificado'
             render(responseMap as JSON)
@@ -140,7 +142,7 @@ class UserController {
         }
     }
 
-    def sketchMail(){
+    def sketchMail() {
         notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
         render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
     }
