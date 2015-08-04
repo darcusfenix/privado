@@ -3,12 +3,9 @@ package com.ed.schoolmanagement
 import com.ed.accesscontrol.StudentService
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.UserClass
-import com.ed.inductionClass.InductionClass
 import com.ed.service.UserClassroom
 import grails.converters.JSON
 import grails.transaction.Transactional
-import groovy.json.JsonOutput
-import groovy.time.TimeCategory
 
 import javax.servlet.ServletContext
 
@@ -87,17 +84,6 @@ class UserController {
 
     }
 
-    def activate() {
-        def status = enrollmentService.validateAccount(params.token)
-        if (status) {
-            render([message: 'Usuario verificado'] as JSON)
-            return
-        } else {
-            response.status = 500
-            render([message: message(code: 'de.enrollment.couldNotValidate')] as JSON)
-            return
-        }
-    }
 
     @Transactional
     def enroll() {
@@ -126,12 +112,13 @@ class UserController {
     }
 
     def activateClassroomPlace() {
-        def user = User.findByActivationToken(params.token)
+        User user = User.findByActivationToken(params.token)
         def status = enrollmentService.activateClassroomPlace(user)
         if (status) {
             def responseMap = [:]
+            responseMap.name = user.fullName
             responseMap.group = UserClassroom.findByUserAndActivated(user, true).classroom.nameClassroom
-            responseMap.date = user.inductionClass.date
+            responseMap.date = user.inductionClass.date ?: Appointment.findByUser(user).appointmentDate
             responseMap.message = 'Usuario verificado'
             render(responseMap as JSON)
             return
@@ -143,7 +130,29 @@ class UserController {
     }
 
     def sketchMail() {
-        notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
+
+        ServletContext servletContext = getServletContext();
+        String contextPath = servletContext.getRealPath(File.separator);
+
+        notificationService.sendSketchMail(params.token, contextPath, ["classRoomName": ""])
         render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
+    }
+
+    def activate() {
+        User user = User.findByActivationToken(params.token)
+        def status = enrollmentService.validateAccount(params.token)
+        if (status) {
+            def responseMap = [:]
+            responseMap.name = user.fullName
+            responseMap.group = UserClassroom.findByUserAndActivated(user, true).classroom.nameClassroom
+            responseMap.date = user.inductionClass.date ?: Appointment.findByUser(user).appointmentDate
+            responseMap.message = 'Usuario verificado'
+            render(responseMap as JSON)
+            return
+        } else {
+            response.status = 500
+            render([message: message(code: 'de.enrollment.couldNotValidate')] as JSON)
+            return
+        }
     }
 }
