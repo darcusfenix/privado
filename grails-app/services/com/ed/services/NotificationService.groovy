@@ -1,11 +1,8 @@
 package com.ed.services
 
-import com.ed.classroomcourse.UserClass
 import com.ed.schoolmanagement.Appointment
 import com.ed.schoolmanagement.User
 import com.ed.schoolmanagement.UserMailHistory
-import com.ed.service.UserClassroom
-import groovy.time.TimeCategory
 import uk.co.desirableobjects.sendgrid.SendGridEmail
 import uk.co.desirableobjects.sendgrid.SendGridEmailBuilder
 
@@ -69,11 +66,8 @@ class NotificationService {
 
     def sendSketchMail(String activationToken, String contextPath, def params = [:]){
         User user = User.findByActivationToken(activationToken)
+
         String htmlContent
-        // Dates and calendar instances
-        Calendar cal = Calendar.getInstance()
-        DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy", new Locale("es", "MX"));
-        DateFormat hourFormatter = new SimpleDateFormat("hh:mm", new Locale("es", "MX"));
 
         def binding = [:]
         binding.userFullName = user.fullName

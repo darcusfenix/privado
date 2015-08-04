@@ -29,7 +29,7 @@ class EnrollmentService {
         //TODO assign group or activated just after the user is valid!
         UserClassroom userClassroom = UserClassroom.findByUser(user)
         userClassroom.activated = true
-        userClassroom.save()
+        userClassroom.save(flush: true, failOnError: true)
         return true
     }
 
