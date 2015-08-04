@@ -176,8 +176,11 @@
 <script type="text/javascript" src="${resource(dir: 'app/controllers/section', file: 'Section.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/structure', file: 'Structure.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/answer', file: 'Answer.js')}"></script>
-
 <script type="text/javascript" src="${resource(dir: 'app/controllers/question', file: 'Question.js')}"></script>
+
+
+<script type="text/javascript" src="${resource(dir: 'app/directives', file: 'end-repeat-answer-list.js')}"></script>
+
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 
 <!-- BEGIN CORE PLUGINS -->
@@ -221,6 +224,7 @@
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/countdown', file: 'jquery.countdown.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/backstretch', file: 'jquery.backstretch.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/dropzone', file: 'dropzone.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/MathJax', file: 'MathJax.js?config=MML_HTMLorMML.js')}"></script>
 <!-- FIN DE TODOS LOS RECURSOS JS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
 <!--  -->

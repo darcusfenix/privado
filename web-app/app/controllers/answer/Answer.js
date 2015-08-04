@@ -9,22 +9,6 @@ function AnswerListController ($scope, $location, $rootScope, Answer) {
     $scope.answerList = Answer.query(function (data) {
 
         $scope.answerList = data;
-        for(var i = 0; i < $scope.answerList.length; i++){
-            //$("#html-"+$scope.answerList[i].id).html($scope.answerList[i].textAnswer);
-            //console.log($scope.answerList[i].id + " "+ $scope.answerList[i].textAnswer);
-        }
-        /*
-        $scope.question = Question.get({ id : $scope.answerInstance.question.id }, function(data) {
-
-            $scope.question = data;
-
-            $scope.section = Section.get({id : $scope.question.section.id}, function (data) {
-                $scope.section = data;
-
-            });
-
-        });
-        */
 
     }, function (err) {
         $location.path('/');
@@ -225,6 +209,7 @@ function AnswerShowController ($scope, $location, $rootScope, $routeParams, Answ
     $scope.answerInstance = Answer.get({id: $routeParams.id}, function (data) {
 
         $scope.answerInstance = data;
+
         $("#html").html(data.textAnswer);
 
         $scope.question = Question.get({ id : $scope.answerInstance.question.id }, function(data) {
