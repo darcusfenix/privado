@@ -124,17 +124,13 @@
                data-info="Verifica los horarios">Selecciona un Grupo</label>
 
         <div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
-          <span>
-            <input ng-model="userInstance.group" id="q3b" name="q3" type="radio" value="Grupo A"/>
-            <label for="q3b" class="radio-conversion">Grupo A</label>
-          </span>
-          <span>
-            <input ng-model="userInstance.group" id="q3c" name="q3" type="radio" value="Grupo B"/>
-            <label for="q3c" class="radio-social">Grupo B</label>
-          </span>
-          <span>
-            <input ng-model="userInstance.group" id="q3a" name="q3" type="radio" value="Grupo C"/>
-            <label for="q3a" class="radio-mobile">Grupo C</label>
+          <span ng-repeat="group in groups track by $index">
+            <input ng-model="userInstance.group" type="radio" value="group.nameClassroom"/>
+            <label>
+              <img src="img/notebook.png" width="50px" height="50px">
+              {{group.nameClassroom}}
+              <br>
+              Lugares Disponibles: {{group.places*0.33 | number:0}}</label>
           </span>
         </div>
       </li>
