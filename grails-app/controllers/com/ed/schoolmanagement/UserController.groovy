@@ -118,7 +118,7 @@ class UserController {
             def responseMap = [:]
             responseMap.name = user.fullName
             responseMap.group = UserClassroom.findByUserAndActivated(user, true).classroom.nameClassroom
-            responseMap.date = user.inductionClass.date ?: Appointment.findByUser(user).appointmentDate
+            responseMap.date = user.inductionClass ? user.inductionClass.date :  Appointment.findByUser(user).appointmentDate
             responseMap.message = 'Usuario verificado'
             render(responseMap as JSON)
             return
@@ -135,7 +135,7 @@ class UserController {
         String contextPath = servletContext.getRealPath(File.separator);
 
         notificationService.sendSketchMail(params.token, contextPath, ["classRoomName": ""])
-        render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
+        render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
     }
 
     def activate() {
@@ -144,8 +144,8 @@ class UserController {
         if (status) {
             def responseMap = [:]
             responseMap.name = user.fullName
-            responseMap.group = UserClassroom.findByUserAndActivated(user, true).classroom.nameClassroom
-            responseMap.date = user.inductionClass.date ?: Appointment.findByUser(user).appointmentDate
+            responseMap.group = UserClassroom.findByUser(user).classroom.nameClassroom
+            responseMap.date = user.inductionClass ? user.inductionClass.date : Appointment.findByUser(user).appointmentDate
             responseMap.message = 'Usuario verificado'
             render(responseMap as JSON)
             return
