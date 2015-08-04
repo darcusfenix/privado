@@ -42,7 +42,7 @@
 
                 <!-- Work Item (External Page) -->
                 <li class="work-item mix design photography">
-                    <a href="#/scheduleIssue" class="work-ext-link">
+                    <a href="#/scheduleIssue/{{token}}" class="work-ext-link">
                         <div class="work-img">
                             <img class="work-img" src="img/student01.jpg" alt="Work"/>
                         </div>
@@ -60,7 +60,7 @@
 
                 <!-- Work Item (External Page) -->
                 <li class="work-item mix design">
-                    <a href="#/foreignStudent" class="work-ext-link">
+                    <a href="#/foreignStudent/{{token}}" class="work-ext-link">
                         <div class="work-img">
                             <img class="work-img" src="img/student02.jpg" alt="Work"/>
                         </div>
@@ -78,7 +78,7 @@
 
                 <!-- Work Item (Lightbox) -->
                 <li class="work-item mix design branding">
-                    <a href="#/cantPay">
+                    <a href="#/cantPay/{{token}}">
                         <div class="work-img">
                             <img src="img/student03.jpg" alt="Work"/>
                         </div>
