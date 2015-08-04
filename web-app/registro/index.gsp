@@ -41,6 +41,7 @@
     <script src="app/controllers/CorreoController.js"></script>
     <script src="app/controllers/ActivationController.js"></script>
     <script src="app/controllers/ClassConfirmationController.js"></script>
+    <script src="app/controllers/ScheduleIssueController.js"></script>
 </head>
 
 <body ng-app="Registro">

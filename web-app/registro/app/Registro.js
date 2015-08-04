@@ -31,7 +31,7 @@ registro.config(['$routeProvider', function ($routeProvider) {
 
     }).when('/scheduleIssue/:token', { // TODO change the controller
 
-        controller: 'ActivationController',
+        controller: 'ScheduleIssueController',
         templateUrl: 'app/views/paso31.gsp'
 
     }).when('/foreignStudent/:token', { // TODO change the controller
