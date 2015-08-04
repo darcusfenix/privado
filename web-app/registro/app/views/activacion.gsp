@@ -52,14 +52,14 @@
 
                     <li class="active">
                         <div class="mb-10">
-                            <a href="#/classConfirmation"
+                            <a href="#/classConfirmation/{{token}}"
                                class="btn btn-mod Bverde btn-circle  btn-large">SI puedo asistir</a>
                         </div>
                     </li>
 
                     <li class="active blanco Bguinda">
                         <div class="mb-10">
-                            <a href="#/cantAssistOptions"
+                            <a href="#/cantAssistOptions/{{token}}"
                                class="btn btn-mod Brojo btn-circle  btn-large">NO puedo asistir</a>
                         </div>
                     </li>

@@ -35,13 +35,13 @@
 
                     <div class="lead">
                         <p class="Bblanco">
-                            Estimado Edgar Montes Gutierrez.
+                            {{enrollmentInformation.name}}
                             <br>
                             El equipo de Preparación IPN te envía un cordial saludo  !
                         </p>
 
                         <p class="Bblanco">
-                            Te recordamos que tu clase de inducción es el <strong>Domingo 08 de Agosto a las 10:00 hrs;</strong> esta durará 1 hora y media. Pedimos puntualidad, procura llegar con anticipación. Explicaremos temas importantes para ingresar al IPN y haremos un examen diagnóstico.
+                        Te recordamos que tu clase de inducción es el <strong>{{enrollmentInformation.date|date:'fullDate'}} a las {{enrollmentInformation.date|date:'shortTime'}};</strong> esta durará 1 hora y media. Pedimos puntualidad, procura llegar con anticipación. Explicaremos temas importantes para ingresar al IPN y haremos un examen diagnóstico.
 
                         Te recordamos que en clase deberás liquidar el costo total del curso (Restando $1,500).
 
@@ -91,7 +91,7 @@
                 <p>
                     Da clic en el bot&oacute;n de <strong>Finalizar</strong> para enviarte la informaci&oacute;n por correo
                 </p>
-                <a href="#" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul">Finalizar</a>
+                <a href="#" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul" ng-click="sendSketchInformation($event)">Finalizar</a>
             </div>
         </div>
     </section>
