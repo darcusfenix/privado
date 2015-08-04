@@ -68,7 +68,7 @@ class BootStrap {
         classroom.places = 50
         classroom.typeClassroom = 0
         classroom.typeClassroomP = 0
-        classroom.priority = 1
+        classroom.priority = 100
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
         classroom.office = office
         classroom.save()
@@ -80,6 +80,72 @@ class BootStrap {
         classroom.typeClassroom = 0
         classroom.typeClassroomP = 0
         classroom.priority = 1
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
+        classroom = new Classroom()
+        classroom.nameClassroom = "Grupo D"
+        classroom.period = "2015-02"
+        classroom.places = 20
+        classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 3
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
+        classroom = new Classroom()
+        classroom.nameClassroom = "Grupo E"
+        classroom.period = "2015-02"
+        classroom.places = 1
+        classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 3
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
+        classroom = new Classroom()
+        classroom.nameClassroom = "Grupo F"
+        classroom.period = "2015-02"
+        classroom.places = 0
+        classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 3
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
+        classroom = new Classroom()
+        classroom.nameClassroom = "Grupo G"
+        classroom.period = "2015-02"
+        classroom.places = 50
+        classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 4
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
+        classroom = new Classroom()
+        classroom.nameClassroom = "Grupo H"
+        classroom.period = "2015-02"
+        classroom.places = 50
+        classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 4
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
+        classroom = new Classroom()
+        classroom.nameClassroom = "Grupo I"
+        classroom.period = "2015-02"
+        classroom.places = 50
+        classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 4
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
         classroom.office = office
         classroom.save()
