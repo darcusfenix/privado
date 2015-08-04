@@ -22,9 +22,10 @@ function QuestionCreateController($scope, $location, $rootScope, Section, Questi
     editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en', 'toolbar': '<toolbar ref="chemistry"/>'});
     editor.insertInto(document.getElementById('editorContainer'));
 
-    $scope.getFuncion = function () {
-        $('#result').val(editor.getMathML());
-    };
+    $scope.varEditor = undefined;
+    $scope.varEditorMessage = undefined;
+
+    var editorNull = '<math xmlns="http://www.w3.org/1998/Math/MathML"/>';
 
     $(".wrs_linkButton").remove();
     $(".wrs_imageContainer").remove();
@@ -43,31 +44,38 @@ function QuestionCreateController($scope, $location, $rootScope, Section, Questi
 
     $scope.saveQuestion = function (valid, $event) {
         $event.preventDefault();
+        $scope.varEditor = editor.getMathML();
         if (valid) {
-            $scope.questionInstance.section = $scope.varSlc;
-            Upload.upload({
-                url: 'question/save',
-                data: $scope.questionInstance,
-                file: $scope.file,
-                fileFormDataName: 'file'
-            }).progress(function (evt) {
-                console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-            }).success(function (data, status, headers, config) {
-                $location.path("/question/");
-                $rootScope.message = data.message;
-            }).error(function (error) {
-                $scope.messageImage = error.message;
-                if (error.errors) {
-                    $scope.errors = error.errors;
-                    for (var i = 0; i < $scope.errors.length; i++) {
-                        $scope.validator[$scope.errors[i].field] = {
-                            hasError: true,
-                            message: $scope.errors[i].message
+            if ($scope.varEditor != editorNull) {
+                $scope.varEditorMessage = undefined;
+                $scope.questionInstance.text = $scope.varEditor;
+                $scope.questionInstance.section = $scope.varSlc;
+                Upload.upload({
+                    url: 'question/save',
+                    data: $scope.questionInstance,
+                    file: $scope.file,
+                    fileFormDataName: 'file'
+                }).progress(function (evt) {
+                    console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                }).success(function (data, status, headers, config) {
+                    $location.path("/question/");
+                    $rootScope.message = data.message;
+                }).error(function (error) {
+                    $scope.messageImage = error.message;
+                    if (error.errors) {
+                        $scope.errors = error.errors;
+                        for (var i = 0; i < $scope.errors.length; i++) {
+                            $scope.validator[$scope.errors[i].field] = {
+                                hasError: true,
+                                message: $scope.errors[i].message
+                            }
                         }
                     }
-                }
-            });
-            return true;
+                });
+                return true;
+            } else {
+                $scope.varEditorMessage = "El campo pregunta es obligatorio para realizar el registro";
+            }
         } else {
             return false;
         }
@@ -80,22 +88,33 @@ function QuestionEditController($scope, $location, $routeParams, $rootScope, Sec
     $rootScope.location = $location.path();
     $scope.validator = {};
 
+
+    $scope.varEditor = undefined;
+    $scope.varEditorMessage = undefined;
+    var editorNull = '<math xmlns="http://www.w3.org/1998/Math/MathML"/>';
+
+    var dirtyForm = null;
     var editor;
     editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en', 'toolbar': '<toolbar ref="chemistry"/>'});
     editor.insertInto(document.getElementById('editorContainer'));
 
-    $scope.getFuncion = function () {
-        $('#result').val(editor.getMathML());
-    };
-
     $(".wrs_linkButton").remove();
     $(".wrs_imageContainer").remove();
+
+    setInterval(function () {
+        if ($scope.varEditor != editor.getMathML() && dirtyForm == null) {
+            $scope.updateQuestion.$dirty = true;
+            dirtyForm = true;
+            $scope.$apply();
+        }
+    }, 1000);
 
     $scope.sectionList = Section.query(function (data) {
         $scope.questionInstance = Question.get({id: $routeParams.id}, function (data) {
             $scope.questionInstance = data;
             $scope.varSlc = data.section.id;
-            //$("#fileImage").attr("value","data.urlImg");
+            $scope.varEditor = data.text;
+            editor.setMathML(data.text);
         }, function (err) {
             $location.path('/');
         });
@@ -103,32 +122,39 @@ function QuestionEditController($scope, $location, $routeParams, $rootScope, Sec
 
     $scope.editQuestion = function editQuestion(valid, $event) {
         $event.preventDefault();
+        $scope.varEditor = editor.getMathML();
         if (valid) {
-            var f = $scope.file
-            $scope.questionInstance.section = $scope.varSlc;
-            Upload.upload({
-                url: 'question/update',
-                data: $scope.questionInstance,
-                file: $scope.file,
-                fileFormDataName: 'file'
-            }).progress(function (evt) {
-                console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-            }).success(function (data, status, headers, config) {
-                $location.path("/question/");
-                $rootScope.message = data.message;
-            }).error(function (error) {
-                $scope.messageImage = error.message;
-                if (error.errors) {
-                    $scope.errors = error.errors;
-                    for (var i = 0; i < $scope.errors.length; i++) {
-                        $scope.validator[$scope.errors[i].field] = {
-                            hasError: true,
-                            message: $scope.errors[i].message
+            if ($scope.varEditor != editorNull) {
+                $scope.varEditorMessage = undefined;
+                $scope.questionInstance.text = $scope.varEditor;
+                var f = $scope.file;
+                $scope.questionInstance.section = $scope.varSlc;
+                Upload.upload({
+                    url: 'question/update',
+                    data: $scope.questionInstance,
+                    file: $scope.file,
+                    fileFormDataName: 'file'
+                }).progress(function (evt) {
+                    console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                }).success(function (data, status, headers, config) {
+                    $location.path("/question/");
+                    $rootScope.message = data.message;
+                }).error(function (error) {
+                    $scope.messageImage = error.message;
+                    if (error.errors) {
+                        $scope.errors = error.errors;
+                        for (var i = 0; i < $scope.errors.length; i++) {
+                            $scope.validator[$scope.errors[i].field] = {
+                                hasError: true,
+                                message: $scope.errors[i].message
+                            }
                         }
                     }
-                }
-            });
-            return true;
+                });
+                return true;
+            } else {
+                $scope.varEditorMessage = "El campo pregunta es obligatorio para realizar el registro";
+            }
         } else {
             return false;
         }

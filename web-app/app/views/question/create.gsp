@@ -6,7 +6,7 @@
 --%>
 
 <div class="row">
-    <div class="col-md-10 col-md-offset-1 ">
+    <div class="col-md-12 col-md-offset-0 ">
         <div class="alert alert-warning  margin-bottom-10" ng-show="sectionList.length === 0">
             <strong>No hay secciones registradas, para poder crear preguntas debe existir al menos una sección</strong>
         </div>
@@ -65,33 +65,33 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div style="height:300px" class="col-md-10 col-md-offset-1" id="editorContainer"></div>
-                        </div>
+                        <!--<div class="form-group">
+                            <div style="height:300px" ng-model="questionInstance.text" class="col-md-10 col-md-offset-1"
+                                 id="editorContainer"></div>
+                        </div>-->
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <input type="button" value="Obtener función" ng-click="getFuncion()"
                                    class="btn btn-info col-md-2">
                         </input>
                             <textarea class="form-control col-md-10" dir="ltr" id="result" rows="5"
                                       spellcheck="false"></textarea>
-                        </div>
+                        </div>-->
 
                         <div class="form-group"
-                             ng-class="{'has-error': createQuestion.text.$error.required || validator.text.hasError}">
+                             ng-class="{'has-error': varEditorMessage != undefined}">
                             <label class="control-label col-md-3">Pregunta: <span class="required">
                                 *</span>
                             </label>
 
                             <div class="col-md-9">
-                                <div class="left">
-                                    <textarea ng-model="questionInstance.text" class="form-control"
-                                              name="text"
-                                              required></textarea>
-                                </div>
-                                <span class="help-block"
-                                      ng-show="createQuestion.text.$error.required || validator.text.hasError">
-                                    {{validator.text.message}}
+
+                                <div style="height:300px"
+                                     id="editorContainer"></div>
+
+                                <span class="text-danger"
+                                      ng-show="varEditorMessage">
+                                    {{varEditorMessage}}
                                 </span>
                             </div>
                         </div>
@@ -102,8 +102,7 @@
 
                         <div class="form-group"
                              ng-class="{'text-info': file == null}">
-                            <label class="control-label col-md-3">Imagen: <span class="required">
-                                *</span>
+                            <label class="control-label col-md-3">Imagen:
                             </label>
 
                             <div class="col-md-9">
