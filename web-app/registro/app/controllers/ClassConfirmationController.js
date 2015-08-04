@@ -10,9 +10,11 @@ angular.module('Registro').controller('ClassConfirmationController', ['$scope', 
             params: { token: $routeParams.token }
         }).success(function (data) {
             $scope.sucessMessage = data.message;
+            $scope.mailMessage = data.message;
         }).error(function (data) {
             console.log(data);
             $scope.message = data.message;
+            $scope.mailMessage = data.mailMessage;
             alert(data.message);
         });
     };

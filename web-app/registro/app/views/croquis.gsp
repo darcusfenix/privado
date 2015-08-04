@@ -27,7 +27,7 @@
     <section class="page-section">
         <div class="container relative">
 
-            <div class="row">
+            <div class="row" ng-hide="mailMessage">
                 <!-- Text -->
                 <div class="blog-item-body">
 
@@ -92,6 +92,10 @@
                     Da clic en el bot&oacute;n de <strong>Finalizar</strong> para enviarte la informaci&oacute;n por correo
                 </p>
                 <a href="#" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul" ng-click="sendSketchInformation($event)">Finalizar</a>
+            </div>
+
+            <div class="row" ng-show="mailMessage">
+                <h1 style="color:#000000;">{{mailMessage}}</h1>
             </div>
         </div>
     </section>
