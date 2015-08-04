@@ -33,12 +33,14 @@
     <script src="js/selectFx.js"></script>
     <script src="js/fullscreenForm.js"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'angular.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'angular-locale_es-mx.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'angular-route.min.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'angular-resource.min.js')}"></script>
     <script src="app/Registro.js"></script>
     <script src="app/controllers/RegistroController.js"></script>
     <script src="app/controllers/CorreoController.js"></script>
     <script src="app/controllers/ActivationController.js"></script>
+    <script src="app/controllers/ClassConfirmationController.js"></script>
 </head>
 
 <body ng-app="Registro">
