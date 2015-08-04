@@ -51,7 +51,7 @@
                             <div class="col-md-9">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <select  ng-options=" question.id as question.text for question in questionBySectionList"
+                                    <select  ng-options=" question.id as question.number for question in questionBySectionList"
                                              ng-model="answerInstance.question.id"
                                              name="answerInstance.question" required  class="form-control">
                                             <option value="">Seleccione una opción</option>

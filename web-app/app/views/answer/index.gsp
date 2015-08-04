@@ -70,7 +70,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="answer in answerList  | filter:filtro ">
+                        <tr ng-repeat="answer in answerList  | filter:filtro " end-repeat-answer-list>
                             <td class="text-center">
                                 <a href="#/answer/show/{{answer.id}}">{{$index + 1}} </a>
                             </td>
@@ -99,8 +99,7 @@
                                 <a href="#/answer/show/{{answer.id}}">
                                     <img src="{{answer.image}}" ng-show="answer.typeAnswer === 1">
                                     <span  ng-show="answer.typeAnswer === 2 || answer.typeAnswer === 3"
-                                           id="html-{{answer.id}}" ng-bind-html="answer.textAnswer">
-
+                                           class="html" >
                                     </span>
                                 </a>
                             </td>
@@ -117,3 +116,4 @@
         </div>
     </div>
 </div>
+
