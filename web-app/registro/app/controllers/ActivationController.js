@@ -3,11 +3,20 @@
  */
 angular.module('Registro').controller('ActivationController', ['$scope', '$http','$location','$routeParams','$rootScope', function ($scope, $http, $location,$routeParams,$rootScope) {
     $rootScope.token = $routeParams.token || "";
+    $scope.token = $routeParams.token;
     //
+    console.log($routeParams.token);
+
+    $scope.enrollmentInformation = {};
+
+    $scope.classConfirmation = function classConfirmation(){
+
+    };
+    // Validating the user
     $http({
-        method: 'POST',
-        url: '/ControlEscuela/user/activate',
-        data: { token: $routeParams.token }
+        method: 'GET',
+        url: '/ControlEscuela/user/activate/',
+        params: { token: $routeParams.token }
     }).success(function (data) {
         console.log(data);
         $scope.enrollmentInformation = data;
@@ -16,11 +25,5 @@ angular.module('Registro').controller('ActivationController', ['$scope', '$http'
         $scope.message = data.message;
         alert(data.message);
     });
-
-    $scope.enrollmentInformation = {};
-
-    $scope.classConfirmation = function classConfirmation(){
-
-    };
 
 }]);
