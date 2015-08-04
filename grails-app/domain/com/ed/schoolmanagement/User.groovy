@@ -1,6 +1,5 @@
 package com.ed.schoolmanagement
 
-import com.ed.classroomcourse.Classroom
 import com.ed.inductionClass.InductionClass
 import com.ed.service.UserClassroom
 
@@ -15,7 +14,11 @@ class User {
     String mobileNumber
     String email
     String socialNetworkUrl
+    String comment
     boolean previousStudent
+    boolean active = false
+    String activationToken
+    Date activationDate
     // Address
     String state
     String city
@@ -23,6 +26,7 @@ class User {
     String zipCode
     String street
     String streetNumber
+    String internalNumber
 
     InductionClass inductionClass
 
@@ -60,6 +64,7 @@ class User {
         street nullable: false;
         blank: false
         streetNumber nullable: false;
+        internalNumber nullable: true, blank:true
         blank: false
         city nullable: false;
         blank: false
@@ -67,6 +72,10 @@ class User {
         blank: false
         state nullable: true, blank: true
         previousStudent nullable: true, blank: true
+        comment nullable:true, blank: true
+        activationToken nullable:true, blank: true
+        activationDate nullable: true, blank: true
+        inductionClass nullable: true, blank: true
     }
     static mapping = {
         version false
@@ -74,8 +83,16 @@ class User {
         email unique: true
     }
 
-    def getGroup(Long id) {
-        UserClassroom uc = UserClassroom.findByUser(User.findById(id))
+    String getFullName(){
+        return this.name + " " +this.lastName
+    }
+
+    def beforeInsert() {
+        this.activationToken = "${this.email}|${this.username}|${this.fullName}".encodeAsMD5().substring(0, 20)
+    }
+
+    def getGroup() {
+        UserClassroom uc = UserClassroom.findByUser(this)
         if (uc != null) {
             uc.getClassroom()
         }else{

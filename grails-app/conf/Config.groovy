@@ -115,5 +115,12 @@ log4j.main = {
             'org.hibernate',
             'net.sf.ehcache.hibernate'
 }
+sendgrid {
+    username = 'de_preparacion_ipn'
+    password = 'n0m3l0s3'
+}
 
-
+files.htmlMailContent ='files/MailContent.html'
+files.nextDayMailContent = 'files/nextDayMailContent.html'
+files.pdfFile = 'files/Preparacion_Croquis.pdf'
+files.sketchMail = 'files/SketchMail.html'

@@ -53,9 +53,14 @@ function UserShowController($scope, $location, $routeParams, $rootScope, User) {
         $location.path('/user/edit/' + $routeParams.id);
     };
     $scope.deleteUser = function deleteUser() {
-        $scope.userInstance.$delete({id: $routeParams.id}, function deletedResource(data) {
+        $scope.userInstance.$delete({
+            id: $routeParams.id
+        }, function deletedResource(data) {
             $rootScope.message = data.message;
             $location.path('/user/');
+        }, function (error){
+            $rootScope.message = error.data.message;
+            alert(error.data.message);
         });
     };
 };
@@ -86,7 +91,6 @@ function UserCreateController($scope, $location, $rootScope, User, Role, Classro
                             message: $scope.errors[i].message
                         }
                     }
-                    console.log($scope.validator);
                 });
             return false;
         } else {

@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Texto del correo</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+</head>
+<body style="background-color: #ffffff; max-width: 900.4pt; padding: 72pt 72pt 72pt 72pt;">
+<div style="border: thin solid #000; padding: 20px 20px 20px 20px;">
+    <br>
+    <p style = "margin: 0; color: #000000; font-size: 11pt; font-family: 'Arial';" >
+        <span style="background-color: #ffffff; font-family: 'Calibri'; color: #444444; font-size: 12pt" ><b><% print userFullName %></b></span>
+    </p>
+    <p>
+                <span style="background-color: #ffffff; font-family: 'Calibri'; color: #444444; font-size: 12pt" >
+                    Estás a un sólo paso de quedar inscrito en el grupo <b style="color:#01579B; font-size: 16pt;"><% print assignedGroup %></b> del curso especial de <b>Preparación IPN</b> segunda vuelta.
+                </span>
+    </p>
+    <p>
+                <span style="background-color: #ffffff; font-family: 'Calibri'; color: #444444; font-size: 12pt" >
+                    <b>Hoy</b> <b style="color:#ac193d; font-size: 16pt;"><% print inductionDate %></b> <b>se llevará a cabo la primera clase del
+                    curso.</b> Conocerás a tu maestro, las instalaciones, los temas que preguntaron en el examen de la
+                    primera vuelta y nuestro método de trabajo.
+                </span>
+    </p>
+    <p>
+                <span style="background-color: #ffffff; font-family: 'Calibri'; color: #444444; font-size: 12pt">
+                    Recuerda que el costo total del curso es de <b style="color:#4CAF50; font-size: 16pt;">$<% print price %></b>, el cual incluye las clases presenciales, acceso a los videos del curso en línea y los exámenes simulacro.
+                </span>
+    </p>
+
+    <p style="background-color: #ffffff; font-family: 'Calibri'; color: #444444; font-size: 12pt">
+    <h2 style="color:#01579B;">¿Qué sigue?</h2>
+    </p>
+    <p>
+        Dále click al siguiente link para confirmar tu asistencia a la primera clase del curso.
+    <p>
+        <a href="<% print enrollmentUrl %>"> <% print enrollmentUrl %></a>
+    </p>
+    </p>
+    <p>
+                <span style="background-color: #ffffff; font-family: 'Calibri'; color: #444444; font-size: 12pt">
+                    Aquí también te diremos en qué horario puedes acudir hoy y te enviaremos un croquis con la dirección
+                    exacta para que sepas llegar a nuestras instalaciones ubicadas en Zacatenco, D.F.
+                </span>
+    </p>
+    <p>
+                <span style="background-color: #ffffff; font-family: 'Calibri'; color: #d349ed; font-size: 12pt">
+                    ¡Te esperamos!
+                </span>
+    </p>
+    <p>
+                <span style="background-color: #ffffff; font-family: 'Calibri'; color: #d349ed; font-size: 12pt">
+                    Preparacion IPN
+                </span>
+    </p>
+</div>
+</body>
+</html>

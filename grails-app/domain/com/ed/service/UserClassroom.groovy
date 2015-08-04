@@ -7,7 +7,7 @@ class UserClassroom implements Serializable {
 
     User user
     Classroom classroom
-
+    boolean activated = false
     static constraints = {
     }
 
@@ -15,5 +15,11 @@ class UserClassroom implements Serializable {
         table 't_user_classroom_tab'
         id composite: ['user', 'classroom']
         version false
+    }
+
+    def beforeUpdate(){
+        if(activated){
+            classroom.places --
+        }
     }
 }
