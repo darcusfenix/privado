@@ -28,6 +28,8 @@ class QuestionController {
 
     //@Transactional
     def save() {
+        def webRootDir = servletContext.getRealPath("/")
+        System.out.println(webRootDir.toString());
         def questionInstance = new Question()
         JSONObject jQuestion = new JSONObject(request.getParameter('data'))
         CommonsMultipartFile f = request.getFile('file')
@@ -40,12 +42,12 @@ class QuestionController {
                 }
 
                 //def dir = System.getenv("HOME") + "/Desktop/" + questionInstance.section.id + "/"
-                def dir = "/usr/local/tomcat/webapps/ControlEscuela/imgFiles/" + questionInstance.section.id + "/"
+                def dir = webRootDir + "imgFiles/question-" + questionInstance.section.id + "/"
                 File folder = new File(dir)
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
                 f.transferTo(new File(dir))
-                dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
+                dir = "imgFiles/question-" + questionInstance.section.id + "/" + f.getOriginalFilename()
                 questionInstance.urlImage = dir
             }
             questionInstance.save(flush: true)
@@ -64,6 +66,7 @@ class QuestionController {
 
     //@Transactional
     def update() {
+        def webRootDir = servletContext.getRealPath("/")
         JSONObject jQuestion = new JSONObject(request.getParameter('data'))
         Question questionInstance = Question.findById(jQuestion.id)
         String tempQI = questionInstance.urlImage
@@ -76,10 +79,10 @@ class QuestionController {
                     render([message: "Error al cargar la imagen"] as JSON)
                 }
 
-                File folder = new File("web-app/" + tempQI)
+                File folder = new File(webRootDir + tempQI)
                 print(folder)
                 folder.delete()
-                def dir = "/usr/local/tomcat/webapps/ControlEscuela/imgFiles/" + questionInstance.section.id + "/"
+                def dir = webRootDir + "imgFiles/" + questionInstance.section.id + "/"
                 folder = new File(dir)
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
@@ -117,7 +120,7 @@ class QuestionController {
         render Question.findAllBySection(Section.findById(id)) as JSON;
     }
 
-    def getBySection(Integer id){
-        render( Question.findAllBySection(Section.findById(id ?: params.int("id"))) as JSON)
+    def getBySection(Integer id) {
+        render(Question.findAllBySection(Section.findById(id ?: params.int("id"))) as JSON)
     }
 }
