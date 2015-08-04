@@ -129,15 +129,6 @@ class UserController {
         }
     }
 
-    def sketchMail() {
-
-        ServletContext servletContext = getServletContext();
-        String contextPath = servletContext.getRealPath(File.separator);
-
-        notificationService.sendSketchMail(params.token, contextPath, ["classRoomName": ""])
-        render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
-    }
-
     def activate() {
         User user = User.findByActivationToken(params.token)
         def status = enrollmentService.validateAccount(params.token)
@@ -154,5 +145,26 @@ class UserController {
             render([message: message(code: 'de.enrollment.couldNotValidate')] as JSON)
             return
         }
+    }
+
+    def generateAppointment(){
+        User user = User.findByActivationToken(params.token)
+        user.inductionClass = null;
+        user.save(flush: true)
+        Appointment appointment = new Appointment()
+        appointment.user = user
+        appointment.appointmentDate = params.date('appointmentDate',"yyyy-MM-dd'T'hh:mm:ss'Z'")
+        appointment.save(flush:true)
+        render([message: "Se te ha asignado una nueva fecha para tu clase de inducción ¡Chécala!"] as JSON)
+        return
+    }
+
+    def sketchMail() {
+
+        ServletContext servletContext = getServletContext();
+        String contextPath = servletContext.getRealPath(File.separator);
+
+        notificationService.sendSketchMail(params.token, contextPath, ["classRoomName": ""])
+        render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
     }
 }
