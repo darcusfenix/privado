@@ -372,7 +372,7 @@ class BootStrap {
         structureSection.section = section;
         structureSection.save()
 
-        Question question = new Question()
+       /* Question question = new Question()
         question.urlImage = ""
         question.number = "1.1"
         question.section = section
@@ -384,7 +384,7 @@ class BootStrap {
         anotherquestion.number = 1
         anotherquestion.section = section
         anotherquestion.text = "soy la segunda pregunta"
-        anotherquestion.save()
+        anotherquestion.save()*/
 
 
         /*

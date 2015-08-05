@@ -16,6 +16,7 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
                 $scope.error = true;
                 $location.path("/correo/");
             });
+
     };
 
 

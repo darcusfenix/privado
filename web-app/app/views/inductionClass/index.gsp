@@ -32,7 +32,7 @@
                 <!--<img alt="" src="../../assets/admin/pages/media/profile/photo1.jpg">-->
                 <h4>{{inductionClass.name}}</h4>
 
-                <p>Fecha: {{inductionClass.date | date:'yyyy-MM-dd'}}</p>
+                <p>Fecha: {{inductionClass.date | date:'MM/dd/yyyy'}}</p>
 
                 <p>Hora: {{inductionClass.date | date:'h:mm a'}}</p>
 

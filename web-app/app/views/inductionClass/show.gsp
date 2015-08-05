@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-4">Capacidad de la clase de inducción:
                     </label>
-                    <b>{{inductionClassInstance.places}}</b>
+                    <b>{{inductionClassInstance.places+inductionClassInstance.students.length}}</b>
                 </div>
 
                 <div class="form-group">
@@ -48,6 +48,7 @@
                     </label>
                     <b><span ng-class="inductionClassInstance.nameStateClassroom != 'Cerrado' ? 'text-success' : 'text-danger'">{{inductionClassInstance.nameStateClassroom}}</span></b>
                 </div>
+
 
                 <div class="form-group">
                 <label class="control-label col-md-3">Fecha:
@@ -63,7 +64,7 @@
                  <div class="form-group" id="pulsate-regular" style="padding:5px;">
                     <label class="control-label col-md-3">Lugares disponibles:
                     </label>
-                        <b>{{inductionClassInstance.places-inductionClassInstance.placesOccupied}}</b>
+                        <b>{{inductionClassInstance.places}}</b>
                  </div>
                  <div class="form-group text-center" ng-show="inductionClassInstance.placesOccupied > 0">
                     <button class="btn btn-info" data-toggle="modal" href="#model-user">Consultar Alumnos</button>
