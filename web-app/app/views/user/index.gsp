@@ -21,7 +21,10 @@
                             Apellido
                         </th>
                         <th>
-                            Username
+                            Nombre en facebook
+                        </th>
+                        <th>
+
                         </th>
                         <th>
                             Teléfono
@@ -35,7 +38,10 @@
                             <input type="text" ng-model="filtro.lastName" placeholder="Filtrar por Apellido">
                         </th>
                         <th>
-                            <input type="text" ng-model="filtro.username" placeholder="Filtrar por nombre de suario">
+                            <input type="text" ng-model="filtro.username" placeholder="Filtrar por nombre de usuario">
+                        </th>
+                        <th>
+                            <input type="text" ng-model="filtro.username"  placeholder="Filtrar por Grupo">
                         </th>
                         <th>
                             <input type="text" ng-model="filtro.phoneNumber" placeholder="Filtrar por teléfono">
@@ -46,6 +52,7 @@
                         <tr ng-repeat="user in userList|filter:filtro">
                             <td><a href="#/user/show/{{user.id}}">{{user.name}}</a></td>
                             <td><a href="#/user/show/{{user.id}}">{{user.lastName}}</a></td>
+                            <td><a href="#/user/show/{{user.id}}">{{user.username}}</a></td>
                             <td><a href="#/user/show/{{user.id}}">{{user.username}}</a></td>
                             <td><a href="#/user/show/{{user.id}}">{{user.phoneNumber}}</a></td>
                         </tr>
