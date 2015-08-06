@@ -1,3 +1,13 @@
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-responsive.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/vertical-rhythm.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+</head>
+
 <div class="page" id="top">
 
     <!-- Head Section -->
@@ -10,7 +20,7 @@
                     <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">Preparaci&oacute;n IPN</h1>
 
                     <div class="hs-line-4 font-alt ">
-                        Registro para examen de 2da ronda.
+                        Registro curso segunda vuelta
                     </div>
                 </div>
 
@@ -18,9 +28,6 @@
 
         </div>
     </section>
-
-
-
 
 
     <!-- Section -->
@@ -40,14 +47,14 @@
                             El equipo de Preparación IPN te envía un cordial saludo  !
                         </p>
 
+
                         <p class="Bblanco">
-                        Te recordamos que tu clase de inducción es el <strong>{{enrollmentInformation.date|date:'fullDate'}} a las {{enrollmentInformation.date|date:'shortTime'}};</strong> esta durará 1 hora y media. Pedimos puntualidad, procura llegar con anticipación. Explicaremos temas importantes para ingresar al IPN y haremos un examen diagnóstico.
 
-                        Te recordamos que en clase deberás liquidar el costo total del curso (Restando $1,500).
+                            Tu cita es el <strong>{{enrollmentInformation.date|date:'fullDate'}} a las {{enrollmentInformation.date|date:'hh:mm a'}}</strong>  Pedimos <strong>puntualidad</strong>, procura llegar con anticipación. Explicaremos temas importantes para ingresar al IPN.
 
-                        Tu asistencia a esta clase es el último paso para tu inscripción definitiva.
+                        Te recordamos que en esta cita deberás liquidar el costo total del curso ($1,500).
 
-                        Deseándote mucho éxito.
+                        Tu asistencia es el último paso para tu inscripción definitiva.
                         </p>
                     </div>
                 </div>
@@ -76,10 +83,10 @@
 
                             <div class="col-md-7 col-lg-offset-1">
                                 <div class="work-full-media mt-0 white-shadow">
-                                    <ul class="clearlist work-full-slider owl-carousel">
+                                    <ul class="clearlist work-full-slider">
                                         <li>
-                                            <a href="images/maps.png" class="lightbox-gallery-2 mfp-image"><img
-                                                    src="images/maps.png" alt=""></a>
+                                            <a href="img/maps.png" class="lightbox-gallery-2 mfp-image"><img
+                                                    src="img/maps.png" alt=""></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -91,7 +98,8 @@
                 <p>
                     Da clic en el bot&oacute;n de <strong>Finalizar</strong> para enviarte la informaci&oacute;n por correo
                 </p>
-                <a href="#" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul" ng-click="sendSketchInformation($event)">Finalizar</a>
+                <a href="#" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul"
+                   ng-click="sendSketchInformation($event)">Finalizar</a>
             </div>
 
             <div class="row" ng-show="mailMessage">

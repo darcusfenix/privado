@@ -58,7 +58,7 @@ class User {
         phoneNumber nullable: false, maxSize: 20
         mobileNumber nullable: true, maxSize: 20
         email nullable: false, blank: false, unique: true, email: true
-        socialNetworkUrl nullable: true, blank: true, url: true
+        socialNetworkUrl nullable: true, blank: true
         // Address
         zipCode nullable: false; blank: false
         street nullable: false;

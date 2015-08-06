@@ -20,6 +20,7 @@ angular.module('Registro').controller('ActivationController', ['$scope', '$http'
     }).success(function (data) {
         console.log(data);
         $scope.enrollmentInformation = data;
+        $("#content").removeClass("ocultar");
     }).error(function (data) {
         console.log(data);
         $scope.message = data.message;

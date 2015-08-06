@@ -1,3 +1,13 @@
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-responsive.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/vertical-rhythm.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+</head>
+
 <section class="small-section bg-gray-lighter">
     <div class="relative container align-left">
 
@@ -7,7 +17,7 @@
                 <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">Preparación IPN</h1>
 
                 <div class="hs-line-4 font-alt ">
-                    Registro para examen de 2da ronda.
+                    Registro curso segunda vuelta
                 </div>
             </div>
         </div>
@@ -25,27 +35,16 @@
 
                 <div class="lead">
                     <p>
-                        La cita para tu clase de inducción para el <strong>{{enrollmentInformation.group}}</strong> es el d&iacute;a <strong>{{enrollmentInformation.date |date:'fullDate'}}</strong> a las <strong>{{enrollmentInformation.date |date:'shortTime' }}</strong> en las instalaciones ubicadas cerca del metro Polit&eacute;cnico
+                        Tu cita es el <strong>{{enrollmentInformation.date |date:'fullDate'}}</strong> a las <strong>{{enrollmentInformation.date |date:'hh:mm a' }}</strong> en las instalaciones ubicadas cerca del metro Polit&eacute;cnico. Este d&iacute;a tendr&aacute;s que <strong>liquidar</strong> el costo total del curso, el cual es de <strong>$1,500</strong>. Tu asistencia es fundamental.
                     </p>
                 </div>
 
-                <p>
-                    Ser&aacute; tu primer clase y es importante que asistas debido a que:
-                <ul>
-                    <li>Conoceras las instalaciones</li>
-                    <li>Conoceras a tu profesor</li>
-                    <li>Se te agregara al curso en linea</li>
-                </ul>
-            </p>
-                <p>
-                    Recuerda que este d&iacute;a tendras que <strong>liquidar el costo total del curso</strong>.
-                </p>
             </div>
             <!-- End Text -->
         </div>
 
         <div class="row">
-            <h1 class="mt310 azulF font-alt text-center">&#191;Puedes asistir a tu cita de inscripci&oacute;n?</h1>
+            <h1 class="mt310 azul font-alt text-center">Preparación IPN necesita confirmar tu asistencia.</h1>
 
             <div class="align-center mt50 mb-40 mb-xxs-30">
                 <ul class="nav nav-tabs tpl-minimal-tabs">
@@ -53,14 +52,14 @@
                     <li class="active">
                         <div class="mb-10">
                             <a href="#/classConfirmation/{{token}}"
-                               class="btn btn-mod Bverde btn-circle  btn-large">SI puedo asistir</a>
+                               class="btn btn-mod Bverde btn-circle  btn-large">Sí, asistiré</a>
                         </div>
                     </li>
 
                     <li class="active blanco Bguinda">
                         <div class="mb-10">
                             <a href="#/cantAssistOptions/{{token}}"
-                               class="btn btn-mod Brojo btn-circle  btn-large">NO puedo asistir</a>
+                               class="btn btn-mod Brojo btn-circle  btn-large">NO puedo asistir porque...</a>
                         </div>
                     </li>
 

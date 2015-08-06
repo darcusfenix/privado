@@ -26,6 +26,8 @@ angular.module('Registro').controller('ClassConfirmationController', ['$scope', 
     }).success(function (data) {
         console.log(data);
         $scope.enrollmentInformation = data;
+        $("#content").removeClass("ocultar");
+        init_lightbox();
     }).error(function (data) {
         console.log(data);
         $scope.message = data.message;

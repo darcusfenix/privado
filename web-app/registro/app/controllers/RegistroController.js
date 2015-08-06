@@ -7,6 +7,7 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
     $scope.error = false;
     $scope.groups = [];
     $scope.registrar = function Registrar() {
+        $scope.userInstance.state = $(".cs-placeholder").text();
         //TODO Change it!
         $http.post('/ControlEscuela/user/enroll',
             $scope.userInstance
@@ -16,7 +17,6 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
                 $scope.error = true;
                 $location.path("/correo/");
             });
-
     };
 
 
@@ -51,9 +51,12 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
         console.log($scope.groups);
         console.log(currentDate);
         console.log(currentDate.getDate());
+        $("#content").removeClass("ocultar");
+        $("#content").addClass("container");
     }).error(function (data) {
         console.log(data);
         $scope.message = data.message;
         alert(data.message);
     });
+
 }]);

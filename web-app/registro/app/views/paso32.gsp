@@ -7,7 +7,7 @@
                 <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">Preparaci&oacute;n IPN</h1>
 
                 <div class="hs-line-4 font-alt ">
-                    Registro para examen de 2da ronda.
+                    Registro curso segunda vuelta
                 </div>
             </div>
         </div>

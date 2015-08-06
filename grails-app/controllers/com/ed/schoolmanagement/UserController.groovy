@@ -118,7 +118,7 @@ class UserController {
             def responseMap = [:]
             responseMap.name = user.fullName
             responseMap.group = UserClassroom.findByUserAndActivated(user, true).classroom.nameClassroom
-            responseMap.date = user.inductionClass ? user.inductionClass.date :  Appointment.findByUser(user).appointmentDate
+            responseMap.date = user.inductionClass ? user.inductionClass.date : Appointment.findByUser(user).appointmentDate
             responseMap.message = 'Usuario verificado'
             render(responseMap as JSON)
             return
@@ -147,14 +147,14 @@ class UserController {
         }
     }
 
-    def generateAppointment(){
+    def generateAppointment() {
         User user = User.findByActivationToken(params.token)
         user.inductionClass = null;
         user.save(flush: true)
         Appointment appointment = new Appointment()
         appointment.user = user
-        appointment.appointmentDate = params.date('appointmentDate',"yyyy-MM-dd'T'hh:mm:ss'Z'")
-        appointment.save(flush:true)
+        appointment.appointmentDate = params.date('appointmentDate', "yyyy-MM-dd'T'hh:mm:ss'Z'")
+        appointment.save(flush: true)
         render([message: "Se te ha asignado una nueva fecha para tu clase de inducción ¡Chécala!"] as JSON)
         return
     }

@@ -9,19 +9,8 @@
           content="Fullscreen Form Interface: A distraction-free form concept with fancy animations"/>
     <meta name="keywords" content="Curso de nivel superior, "/>
     <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style-responsive.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/vertical-rhythm.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
-    <link rel="stylesheet" type="text/css" href="css/component.css"/>
-    <link rel="stylesheet" type="text/css" href="css/cs-select.css"/>
-    <link rel="stylesheet" type="text/css" href="css/cs-skin-boxes.css"/>
-    <script type="text/javascript" src="${resource(dir: 'registro/js', file: 'jquery-1.11.1.min.js')}"></script>
+    <link rel="stylesheet" href="css/general.css">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
     <script src="./js/modales.js"></script>
     <!-- Requerimientos para modal-->
@@ -37,15 +26,38 @@
     <script type="text/javascript" src="${resource(dir: 'js', file: 'angular-route.min.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'angular-resource.min.js')}"></script>
     <script src="app/Registro.js"></script>
-    <script src="app/controllers/RegistroController.js"></script>
     <script src="app/controllers/CorreoController.js"></script>
     <script src="app/controllers/ActivationController.js"></script>
     <script src="app/controllers/ClassConfirmationController.js"></script>
     <script src="app/controllers/ScheduleIssueController.js"></script>
+    <script src="app/controllers/RegistroController.js"></script>
+
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/SmoothScroll.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
+    <script type="text/javascript" src="js/jquery.viewport.mini.js"></script>
+    <script type="text/javascript" src="js/jquery.countTo.js"></script>
+    <script type="text/javascript" src="js/jquery.appear.js"></script>
+    <script type="text/javascript" src="js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="js/jquery.parallax-1.1.3.js"></script>
+    <script type="text/javascript" src="js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+    <script type="text/javascript" src="js/gmap3.min.js"></script>
+    <script type="text/javascript" src="js/wow.min.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/jquery.simple-text-rotator.min.js"></script>
+    <script type="text/javascript" src="js/contact-form.js"></script>
+    <script type="text/javascript" src="js/all.js"></script>
 </head>
 
 <body ng-app="Registro">
-<div class="container" ng-view="">
+<div id="content" class="ocultar" ng-view="">
 </div><!-- /container -->
 </body>
 </html>
