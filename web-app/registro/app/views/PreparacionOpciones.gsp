@@ -1,3 +1,13 @@
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-responsive.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/vertical-rhythm.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+</head>
+
 <section class="small-section bg-gray-lighter">
     <div class="relative container align-left">
 
@@ -44,14 +54,14 @@
                 <li class="work-item mix design photography">
                     <a href="#/scheduleIssue/{{token}}" class="work-ext-link">
                         <div class="work-img">
-                            <img class="work-img" src="img/student01.jpg" alt="Work"/>
+                            <img class="work-img" src="img/horario2.png" alt="Work"/>
                         </div>
 
                         <div class="work-intro">
-                            <h3 class="work-title">SI cuento con el dinero pero</h3>
+                            <h3 class="work-title">SI puedo liquidar el curso pero</h3>
 
                             <div class="work-descr">
-                                NO puedo asistir al HORARIO de la cita
+                                prefiero otro HORARIO
                             </div>
                         </div>
                     </a>
@@ -62,14 +72,14 @@
                 <li class="work-item mix design">
                     <a href="#/foreignStudent/{{token}}" class="work-ext-link">
                         <div class="work-img">
-                            <img class="work-img" src="img/student02.jpg" alt="Work"/>
+                            <img class="work-img" src="img/provincia1.png" alt="Work"/>
                         </div>
 
                         <div class="work-intro">
-                            <h3 class="work-title">SI cuento con el dinero pero</h3>
+                            <h3 class="work-title">SI puedo liquidar el curso pero</h3>
 
                             <div class="work-descr">
-                                NO puedo asistir porque vivo en PROVINCIA
+                                vivo en PROVINCIA
                             </div>
                         </div>
                     </a>
@@ -80,7 +90,7 @@
                 <li class="work-item mix design branding">
                     <a href="#/cantPay/{{token}}">
                         <div class="work-img">
-                            <img src="img/student03.jpg" alt="Work"/>
+                            <img src="img/dinero1.png" alt="Work"/>
                         </div>
 
                         <div class="work-intro">

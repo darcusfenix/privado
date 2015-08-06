@@ -1,3 +1,13 @@
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-responsive.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/vertical-rhythm.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+</head>
+
 <section class="small-section bg-gray-lighter">
     <div class="relative container align-left">
 
@@ -35,6 +45,7 @@
                             <form method="post" action="#" id="form-1" role="form" class="form">
                                 <div class="mb-20 mb-md-10">
                                     <select class="input-md form-control" ng-model="appointmentDateSelect">
+                                        <option value="-1">Seleccione</option>
                                         <option value="10:00">10:00 hrs.</option>
                                         <option value="10:30">10:30 hrs.</option>
                                         <option value="11:00">11:00 hrs.</option>

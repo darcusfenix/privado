@@ -2,6 +2,7 @@
  * Created by alberto on 24/07/15.
  */
 angular.module('Registro').controller('RegistroController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+    $("#content").addClass("container");
     $scope.userInstance = {};
     $scope.message = "";
     $scope.error = false;
@@ -52,7 +53,6 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
         console.log(currentDate);
         console.log(currentDate.getDate());
         $("#content").removeClass("ocultar");
-        $("#content").addClass("container");
     }).error(function (data) {
         console.log(data);
         $scope.message = data.message;
