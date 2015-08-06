@@ -224,7 +224,7 @@
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/countdown', file: 'jquery.countdown.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/backstretch', file: 'jquery.backstretch.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/dropzone', file: 'dropzone.js')}"></script>
-<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/MathJax', file: 'MathJax.js?config=MML_HTMLorMML.js')}"></script>
+<!--<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/MathJax', file: 'MathJax.js?config=MML_HTMLorMML.js')}"></script>-->
 <!-- FIN DE TODOS LOS RECURSOS JS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
 <!--  -->
@@ -253,7 +253,7 @@
         Layout.init(); // init current layout
         Demo.init(); // init demo features
 
-
+        /*
         $.backstretch([
             "${resource(dir: 'assets/admin/pages', file: '1.jpg')}",
             "${resource(dir: 'assets/admin/pages', file: '2.jpg')}",
@@ -263,6 +263,7 @@
             fade: 1000,
             duration: 10000
         });
+        */
     });
 </script>
 <!-- END JAVASCRIPTS -->

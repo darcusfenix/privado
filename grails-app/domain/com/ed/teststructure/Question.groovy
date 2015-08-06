@@ -27,6 +27,7 @@ class Question implements Serializable{
         number column: 'nu_question'
         text column: 'tx_question'
         image column: 'bl_image'
+        text type: 'text'
         version false
     }
 }

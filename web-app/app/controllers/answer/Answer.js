@@ -2,21 +2,21 @@
  * Created by darcusfenix on 30/07/15.
  */
 
-function AnswerListController ($scope, $location, $rootScope, Answer) {
+function AnswerListController($scope, $location, $rootScope, $templateCache, Answer) {
+
 
     $rootScope.location = $location.path();
 
     $scope.answerList = Answer.query(function (data) {
-
         $scope.answerList = data;
-
     }, function (err) {
         $location.path('/');
     });
 
+
 };
 
-function AnswerCreateController ($scope, $location, $rootScope, Answer, Section, Question, Upload) {
+function AnswerCreateController($scope, $location, $rootScope, Answer, Section, Question, Upload) {
     $rootScope.location = $location.path();
     $scope.validator = {};
 
@@ -35,8 +35,8 @@ function AnswerCreateController ($scope, $location, $rootScope, Answer, Section,
     $(".wrs_imageContainer").remove();
 
 
-    $scope.updateQuestions = function(){
-        $scope.questionBySectionList = Question.getBySection({id : $scope.sectionSelected}, function (data) {
+    $scope.updateQuestions = function () {
+        $scope.questionBySectionList = Question.getBySection({id: $scope.sectionSelected}, function (data) {
             $scope.questionBySectionList = data;
         }, function (err) {
             console.log("no hay preguntas para esta sección");
@@ -44,7 +44,7 @@ function AnswerCreateController ($scope, $location, $rootScope, Answer, Section,
     };
 
 
-    $scope.answerInstance = Answer.create(function(data){
+    $scope.answerInstance = Answer.create(function (data) {
         $scope.answerInstance = data;
         $scope.answerInstance.state = false;
 
@@ -55,7 +55,7 @@ function AnswerCreateController ($scope, $location, $rootScope, Answer, Section,
     $scope.saveAnswer = function (valid, $event) {
         $event.preventDefault();
         if (valid) {
-            if($scope.answerInstance.typeAnswer == 3){
+            if ($scope.answerInstance.typeAnswer == 3) {
                 $scope.answerInstance.textAnswer = editor.getMathML();
             }
             Upload.upload({
@@ -89,7 +89,7 @@ function AnswerCreateController ($scope, $location, $rootScope, Answer, Section,
     };
 };
 
-function AnswerEditController ($scope, $location, $rootScope, $routeParams, Answer, Section, Question, Upload) {
+function AnswerEditController($scope, $location, $rootScope, $routeParams, Answer, Section, Question, Upload) {
     $rootScope.location = $location.path();
     $scope.validator = {};
 
@@ -112,18 +112,18 @@ function AnswerEditController ($scope, $location, $rootScope, $routeParams, Answ
 
         $scope.answerInstance = data;
 
-        if($scope.answerInstance.typeAnswer == 3){
+        if ($scope.answerInstance.typeAnswer == 3) {
             editor.setMathML($scope.answerInstance.textAnswer);
         }
 
         console.log($scope.answerInstance);
 
-        $scope.question = Question.get({ id : $scope.answerInstance.question.id }, function(data) {
+        $scope.question = Question.get({id: $scope.answerInstance.question.id}, function (data) {
 
             $scope.question = data;
             console.log($scope.question)
 
-            $scope.questionBySectionList = Question.getBySection({id : $scope.question.section.id}, function (data) {
+            $scope.questionBySectionList = Question.getBySection({id: $scope.question.section.id}, function (data) {
 
                 $scope.questionBySectionList = data;
 
@@ -140,8 +140,8 @@ function AnswerEditController ($scope, $location, $rootScope, $routeParams, Answ
     });
 
 
-    $scope.updateQuestions = function(){
-        $scope.questionBySectionList = Question.getBySection({id : $scope.sectionSelected}, function (data) {
+    $scope.updateQuestions = function () {
+        $scope.questionBySectionList = Question.getBySection({id: $scope.sectionSelected}, function (data) {
             $scope.questionBySectionList = data;
         }, function (err) {
             console.log("no hay preguntas para esta sección");
@@ -149,17 +149,16 @@ function AnswerEditController ($scope, $location, $rootScope, $routeParams, Answ
     };
 
 
-
     $scope.saveAnswer = function (valid, $event) {
         $event.preventDefault();
         if (valid) {
             // si es ecuación
-            if($scope.answerInstance.typeAnswer == 3){
+            if ($scope.answerInstance.typeAnswer == 3) {
                 $scope.answerInstance.textAnswer = editor.getMathML();
                 $scope.answerInstance.image = null;
             }
             // si es imagen
-            if($scope.answerInstance.typeAnswer == 1){
+            if ($scope.answerInstance.typeAnswer == 1) {
                 $scope.answerInstance.textAnswer = null;
             }
 
@@ -177,7 +176,7 @@ function AnswerEditController ($scope, $location, $rootScope, $routeParams, Answ
 
             }).success(function (data, status, headers, config) {
 
-                $location.path("/answer/show/"+ $scope.answerInstance.id);
+                $location.path("/answer/show/" + $scope.answerInstance.id);
                 $rootScope.message = data.message;
 
             }).error(function (error) {
@@ -202,30 +201,49 @@ function AnswerEditController ($scope, $location, $rootScope, $routeParams, Answ
     };
 };
 
-function AnswerShowController ($scope, $location, $rootScope, $routeParams, Answer, Section, Question, Upload) {
+function AnswerShowController($scope, $location, $rootScope, $routeParams, $templateCache, Answer, Question) {
     $rootScope.location = $location.path();
+    /*
+    $rootScope.$on('$viewContentLoaded', function () {
+        $templateCache.removeAll();
+
+    });
+    */
 
 
-    $scope.answerInstance = Answer.get({id: $routeParams.id}, function (data) {
 
-        $scope.answerInstance = data;
+        $scope.answerInstance = Answer.get({id: $routeParams.id}, function (data) {
 
-        $("#html").html(data.textAnswer);
+            document.getElementById('html').innerHTML = data.textAnswer;
+            document.getElementById('text').innerHTML = data.questionName;
 
-        $scope.question = Question.get({ id : $scope.answerInstance.question.id }, function(data) {
+            $scope.answerInstance = data;
 
-            $scope.question = data;
+            $scope.question = Question.get({id: $scope.answerInstance.question.id}, function (data) {
 
-            $scope.section = Section.get({id : $scope.question.section.id}, function (data) {
-                $scope.section = data;
+                $scope.question = data;
+
+                /*
+                 var head = document.getElementsByTagName("head")[0], script;
+                 script = document.createElement("script");
+                 script.type = "text/x-mathjax-config";
+                 script[(window.opera ? "innerHTML" : "text")] =
+                 "MathJax.Hub.Config({\n" +
+                 "  tex2jax: { inlineMath: [['$','$'], ['\\\\(','\\\\)']] }\n" +
+                 "});"
+                 head.appendChild(script);
+                 script = document.createElement("script");
+                 script.type = "text/javascript";
+                 script.src = "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+                 head.appendChild(script);
+                */
 
             });
-
+        }, function (err) {
+            $location.path('/');
         });
 
-    }, function (err) {
-        $location.path('/');
-    });
+
 
     $scope.delete = function () {
         $scope.answerInstance.$delete({id: $routeParams.id}, function (data) {

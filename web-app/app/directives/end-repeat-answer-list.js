@@ -10,6 +10,10 @@ angular.module('ControlEscuela').directive('endRepeatAnswerList', function () {
             $(".html").each(function(index, element ){
                 $(element).html(scope.answerList[index].textAnswer);
             });
+            $(".text").each(function(index, element ){
+                $(element).html(scope.answerList[index].questionName);
+            });
+
         }
 
     };

@@ -78,7 +78,7 @@
                                 <a href="#/answer/show/{{answer.id}}">{{ answer.sectionName  }}  </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/answer/show/{{answer.id}}">{{ answer.questionName }}  </a>
+                                <a href="#/answer/show/{{answer.id}}" class="text">  </a>
                             </td>
                             <td class="text-center">
                                 <a href="#/answer/show/{{answer.id}}">

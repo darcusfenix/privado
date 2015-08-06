@@ -22,18 +22,26 @@
                     </div>
 
                     <div class="col-md-7 value uppercase">
-                        {{section.name}}
+                        {{answerInstance.sectionName}}
                     </div>
                 </div>
 
+                <div class="row static-info">
+                    <div class="col-md-5 name">
+                        Pregunta (número):
+                    </div>
+
+                    <div class="col-md-7 value uppercase" >
+                        {{question.number}}
+                    </div>
+                </div>
 
                 <div class="row static-info">
                     <div class="col-md-5 name">
-                        Pregunta:
+                        Pregunta (texto):
                     </div>
 
-                    <div class="col-md-7 value uppercase">
-                        {{question.text}}
+                    <div class="col-md-7 value uppercase" id="text">
                     </div>
                 </div>
 
@@ -83,7 +91,7 @@
                 <a href="#/answer/edit/{{answerInstance.id}}" type="button"
                    class="btn btn-primary">Editar</a>
                 <button type="button" class="btn btn-danger" data-toggle="modal" href="#model-confirm">Eliminar</button>
-                <a href="#/answer" type="button" class="btn btn-default" ng-click="cancelar();">Cancelar</a>
+                <a href="#/answer" type="button" class="btn btn-default" >Cancelar</a>
             </div>
         </div>
     </div>
