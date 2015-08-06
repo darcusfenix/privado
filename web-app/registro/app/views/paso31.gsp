@@ -38,6 +38,10 @@
                         A continuaci&oacute;n se muestran los horarios disponibles para que puedas asistir a tu clase de inducci&oacute;n. Selecciona uno y da clic en el bot&oacute;n Continuar.
                     </p>
 
+                    <div class="text-danger text-center Bblanco" ng-show="messageTime">
+                        {{messageTime}}
+                    </div>
+
                     <div class="row">
                         <div class="col-sm-2 mb-40"></div>
 
@@ -77,7 +81,8 @@
                         <div class="col-sm-2 mb-40"></div>
                     </div>
                     <!-- TODO change button action -->
-                    <a href="#/croquis.html" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul" ng-click="generateAppointment($event)">Continuar</a>
+                    <a href="#/croquis.html" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul"
+                       ng-click="generateAppointment($event)">Continuar</a>
                 </div>
             </div>
         </div>

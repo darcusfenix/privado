@@ -7,11 +7,12 @@ angular.module('Registro').controller('ScheduleIssueController', ['$scope', '$ht
     //
     $scope.enrollmentInformation = {};
     $scope.appointmentDateSelect = -1;
+    $scope.messageTime = null;
 
 
     $scope.generateAppointment = function generateAppointment($event) {
+        $event.preventDefault();
         if ($scope.appointmentDateSelect != -1) {
-            $event.preventDefault();
             console.log($scope.appointmentDateSelect);
             var date = new Date();
             date.setHours($scope.appointmentDateSelect.split(":")[0]);
@@ -36,7 +37,7 @@ angular.module('Registro').controller('ScheduleIssueController', ['$scope', '$ht
                 alert(data.message);
             });
         } else {
-            alert("Debes seleccionar una clase de inducción");
+            $scope.messageTime = "Debes seleccionar una clase de inducción.";
         }
     };
     $("#content").removeClass("ocultar");
