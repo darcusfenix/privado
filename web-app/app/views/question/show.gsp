@@ -80,6 +80,80 @@
     </div>
 </div>
 
+
+<div class="row">
+    <div class="col-md-12 ">
+
+        <div class="portlet light bordered" ng-hide="questionList.length === 0">
+            <div class="portlet-title">
+                <div class="caption">
+
+                    <span class="caption-subject bold  uppercase">
+                        Respuestas de la pregunta</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="text-center" >
+                                #
+                            </th>
+                            <th class="text-center" >
+                                Respuesta
+                            </th>
+                            <th class="text-center" >
+                                Sección
+                            </th>
+                            <th class="text-center" >
+                                Solución
+                            </th>
+                            <th class="text-center" >
+                                Tipo
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="answer in questionInstance.answer" end-repeat-question-answer-list>
+                            <td class="text-center">
+                                <a href="#/answer/show/{{answer.id}}">{{$index + 1}} </a>
+                            </td>
+                            <td class="text-right">
+                                <a href="#/answer/show/{{answer.id}}">
+                                    <img src="{{answer.image}}" ng-show="answer.typeAnswer === 1">
+                                    <span  ng-show="answer.typeAnswer === 2 || answer.typeAnswer === 3"
+                                           class="html" >
+                                    </span>
+                                </a>
+                            </td>
+                            <td class="text-right">
+                                <a href="#/answer/show/{{answer.id}}">{{ answer.sectionName }}  </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="#/answer/show/{{answer.id}}">
+                                    <button type="button" class="btn"
+                                            ng-class="answer.state ? 'btn-success' : 'btn-danger' ">
+                                        {{ (answer.state) ? 'Correcta' : 'Incorrecta'}}
+                                    </button>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="#/answer/show/{{answer.id}}">
+                                    {{ answer.typeAnswer === 1 ? 'IMAGEN': '' }}
+                                    {{ answer.typeAnswer === 2 ? 'TEXTO': '' }}
+                                    {{ answer.typeAnswer === 3 ? 'ECUCACIÓN MATEMÁTICA': '' }}
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="model-confirm" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

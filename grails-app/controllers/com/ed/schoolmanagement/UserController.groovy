@@ -28,7 +28,10 @@ class UserController {
         def userInstance = new User(request.JSON)
         if (userInstance.validate()) {
             userInstance.save()
-            UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
+            UserRole userRole = new UserRole()
+            userRole.user = userInstance
+            userRole.role = Role.findById(request.JSON.authority.id)
+            userRole.save(flush: true)
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.created.message")] as JSON)
         } else {
@@ -97,6 +100,10 @@ class UserController {
         userInstance.save(flush: true, insert: true, failOnError: true)
         userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null)
         userInstance.save(flush: true, failOnError: true)
+        UserRole userRole = new UserRole()
+        userRole.user = userInstance
+        userRole.role = Role.findById(1)
+        userRole.save(flush: true)
         //Assigning a Classroom to a user, it's not activated 'til the user activates his account
         Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
         UserClassroom uc = new UserClassroom()

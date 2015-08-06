@@ -145,6 +145,20 @@
 
                                             <div class="form-group"
                                                  ng-class="{'has-error': editUser.role.$error.required||validator.role.hasError}">
+                                                <label class="control-label col-md-3">Rol Actual:
+                                                </label>
+
+                                                <div class="col-md-4">
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <input type="text" value="{{userInstance.authority.authority}}"
+                                                               class="form-control" readonly/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group"
+                                                 ng-class="{'has-error': editUser.role.$error.required||validator.role.hasError}">
                                                 <label class="control-label col-md-3">Rol: <span class="required">
                                                     *</span>
                                                 </label>
@@ -153,7 +167,7 @@
                                                     <div class="input-icon right">
                                                         <i class="fa"></i>
                                                         <select ng-options="role.id as role.authority for role in roles"
-                                                                ng-model="userInstance.authority.id" name="role"
+                                                                ng-model="userInstance.authority.id" name="role" class="form-control"
                                                                 required></select>
                                                     </div>
                                                 </div>
@@ -172,7 +186,7 @@
                                                     <div class="input-icon right">
                                                         <i class="fa"></i>
                                                         <select ng-options="group.id as group.nameClassroom for group in classroomList"
-                                                                ng-model="userInstance.group.id" name="group"></select>
+                                                                ng-model="userInstance.group.id" name="group" class="form-control"></select>
                                                     </div>
                                                 </div>
                                                 <span class="help-block"

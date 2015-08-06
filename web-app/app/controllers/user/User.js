@@ -10,8 +10,10 @@ function UserListController($scope, $location, $rootScope, User, Role) {
 
 function UserEditController($scope, $location, $routeParams, $rootScope, User, Role, Classroom) {
     $rootScope.location = $location.path();
-    User.get({id: $routeParams.id}, function (data) {
+
+    $scope.userInstance = User.get({id: $routeParams.id}, function (data) {
         $scope.userInstance = data;
+
     });
 
     $scope.roles = Role.query(function roles(data) {

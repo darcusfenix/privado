@@ -47,9 +47,6 @@ function AnswerCreateController($scope, $location, $rootScope, Answer, Section, 
     $scope.answerInstance = Answer.create(function (data) {
         $scope.answerInstance = data;
         $scope.answerInstance.state = false;
-
-
-        console.log($scope.answerInstance);
     });
 
     $scope.saveAnswer = function (valid, $event) {
@@ -57,6 +54,10 @@ function AnswerCreateController($scope, $location, $rootScope, Answer, Section, 
         if (valid) {
             if ($scope.answerInstance.typeAnswer == 3) {
                 $scope.answerInstance.textAnswer = editor.getMathML();
+            }
+            if($scope.answerInstance.typeAnswer != 1 && $scope.answerInstance.textAnswer == null){
+                $rootScope.message = "Debes seleccionar al menos un tipo de respuesta";
+                return false;
             }
             Upload.upload({
                 url: 'answer/save',
