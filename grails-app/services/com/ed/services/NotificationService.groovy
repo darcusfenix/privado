@@ -109,19 +109,14 @@ class NotificationService {
         }
     }
     def sendEmailToForeignStudent(String activationToken, String contextPath) {
-        User user = User.findByActivationToken(activationToken)
-        //User user = User.findById(2)
+        //User user = User.findByActivationToken(activationToken)
+        User user = User.findById(2)
 
         String htmlContent
 
         def binding = [:]
-        String g = ""
-        if (user.gender == "Masculino") {
-            g = "Estimado"
-        } else {
-            g = "Estimada"
-        }
-        binding.userFullName = g + " " + user.fullName
+
+        binding.userFullName = user.fullName
 
         htmlContent = new File(contextPath + grailsApplication.config.files.foreignStudent).text
 
@@ -132,6 +127,7 @@ class NotificationService {
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
+                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.temario))
                 .build()
         try {
 
