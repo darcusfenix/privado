@@ -1,5 +1,7 @@
 package com.ed.services
 
+import com.ed.classroomcourse.Class
+import com.ed.classroomcourse.Classroom
 import com.ed.inductionClass.InductionClass
 import com.ed.schoolmanagement.User
 import com.ed.schoolmanagement.Appointment
@@ -33,32 +35,37 @@ class EnrollmentService {
         return true
     }
 
-    def generateAppointment(User user, Date appointmentDate){
+    def generateAppointment(User user, Date appointmentDate, Classroom classroom) {
         Appointment appointment = new Appointment()
         appointment.user = user
+        Class c = Class.findByClassroom(classroom)
+        Date nd = new Date()
+        nd = c.dateClass
+        nd.setHours(c.stHour.getHours())
+        nd.setMinutes(c.stHour.getMinutes())
         use(TimeCategory) {
-            appointment.appointmentDate = appointmentDate ?: (new Date() - 30.minutes)
+            appointment.appointmentDate = appointmentDate ?: (nd - 30.minutes)
         }
         appointment.save()
         return appointment
     }
 
-    def getInductionClass(User user, Date appointmentDate = null) {
+    def getInductionClass(User user, Date appointmentDate = null, Classroom classroom) {
         InductionClass inductionClass = null
         // Bussiness Rule 1, Just assign if it's sunday before 4:30 an induction class!
         Calendar cal = Calendar.getInstance()
-        cal.set(2015, Calendar.AUGUST, 8);
+        cal.set(2015, Calendar.AUGUST, 6);
         Date currentDate = new Date();
         Date sundayDate = cal.getTime();
 
         if (TimeCategory.minus(currentDate, sundayDate).days == 0) { //Still sunday!
-            cal.set(2015, Calendar.AUGUST, 8, 9, 30) // 11:00
+            cal.set(2015, Calendar.AUGUST, 6, 9, 30) // 11:00
             Date firstInductionDate = cal.getTime()
-            cal.set(2015, Calendar.AUGUST, 8, 11, 30) // 13:00
+            cal.set(2015, Calendar.AUGUST, 6, 11, 30) // 13:00
             Date secondInductionDate = cal.getTime()
-            cal.set(2015, Calendar.AUGUST, 8, 14, 30) // 16:00
+            cal.set(2015, Calendar.AUGUST, 6, 14, 30) // 16:00
             Date thirdInductionDate = cal.getTime()
-            cal.set(2015, Calendar.AUGUST, 8, 16, 30) // 18:00
+            cal.set(2015, Calendar.AUGUST, 6, 16, 30) // 18:00
             Date fourthInductionDate = cal.getTime()
             if (currentDate < firstInductionDate) { //Induction class 1
                 inductionClass = InductionClass.findByName("Clase de Inducción 1")
@@ -74,10 +81,10 @@ class EnrollmentService {
             }
 
             // Theres no inductionClass but still sunday!
-            if(!inductionClass){
-                use(TimeCategory){
+            if (!inductionClass) {
+                use(TimeCategory) {
                     Date tomorrowDate = firstInductionDate + 1.day
-                    this.generateAppointment(user, tomorrowDate)
+                    this.generateAppointment(user, tomorrowDate, classroom)
                 }
 
             }
@@ -92,7 +99,7 @@ class EnrollmentService {
             }
         } else { //No induction class assigned
             // Generating an appointment!
-            this.generateAppointment(user, appointmentDate)
+            this.generateAppointment(user, null, classroom)
         }
         return inductionClass
 

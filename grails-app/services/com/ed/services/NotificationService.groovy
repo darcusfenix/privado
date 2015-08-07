@@ -19,7 +19,7 @@ class NotificationService {
         // Dates and calendar instances
         Calendar cal = Calendar.getInstance()
         DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy", new Locale("es", "MX"));
-        DateFormat hourFormatter = new SimpleDateFormat("hh:mm", new Locale("es", "MX"));
+        DateFormat hourFormatter = new SimpleDateFormat("hh:mm a", new Locale("es", "MX"));
 
         def binding = [:]
         String g = ""
@@ -73,7 +73,8 @@ class NotificationService {
 
     def sendSketchMail(String activationToken, String contextPath, def params = [:]) {
         User user = User.findByActivationToken(activationToken)
-
+        user.activationToken = null
+        user.save(flush: true)
         String htmlContent
 
         def binding = [:]

@@ -100,14 +100,14 @@ class UserController {
             userInstance.password = "test"
             userInstance.username = userInstance.email
             userInstance.save(flush: true, insert: true, failOnError: true)
-            userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null)
+            Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
+            userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null, classroomInstance)
             userInstance.save(flush: true, failOnError: true)
             UserRole userRole = new UserRole()
             userRole.user = userInstance
             userRole.role = Role.findById(1)
             userRole.save(flush: true)
             //Assigning a Classroom to a user, it's not activated 'til the user activates his account
-            Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
             UserClassroom uc = new UserClassroom()
             uc.classroom = classroomInstance
             uc.user = userInstance
