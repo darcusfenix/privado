@@ -116,8 +116,8 @@ log4j.main = {
             'net.sf.ehcache.hibernate'
 }
 sendgrid {
-    username = 'de_preparacion_ipn'
-    password = 'n0m3l0s3'
+    username = 'preparacionIPN'
+    password = 'tiernito1234'
 }
 
 files.htmlMailContent ='files/MailContent.html'

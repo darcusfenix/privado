@@ -8,16 +8,19 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
     $scope.error = false;
     $scope.groups = [];
     $scope.registrar = function Registrar() {
-        $scope.userInstance.state = $(".cs-placeholder").text();
-        //TODO Change it!
-        $http.post('/ControlEscuela/user/enroll',
-            $scope.userInstance
-        ).success(function (data) {
-                $location.path("/correo/");
-            }).error(function (data) {
-                $scope.error = true;
-                $location.path("/correo/");
-            });
+        if ($scope.myform.$valid) {
+            $("#confirm").attr("disabled", "disabled")
+            $scope.userInstance.state = $(".cs-placeholder").text();
+            //TODO Change it!
+            $http.post('/ControlEscuela/user/enroll',
+                $scope.userInstance
+            ).success(function (data) {
+                    $location.path("/correo/");
+                }).error(function (data) {
+                    $scope.error = true;
+                    $location.path("/correo/");
+                });
+        }
     };
 
 

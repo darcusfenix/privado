@@ -10,6 +10,7 @@ class User {
     String phoneNumber
     String username
     String password
+    String gender
     boolean enabled = true
     String mobileNumber
     String email
@@ -62,6 +63,7 @@ class User {
         // Address
         zipCode nullable: false; blank: false
         street nullable: false;
+        gender nullable: true;
         blank: false
         streetNumber nullable: false;
         internalNumber nullable: true, blank:true
