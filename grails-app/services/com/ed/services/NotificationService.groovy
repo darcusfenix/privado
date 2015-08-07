@@ -51,7 +51,7 @@ class NotificationService {
 
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
-        SendGridEmail email = new SendGridEmailBuilder()
+        SendGridEmail email = new SendGridEmailBuilder().setm
                 .from('no-reply@cursopreparacionipn.com')
                 .to(user.email)
                 .subject('Curso de preparación IPN')
