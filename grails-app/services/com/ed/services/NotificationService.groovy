@@ -118,18 +118,75 @@ class NotificationService {
         }
     }
     def sendEmailToForeignStudent(String activationToken, String contextPath) {
-        //User user = User.findByActivationToken(activationToken)
-        User user = User.findById(2)
+        User user = User.findByActivationToken(activationToken)
+        //User user = User.findById(2)
 
         Date date = new Date();
 
         DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy 'a las ' hh:mm a ", new Locale("es", "MX"));
         DateFormat formatterHour = new SimpleDateFormat("hh:mm a ", new Locale("es", "MX"));
-        //DateFormat hourFormatter = new SimpleDateFormat("hh:mm a", new Locale("es", "MX"));
 
 
-        //binding.inductionDate = formatter.format(appointment.appointmentDate)
-        //binding.dateHour = hourFormatter.format(appointment.appointmentDate)
+        Class c = Class.findByClassroom(Classroom.findById(user.group.id))
+
+        Date nd = new Date()
+        Date now = new Date()
+        nd = c.dateClass
+
+        nd.setHours(c.stHour.getHours())
+        nd.setMinutes(c.stHour.getMinutes())
+
+        use(TimeCategory) {
+            nd =  (nd + 6.hours)
+        }
+
+        String htmlContent
+
+        def binding = [:]
+
+        binding.userFullName = user.fullName
+        binding.grupo = user.group.nameClassroom
+        binding.horaInicio = formatter.format( c.dateClass)
+        binding.horaLimit = formatterHour.format(nd)
+        binding.now = formatter.format(now)
+
+        log.error(binding)
+
+        htmlContent = new File(contextPath + grailsApplication.config.files.foreignStudent).text
+
+        def engine = new groovy.text.SimpleTemplateEngine()
+        def template = engine.createTemplate(htmlContent).make(binding)
+        SendGridEmail email = new SendGridEmailBuilder()
+                .from('no-reply@cursopreparacionipn.com')
+                .to(user.email)
+                .subject('Curso de preparación IPN')
+                .withHtml(template.toString())
+                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.temario))
+                .build()
+        try {
+
+            sendGridService.send(email)
+            return true
+
+        } catch (Exception e) {
+            UserMailHistory userMailHistory = new UserMailHistory()
+            userMailHistory.to = user.email;
+            userMailHistory.from = "no-reply@cursopreparacionipn.com"
+            userMailHistory.subject = "Curso de preparación IPN"
+            userMailHistory.htmlContent = template.toString()
+            userMailHistory.attachmentPath = null
+            userMailHistory.save(flush: true, failOnError: true)
+            return false
+        }
+    }
+    def sendEmailAddress(Integer id, String contextPath) {
+        User user = User.findById(id)
+
+        Date date = new Date();
+
+        DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy 'a las ' hh:mm a ", new Locale("es", "MX"));
+        DateFormat formatterHour = new SimpleDateFormat("hh:mm a ", new Locale("es", "MX"));
+
 
         Class c = Class.findByClassroom(Classroom.findById(user.group.id))
 

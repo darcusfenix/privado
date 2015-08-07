@@ -14,7 +14,7 @@ class UserController {
     def notificationService
     def enrollmentService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent:"POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent:"POST" , sendEmailAddres : "POST"]
 
     def index() {
         render User.listOrderById([max: params.int('max')]) as JSON
@@ -188,11 +188,11 @@ class UserController {
         notificationService.sendEmailToForeignStudent(params.token, contextPath)
         render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
     }
-    def testEmail(){
+    def sendEmailAddres(){
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
 
-        notificationService.sendEmailToForeignStudent(params.token, contextPath)
+        notificationService.sendEmailAddress(params.int("id"), contextPath)
         render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
     }
 }

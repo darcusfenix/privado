@@ -25,6 +25,10 @@
                             <a href="#/user/create">
                                 Registrar Alumno</a>
                         </li>
+                        <li ng-class="($root.location === '/user/sendEmailAddress') ? 'active' : ''">
+                            <a href="#/user/sendEmailAddress">
+                                Enviar Correo Dirección</a>
+                        </li>
                     </ul>
                 </li>
                 <li ng-class="($root.location === '/voucherPayment/create' ) ? 'active open' : ''">

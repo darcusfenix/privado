@@ -5,6 +5,27 @@ function UserListController($scope, $location, $rootScope, User, Role) {
     $rootScope.location = $location.path();
     $scope.userList = User.query();
     $scope.roles = Role.query();
+
+    $scope.cancelar = function cancelar() {
+        $location.path("/user/show/" + $routeParams.id);
+    };
+
+    $scope.sendEmail = function(idStudent){
+
+        console.log(idStudent);
+
+        User.sendEmail({id : idStudent},function(data){
+
+            console.log(data);
+
+        }, function (err) {
+
+            console.log(err);
+
+        });
+
+    };
+
 };
 
 function UserEditController($scope, $location, $routeParams, $rootScope, User, Role, Classroom) {
