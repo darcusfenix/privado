@@ -31,6 +31,7 @@ class NotificationService {
         binding.userFullName = g + " " + user.fullName
         binding.assignedGroup = params?.classRoomName ?: "ABC"[(int) 3 * Math.random()]
         binding.dateHour = ""
+
         // There's an induction class
         if (user.inductionClass) {
             binding.inductionDate = formatter.format(user.inductionClass.date)
@@ -43,6 +44,7 @@ class NotificationService {
 
         binding.enrollmentUrl = params.activationUrl
         binding.price = 1500 // TODO Get related user services to get the price
+
         if (binding.dateHour == "") { // Loading other template and generationg a new appointment
             htmlContent = new File(contextPath + grailsApplication.config.files.htmlMailContent).text
         } else { // Simple template with validation token
@@ -91,8 +93,10 @@ class NotificationService {
                 .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.pdfFile))
                 .build()
         try {
+
             sendGridService.send(email)
             return true
+
         } catch (Exception e) {
             UserMailHistory userMailHistory = new UserMailHistory()
             userMailHistory.to = user.email;
@@ -100,6 +104,47 @@ class NotificationService {
             userMailHistory.subject = "Curso de preparación IPN"
             userMailHistory.htmlContent = template.toString()
             userMailHistory.attachmentPath = contextPath + grailsApplication.config.files.pdfFile
+            userMailHistory.save(flush: true, failOnError: true)
+            return false
+        }
+    }
+    def sendEmailToForeignStudent(String activationToken, String contextPath) {
+        User user = User.findByActivationToken(activationToken)
+        //User user = User.findById(2)
+
+        String htmlContent
+
+        def binding = [:]
+        String g = ""
+        if (user.gender == "Masculino") {
+            g = "Estimado"
+        } else {
+            g = "Estimada"
+        }
+        binding.userFullName = g + " " + user.fullName
+
+        htmlContent = new File(contextPath + grailsApplication.config.files.foreignStudent).text
+
+        def engine = new groovy.text.SimpleTemplateEngine()
+        def template = engine.createTemplate(htmlContent).make(binding)
+        SendGridEmail email = new SendGridEmailBuilder()
+                .from('no-reply@cursopreparacionipn.com')
+                .to(user.email)
+                .subject('Curso de preparación IPN')
+                .withHtml(template.toString())
+                .build()
+        try {
+
+            sendGridService.send(email)
+            return true
+
+        } catch (Exception e) {
+            UserMailHistory userMailHistory = new UserMailHistory()
+            userMailHistory.to = user.email;
+            userMailHistory.from = "no-reply@cursopreparacionipn.com"
+            userMailHistory.subject = "Curso de preparación IPN"
+            userMailHistory.htmlContent = template.toString()
+            userMailHistory.attachmentPath = null
             userMailHistory.save(flush: true, failOnError: true)
             return false
         }

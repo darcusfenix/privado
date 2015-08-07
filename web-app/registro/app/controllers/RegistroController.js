@@ -2,25 +2,37 @@
  * Created by alberto on 24/07/15.
  */
 angular.module('Registro').controller('RegistroController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+
     $("#content").addClass("container");
     $scope.userInstance = {};
     $scope.message = "";
     $scope.error = false;
     $scope.groups = [];
+
     $scope.registrar = function Registrar() {
         if ($scope.myform.$valid) {
+
             $("#confirm").attr("disabled", "disabled")
+
             $scope.userInstance.state = $(".cs-placeholder").text();
+
             //TODO Change it!
+
             $http.post('/ControlEscuela/user/enroll',
+
                 $scope.userInstance
+
             ).success(function (data) {
+
                     $location.path("/correo/");
+
                 }).error(function (data) {
+
                     $scope.error = true;
                     $scope.messageError = data.message;
                     $("#confirm").prop("disabled", false);
                     //$location.path("/correo/");
+
                 });
         }
     };
