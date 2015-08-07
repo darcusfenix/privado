@@ -47,7 +47,7 @@
                                  name="genero"
                                  type="radio" required>
                         <label for="femenino" style="padding-top: 20px;">
-                            <img src="img/femenino.png" width="150px" height="150px">
+                            <img src="img/masculino.png" width="150px" height="150px">
                             Femenino
                         </label></span>
                     <span>
@@ -55,7 +55,7 @@
                                name="genero"
                                type="radio" required>
                         <label for="masculino" style="padding-top: 20px;">
-                            <img src="img/masculino.png" width="150px" height="150px">
+                            <img src="img/femenino.png" width="150px" height="150px">
                             Masculino
                         </label>
                     </span>

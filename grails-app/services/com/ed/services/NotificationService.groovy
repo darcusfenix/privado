@@ -22,11 +22,17 @@ class NotificationService {
         DateFormat hourFormatter = new SimpleDateFormat("hh:mm", new Locale("es", "MX"));
 
         def binding = [:]
-        binding.userFullName = user.fullName
+        String g = ""
+        if (user.gender == "Masculino") {
+            g = "Estimado"
+        } else {
+            g = "Estimada"
+        }
+        binding.userFullName = g + " " + user.fullName
         binding.assignedGroup = params?.classRoomName ?: "ABC"[(int) 3 * Math.random()]
         binding.dateHour = ""
         // There's an induction class
-        if(user.inductionClass){
+        if (user.inductionClass) {
             binding.inductionDate = formatter.format(user.inductionClass.date)
         } else { //
             // Check for appointment!
@@ -34,9 +40,10 @@ class NotificationService {
             binding.inductionDate = formatter.format(appointment.appointmentDate)
             binding.dateHour = hourFormatter.format(appointment.appointmentDate)
         }
+
         binding.enrollmentUrl = params.activationUrl
         binding.price = 1500 // TODO Get related user services to get the price
-        if(binding.dateHour == ""){ // Loading other template and generationg a new appointment
+        if (binding.dateHour == "") { // Loading other template and generationg a new appointment
             htmlContent = new File(contextPath + grailsApplication.config.files.htmlMailContent).text
         } else { // Simple template with validation token
             htmlContent = new File(contextPath + grailsApplication.config.files.nextDayMailContent).text
@@ -64,7 +71,7 @@ class NotificationService {
         }
     }
 
-    def sendSketchMail(String activationToken, String contextPath, def params = [:]){
+    def sendSketchMail(String activationToken, String contextPath, def params = [:]) {
         User user = User.findByActivationToken(activationToken)
 
         String htmlContent
