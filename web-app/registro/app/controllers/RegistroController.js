@@ -31,32 +31,48 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
         url: '/ControlEscuela/Classroom/'
     }).success(function (data) {
         // Filtering the groups according to the dates and restrictions!
-        var currentDate = new Date();
         var currentGroups = data;
+        var j = 1;
+        var cambio = false;
         for (var i = 0; i < currentGroups.length; i++) {
-            if (currentDate.getDate() <= 9) { // Saturday/sunday
-                if (currentGroups[i].places > 0 && currentGroups[i].priority <= 2) {
-                    $scope.groups.push(currentGroups[i]);
-                    continue;
-                }
+            if (j != currentGroups[i].priority && $scope.groups.length != 0) {
+                break;
+            } else {
+                j = currentGroups[i].priority;
             }
-            if (currentDate.getDate() == 10) { // Saturday/sunday
-                if (currentGroups[i].places > 0 && currentGroups[i].priority == 3) {
-                    $scope.groups.push(currentGroups[i]);
-                    continue;
-                }
+            if (currentGroups[i].places > 0 && currentGroups[i].priority == 1) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
+            } else if (currentGroups[i].places > 0 && currentGroups[i].priority == 2) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
+            } else if (currentGroups[i].places > 0 && currentGroups[i].priority == 3) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
+            } else if (currentGroups[i].places > 0 && currentGroups[i].priority == 4) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
+            } else if (currentGroups[i].places > 0 && currentGroups[i].priority == 5) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
+            } else if (currentGroups[i].places > 0 && currentGroups[i].priority == 6) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
+            } else if (currentGroups[i].places > 0 && currentGroups[i].priority == 7) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
+            } else if (currentGroups[i].places > 0 && currentGroups[i].priority == 8) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
+            } else if (currentGroups[i].places > 0 && currentGroups[i].priority == 9) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
+            } else if (currentGroups[i].places > 0 && currentGroups[i].priority == 10) {
+                $scope.groups.push(currentGroups[i]);
+                continue;
             }
-            if (currentDate.getDate() >= 10) { // Saturday/sunday
-                if (currentGroups[i].places > 0 && currentGroups[i].priority == 4) {
-                    $scope.groups.push(currentGroups[i]);
-                    continue;
-                }
-            }
+
         }
-        console.log(currentGroups);
-        console.log($scope.groups);
-        console.log(currentDate);
-        console.log(currentDate.getDate());
         $("#content").removeClass("ocultar");
     }).error(function (data) {
         console.log(data);

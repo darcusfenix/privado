@@ -73,7 +73,7 @@ class BootStrap {
         classroom.places = 50
         classroom.typeClassroom = 0
         classroom.typeClassroomP = 0
-        classroom.priority = 100
+        classroom.priority = 2
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
         classroom.office = office
         classroom.save()
@@ -166,12 +166,12 @@ class BootStrap {
 
         InductionClass ic = new InductionClass()
         ic.date = null
-        ic.name  = "Clase de Inducción 1"
+        ic.name = "Clase de Inducción 1"
         ic.places = 100
         ic.office = office
         //
         Calendar cal = Calendar.getInstance()
-        cal.set(2015, Calendar.AUGUST, 6, 11, 00);
+        cal.set(2015, Calendar.AUGUST, 9, 11, 00);
         ic.date = cal.getTime();
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)
@@ -294,7 +294,6 @@ class BootStrap {
         anotherTypeCourse.description = "este es un curso intensivo de tres semanas"
         anotherTypeCourse.save()
 
-
         // SERVICES
 
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -372,20 +371,19 @@ class BootStrap {
         structureSection.section = section;
         structureSection.save()
 
-       /* Question question = new Question()
-        question.urlImage = ""
-        question.number = "1.1"
-        question.section = section
-        question.text = "soy un pregunta"
-        question.save()
+        /* Question question = new Question()
+         question.urlImage = ""
+         question.number = "1.1"
+         question.section = section
+         question.text = "soy un pregunta"
+         question.save()
 
-        Question anotherquestion = new Question()
-        anotherquestion.urlImage = ""
-        anotherquestion.number = 1
-        anotherquestion.section = section
-        anotherquestion.text = "soy la segunda pregunta"
-        anotherquestion.save()*/
-
+         Question anotherquestion = new Question()
+         anotherquestion.urlImage = ""
+         anotherquestion.number = 1
+         anotherquestion.section = section
+         anotherquestion.text = "soy la segunda pregunta"
+         anotherquestion.save()*/
 
         /*
         Answer answer = new Answer()
@@ -394,7 +392,6 @@ class BootStrap {
         answer.textAnswer = servletContext.contextPath
         answer.save()
         */
-
 
         // STUDENTS WITH SERVICES
 
