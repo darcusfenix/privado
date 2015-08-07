@@ -99,4 +99,13 @@ class User {
             null
         }
     }
+
+    def getInductionC(){
+        InductionClass ic = this.inductionClass
+        if(ic != null){
+            return ic.name
+        }else {
+            return null
+        }
+    }
 }

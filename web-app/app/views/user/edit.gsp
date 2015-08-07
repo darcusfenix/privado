@@ -17,7 +17,6 @@
                                 </li>
                             </ul>
                         </div>
-
                         <div class="portlet-body">
                             <div class="tab-content">
                                 <!-- PERSONAL INFO TAB -->
@@ -25,25 +24,6 @@
                                     <form name="editUser" ng-submit="updateUser(editUser.$valid, $event)" novalidate>
 
                                         <div class="form-body">
-
-                                            <div class="form-group"
-                                                 ng-class="{'has-error': editUser.username.$error.required||validator.username.hasError}">
-                                                <label class="control-label col-md-3">
-                                                    Nombre de Usuario:
-                                                </label>
-
-                                                <div class="col-md-4">
-                                                    <div class="input-icon right">
-                                                        <i class="fa"></i>
-                                                        <input type="text" ng-model="userInstance.username"
-                                                               class="form-control" name="username" required/>
-                                                    </div>
-                                                </div>
-                                                <span class="help-block"
-                                                      ng-show="editUser.username.$error.required||validator.username.hasError">
-                                                    {{validator.username.message}}
-                                                </span>
-                                            </div>
 
                                             <div class="form-group"
                                                  ng-class="{'has-error': editUser.name.$error.required||validator.name.hasError}">
@@ -173,6 +153,7 @@
                                                         <i class="fa"></i>
                                                         <select ng-options="group.id as group.nameClassroom for group in classroomList"
                                                                 ng-model="userInstance.group.id" name="group"></select>
+
                                                     </div>
                                                 </div>
                                                 <span class="help-block"
@@ -194,6 +175,8 @@
                                                 </div>
                                             </div>
 
+
+
                                             <div ng-show="userInstance.authority.id==1" class="form-group">
                                                 <label class="control-label col-md-3">Comentario: <span class="required">
                                                     *</span>
@@ -202,7 +185,7 @@
                                                 <div class="col-md-4">
                                                     <div class="input-icon right">
                                                         <i class="fa"></i>
-                                                        <input type="text" ng-model="userInstance.comment" name="comment">
+                                                        <textarea type="text" rows="4" cols="50" ng-model="userInstance.comment" name="comment"></textarea>
                                                     </div>
                                                 </div>
                                                 <span class="help-block" ng-show="editUser.comment.$error.required||validator.group.hasError">
@@ -210,7 +193,7 @@
                                                 </span>
                                             </div>
 
-                                            <div ng-show="userInstance.authority.id==1" class="form-group">
+                                            <!--div ng-show="userInstance.authority.id==1" class="form-group">
                                                 <label class="control-label col-md-3">Red Social: <span class="required">
                                                     *</span>
                                                 </label>
@@ -223,6 +206,26 @@
                                                 </div>
                                                 <span class="help-block" ng-show="editUser.socialNetworkUrl.$error.required||validator.socialNetworkUrl.hasError">
                                                     {{validator.socialNetworkUrl.message}}
+                                                </span>
+                                            </div-->
+
+                                            <div class="form-group"
+                                                 ng-class="{'has-error': editUser.username.$error.required||validator.username.hasError}"
+                                                 ng-show="userInstance.authority.id==1">
+                                                <label class="control-label col-md-3">
+                                                    Usuario de facebook:
+                                                </label>
+
+                                                <div class="col-md-4">
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <input type="text" ng-model="userInstance.username"
+                                                               class="form-control" name="username" required/>
+                                                    </div>
+                                                </div>
+                                                <span class="help-block"
+                                                      ng-show="editUser.username.$error.required||validator.username.hasError">
+                                                    {{validator.username.message}}
                                                 </span>
                                             </div>
 
@@ -285,11 +288,41 @@
 
                                             <div class="col-md-4"
                                                  ng-class="{'has-error': createUser.state.$error.required||validator.state.hasError}">
-                                                <div class="input-icon right">
-                                                    <i class="fa"></i>
-                                                    <input type="text" ng-model="userInstance.state"
-                                                           class="form-control" name="state" />
-                                                </div>
+
+                                                <select ng-model="userInstance.state" name="estate" ng-model="userInstance.state" required>
+                                                    <option value="Distrito Federal">Distrito Federal</option>
+                                                    <option value="Aguascalientes">Aguascalientes</option>
+                                                    <option value="Baja California">Baja California</option>
+                                                    <option value="Baja California Sur">Baja California Sur</option>
+                                                    <option value="Campeche">Campeche</option>
+                                                    <option value="Chiapas">Chiapas</option>
+                                                    <option value="Chihuahua">Chihuahua</option>
+                                                    <option value="Coahuila">Coahuila</option>
+                                                    <option value="Colima">Colima</option>
+                                                    <option value="Durango">Durango</option>
+                                                    <option value="Guanajuato">Guanajuato</option>
+                                                    <option value="Guerrero">Guerrero</option>
+                                                    <option value="Hidalgo">Hidalgo</option>
+                                                    <option value="Jalisco">Jalisco</option>
+                                                    <option value="Mexico">M&eacute;xico</option>
+                                                    <option value="Michoacan">Michoac&aacute;n</option>
+                                                    <option value="Morelos">Morelos</option>
+                                                    <option value="Nayarit">Nayarit</option>
+                                                    <option value="Nuevo Leon">Nuevo Le&oacute;n</option>
+                                                    <option value="Oaxaca">Oaxaca</option>
+                                                    <option value="Puebla">Puebla</option>
+                                                    <option value="Queretaro">Quer&eacute;taro</option>
+                                                    <option value="Quintana Roo">Quintana Roo</option>
+                                                    <option value="San Luis Potosi">San Luis Potos&iacute;</option>
+                                                    <option value="Sinaloa">Sinaloa</option>
+                                                    <option value="Sonora">Sonora</option>
+                                                    <option value="Tabasco">Tabasco</option>
+                                                    <option value="Tamaulipas">Tamaulipas</option>
+                                                    <option value="Tlaxcala">Tlaxcala</option>
+                                                    <option value="Veracruz">Veracruz</option>
+                                                    <option value="Yucatan">Yucat&aacute;n</option>
+                                                    <option value="Zacatecas">Zacatecas</option>
+                                                </select>
                                             </div>
                                             <span class="help-block"
                                                   ng-show="createUser.state.$error.required||validator.state.hasError">

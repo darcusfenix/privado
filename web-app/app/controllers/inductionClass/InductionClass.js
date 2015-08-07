@@ -2,7 +2,7 @@
  * Created by fernandotapia on 7/18/15.
  */
 
-function InductionClassListController($scope, InductionClass, $location, $rootScope) {
+function InductionClassListController($scope, InductionClass, $location, $rootScope, $routeParams) {
     $('#divSpinner').removeClass('hidden');
     $rootScope.location = $location.path();
     $scope.inductionClassList = InductionClass.query(function () {
@@ -10,6 +10,13 @@ function InductionClassListController($scope, InductionClass, $location, $rootSc
     });
     $rootScope.nameSpace = 'Clase de inducción';
 
+    $scope.editInductionClass=function(){
+
+        InductionClass.saveClassInductionUser({id: $routeParams.id, idI: $scope.InductionClass.id}, function (data) {
+            $rootScope.message = data.message;
+            $location.path('/user/show/' + $routeParams.id);
+        });
+    }
 };
 
 function InductionClassCreateController($scope, $location, $routeParams, $rootScope, InductionClass, $filter, Office) {

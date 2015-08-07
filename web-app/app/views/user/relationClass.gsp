@@ -6,7 +6,7 @@
         <div class="portlet box green-haze">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i>Lista de los alumnos
+                    <i class="fa fa-globe"></i>Relacionar alumnos
                 </div>
             </div>
 
@@ -26,9 +26,6 @@
                         <th>
                             Grupo
                         </th>
-                        <th>
-                            Teléfono
-                        </th>
                     </tr>
                     <tr>
                         <th>
@@ -43,19 +40,15 @@
                         <th>
                             <input type="text" ng-model="filtro.group" placeholder="Filtrar por Grupo">
                         </th>
-                        <th>
-                            <input type="text" ng-model="filtro.phoneNumber" placeholder="Filtrar por teléfono">
-                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="user in userList|filter:filtro">
-                            <td><a href="#/user/show/{{user.id}}">{{user.name}}</a></td>
-                            <td><a href="#/user/show/{{user.id}}">{{user.lastName}}</a></td>
-                            <td><a href="#/user/show/{{user.id}}">{{user.username}}</a></td>
-                            <td><a href="#/user/show/{{user.id}}">{{user.group.nameClassroom}}</a></td>
-                            <td><a href="#/user/show/{{user.id}}">{{user.phoneNumber}}</a></td>
-                        </tr>
+                    <tr ng-repeat="user in userList|filter:filtro">
+                        <td><a href="#/inductionClass/userInductionClass/{{user.id}}">{{user.name}}</a></td>
+                        <td><a href="#/inductionClass/userInductionClass/{{user.id}}">{{user.lastName}}</a></td>
+                        <td><a href="#/inductionClass/userInductionClass/{{user.id}}">{{user.username}}</a></td>
+                        <td><a href="#/inductionClass/userInductionClass/{{user.id}}">{{user.group.nameClassroom}}</a></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

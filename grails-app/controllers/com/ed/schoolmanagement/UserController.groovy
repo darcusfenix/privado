@@ -18,6 +18,7 @@ class UserController {
 
     def index() {
         render User.listOrderById([max: params.int('max')]) as JSON
+
     }
 
     def create() {
@@ -27,7 +28,13 @@ class UserController {
     def save() {
         def userInstance = new User(request.JSON)
         if (userInstance.validate()) {
+            userInstance.active=true;
             userInstance.save()
+            UserClassroom uc = new UserClassroom();
+            uc.user=userInstance;
+            uc.classroom=Classroom.findById(request.JSON.group.id);
+            uc.activated=true;
+            uc.save();
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.created.message")] as JSON)

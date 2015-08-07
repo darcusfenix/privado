@@ -32,6 +32,10 @@ angular.module('ControlEscuela').factory('InductionClass', function ($resource) 
             method: 'GET',
             isArray: true,
             url: 'inductionClass/getInductionClassByOffice/:id'
+        },
+        saveClassInductionUser: {
+            method: 'POST',
+            url: 'inductionClass/saveClassInductionUser/:id'
         }
     });
 });

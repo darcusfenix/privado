@@ -84,4 +84,11 @@ class InductionClassController {
         render InductionClass.findAllByOffice(Office.findById(id)) as JSON;
     }
 
+    def saveClassInductionUser(Integer id) {
+        User u = User.findById(id)
+        u.inductionClass = InductionClass.findById(request.JSON.idI)
+        u.save(flush: true)
+        response.status = 200
+        render([message:'La clase ha sido registrada'] as JSON)
+    }
 }
