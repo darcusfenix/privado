@@ -14,7 +14,7 @@ class ClassroomController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        render Classroom.list([max: params.int('max')]) as JSON
+        render Classroom.listOrderByPriority([max: params.int('max')]) as JSON
     }
 
     def show(Integer id) {

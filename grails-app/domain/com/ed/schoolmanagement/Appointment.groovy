@@ -7,7 +7,5 @@ class Appointment {
     static constraints = {
         appointmentDate nullable: false, blank: false
     }
-    def beforeInsert(){
-        this.appointmentDate = new Date();
-    }
+
 }
