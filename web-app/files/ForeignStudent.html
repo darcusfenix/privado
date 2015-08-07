@@ -33,14 +33,14 @@ th {
 
     <div style='margin: 1em 0 2em 0;font-size: 140%;line-height: 1.6; width: 90%; margin: 0px auto;'>
         <p style='margin: 0 0 1em 0;display: block;-webkit-margin-before: 1em;-webkit-margin-after: 1em;-webkit-margin-start: 0px;-webkit-margin-end: 0px;}'>
-            Las instalaciones de Preparación IPN se encuentran sólo en el D. F. y comprendemos que te es muy difícil llegar a tu cita de inscripción. Realiza los siguientes pasos para realizar tu inscripción:
+            Hola <% print userFullName %>. Las instalaciones de Preparación IPN se encuentran sólo en el D. F. y comprendemos que te es muy difícil llegar a tu cita de inscripción. Realiza los siguientes pasos para realizar tu inscripción:
         </p>
 
         <ul>
             <li style='list-style: decimal;color: #3f51b5;margin: 1.3em 0 0.5em 0;font-size: 28px;line-height: 1.4;font-weight: 400;'>
                 Pago en el banco:
                 <p style='margin: 0 0 .5em 0;display: block;margin: 1em;color: #000000;font-size: 22px;'>
-                    Hoy <b style='color: red;'>Lunes 10 de Agosto</b> deberás realizar el pago del curso (&#36;1,500) en cualquiera de las siguientes cuentas:
+                    Hoy <b style='color: red;'><% print now %></b> deberás realizar el pago del curso (&#36;1,500) en cualquiera de las siguientes cuentas:
                 </p>
                 <table style='font-size: 22px; text-align: left; width: 95%; margin: 0px auto;'>
                     <thead>
@@ -83,13 +83,13 @@ th {
             <li style='list-style: decimal;color: #3f51b5;margin: 1.3em 0 0.5em 0;font-size: 28px;line-height: 1.4;font-weight: 400;'>
                 Envía tu recibo:
                 <p style='margin: 0 0 .5em 0;display: block;margin: 1em;color: #000000;font-size: 22px;'>
-                    Escanea o tómale foto al recibo del banco y mándalo por correo: <b>preparacionIPN&#64;hotmail.com</b>, que no se te olvide escribir tu nombre y grupo en el mensaje. En estos momentos tu lugar está apartado pero <b style='color: red;'>deberás enviar tu recibo antes de las 12:30 p.m.(6 hrs)</b>, de lo contrario, tendrás que volver a registrarte.
+                    Escanea o tómale foto al recibo del banco y mándalo por correo: <b>preparacionIPN&#64;hotmail.com</b>, que no se te olvide escribir tu nombre y grupo <b style="color: red;">"<% print grupo %>"</b> en el mensaje. En estos momentos tu lugar está apartado pero <b style='color: red;'>deberás enviar tu recibo antes de las <% print horaLimit %></b>, de lo contrario, tendrás que volver a registrarte.
                 </p>
             </li>
             <li style='list-style: decimal;color: #3f51b5;margin: 1.3em 0 0.5em 0;font-size: 28px;line-height: 1.4;font-weight: 400;'>
                 Preséntate al curso
                 <p style='margin: 0 0 .5em 0;display: block;margin: 1em;color: #000000;font-size: 22px;'>
-                    Una vez que hayas realizado tu pago te esperamos a tu primera clase el <b style='color: red;'>4 de agosto a las 7:30</b> am en nuestras instalaciones ubicadas en:
+                    Una vez que hayas realizado tu pago te esperamos a tu primera clase el <b style='color: red;'>"<% print horaInicio %>"</b> en nuestras instalaciones ubicadas en:
                 </p>
                 <p style='margin: 0 0 .2em 0;display: block;margin: 1em;color: #000000;font-size: 22px;'>
                     <b>Dirección</b>
