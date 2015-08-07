@@ -7,6 +7,12 @@ function UserListController($scope, $location, $rootScope, User, Role) {
     $scope.roles = Role.query();
 };
 
+function UserListClass($scope, $location, $rootScope, User, Role) {
+    $rootScope.location = $location.path();
+    $scope.userList = User.query();
+    $scope.roles = Role.query();
+};
+
 function UserEditController($scope, $location, $routeParams, $rootScope, User, Role, Classroom) {
     $rootScope.location = $location.path();
 

@@ -15,6 +15,9 @@ angular.module('ControlEscuela').config(['$routeProvider', function ($routeProvi
     }).when('/inductionClass/show/:id', {
         controller: 'InductionClassShowController',
         templateUrl: 'app/views/inductionClass/show.gsp'
+    }).when('/inductionClass/userInductionClass/:id', {
+        controller: 'InductionClassListController',
+        templateUrl: 'app/views/inductionClass/userInductionClass.gsp'
     }).otherwise({
         redirectTo: '/'
     });

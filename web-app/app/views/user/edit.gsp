@@ -27,25 +27,6 @@
                                         <div class="form-body">
 
                                             <div class="form-group"
-                                                 ng-class="{'has-error': editUser.username.$error.required||validator.username.hasError}">
-                                                <label class="control-label col-md-3">
-                                                    Nombre de Usuario:
-                                                </label>
-
-                                                <div class="col-md-4">
-                                                    <div class="input-icon right">
-                                                        <i class="fa"></i>
-                                                        <input type="text" ng-model="userInstance.username"
-                                                               class="form-control" name="username" required/>
-                                                    </div>
-                                                </div>
-                                                <span class="help-block"
-                                                      ng-show="editUser.username.$error.required||validator.username.hasError">
-                                                    {{validator.username.message}}
-                                                </span>
-                                            </div>
-
-                                            <div class="form-group"
                                                  ng-class="{'has-error': editUser.name.$error.required||validator.name.hasError}">
                                                 <label class="control-label col-md-3">Nombre(s): <span class="required">
                                                     *</span>
@@ -145,20 +126,6 @@
 
                                             <div class="form-group"
                                                  ng-class="{'has-error': editUser.role.$error.required||validator.role.hasError}">
-                                                <label class="control-label col-md-3">Rol Actual:
-                                                </label>
-
-                                                <div class="col-md-4">
-                                                    <div class="input-icon right">
-                                                        <i class="fa"></i>
-                                                        <input type="text" value="{{userInstance.authority.authority}}"
-                                                               class="form-control" readonly/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group"
-                                                 ng-class="{'has-error': editUser.role.$error.required||validator.role.hasError}">
                                                 <label class="control-label col-md-3">Rol: <span class="required">
                                                     *</span>
                                                 </label>
@@ -167,7 +134,7 @@
                                                     <div class="input-icon right">
                                                         <i class="fa"></i>
                                                         <select ng-options="role.id as role.authority for role in roles"
-                                                                ng-model="userInstance.authority.id" name="role" class="form-control"
+                                                                ng-model="userInstance.authority.id" name="role"
                                                                 required></select>
                                                     </div>
                                                 </div>
@@ -208,6 +175,8 @@
                                                 </div>
                                             </div>
 
+
+
                                             <div ng-show="userInstance.authority.id==1" class="form-group">
                                                 <label class="control-label col-md-3">Comentario: <span class="required">
                                                     *</span>
@@ -216,7 +185,7 @@
                                                 <div class="col-md-4">
                                                     <div class="input-icon right">
                                                         <i class="fa"></i>
-                                                        <input type="text" ng-model="userInstance.comment" name="comment">
+                                                        <textarea type="text" rows="4" cols="50" ng-model="userInstance.comment" name="comment"></textarea>
                                                     </div>
                                                 </div>
                                                 <span class="help-block" ng-show="editUser.comment.$error.required||validator.group.hasError">
@@ -237,6 +206,26 @@
                                                 </div>
                                                 <span class="help-block" ng-show="editUser.socialNetworkUrl.$error.required||validator.socialNetworkUrl.hasError">
                                                     {{validator.socialNetworkUrl.message}}
+                                                </span>
+                                            </div-->
+
+                                            <div class="form-group"
+                                                 ng-class="{'has-error': editUser.username.$error.required||validator.username.hasError}"
+                                                 ng-show="userInstance.authority.id==1">
+                                                <label class="control-label col-md-3">
+                                                    Usuario de facebook:
+                                                </label>
+
+                                                <div class="col-md-4">
+                                                    <div class="input-icon right">
+                                                        <i class="fa"></i>
+                                                        <input type="text" ng-model="userInstance.username"
+                                                               class="form-control" name="username" required/>
+                                                    </div>
+                                                </div>
+                                                <span class="help-block"
+                                                      ng-show="editUser.username.$error.required||validator.username.hasError">
+                                                    {{validator.username.message}}
                                                 </span>
                                             </div>
 

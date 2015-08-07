@@ -18,6 +18,7 @@ class UserController {
 
     def index() {
         render User.listOrderById([max: params.int('max')]) as JSON
+
     }
 
     def create() {
@@ -27,11 +28,14 @@ class UserController {
     def save() {
         def userInstance = new User(request.JSON)
         if (userInstance.validate()) {
+            UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
+            userInstance.active=true;
             userInstance.save()
-            UserRole userRole = new UserRole()
-            userRole.user = userInstance
-            userRole.role = Role.findById(request.JSON.authority.id)
-            userRole.save(flush: true)
+            UserClassroom uc = new UserClassroom();
+            uc.user=userInstance;
+            uc.classroom=Classroom.findById(request.JSON.group.id);
+            uc.activated=true;
+            uc.save(flush: true);
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.created.message")] as JSON)
         } else {
@@ -95,33 +99,23 @@ class UserController {
 
         User userInstance = new User()
         userInstance.properties = request.JSON
-        User ufind = User.findByEmail(userInstance.email);
-        if (ufind == null) {
-            userInstance.password = "test"
-            userInstance.username = userInstance.email
-            userInstance.save(flush: true, insert: true, failOnError: true)
-            Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
-            userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null, classroomInstance)
-            userInstance.save(flush: true, failOnError: true)
-            UserRole userRole = new UserRole()
-            userRole.user = userInstance
-            userRole.role = Role.findById(1)
-            userRole.save(flush: true)
-            //Assigning a Classroom to a user, it's not activated 'til the user activates his account
-            UserClassroom uc = new UserClassroom()
-            uc.classroom = classroomInstance
-            uc.user = userInstance
-            uc.activated = false
-            uc.save(flush: true)
-            //
-            String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/registro/#/activation/" + userInstance.activationToken
-            //
-            notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
-            render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
-        } else {
-            response.status = 500
-            render([message: "El correo proporcionado ya cuenta con un registro previo en el curso."] as JSON)
-        }
+        userInstance.password = "test"
+        userInstance.username = userInstance.email
+        userInstance.save(flush: true, insert: true, failOnError: true)
+        userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null)
+        userInstance.save(flush: true, failOnError: true)
+        //Assigning a Classroom to a user, it's not activated 'til the user activates his account
+        Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
+        UserClassroom uc = new UserClassroom()
+        uc.classroom = classroomInstance
+        uc.user = userInstance
+        uc.activated = false
+        uc.save(flush: true)
+        //
+        String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/registro/#/activation/" + userInstance.activationToken
+        //
+        notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
+        render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
     }
 
     def activateClassroomPlace() {

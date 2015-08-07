@@ -11,6 +11,9 @@ angular.module('ControlEscuela').config(['$routeProvider', function ($routeProvi
     }).when('/user/show/:id', {
         controller: 'UserShowController',
         templateUrl: 'app/views/user/show.gsp'
+    }).when('/user/relationClass', {
+        controller: 'UserListClass',
+        templateUrl: 'app/views/user/relationClass.gsp'
     }).otherwise({
         redirectTo: '/'
     });
