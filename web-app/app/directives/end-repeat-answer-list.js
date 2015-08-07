@@ -18,3 +18,15 @@ angular.module('ControlEscuela').directive('endRepeatAnswerList', function () {
 
     };
 });
+angular.module('ControlEscuela').directive('endRepeatQuestionAnswerList', function () {
+
+    return function (scope, element, attrs) {
+
+        if (scope.$last) {
+            $(".html").each(function(index, element ){
+                $(element).html(scope.questionInstance.answer[index].textAnswer);
+            });
+        }
+
+    };
+});

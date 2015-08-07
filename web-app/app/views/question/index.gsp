@@ -46,7 +46,7 @@
                                 <a href="#/question/show/{{question.id}}">{{ question.number }}  </a>
                             </td>
                             <td class="text-right">
-                                <a href="#/section/show/{{question.section}}">{{ question.sectionName }}  </a>
+                                <a href="#/section/show/{{question.section.id}}">{{ question.sectionName }}  </a>
                             </td>
                             <td class="text-center">
                                 <a href="#/question/show/{{question.id}}">{{ question.answer.length }}  </a>

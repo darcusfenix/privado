@@ -139,13 +139,12 @@
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
                                 <button type="submit" class="btn green"
-                                        ng-disabled="editAnswer.$invalid">Agregar Respuesta</button>
+                                        ng-disabled="editAnswer.$invalid ">Agregar Respuesta</button>
                                 <a href="#/answer" type="button" class="btn default">Cancelar</a>
                             </div>
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

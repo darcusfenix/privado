@@ -8,7 +8,21 @@ function AnswerListController($scope, $location, $rootScope, $templateCache, Ans
     $rootScope.location = $location.path();
 
     $scope.answerList = Answer.query(function (data) {
-        $scope.answerList = data;
+        window.onload = function(){
+            $scope.answerList = data;
+            var head = document.getElementsByTagName("head")[0], script;
+            script = document.createElement("script");
+            script.type = "text/x-mathjax-config";
+            script[(window.opera ? "innerHTML" : "text")] =
+                "MathJax.Hub.Config({\n" +
+                "  tex2jax: { inlineMath: [['$','$'], ['\\\\(','\\\\)']] }\n" +
+                "});"
+            head.appendChild(script);
+            script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+            head.appendChild(script);
+        };
     }, function (err) {
         $location.path('/');
     });
@@ -47,9 +61,6 @@ function AnswerCreateController($scope, $location, $rootScope, Answer, Section, 
     $scope.answerInstance = Answer.create(function (data) {
         $scope.answerInstance = data;
         $scope.answerInstance.state = false;
-
-
-        console.log($scope.answerInstance);
     });
 
     $scope.saveAnswer = function (valid, $event) {
@@ -57,6 +68,10 @@ function AnswerCreateController($scope, $location, $rootScope, Answer, Section, 
         if (valid) {
             if ($scope.answerInstance.typeAnswer == 3) {
                 $scope.answerInstance.textAnswer = editor.getMathML();
+            }
+            if($scope.answerInstance.typeAnswer != 1 && $scope.answerInstance.textAnswer == null){
+                $rootScope.message = "Debes seleccionar al menos un tipo de respuesta";
+                return false;
             }
             Upload.upload({
                 url: 'answer/save',
