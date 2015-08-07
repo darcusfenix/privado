@@ -182,38 +182,13 @@ class NotificationService {
     def sendEmailAddress(Integer id, String contextPath) {
         User user = User.findById(id)
 
-        Date date = new Date();
-
-        DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy 'a las ' hh:mm a ", new Locale("es", "MX"));
-        DateFormat formatterHour = new SimpleDateFormat("hh:mm a ", new Locale("es", "MX"));
-
-
-        Class c = Class.findByClassroom(Classroom.findById(user.group.id))
-
-        Date nd = new Date()
-        Date now = new Date()
-        nd = c.dateClass
-
-        nd.setHours(c.stHour.getHours())
-        nd.setMinutes(c.stHour.getMinutes())
-
-        use(TimeCategory) {
-            nd =  (nd + 6.hours)
-        }
-
         String htmlContent
 
         def binding = [:]
 
         binding.userFullName = user.fullName
-        binding.grupo = user.group.nameClassroom
-        binding.horaInicio = formatter.format( c.dateClass)
-        binding.horaLimit = formatterHour.format(nd)
-        binding.now = formatter.format(now)
 
-        log.error(binding)
-
-        htmlContent = new File(contextPath + grailsApplication.config.files.foreignStudent).text
+        htmlContent = new File(contextPath + grailsApplication.config.files.address).text
 
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
@@ -230,6 +205,7 @@ class NotificationService {
             return true
 
         } catch (Exception e) {
+
             UserMailHistory userMailHistory = new UserMailHistory()
             userMailHistory.to = user.email;
             userMailHistory.from = "no-reply@cursopreparacionipn.com"
@@ -238,6 +214,8 @@ class NotificationService {
             userMailHistory.attachmentPath = null
             userMailHistory.save(flush: true, failOnError: true)
             return false
+
         }
+
     }
 }

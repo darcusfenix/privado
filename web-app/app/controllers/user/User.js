@@ -12,15 +12,18 @@ function UserListController($scope, $location, $rootScope, User, Role) {
 
     $scope.sendEmail = function(idStudent){
 
-        console.log(idStudent);
+        $(".btn").attr("disabled","disabled");
 
         User.sendEmail({id : idStudent},function(data){
 
-            console.log(data);
+            $rootScope.message = data.message;
+
+            $(".btn").removeAttr("disabled");
 
         }, function (err) {
 
-            console.log(err);
+            $(".btn").removeAttr("disabled");
+
 
         });
 

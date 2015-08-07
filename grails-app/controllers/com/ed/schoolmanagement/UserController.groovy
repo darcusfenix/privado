@@ -193,6 +193,6 @@ class UserController {
         String contextPath = servletContext.getRealPath(File.separator);
 
         notificationService.sendEmailAddress(params.int("id"), contextPath)
-        render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
+        render([message: "Se ha enviado un correo con los detalles del croquis.!"] as JSON)
     }
 }
