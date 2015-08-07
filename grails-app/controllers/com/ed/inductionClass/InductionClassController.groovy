@@ -6,6 +6,7 @@ import com.ed.service.Office
 import grails.converters.JSON
 import org.springframework.format.annotation.DateTimeFormat
 
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -28,10 +29,9 @@ class InductionClassController {
     }
 
     def save(Integer idOffice) {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMMM yyyy - hh:mm a");
-        println(request.JSON.date);
+        SimpleDateFormat dateParser = new SimpleDateFormat("dd MMMM yyyy - hh:mm a");
         InductionClass inductionClass = new InductionClass(request.JSON)
-        inductionClass.setDate(Date.from(LocalDateTime.from(f.parse(request.JSON.date)).atZone(ZoneId.systemDefault()).toInstant()));
+        inductionClass.setDate(dateParser.parse(request.JSON.date))
         inductionClass.stateClassroom = StateClassroom.findByName("Abierto")
         inductionClass.office = Office.findById(idOffice)
         if (inductionClass.validate(["name", "places"])) {
@@ -52,10 +52,10 @@ class InductionClassController {
     }
 
     def update(Integer idOffice) {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMMM yyyy - hh:mm a");
+        SimpleDateFormat dateParser = new SimpleDateFormat("dd MMMM yyyy - hh:mm a");
         InductionClass ic = InductionClass.findById(request.JSON.id)
         ic.properties = request.JSON
-        ic.setDate(LocalDateTime.from(f.parse(request.JSON.date)));
+        ic.setDate(dateParser.parse(request.JSON.date));
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.office = Office.findById(idOffice)
         if (ic.validate(["name", "places"])) {
@@ -89,6 +89,6 @@ class InductionClassController {
         u.inductionClass = InductionClass.findById(request.JSON.idI)
         u.save(flush: true)
         response.status = 200
-        render([message:'La clase ha sido registrada'] as JSON)
+        render([message: 'La clase ha sido registrada'] as JSON)
     }
 }
