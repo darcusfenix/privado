@@ -95,27 +95,33 @@ class UserController {
 
         User userInstance = new User()
         userInstance.properties = request.JSON
-        userInstance.password = "test"
-        userInstance.username = userInstance.email
-        userInstance.save(flush: true, insert: true, failOnError: true)
-        userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null)
-        userInstance.save(flush: true, failOnError: true)
-        UserRole userRole = new UserRole()
-        userRole.user = userInstance
-        userRole.role = Role.findById(1)
-        userRole.save(flush: true)
-        //Assigning a Classroom to a user, it's not activated 'til the user activates his account
-        Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
-        UserClassroom uc = new UserClassroom()
-        uc.classroom = classroomInstance
-        uc.user = userInstance
-        uc.activated = false
-        uc.save(flush: true)
-        //
-        String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/registro/#/activation/" + userInstance.activationToken
-        //
-        notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
-        render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
+        User ufind = User.findByEmail(userInstance.email);
+        if (ufind == null) {
+            userInstance.password = "test"
+            userInstance.username = userInstance.email
+            userInstance.save(flush: true, insert: true, failOnError: true)
+            userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null)
+            userInstance.save(flush: true, failOnError: true)
+            UserRole userRole = new UserRole()
+            userRole.user = userInstance
+            userRole.role = Role.findById(1)
+            userRole.save(flush: true)
+            //Assigning a Classroom to a user, it's not activated 'til the user activates his account
+            Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
+            UserClassroom uc = new UserClassroom()
+            uc.classroom = classroomInstance
+            uc.user = userInstance
+            uc.activated = false
+            uc.save(flush: true)
+            //
+            String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/registro/#/activation/" + userInstance.activationToken
+            //
+            notificationService.sendEmail(userInstance, contextPath, ["classRoomName": classroomInstance.nameClassroom, activationUrl: tokenUrl])
+            render([message: "Se te ha enviado un correo con las indicaciones para seguir con tu proceso ¡Chécalo!"] as JSON)
+        } else {
+            response.status = 500
+            render([message: "El correo proporcionado ya cuenta con un registro previo en el curso."] as JSON)
+        }
     }
 
     def activateClassroomPlace() {

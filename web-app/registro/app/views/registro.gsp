@@ -171,6 +171,10 @@
         </ol>
         <button class="fs-submit" ng-click="registrar()" name="horarioGrupo"
                 id="confirm">Enviar datos</button>
+
+        <div style="color: red !important;">
+            <h4 ng-show="messageError">{{messageError}}</h4>
+        </div>
     </form>
 </div>
 <script type="text/javascript">

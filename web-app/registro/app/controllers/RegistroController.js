@@ -18,7 +18,9 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
                     $location.path("/correo/");
                 }).error(function (data) {
                     $scope.error = true;
-                    $location.path("/correo/");
+                    $scope.messageError = data.message;
+                    $("#confirm").prop("disabled", false);
+                    //$location.path("/correo/");
                 });
         }
     };
