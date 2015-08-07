@@ -22,6 +22,10 @@ angular.module('ControlEscuela').factory('User', function ($resource) {
         save: {
             method: 'POST',
             url: 'user/save'
+        },
+        sendEmail: {
+            method: 'POST',
+            url: 'user/sendEmailAddres'
         }
     });
 });

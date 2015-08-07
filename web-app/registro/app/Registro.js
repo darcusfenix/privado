@@ -36,7 +36,7 @@ registro.config(['$routeProvider', function ($routeProvider) {
 
     }).when('/foreignStudent/:token', { // TODO change the controller
 
-        controller: 'ActivationController',
+        controller: 'foreignStudentController',
         templateUrl: 'app/views/paso32.gsp'
 
     }).when('/cantPay/:token', { // TODO change the controller

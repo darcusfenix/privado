@@ -38,6 +38,7 @@
     <script src="app/controllers/ClassConfirmationController.js"></script>
     <script src="app/controllers/ScheduleIssueController.js"></script>
     <script src="app/controllers/RegistroController.js"></script>
+    <script src="app/controllers/foreignStudentController.js"></script>
 
     <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>

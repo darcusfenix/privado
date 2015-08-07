@@ -1,4 +1,3 @@
-
 <div class="row margin-top-10">
     <div class="col-md-12">
 
@@ -55,9 +54,11 @@
                             <td><a href="#/user/show/{{user.id}}">{{user.username}}</a></td>
                             <td><a href="#/user/show/{{user.id}}">{{user.group.nameClassroom}}</a></td>
                             <td><a href="#/user/show/{{user.id}}">{{user.phoneNumber}}</a></td>
+                            <td><a href="#/user/show/{{user.id}}">{{user.group.nameClassroom}}</a></td>
                         </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <!-- END EXAMPLE TABLE PORTLET-->

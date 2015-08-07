@@ -5,6 +5,30 @@ function UserListController($scope, $location, $rootScope, User, Role) {
     $rootScope.location = $location.path();
     $scope.userList = User.query();
     $scope.roles = Role.query();
+
+    $scope.cancelar = function cancelar() {
+        $location.path("/user/show/" + $routeParams.id);
+    };
+
+    $scope.sendEmail = function(idStudent){
+
+        $(".btn").attr("disabled","disabled");
+
+        User.sendEmail({id : idStudent},function(data){
+
+            $rootScope.message = data.message;
+
+            $(".btn").removeAttr("disabled");
+
+        }, function (err) {
+
+            $(".btn").removeAttr("disabled");
+
+
+        });
+
+    };
+
 };
 
 function UserListClass($scope, $location, $rootScope, User, Role) {
