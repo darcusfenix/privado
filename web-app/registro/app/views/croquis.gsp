@@ -98,8 +98,9 @@
                 <p>
                     Da clic en el bot&oacute;n de <strong>Finalizar</strong> para enviarte la informaci&oacute;n por correo
                 </p>
-                <a href="#" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul"
-                   ng-click="sendSketchInformation($event)">Finalizar</a>
+                <button id="fin" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul"
+                        ng-click="sendSketchInformation($event)">Finalizar</button>
+
             </div>
 
             <div class="row" ng-show="mailMessage">

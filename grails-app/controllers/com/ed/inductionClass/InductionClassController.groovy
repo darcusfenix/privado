@@ -55,7 +55,7 @@ class InductionClassController {
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMMM yyyy - hh:mm a");
         InductionClass ic = InductionClass.findById(request.JSON.id)
         ic.properties = request.JSON
-        ic.setDate(LocalDateTime.from(f.parse(request.JSON.date)));
+        ic.setDate(Date.from(LocalDateTime.from(f.parse(request.JSON.date)).atZone(ZoneId.systemDefault()).toInstant()));
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.office = Office.findById(idOffice)
         if (ic.validate(["name", "places"])) {
