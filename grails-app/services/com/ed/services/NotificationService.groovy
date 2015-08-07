@@ -51,7 +51,7 @@ class NotificationService {
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
         SendGridEmail email = new SendGridEmailBuilder()
-                .from('no-reply@cursopreparacionipn.com')
+                .from('preparacionipn@cursopreparacionipn.com')
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
@@ -62,7 +62,7 @@ class NotificationService {
         } catch (Exception e) {
             UserMailHistory userMailHistory = new UserMailHistory()
             userMailHistory.to = user.email;
-            userMailHistory.from = "no-reply@cursopreparacionipn.com"
+            userMailHistory.from = "preparacionipn@cursopreparacionipn.com"
             userMailHistory.subject = "Curso de preparación IPN"
             userMailHistory.htmlContent = template.toString()
             userMailHistory.save(flush: true, failOnError: true)
@@ -84,7 +84,7 @@ class NotificationService {
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
         SendGridEmail email = new SendGridEmailBuilder()
-                .from('no-reply@cursopreparacionipn.com')
+                .from('preparacionipn@cursopreparacionipn.com')
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
@@ -96,7 +96,7 @@ class NotificationService {
         } catch (Exception e) {
             UserMailHistory userMailHistory = new UserMailHistory()
             userMailHistory.to = user.email;
-            userMailHistory.from = "no-reply@cursopreparacionipn.com"
+            userMailHistory.from = "preparacionipn@cursopreparacionipn.com"
             userMailHistory.subject = "Curso de preparación IPN"
             userMailHistory.htmlContent = template.toString()
             userMailHistory.attachmentPath = contextPath + grailsApplication.config.files.pdfFile

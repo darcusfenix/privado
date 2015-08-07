@@ -24,27 +24,6 @@
     <form id="myform" name="myform" class="fs-form fs-form-full" autocomplete="off">
 
         <ol class="fs-fields">
-            <li data-input-trigger>
-                <label class="fs-field-label fs-anim-upper" for="q3"
-                       data-info="Verifica los horarios">Selecciona un Grupo</label>
-
-                <div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
-                    <span ng-repeat="group in groups track by $index">
-                        <input type="button" data-modal="modal-1" style="width: 70% !important;"
-                               class="btn btn-info"
-                               ng-click="vHorario(group.classes)"
-                               value="Ver horario">
-                        <input ng-model="userInstance.group" type="radio" id="{{group.id}}" name="grupos"
-                               value="{{group.nameClassroom}}" required>
-                        <label for="{{group.id}}" style="padding-top: 20px;">
-                            <img src="img/notebook.png" width="50px" height="50px">
-                            {{group.nameClassroom}}
-                            <br>
-                            Lugares Disponibles: {{group.places*0.66 | number:0}}</label>
-                        <br>
-                    </span>
-                </div>
-            </li>
             <li>
                 <label class="fs-field-label fs-anim-upper" for="q1">&#191; Primer apellido?</label>
                 <input ng-model="userInstance.lastName" class="fs-anim-lower" id="primerApellido" name="q1"
@@ -174,6 +153,27 @@
                 <label class="fs-field-label fs-anim-upper" for="q1">No. Interior:</label>
                 <input class="fs-anim-lower" ng-model="userInstance.internalNumber" id="q1" name="q1" type="text"
                        placeholder="43" required/>
+            </li>
+            <li data-input-trigger>
+                <label class="fs-field-label fs-anim-upper" for="q3"
+                       data-info="Verifica los horarios">Selecciona un Grupo</label>
+
+                <div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
+                    <span ng-repeat="group in groups track by $index">
+                        <input type="button" data-modal="modal-1" style="width: 70% !important;"
+                               class="btn btn-info"
+                               ng-click="vHorario(group.classes)"
+                               value="Ver horario">
+                        <input ng-model="userInstance.group" type="radio" id="{{group.id}}" name="grupos"
+                               value="{{group.nameClassroom}}" required>
+                        <label for="{{group.id}}" style="padding-top: 20px;">
+                            <img src="img/notebook.png" width="50px" height="50px">
+                            {{group.nameClassroom}}
+                            <br>
+                            Lugares Disponibles: {{group.places*0.66 | number:0}}</label>
+                        <br>
+                    </span>
+                </div>
             </li>
         </ol>
         <button class="fs-submit" ng-click="registrar()" name="horarioGrupo"
