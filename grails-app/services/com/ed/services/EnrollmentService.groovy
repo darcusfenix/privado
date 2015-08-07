@@ -59,7 +59,7 @@ class EnrollmentService {
         InductionClass inductionClass = null
         // Bussiness Rule 1, Just assign if it's sunday before 4:30 an induction class!
         Calendar cal = Calendar.getInstance()
-        cal.set(2015, Calendar.AUGUST, 6);
+        cal.set(2015, Calendar.AUGUST, 9);
         Date currentDate = new Date();
         Date sundayDate = cal.getTime();
 

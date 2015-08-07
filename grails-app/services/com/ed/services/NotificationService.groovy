@@ -34,20 +34,19 @@ class NotificationService {
         // There's an induction class
         if (user.inductionClass) {
             binding.inductionDate = formatter.format(user.inductionClass.date)
+            binding.dateHour = hourFormatter.format(user.inductionClass.date)
+            htmlContent = new File(contextPath + grailsApplication.config.files.htmlMailContent).text
         } else { //
             // Check for appointment!
             Appointment appointment = Appointment.findByUser(user)
             binding.inductionDate = formatter.format(appointment.appointmentDate)
             binding.dateHour = hourFormatter.format(appointment.appointmentDate)
+            htmlContent = new File(contextPath + grailsApplication.config.files.nextDayMailContent).text
         }
 
         binding.enrollmentUrl = params.activationUrl
         binding.price = 1500 // TODO Get related user services to get the price
-        if (binding.dateHour == "") { // Loading other template and generationg a new appointment
-            htmlContent = new File(contextPath + grailsApplication.config.files.htmlMailContent).text
-        } else { // Simple template with validation token
-            htmlContent = new File(contextPath + grailsApplication.config.files.nextDayMailContent).text
-        }
+
 
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
