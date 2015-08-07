@@ -1,12 +1,21 @@
 /**
  * Created by alberto on 24/07/15.
  */
-angular.module('Registro').controller('RegistroController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-    $("#content").addClass("container");
+angular.module('Registro').controller('RegistroController', ['$scope', '$http', '$location', '$filter', function ($scope, $http, $location, $filter) {
     $scope.userInstance = {};
     $scope.message = "";
     $scope.error = false;
     $scope.groups = [];
+
+    $scope.vHorario = function (classes) {
+        $scope.clazz = classes;
+        $("#modal-1").addClass("md-show");
+    }
+
+    $scope.close = function () {
+        $("#modal-1").removeClass("md-show");
+    }
+
     $scope.registrar = function Registrar() {
         if ($scope.myform.$valid) {
             $("#confirm").attr("disabled", "disabled")
@@ -73,6 +82,7 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
             }
 
         }
+        $("#content").addClass("container");
         $("#content").removeClass("ocultar");
     }).error(function (data) {
         console.log(data);

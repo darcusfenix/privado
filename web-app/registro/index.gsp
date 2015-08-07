@@ -13,6 +13,13 @@
     <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
     <script src="./js/modales.js"></script>
+    <!--  Modal -->
+    <script src="modal/js/classie.js"></script>
+    <script src="modal/js/cssParser.js"></script>
+    <script src="modal/js/modalEffects.js"></script>
+    <script src="modal/js/modalEffects.js"></script>
+    <!--   -->
+
     <!-- Requerimientos para modal-->
     <link rel="stylesheet" href="./css/simplemodal.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <script src="./js/mootools-core-1.3.1.js" type="text/javascript" charset="utf-8"></script>
