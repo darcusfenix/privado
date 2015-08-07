@@ -4,7 +4,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-gift"></i>Registro de Alumno
+                    Registro de Alumno
                 </div>
             </div>
 
@@ -117,7 +117,8 @@
                                 <div class="input-icon right">
                                     <i class="fa"></i>
                                     <select ng-options="role.id as role.authority for role in roles"
-                                            ng-model="userInstance.authority.id" name="role" required></select>
+                                            ng-model="userInstance.authority.id" class="form-control" name="role"
+                                            required></select>
                                 </div>
                             </div>
                             <span class="help-block" ng-show="createUser.role.$error.required||validator.role.hasError">
@@ -150,7 +151,8 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input type="checkbox" ng-model="userInstance.previousStudent" name="previousStudent">
+                                    <input type="checkbox" ng-model="userInstance.previousStudent"
+                                           name="previousStudent">
                                 </div>
                             </div>
                             <span class="help-block" ng-show="editUser.group.$error.required||validator.group.hasError">
@@ -166,10 +168,12 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <textarea type="text" rows="4" cols="50" ng-model="userInstance.comment" name="comment"></textarea>
+                                    <textarea type="text" rows="4" cols="50" ng-model="userInstance.comment"
+                                              name="comment"></textarea>
                                 </div>
                             </div>
-                            <span class="help-block" ng-show="editUser.comment.$error.required||validator.group.hasError">
+                            <span class="help-block"
+                                  ng-show="editUser.comment.$error.required||validator.group.hasError">
                                 {{validator.comment.message}}
                             </span>
                         </div>
@@ -253,7 +257,7 @@
 
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-gift"></i>Dirección
+                            Dirección
                         </div>
                     </div>
                     <hr>
@@ -264,10 +268,11 @@
                             *</span>
                         </label>
 
-                        <div class="col-md-4" ng-class="{'has-error': createUser.state.$error.required||validator.state.hasError}">
+                        <div class="col-md-4"
+                             ng-class="{'has-error': createUser.state.$error.required||validator.state.hasError}">
                             <div class="input-icon right">
                                 <i class="fa"></i>
-                                <select ng-model="userInstance.state" name="estate" required>
+                                <select ng-model="userInstance.state" class="form-control" name="estate" required>
                                     <option value="Distrito Federal">Distrito Federal</option>
                                     <option value="Aguascalientes">Aguascalientes</option>
                                     <option value="Baja California">Baja California</option>
