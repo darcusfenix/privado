@@ -29,12 +29,12 @@ class UserController {
         def userInstance = new User(request.JSON)
         if (userInstance.validate()) {
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
-            userInstance.active=true;
+            userInstance.active = true;
             userInstance.save()
             UserClassroom uc = new UserClassroom();
-            uc.user=userInstance;
-            uc.classroom=Classroom.findById(request.JSON.group.id);
-            uc.activated=true;
+            uc.user = userInstance;
+            uc.classroom = Classroom.findById(request.JSON.group.id);
+            uc.activated = true;
             uc.save(flush: true);
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.created.message")] as JSON)
@@ -96,16 +96,15 @@ class UserController {
     def enroll() {
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
-
+        Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
         User userInstance = new User()
         userInstance.properties = request.JSON
         userInstance.password = "test"
         userInstance.username = userInstance.email
         userInstance.save(flush: true, insert: true, failOnError: true)
-        userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null)
+        userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null, classroomInstance)
         userInstance.save(flush: true, failOnError: true)
         //Assigning a Classroom to a user, it's not activated 'til the user activates his account
-        Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
         UserClassroom uc = new UserClassroom()
         uc.classroom = classroomInstance
         uc.user = userInstance
