@@ -89,7 +89,7 @@ angular.module('Registro').controller('ScheduleIssueController', ['$scope', '$ht
                         b = false;
                     }
                 } else {
-                    alert("si");
+                    dFinal = $scope.appointmentDateSelect;
                     $scope.messageTime = "";
                     b = true
                 }
@@ -120,8 +120,6 @@ angular.module('Registro').controller('ScheduleIssueController', ['$scope', '$ht
                 $scope.message = data.message;
                 alert(data.message);
             });
-        } else {
-            $scope.messageTime = "No ha seleccionado información correcta";
         }
     };
 

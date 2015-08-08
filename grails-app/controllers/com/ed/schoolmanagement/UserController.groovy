@@ -242,24 +242,25 @@ class UserController {
         User user = User.findByActivationToken(params.token)
         Date d = new Date()
         String date = params.appointmentDate
+        d.setHours(Integer.valueOf(date.split(":")[0]))
+        d.setMinutes(Integer.valueOf(date.split(":")[1]))
+        d.setSeconds(0)
         if (params.test == "inductionClass") {
-            d.setHours(Integer.valueOf(date.split(":")[0]))
-            d.setMinutes(Integer.valueOf(date.split(":")[1]))
-            d.setSeconds(0)
             user.inductionClass = InductionClass.findById(params.idClass)
             user.save(flush: true)
         } else {
             user.inductionClass = null;
             user.save(flush: true)
             Appointment appointment = new Appointment()
+            for (Appointment ap : Appointment.findAllByUser(user)) {
+                ap.delete()
+            }
             appointment.user = user
             if (params.day != "1") {
                 use(TimeCategory) {
                     d = (d + 1.day)
                 }
             }
-            d.setHours(Integer.valueOf(date.split(":")[0]))
-            d.setMinutes(Integer.valueOf(date.split(":")[1]))
             appointment.appointmentDate = d
             appointment.save(flush: true)
         }
