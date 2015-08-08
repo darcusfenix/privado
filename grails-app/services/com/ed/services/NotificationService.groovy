@@ -162,7 +162,8 @@ class NotificationService {
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
-                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.temario))
+                .addAttachment("PreparacionIPNTemario.pdf", new File(contextPath + grailsApplication.config.files.temario))
+                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.direccion))
                 .build()
         try {
 
@@ -199,7 +200,7 @@ class NotificationService {
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
-                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.temario))
+                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.direccion))
                 .build()
         try {
 

@@ -166,10 +166,11 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
             $scope.message.type = 1;
             $scope.message.text = success.message;
 
+            /*
             $timeout(function() {
                 $route.reload();
             }, 3000);
-
+*/
 
         }, function (error){
             console.log(error);
@@ -177,10 +178,11 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
             $scope.message.type = 0;
             $scope.message.text = error.data.message;
 
+            /*
             $timeout(function() {
                 $scope.message.show = false;
             }, 4000);
-
+*/
         });
 
 
@@ -244,3 +246,30 @@ function VoucherPaymentShowStudentRecordController ($scope,  $routeParams, $loca
 
 
 };
+
+function VoucherPaymentDisableServicesController($scope, $location, VoucherPayment, $rootScope, Service, TypeService){
+
+    $scope.servicesList = Service.getServicesByStateTrue(function(data){
+        $scope.servicesList = data;
+    });
+
+    $rootScope.location = $location.path();
+    $scope.typeServices= TypeService.query();
+
+    $scope.getNameService = function(id){
+        for(var j = 0; j< $scope.typeServices.length; j++){
+            if($scope.typeServices[j].id == id){
+                return $scope.typeServices[j].name;
+            }
+        }
+    };
+
+    $scope.disableService = function(id){
+        console.log(id);
+        VoucherPayment.disableServices({id: id},function(data){
+            $rootScope.message = data.message;
+        }, function(err){
+            $rootScope.message = data.message;
+        });
+    };
+}

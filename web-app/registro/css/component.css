@@ -888,7 +888,7 @@ button.fs-continue:hover {
     }
 
     .fs-form {
-        top: 6em;
+        top: 12em;
         right: 2em;
         left: 0;
         padding: 0 3.75em 0 1em;
@@ -905,6 +905,7 @@ button.fs-continue:hover {
 
     .fs-title {
         padding: 20px;
+        font-size: 9px;
     }
 
     .fs-numbers {
