@@ -37,6 +37,10 @@ angular.module('ControlEscuela').factory('VoucherPayment', function ($resource) 
             method : 'GET',
             isArray:true,
             url: 'voucherPayment/vouchersPaymentStudentAndService/'
+        },
+        disableServices:{
+            method : 'POST',
+            url: 'voucherPayment/disableServices/'
         }
     });
 });

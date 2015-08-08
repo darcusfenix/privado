@@ -28,6 +28,11 @@ angular.module('ControlEscuela').factory('Service', function ($resource) {
             method: 'GET',
             isArray: false,
             url: 'service/getTotalRequiredByUser/:userId'
+        },
+        getServicesByStateTrue:{
+            method: 'GET',
+            isArray: true,
+            url: 'service/getServicesByStateTrue/'
         }
     });
 });
