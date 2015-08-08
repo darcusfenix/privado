@@ -28,7 +28,6 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
             $http.post('/ControlEscuela/user/enroll',
 
                 $scope.userInstance
-
             ).success(function (data) {
 
                     $location.path("/correo/");

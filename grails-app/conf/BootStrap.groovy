@@ -85,7 +85,7 @@ class BootStrap {
         ic.office = office
         //
         Calendar cal = Calendar.getInstance()
-        cal.set(2015, Calendar.AUGUST, 8, 11, 00);
+        cal.set(2015, Calendar.AUGUST, 8, 11, 00, 00);
         ic.date = cal.getTime();
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)
@@ -96,7 +96,7 @@ class BootStrap {
         ic.places = 100
         ic.office = office
         //
-        cal.set(2015, Calendar.AUGUST, 8, 13, 00);
+        cal.set(2015, Calendar.AUGUST, 8, 13, 00, 00);
         ic.date = cal.getTime();
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)
@@ -107,7 +107,7 @@ class BootStrap {
         ic.places = 100
         ic.office = office
         //
-        cal.set(2015, Calendar.AUGUST, 8, 16, 00);
+        cal.set(2015, Calendar.AUGUST, 8, 16, 00, 00);
         ic.date = cal.getTime();
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)
@@ -118,7 +118,7 @@ class BootStrap {
         ic.places = 100
         ic.office = office
         //
-        cal.set(2015, Calendar.AUGUST, 8, 18, 00);
+        cal.set(2015, Calendar.AUGUST, 8, 18, 00, 00);
         ic.date = cal.getTime();
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)

@@ -51,7 +51,7 @@
 
     <div class="row text-center">
         <div class="col-md-8 col-md-offset-2 coming-soon-content">
-            <h1 id="titulo" >!Próximamente¡</h1>
+            <h1 id="titulo" >¡Próximamente!</h1>
 
             <h2 id="texto" style="color: white">
                 Recuerda que el curso de preparación IPN - segunda vuelta se encuentra a poco tiempo de comenzar, no pierdas tu lugar.

@@ -3,14 +3,18 @@ package com.ed.schoolmanagement
 import com.ed.accesscontrol.StudentService
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.UserClass
+import com.ed.inductionClass.InductionClass
 import com.ed.service.ClassroomCourse
 import com.ed.service.MockExam
 import com.ed.service.OnlineCourse
 import com.ed.service.UserClassroom
 import grails.converters.JSON
 import grails.transaction.Transactional
+import groovy.time.TimeCategory
 
 import javax.servlet.ServletContext
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 class UserController {
 
@@ -128,12 +132,17 @@ class UserController {
         } else {
             // Removing the roles assigned to the user
             UserRole.removeAll(user, false)
-            UserClassroom.findByUser(user).delete()
+            if (UserClassroom.findByUser(user)) {
+                UserClassroom.findByUser(user).delete()
+            }
             for (UserClass uc : UserClass.findAllByUser(user)) {
                 uc.delete()
             }
             for (StudentService ss : StudentService.findAllByUser(user)) {
                 ss.delete()
+            }
+            if (Appointment.findByUser(user)) {
+                Appointment.findByUser(user).delete()
             }
             user.delete(flush: true)
             response.status = 200
@@ -178,8 +187,6 @@ class UserController {
         studentServiceMockExam.active = true
         studentServiceMockExam.fullPayment = 0
         studentServiceMockExam.save()
-
-
 
         UserRole.create(userInstance, Role.findById(1), true)
         //Assigning a Classroom to a user, it's not activated 'til the user activates his account
@@ -233,12 +240,29 @@ class UserController {
 
     def generateAppointment() {
         User user = User.findByActivationToken(params.token)
-        user.inductionClass = null;
-        user.save(flush: true)
-        Appointment appointment = new Appointment()
-        appointment.user = user
-        appointment.appointmentDate = params.date('appointmentDate', "yyyy-MM-dd'T'hh:mm:ss'Z'")
-        appointment.save(flush: true)
+        Date d = new Date()
+        String date = params.appointmentDate
+        if (params.test == "inductionClass") {
+            d.setHours(Integer.valueOf(date.split(":")[0]))
+            d.setMinutes(Integer.valueOf(date.split(":")[1]))
+            d.setSeconds(0)
+            user.inductionClass = InductionClass.findById(params.idClass)
+            user.save(flush: true)
+        } else {
+            user.inductionClass = null;
+            user.save(flush: true)
+            Appointment appointment = new Appointment()
+            appointment.user = user
+            if (params.day != "1") {
+                use(TimeCategory) {
+                    d = (d + 1.day)
+                }
+            }
+            d.setHours(Integer.valueOf(date.split(":")[0]))
+            d.setMinutes(Integer.valueOf(date.split(":")[1]))
+            appointment.appointmentDate = d
+            appointment.save(flush: true)
+        }
         render([message: "Se te ha asignado una nueva fecha para tu clase de inducción ¡Chécala!"] as JSON)
         return
     }
@@ -268,5 +292,11 @@ class UserController {
 
         notificationService.sendEmailAddress(params.int("id"), contextPath, contextPathWeb)
         render([message: "Se ha enviado un correo con los detalles del croquis.!"] as JSON)
+    }
+
+    def Dates() {
+        response.status = 200
+        Date d = new Date()
+        render([year: d, mes: d.getMonth(), day: d.getDate(), h: d.getHours(), m: d.getMinutes()] as JSON)
     }
 }

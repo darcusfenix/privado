@@ -83,8 +83,8 @@ class NotificationService {
 
     def sendSketchMail(String activationToken, String contextPath, def params = [:]) {
         User user = User.findByActivationToken(activationToken)
-        user.activationToken = null
-        user.save(flush: true)
+        //user.activationToken = null
+        //user.save(flush: true)
         String htmlContent
 
         def binding = [:]
