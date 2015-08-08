@@ -17,7 +17,7 @@ class UserController {
     def notificationService
     def enrollmentService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent:"POST" , sendEmailAddres : "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent: "POST", sendEmailAddres: "POST"]
 
     def index() {
         render User.listOrderById([max: params.int('max')]) as JSON
@@ -56,13 +56,18 @@ class UserController {
 
     def update() {
         User userInstance = User.findById(request.JSON.id)
+        UserClassroom uc = UserClassroom.findByUser(userInstance)
         userInstance.properties = request.JSON
         if (userInstance.validate()) {
+            uc.delete()
             userInstance.save()
             UserRole.removeAll(userInstance)
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
-            //TODO: Remove all the services and groups related to the user
-            //TODO: Create again all the relationships between classroom and users
+            uc = new UserClassroom()
+            uc.user = userInstance;
+            uc.classroom = Classroom.findById(request.JSON.group.id);
+            uc.activated = true;
+            uc.save(flush: true);
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.updated.message")] as JSON)
         } else {
@@ -85,6 +90,7 @@ class UserController {
         } else {
             // Removing the roles assigned to the user
             UserRole.removeAll(user, false)
+            UserClassroom.findByUser(user).delete()
             user.delete(flush: true)
             response.status = 200
             render([message: message(code: 'de.user.deleted.message')] as JSON)
@@ -202,7 +208,7 @@ class UserController {
         render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
     }
 
-    def sendEmailToforeignStudent(){
+    def sendEmailToforeignStudent() {
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
         String contextPathWeb = request.contextPath
@@ -210,7 +216,8 @@ class UserController {
         notificationService.sendEmailToForeignStudent(params.token, contextPath, contextPathWeb)
         render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
     }
-    def sendEmailAddres(){
+
+    def sendEmailAddres() {
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
         String contextPathWeb = request.contextPath

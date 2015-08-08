@@ -67,6 +67,17 @@ class BootStrap {
         classroom.office = office
         classroom.save()
 
+        classroom = new Classroom()
+        classroom.nameClassroom = "Grupo B"
+        classroom.period = "2015-02"
+        classroom.places = 50
+        classroom.typeClassroom = 0
+        classroom.typeClassroomP = 0
+        classroom.priority = 1
+        classroom.stateClassroom = StateClassroom.findByName("Abierto")
+        classroom.office = office
+        classroom.save()
+
         InductionClass ic = new InductionClass()
         ic.date = null
         ic.name = "Clase de Inducción 1"
