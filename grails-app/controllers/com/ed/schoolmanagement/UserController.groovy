@@ -35,7 +35,7 @@ class UserController {
 
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
 
-            if ((int)request.JSON.authority.id == 1){
+            if ((int) request.JSON.authority.id == 1) {
                 StudentService studentService = new StudentService()
                 studentService.service = ClassroomCourse.findByActive(true)
                 studentService.user = userInstance
@@ -102,21 +102,39 @@ class UserController {
         }
     }
 
-    def delete(Integer id) {
+    def delete(Integer id, Integer td) {
         def user = User.findById(id ?: params.int("id"))
         UserRole.removeAll(user, false)
         // Return an error just if the user cant be removed! Checking all the services related
-        boolean hasService = true;
-        hasService = hasService && StudentService.findByUser(user)
-        hasService = hasService && UserClass.findByUser(user)
-        hasService = hasService && UserClassroom.findByUser(user)
-        if (hasService) {
+        String dependencias = "";
+
+        if (StudentService.findByUser(user)) {
+            dependencias += "<p><b>Servicios de curso en linea y examen simulacro</b></p>";
+        }
+        if (UserClass.findByUser(user)) {
+            dependencias += "<p><b>Clases asociadas al paso de lista</b></p>";
+        }
+        if (UserClassroom.findByUser(user)) {
+            dependencias += "<p><b>Grupo asignado</b></p>";
+        }
+
+        if (td == 1) {
+            dependencias = "";
+        }
+
+        if (dependencias.length() != 0) {
             response.status = 500
-            render([message: message(code: 'de.user.cant.delete.message')] as JSON)
+            render([message: message(code: 'de.user.cant.delete.message'), depen: dependencias] as JSON)
         } else {
             // Removing the roles assigned to the user
             UserRole.removeAll(user, false)
             UserClassroom.findByUser(user).delete()
+            for (UserClass uc : UserClass.findAllByUser(user)) {
+                uc.delete()
+            }
+            for (StudentService ss : StudentService.findAllByUser(user)) {
+                ss.delete()
+            }
             user.delete(flush: true)
             response.status = 200
             render([message: message(code: 'de.user.deleted.message')] as JSON)

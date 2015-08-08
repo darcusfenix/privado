@@ -215,8 +215,7 @@
                                             </div-->
 
                                             <div class="form-group"
-                                                 ng-class="{'has-error': editUser.username.$error.required||validator.username.hasError}"
-                                                 ng-show="userInstance.authority.id==1">
+                                                 ng-class="{'has-error': editUser.username.$error.required||validator.username.hasError}">
                                                 <label class="control-label col-md-3">
                                                     Usuario de facebook:
                                                 </label>

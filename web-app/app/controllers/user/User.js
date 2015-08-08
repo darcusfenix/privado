@@ -10,11 +10,11 @@ function UserListController($scope, $location, $rootScope, User, Role) {
         $location.path("/user/show/" + $routeParams.id);
     };
 
-    $scope.sendEmail = function(idStudent){
+    $scope.sendEmail = function (idStudent) {
 
-        $(".btn").attr("disabled","disabled");
+        $(".btn").attr("disabled", "disabled");
 
-        User.sendEmail({id : idStudent},function(data){
+        User.sendEmail({id: idStudent}, function (data) {
 
             $rootScope.message = data.message;
 
@@ -77,21 +77,22 @@ function UserEditController($scope, $location, $routeParams, $rootScope, User, R
 };
 
 function UserShowController($scope, $location, $routeParams, $rootScope, User) {
+
     $rootScope.location = $location.path();
     $scope.userInstance = User.get({id: $routeParams.id});
 
     $scope.editUser = function editUser() {
         $location.path('/user/edit/' + $routeParams.id);
     };
-    $scope.deleteUser = function deleteUser() {
+    $scope.deleteUser = function deleteUser(tdelete) {
         $scope.userInstance.$delete({
-            id: $routeParams.id
+            id: $routeParams.id, td: tdelete
         }, function deletedResource(data) {
             $rootScope.message = data.message;
             $location.path('/user/');
-        }, function (error){
-            $rootScope.message = error.data.message;
-            alert(error.data.message);
+        }, function (error) {
+            $("#messageError").html(error.data.message + error.data.depen);
+            $('#model-confirm2').modal('toggle');
         });
     };
 };
