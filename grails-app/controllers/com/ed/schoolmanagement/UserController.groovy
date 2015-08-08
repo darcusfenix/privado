@@ -3,6 +3,9 @@ package com.ed.schoolmanagement
 import com.ed.accesscontrol.StudentService
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.UserClass
+import com.ed.service.ClassroomCourse
+import com.ed.service.MockExam
+import com.ed.service.OnlineCourse
 import com.ed.service.UserClassroom
 import grails.converters.JSON
 import grails.transaction.Transactional
@@ -96,6 +99,7 @@ class UserController {
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
         Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
+
         User userInstance = new User()
         userInstance.properties = request.JSON
         userInstance.password = "test"
@@ -103,6 +107,30 @@ class UserController {
         userInstance.save(flush: true, insert: true, failOnError: true)
         userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null, classroomInstance)
         userInstance.save(flush: true, failOnError: true)
+
+        StudentService studentService = new StudentService()
+        studentService.service = ClassroomCourse.findByActive(true)
+        studentService.user = userInstance
+        studentService.active = true
+        studentService.fullPayment = 0
+        studentService.save()
+
+        StudentService anotherStudentService = new StudentService()
+        anotherStudentService.service = OnlineCourse.findByActive(true)
+        anotherStudentService.user = userInstance
+        anotherStudentService.active = true
+        anotherStudentService.fullPayment = 0
+        anotherStudentService.save()
+
+        StudentService studentServiceMockExam = new StudentService()
+        studentServiceMockExam.service = MockExam.findByActive(true)
+        studentServiceMockExam.user = userInstance
+        studentServiceMockExam.active = true
+        studentServiceMockExam.fullPayment = 0
+        studentServiceMockExam.save()
+
+
+
         UserRole.create(userInstance, Role.findById(1), true)
         //Assigning a Classroom to a user, it's not activated 'til the user activates his account
         UserClassroom uc = new UserClassroom()

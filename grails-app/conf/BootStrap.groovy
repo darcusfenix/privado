@@ -327,7 +327,7 @@ class BootStrap {
         mockExam.endDate = new Date()
         mockExam.term = 1.26
         mockExam.name = "primer examen"
-        mockExam.active = false
+        mockExam.active = true
         mockExam.typeService = othertypeService
         mockExam.save()
 
