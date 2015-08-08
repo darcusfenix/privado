@@ -71,22 +71,47 @@ class VoucherPaymentController {
     }
 
     def save(VoucherPayment voucherPaymentInstance) {
-
-        //StudentService studentService = StudentService.find("from StudentService where user=:user and service=:service", [user : otroU, service: otroS])
         StudentService studentService = StudentService.findByUserAndService(User.findById(params.int("userId")), Service.findById(params.int("serviceId")))
+        Float totalPaid = 0.0
+        Float totalRequired = 0.0
+        Float subtraction = 0.0
 
-        voucherPaymentInstance.studentService = studentService
-        voucherPaymentInstance.payDate = new java.util.Date()
-        voucherPaymentInstance.stateVoucher = StateVoucher.findById(params.int("stateVoucher"))
+        StudentService.findAllByUser(User.findById( params.int("userId") )).each { StudentService ->
+            Service.findAllById(StudentService.service.id).each { service ->
+                totalRequired += service.cost
+            }
+            VoucherPayment.findAllByStudentService(StudentService).each { voucherPayment ->
+                totalPaid += voucherPayment.pay
+            }
+        }
 
-        if (voucherPaymentInstance.save(flush: true, failOnError: true)) {
-            response.status = 200
-            render([message: message(code: "voucherPayment.pay.success")] as JSON)
-        } else {
+        if (totalPaid < totalRequired  ){
+            subtraction = totalRequired - totalPaid
+            if (voucherPaymentInstance.pay <= subtraction){
+
+                voucherPaymentInstance.studentService = studentService
+                voucherPaymentInstance.payDate = new java.util.Date()
+                voucherPaymentInstance.stateVoucher = StateVoucher.findById(params.int("stateVoucher"))
+
+                if (voucherPaymentInstance.save(flush: true, failOnError: true)) {
+                    response.status = 200
+                    render([message: message(code: "voucherPayment.pay.success")] as JSON)
+                } else {
+                    response.status = 500
+                    //render voucherPaymentInstance.errors as JSON
+                    render([message: message(code: "voucherPayment.pay.exceded")] as JSON)
+                }
+            }else{
+                response.status = 500
+                render([message: message(code: "voucherPayment.pay.exceded")] as JSON)
+            }
+        }else{
             response.status = 500
-            //render voucherPaymentInstance.errors as JSON
             render([message: message(code: "voucherPayment.pay.exceded")] as JSON)
         }
+
+
+
 
     }
 }
