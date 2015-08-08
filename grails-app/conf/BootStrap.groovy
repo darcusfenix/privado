@@ -66,7 +66,6 @@ class BootStrap {
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
         classroom.office = office
         classroom.save()
-        
 
         InductionClass ic = new InductionClass()
         ic.date = null
