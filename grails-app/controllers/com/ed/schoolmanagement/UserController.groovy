@@ -30,9 +30,9 @@ class UserController {
     def save() {
         def userInstance = new User(request.JSON)
         if (userInstance.validate()) {
-            UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
             userInstance.active = true;
             userInstance.save()
+            UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
             UserClassroom uc = new UserClassroom();
             uc.user = userInstance;
             uc.classroom = Classroom.findById(request.JSON.group.id);

@@ -51,7 +51,7 @@ class BootStrap {
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         springContext.getBean("customObjectMarshallers").register()
         //
-        Role alumno = Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
+        Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
         Role.findOrSaveWhere([authority: 'ROLE_EMPLEADO'])
         Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
         Role.findOrSaveWhere([authority: 'ROLE_SU'])
@@ -152,6 +152,54 @@ class BootStrap {
         anotherTypeCourse.name = "Curso Intensivo  cat"
         anotherTypeCourse.description = "este es un curso intensivo de tres semanas"
         anotherTypeCourse.save()
+
+        // SERVICES
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+
+        ClassroomCourse classroomCourse = new ClassroomCourse()
+        classroomCourse.active = true
+        classroomCourse.cost = 2500.00
+        classroomCourse.period = "2015-02"
+        classroomCourse.stDate = new Date()
+        classroomCourse.endDate = new Date()
+        classroomCourse.typeService = typeService
+        classroomCourse.numberClasses = 50
+        classroomCourse.typeCourse = typeCourse
+        classroomCourse.save()
+
+        OnlineCourse onlineCourse = new OnlineCourse()
+        onlineCourse.active = true;
+        onlineCourse.cost = 1500.00
+        onlineCourse.period = "2015-02"
+        onlineCourse.stDate = new Date()
+        onlineCourse.endDate = new Date()
+        onlineCourse.typeService = anothertypeService
+        onlineCourse.save()
+
+        MockExam mockExam = new MockExam()
+        mockExam.active = true;
+        mockExam.cost = 600.00
+        mockExam.period = "2015-02"
+        mockExam.stDate = new Date()
+        mockExam.endDate = new Date()
+        mockExam.term = 1.26
+        mockExam.name = "primer examen"
+        mockExam.active = true
+        mockExam.typeService = othertypeService
+        mockExam.save()
+
+        ExtraService extraService = new ExtraService()
+        extraService.stDate = new Date()
+        extraService.endDate = new Date()
+        extraService.fullIncome = 0
+        extraService.description = "venta de guias"
+        extraService.active = false
+        extraService.period = "2015-02"
+        extraService.typeService = otherAgaintypeService
+        extraService.cost = 500
+        extraService.save()
 
     }
     def destroy = {
