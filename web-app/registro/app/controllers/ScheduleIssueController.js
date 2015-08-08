@@ -36,18 +36,17 @@ angular.module('Registro').controller('ScheduleIssueController', ['$scope', '$ht
     var iClass;
 
     var dSelect = new Date();
-    if (d.getDate() == 8) {
+    if (d.getDate() == 8 && d.getHours() < 17) {
         $("#induccion").removeClass("hidden");
     } else {
         $("#citas").removeClass("hidden");
     }
 
-
     var b = false;
     $scope.generateAppointment = function generateAppointment($event) {
         $event.preventDefault();
 
-        if (d.getDate() == 8) {
+        if (d.getDate() == 8 && d.getHours() < 17) {
             test = iC
             if ($scope.inductionDateSelect != -1) {
                 dSelect.setHours($scope.inductionDateSelect.split(":")[0])

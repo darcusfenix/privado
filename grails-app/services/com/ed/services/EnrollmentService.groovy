@@ -93,15 +93,16 @@ class EnrollmentService {
                     this.generateAppointment(user, tomorrowDate, classroom)
                 }
 
-            }
-            // There's at least one place on the induction class
-            if (inductionClass && inductionClass.places >= 1) {
-                inductionClass.places--
-                inductionClass.save(flush: true) // Update the places of the induction class!
             } else {
-                inductionClass = InductionClass.findByPlacesGreaterThanEquals(1);
-                inductionClass.places--
-                inductionClass.save(flush: true) // Update the places of the induction class!
+                // There's at least one place on the induction class
+                if (inductionClass && inductionClass.places >= 1) {
+                    inductionClass.places--
+                    inductionClass.save(flush: true) // Update the places of the induction class!
+                } else {
+                    inductionClass = InductionClass.findByPlacesGreaterThanEquals(1);
+                    inductionClass.places--
+                    inductionClass.save(flush: true) // Update the places of the induction class!
+                }
             }
         } else { //No induction class assigned
             // Generating an appointment!
