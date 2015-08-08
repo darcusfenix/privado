@@ -103,6 +103,7 @@ class UserController {
         userInstance.save(flush: true, insert: true, failOnError: true)
         userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null, classroomInstance)
         userInstance.save(flush: true, failOnError: true)
+        UserRole.create(userInstance, Role.findById(1), true)
         //Assigning a Classroom to a user, it's not activated 'til the user activates his account
         UserClassroom uc = new UserClassroom()
         uc.classroom = classroomInstance

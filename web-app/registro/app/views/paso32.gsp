@@ -29,7 +29,7 @@
         <div class="row">
             <div class="blog-item-body">
                 <h1 class="mt-0 rojo font-alt text-center">Vivo en provincia</h1>
-                <button ng-click="sendEmailToforeignStudent($event);">enviar correo </button>
+                
                 <div class="lead">
                     <p class="Bblanco">
                         Las instalaciones de Preparaci&oacute;n IPN se encuentran s&oacute;lo en el D. F. y comprendemos que te es muy difícil llegar a tu cita de inscripci&oacute;n. Realiza los siguientes pasos para realizar tu inscripci&oacute;n:

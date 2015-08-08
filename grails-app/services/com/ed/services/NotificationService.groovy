@@ -127,7 +127,8 @@ class NotificationService {
         DateFormat formatterHour = new SimpleDateFormat("hh:mm a ", new Locale("es", "MX"));
 
 
-        Class c = Class.findByClassroom(Classroom.findById(user.group.id))
+        Class c = Class.findByClassroom(UserClassroom.findByUser(user).classroom)
+
 
         Date nd = new Date()
         Date now = new Date()
