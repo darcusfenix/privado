@@ -32,7 +32,32 @@ class UserController {
         if (userInstance.validate()) {
             userInstance.active = true;
             userInstance.save()
+
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
+
+            if ((int)request.JSON.authority.id == 1){
+                StudentService studentService = new StudentService()
+                studentService.service = ClassroomCourse.findByActive(true)
+                studentService.user = userInstance
+                studentService.active = true
+                studentService.fullPayment = 0
+                studentService.save()
+
+                StudentService anotherStudentService = new StudentService()
+                anotherStudentService.service = OnlineCourse.findByActive(true)
+                anotherStudentService.user = userInstance
+                anotherStudentService.active = true
+                anotherStudentService.fullPayment = 0
+                anotherStudentService.save()
+
+                StudentService studentServiceMockExam = new StudentService()
+                studentServiceMockExam.service = MockExam.findByActive(true)
+                studentServiceMockExam.user = userInstance
+                studentServiceMockExam.active = true
+                studentServiceMockExam.fullPayment = 0
+                studentServiceMockExam.save()
+            }
+
             UserClassroom uc = new UserClassroom();
             uc.user = userInstance;
             uc.classroom = Classroom.findById(request.JSON.group.id);
@@ -61,6 +86,7 @@ class UserController {
         if (userInstance.validate()) {
             uc.delete()
             userInstance.save()
+
             UserRole.removeAll(userInstance)
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
             uc = new UserClassroom()
