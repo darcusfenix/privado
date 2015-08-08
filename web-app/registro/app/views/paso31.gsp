@@ -85,6 +85,9 @@
                        ng-click="generateAppointment($event)">Continuar</a>
                 </div>
             </div>
+            <div class="row">
+                <span style="color: #ff0000; font-size: 22px;">Nota: Los correos que se ten envían puede tardar (minutos) dependiendo tu conexión a internet. También es muy importante que revises tu entrada de spam. En algunos casos pueden estar los correos ahí.</span>
+            </div>
         </div>
     </div>
 </section>
