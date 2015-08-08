@@ -53,7 +53,7 @@
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'spinnerTest.css')}">
     <!-- END THEME STYLES -->
 
-    <link rel="shortcut icon" href=""/>
+    <link rel="shortcut icon" href="f"/>
 
     <r:layoutResources/>
 </head>

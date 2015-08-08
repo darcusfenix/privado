@@ -9,6 +9,6 @@ class UrlMappings {
 
         "/2706Administracion"(view: "/index")
         "500"(view: '/error')
-        "/"(uri: 'index.gsp')
+        "/"(view: '/registro')
     }
 }
