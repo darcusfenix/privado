@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4">Nombre de la officina:
+                    <label class="control-label col-md-4">Nombre de la oficina:
                     </label>
                     <b>{{inductionClassInstance.office.name}}</b>
                 </div>

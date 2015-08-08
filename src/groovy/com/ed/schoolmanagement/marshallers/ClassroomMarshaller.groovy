@@ -1,5 +1,6 @@
 package com.ed.schoolmanagement.marshallers
 
+import com.ed.classroomcourse.Class
 import com.ed.classroomcourse.Classroom
 import grails.converters.JSON
 
@@ -20,6 +21,7 @@ class ClassroomMarshaller {
                     officeId          : classroom.office.id,
                     placesOccupied    : classroom.getFreePlaces(),
                     period            : classroom.period,
+                    classes           : Class.findAllByClassroom(classroom),
             ]
         }
     }

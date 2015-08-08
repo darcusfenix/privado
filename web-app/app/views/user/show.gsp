@@ -54,6 +54,36 @@
                                         <b class="uppercase">{{userInstance.mobileNumber}}</b>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="control-label">Email:</label>
+                                        <b class="">{{userInstance.email}}</b>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label">Direcci&oacute;n:</label>
+                                        <b class="uppercase ">{{userInstance.fullAddress}}</b>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label">Usuario en facebook:</label>
+                                        <b class="">{{userInstance.username}}</b>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label">Grupo:</label>
+                                        <b class="uppercase">{{userInstance.group.nameClassroom}}</b>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label">Comentario:</label>
+                                        <b class="uppercase">{{userInstance.comment}}</b>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label">Clase de inducci&oacute;n:</label>
+                                        <b class="">{{userInstance.induction}}</b>
+                                    </div>
+
                                     <div class="margiv-top-10">
                                         <button class="btn purple" ng-click="editUser();">Editar datos</button>
                                         <button class="btn btn-danger" data-toggle="modal" href="#model-confirm" >Eliminar</button>

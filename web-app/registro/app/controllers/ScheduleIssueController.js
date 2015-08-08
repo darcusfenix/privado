@@ -40,5 +40,6 @@ angular.module('Registro').controller('ScheduleIssueController', ['$scope', '$ht
             $scope.messageTime = "Debes seleccionar una clase de inducción.";
         }
     };
+
     $("#content").removeClass("ocultar");
 }]);

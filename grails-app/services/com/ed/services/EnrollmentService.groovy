@@ -44,10 +44,11 @@ class EnrollmentService {
         nd.setHours(c.stHour.getHours())
         nd.setMinutes(c.stHour.getMinutes())
 
-        if (TimeCategory.minus(appointmentDate, nd).days == 0) {
-            appointmentDate = null;
+        if (appointmentDate != null) {
+            if (TimeCategory.minus(appointmentDate, nd).days == 0) {
+                appointmentDate = null;
+            }
         }
-
         use(TimeCategory) {
             appointment.appointmentDate = appointmentDate ?: (nd - 30.minutes)
         }

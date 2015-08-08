@@ -7,11 +7,13 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <head>
+    <link rel="stylesheet" type="text/css" href="modal/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="modal/css/component.css"/>
     <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
     <link rel="stylesheet" type="text/css" href="css/component.css"/>
     <link rel="stylesheet" type="text/css" href="css/cs-select.css"/>
     <link rel="stylesheet" type="text/css" href="css/cs-skin-boxes.css"/>
+    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
 </head>
 
 <div class="fs-title">
@@ -20,8 +22,8 @@
 
 <div class="fs-form-wrap" id="fs-form-wrap">
     <form id="myform" name="myform" class="fs-form fs-form-full" autocomplete="off">
-        <ol class="fs-fields">
 
+        <ol class="fs-fields">
             <li>
                 <label class="fs-field-label fs-anim-upper" for="q1">&#191; Primer apellido?</label>
                 <input ng-model="userInstance.lastName" class="fs-anim-lower" id="primerApellido" name="q1"
@@ -158,6 +160,10 @@
 
                 <div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
                     <span ng-repeat="group in groups track by $index">
+                        <input type="button" data-modal="modal-1" style="width: 70% !important;"
+                               class="btn btn-info"
+                               ng-click="vHorario(group.classes)"
+                               value="Ver horario">
                         <input ng-model="userInstance.group" type="radio" id="{{group.id}}" name="grupos"
                                value="{{group.nameClassroom}}" required>
                         <label for="{{group.id}}" style="padding-top: 20px;">
@@ -165,6 +171,7 @@
                             {{group.nameClassroom}}
                             <br>
                             Lugares Disponibles: {{group.places*0.66 | number:0}}</label>
+                        <br>
                     </span>
                 </div>
             </li>
@@ -177,6 +184,22 @@
         </div>
     </form>
 </div>
+
+<div class="md-modal md-effect-3" id="modal-1">
+    <div class="md-content container-modal">
+        <div><ul>
+            <li ng-repeat="c in clazz">
+                <span><b>Clase:</b> {{c.name}} el día {{c.dateClass | date:'MM/dd/yyyy'}} a las {{c.stHour | date:'h:mm a'}}
+                </span>
+            </li>
+        </ul>
+            <button ng-click="close()">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<div class="md-overlay"></div>
+
 <script type="text/javascript">
     $(document).ready(function documentReady() {
         var formWrap = document.getElementById('fs-form-wrap');
@@ -219,3 +242,4 @@
         });
     });
 </script>
+

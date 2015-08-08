@@ -5,6 +5,7 @@ angular.module('Registro').controller('ClassConfirmationController', ['$scope', 
     $scope.sendSketchInformation = function sendSketchInformation($event) {
 
         $event.preventDefault();
+        $("#fin").attr("disabled", "disabled")
         $http({
             method: 'POST',
             url: '/ControlEscuela/user/sketchMail',

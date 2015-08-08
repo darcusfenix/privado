@@ -62,7 +62,7 @@ class NotificationService {
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
         SendGridEmail email = new SendGridEmailBuilder()
-                .from('no-reply@cursopreparacionipn.com')
+                .from('preparacionipn@cursopreparacionipn.com')
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
@@ -73,7 +73,7 @@ class NotificationService {
         } catch (Exception e) {
             UserMailHistory userMailHistory = new UserMailHistory()
             userMailHistory.to = user.email;
-            userMailHistory.from = "no-reply@cursopreparacionipn.com"
+            userMailHistory.from = "preparacionipn@cursopreparacionipn.com"
             userMailHistory.subject = "Curso de preparación IPN"
             userMailHistory.htmlContent = template.toString()
             userMailHistory.save(flush: true, failOnError: true)
@@ -95,7 +95,7 @@ class NotificationService {
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
         SendGridEmail email = new SendGridEmailBuilder()
-                .from('no-reply@cursopreparacionipn.com')
+                .from('preparacionipn@cursopreparacionipn.com')
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
@@ -109,7 +109,7 @@ class NotificationService {
         } catch (Exception e) {
             UserMailHistory userMailHistory = new UserMailHistory()
             userMailHistory.to = user.email;
-            userMailHistory.from = "no-reply@cursopreparacionipn.com"
+            userMailHistory.from = "preparacionipn@cursopreparacionipn.com"
             userMailHistory.subject = "Curso de preparación IPN"
             userMailHistory.htmlContent = template.toString()
             userMailHistory.attachmentPath = contextPath + grailsApplication.config.files.pdfFile
@@ -117,9 +117,9 @@ class NotificationService {
             return false
         }
     }
-    def sendEmailToForeignStudent(String activationToken, String contextPath) {
+    def sendEmailToForeignStudent(String activationToken, String contextPath, String contextPathWeb) {
         User user = User.findByActivationToken(activationToken)
-        //User user = User.findById(2)
+
 
         Date date = new Date();
 
@@ -149,8 +149,8 @@ class NotificationService {
         binding.horaInicio = formatter.format( c.dateClass)
         binding.horaLimit = formatterHour.format(nd)
         binding.now = formatter.format(now)
+        binding.contextPathWeb = contextPathWeb
 
-        log.error(binding)
 
         htmlContent = new File(contextPath + grailsApplication.config.files.foreignStudent).text
 
@@ -179,7 +179,7 @@ class NotificationService {
             return false
         }
     }
-    def sendEmailAddress(Integer id, String contextPath) {
+    def sendEmailAddress(Integer id, String contextPath, String contextPathWeb) {
         User user = User.findById(id)
 
         String htmlContent
@@ -187,6 +187,7 @@ class NotificationService {
         def binding = [:]
 
         binding.userFullName = user.fullName
+        binding.contextPathWeb = contextPathWeb
 
         htmlContent = new File(contextPath + grailsApplication.config.files.address).text
 
