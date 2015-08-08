@@ -66,5 +66,8 @@
                 </ul>
             </div>
         </div>
+        <div class="row">
+            <span style="color: white; font-size: 22px;">Nota: Los correos que se ten envían puede tardar dependiendo tu conexión a internet. También es muy importante que revises tu entrada de spam. EN algunos casos pueden estar los correos ahí.</span>
+        </div>
     </div>
 </section>
