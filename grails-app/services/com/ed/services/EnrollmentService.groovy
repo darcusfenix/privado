@@ -65,13 +65,13 @@ class EnrollmentService {
         Date sundayDate = cal.getTime();
 
         if (TimeCategory.minus(currentDate, sundayDate).days == 0) { //Still sunday!
-            cal.set(2015, Calendar.AUGUST, 8, 9, 30) // 11:00
+            cal.set(2015, Calendar.AUGUST, 9, 9, 30) // 11:00
             Date firstInductionDate = cal.getTime()
-            cal.set(2015, Calendar.AUGUST, 8, 11, 30) // 13:00
+            cal.set(2015, Calendar.AUGUST, 9, 11, 30) // 13:00
             Date secondInductionDate = cal.getTime()
-            cal.set(2015, Calendar.AUGUST, 8, 14, 30) // 16:00
+            cal.set(2015, Calendar.AUGUST, 9, 14, 30) // 16:00
             Date thirdInductionDate = cal.getTime()
-            cal.set(2015, Calendar.AUGUST, 8, 16, 30) // 18:00
+            cal.set(2015, Calendar.AUGUST, 9, 16, 30) // 18:00
             Date fourthInductionDate = cal.getTime()
             if (currentDate < firstInductionDate) { //Induction class 1
                 inductionClass = InductionClass.findByName("Clase de Inducción 1")
