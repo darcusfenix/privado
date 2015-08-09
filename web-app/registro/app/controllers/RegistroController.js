@@ -27,14 +27,13 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
             //TODO Change it!
 
             $http.post('/ControlEscuela/user/enroll',
-
                 $scope.userInstance
             ).success(function (data) {
 
                     $location.path("/correo/");
 
                 }).error(function (data) {
-
+                    console.log(data);
                     $scope.error = true;
                     $scope.messageError = data.message;
                     $("#confirm").prop("disabled", false);

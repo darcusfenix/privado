@@ -47,6 +47,7 @@ class BootStrap {
         office.setDescription("Oficina central")
         office.save(flush: true)*/
 
+
         // DO NOT MODIFY
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         springContext.getBean("customObjectMarshallers").register()
