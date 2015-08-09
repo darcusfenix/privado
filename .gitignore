@@ -38,3 +38,4 @@ target
 *.class
 grails-app/conf/DataSource.groovy
 web-app/imgFiles/
+grails-app/conf/BootStrap.groovy

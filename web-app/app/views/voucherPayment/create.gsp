@@ -31,9 +31,6 @@
                                 Apellido
                             </th>
                             <th class="text-center">
-                                Username
-                            </th>
-                            <th class="text-center">
                                 Correo Electrónico
                             </th>
                             <th class="text-center">
@@ -60,10 +57,6 @@
                                 <input type="text" ng-model="filtro.lastName" placeholder="Filtrar por Apellido">
                             </th>
                             <th>
-                                <input type="text" ng-model="filtro.username"
-                                       placeholder="Filtrar por nombre de suario">
-                            </th>
-                            <th>
                                 <input type="text" ng-model="filtro.email" placeholder="Filtrar por correo electrónico">
                             </th>
                             <th>
@@ -88,12 +81,11 @@
                         <tr ng-repeat="user in usersList | filter:filtro" ng-if="user.totalRequired !== 0">
                             <td><a href="#/voucherPayment/student/{{user.id}}">{{user.name}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}">{{user.lastName}}</a></td>
-                            <td><a href="#/voucherPayment/student/{{user.id}}">{{user.username}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}">{{user.email}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}">{{user.group.nameClassroom}}</a></td>
                             <td class="text-right">
                                 {{user.totalRequired | currency:" $ " }}
-
+                            </td>
                             <td class="text-right">
                                 {{user.totalPaid | currency:" $ " }}
                             </td>
