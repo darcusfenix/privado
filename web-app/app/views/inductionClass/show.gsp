@@ -66,7 +66,7 @@
                     </label>
                         <b>{{inductionClassInstance.places}}</b>
                  </div>
-                 <div class="form-group text-center" ng-show="inductionClassInstance.placesOccupied > 0">
+                 <div class="form-group text-center" ng-show="inductionClassInstance.placesOccupied >= 0">
                     <button class="btn btn-info" data-toggle="modal" href="#model-user">Consultar Alumnos</button>
                  </div>
                 <br/>
