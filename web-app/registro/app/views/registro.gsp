@@ -157,7 +157,7 @@
             </li>
             <li>
                 <label class="fs-field-label fs-anim-upper" for="q1">No. Exterior:</label>
-                <input class="fs-anim-lower" ng-model="userInstance.streetNumber" id="q1" name="q1" type="number"
+                <input class="fs-anim-lower" ng-model="userInstance.streetNumber" id="q1" name="q1" type="text"
                        placeholder="12" required/>
             </li>
             <li>
