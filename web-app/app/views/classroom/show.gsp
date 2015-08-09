@@ -208,10 +208,7 @@
                                             Nombre
                                         </th>
                                         <th>
-                                            Apellido Paterno
-                                        </th>
-                                        <th>
-                                            Apellido Materno
+                                            Apellidos
                                         </th>
                                         <th>
                                             Asistencia
@@ -221,8 +218,7 @@
                                     <tbody>
                                     <tr ng-repeat="student in studentList">
                                         <td>{{student.name}}</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{student.lastName}}</td>
                                         <td><input type="checkbox" id="{{student.id}}" name="student"
                                                    value="{{student.id}}"/></td>
                                     </tr>
