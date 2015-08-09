@@ -4,7 +4,6 @@ import com.ed.classroomcourse.Class
 import com.ed.classroomcourse.Classroom
 import com.ed.inductionClass.InductionClass
 import com.ed.service.UserClassroom
-import groovy.time.TimeCategory
 
 class User {
     Integer id
@@ -68,6 +67,7 @@ class User {
         zipCode nullable: false; blank: false
         street nullable: false;
         gender nullable: true;
+        surName nullable: true;
         blank: false
         streetNumber nullable: false;
         internalNumber nullable: true, blank: true
@@ -124,13 +124,7 @@ class User {
         }
     }
 
-    /*def getIC() {
-        if (Class.findByClassroom(UserClassroom.findByUser(this))) {
-            use(TimeCategory) {
-                return Class.findByClassroom(UserClassroom.findByUser(this)).dateClass - 30.minutes
-            }
-        } else {
-            return null
-        }
+    /*def getIC(){
+        return Class.findByClassroom(UserClassroom.findBy)
     }*/
 }
