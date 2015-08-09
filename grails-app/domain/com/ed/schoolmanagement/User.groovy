@@ -7,7 +7,7 @@ class User {
     Integer id
     String name
     String lastName
-    //String surName
+    String surName
     String phoneNumber
     String username
     String password
