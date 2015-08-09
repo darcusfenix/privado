@@ -112,7 +112,7 @@ class NotificationService {
             userMailHistory.from = "preparacionipn@cursopreparacionipn.com"
             userMailHistory.subject = "Curso de preparación IPN"
             userMailHistory.htmlContent = template.toString()
-            userMailHistory.attachmentPath = contextPath + grailsApplication.config.files.pdfFile
+            userMailHistory.attachmentPath = contextPath + grailsApplication.config.files.direccion
             userMailHistory.save(flush: true, failOnError: true)
             return false
         }

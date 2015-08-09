@@ -16,6 +16,7 @@ angular.module('Registro').controller('RegistroController', ['$scope', '$http', 
         $("#modal-1").removeClass("md-show");
     }
 
+
     $scope.registrar = function Registrar() {
         if ($scope.myform.$valid) {
 

@@ -19,7 +19,7 @@ angular.module('ControlEscuela').config(['$routeProvider', function ($routeProvi
 
         controller: 'UserShowController',
         templateUrl: 'app/views/user/show.gsp'
-
+        
     }).when('/user/sendEmailAddress', {
 
         controller: 'UserListController',

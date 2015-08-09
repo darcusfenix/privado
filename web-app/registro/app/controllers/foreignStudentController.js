@@ -47,11 +47,25 @@ angular.module('Registro').controller('foreignStudentController', ['$scope', '$h
     });
 
 
+    $http({
+        method: 'GET',
+        url: '/ControlEscuela/user/datos/',
+        params: {token: $routeParams.token}
+    }).success(function (data) {
+        $("#content").removeClass("ocultar");
 
-    //$scope.sendEmailToforeignStudent = function ($event) {
-//        $event.preventDefault();
+        $scope.userFullName = data.userFullName;
+        $scope.grupo = data.grupo;
+        $scope.horaInicio = data.horaInicio;
+        $scope.horaLimit = data.horaLimit;
+        $scope.now = data.now;
 
+        console.log(data);
+    }).error(function (data) {
+        console.log(data);
+        $scope.message = data.message;
+        //alert(data.message);
+    });
 
-    //};
 
 }]);

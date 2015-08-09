@@ -32,7 +32,7 @@
 
                 <div class="lead">
                     <p class="Bblanco">
-                        Hola. Recibirás un correo con esta información.
+                        Hola {{userFullName}}. Recibirás un correo con esta información.
                     </p>
                     <p class="Bblanco">
                         Las instalaciones de Preparaci&oacute;n IPN se encuentran s&oacute;lo en el D. F. y comprendemos que te es muy difícil llegar a tu cita de inscripci&oacute;n. Realiza los siguientes pasos para realizar tu inscripci&oacute;n:
@@ -42,7 +42,7 @@
 
                     <p class="Bblanco">
                         Hoy <strong
-                            class="rojo">Lunes 10 de Agosto</strong> deberás realizar el pago del curso ($1,500) en cualquiera de las siguientes cuentas:
+                            class="rojo">{{now}}</strong> deberás realizar el pago del curso ($1,500.00) en cualquiera de las siguientes cuentas:
                     </p>
 
                     <div class="row">
@@ -90,15 +90,15 @@
                     <h1 class=" Bblanco azul">2.- Envía tu recibo:</h1>
 
                     <p class="Bblanco mb-40">
-                        Escanea o tómale foto al recibo del banco y mándalo por correo: <strong>preparacionIPN@hotmail.com</strong>, que no se te olvide escribir tu nombre y grupo en el mensaje.  En estos momentos tu lugar está apartado pero <strong
-                            class="rojo">deberás enviar tu recibo antes de las 12:30 p.m.(6 hrs)</strong>, de lo contrario, tendrás que volver a registrarte.
+                        Escanea o tómale foto al recibo del banco y mándalo por correo: <strong>preparacionIPN@hotmail.com</strong>, que no se te olvide escribir tu nombre y grupo "{{grupo}}" en el mensaje.  En estos momentos tu lugar está apartado pero <strong
+                            class="rojo">deberás enviar tu recibo antes de las {{horaLimit}}(6 hrs)</strong>, de lo contrario, tendrás que volver a registrarte.
                     </p>
 
                     <h1 class=" Bblanco azul mt-50">3.- Pres&eacute;ntate al curso</h1>
 
                     <p class="Bblanco">
                         Una vez que hayas realizado tu pago te esperamos a tu primera clase el <strong
-                            class="rojo">4 de agosto a las 7:30 am</strong> en nuestras instalaciones ubicadas en:
+                            class="rojo">{{horaInicio}}</strong> en nuestras instalaciones ubicadas en:
                     </p>
                     <section class="page-section">
                         <div class="container relative">
