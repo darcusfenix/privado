@@ -99,7 +99,7 @@ class NotificationService {
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
-                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.pdfFile))
+                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.direccion))
                 .build()
         try {
 
@@ -117,6 +117,7 @@ class NotificationService {
             return false
         }
     }
+
     def sendEmailToForeignStudent(String activationToken, String contextPath, String contextPathWeb) {
         User user = User.findByActivationToken(activationToken)
 
@@ -138,7 +139,7 @@ class NotificationService {
         nd.setMinutes(c.stHour.getMinutes())
 
         use(TimeCategory) {
-            nd =  (nd + 6.hours)
+            nd = (nd + 6.hours)
         }
 
         String htmlContent
@@ -147,7 +148,7 @@ class NotificationService {
 
         binding.userFullName = user.fullName
         binding.grupo = user.group.nameClassroom
-        binding.horaInicio = formatter.format( c.dateClass)
+        binding.horaInicio = formatter.format(c.dateClass)
         binding.horaLimit = formatterHour.format(nd)
         binding.now = formatter.format(now)
         binding.contextPathWeb = contextPathWeb
@@ -181,6 +182,7 @@ class NotificationService {
             return false
         }
     }
+
     def sendEmailAddress(Integer id, String contextPath, String contextPathWeb) {
         User user = User.findById(id)
 
