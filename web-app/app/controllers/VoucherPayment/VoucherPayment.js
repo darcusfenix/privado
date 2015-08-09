@@ -107,12 +107,12 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
 
 
         for(var i = 0; i < $scope.usersList.length; i++){
-            $scope.usersList[i].services = {};
-            $scope.usersList[i].voucherPayment = {};
-            $scope.addServices($scope.usersList[i].id, i);
+           // $scope.usersList[i].services = {};
+            //$scope.usersList[i].voucherPayment = {};
+           // $scope.addServices($scope.usersList[i].id, i);
             $scope.addVoucherPayment(i);
         }
-        console.log($scope.usersList);
+
     });
 
     $scope.addVoucherPayment = function(index){
@@ -120,6 +120,7 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
         $scope.usersList[index].voucherPayment.pay = 0;
     };
 
+    /*
     $scope.addServices = function(id, index){
         StudentService.services({userId: id},function(data) {
             $scope.usersList[index].services = data;
@@ -145,6 +146,7 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
 
         });
     };
+*/
 
     $scope.saveSingleVoucherPayment = function (pay, userId) {
 
@@ -166,11 +168,11 @@ function VoucherPaymentCreateController($scope,  $routeParams, $location, Vouche
             $scope.message.type = 1;
             $scope.message.text = success.message;
 
-            /*
+
             $timeout(function() {
                 $route.reload();
             }, 3000);
-*/
+
 
         }, function (error){
             console.log(error);

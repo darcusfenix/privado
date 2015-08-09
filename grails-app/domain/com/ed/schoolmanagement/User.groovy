@@ -1,9 +1,13 @@
 package com.ed.schoolmanagement
 
+import com.ed.accesscontrol.StudentService
 import com.ed.classroomcourse.Class
 import com.ed.classroomcourse.Classroom
 import com.ed.inductionClass.InductionClass
+import com.ed.paycontrol.VoucherPayment
+import com.ed.service.Service
 import com.ed.service.UserClassroom
+import grails.converters.JSON
 
 class User {
     Integer id
@@ -122,6 +126,29 @@ class User {
         } else {
             return false
         }
+    }
+
+    def getTotalRequiredByUser() {
+        Float totalRequired = 0.0
+
+        StudentService.findAllByUser(this).each { StudentService ->
+            Service.findAllById(StudentService.service.id).each { service ->
+                totalRequired += service.cost
+            }
+        }
+
+        return totalRequired
+    }
+
+    def vouchersPaymentStudentAndService() {
+        Float totalPaidServicio = 0.0
+
+        StudentService.findAllByUser(this).each { studentService ->
+            VoucherPayment.findAllByStudentService(studentService).each { voucherPaymentIndividual ->
+                totalPaidServicio += voucherPaymentIndividual.pay
+            }
+        }
+        return totalPaidServicio
     }
 
     /*def getIC(){

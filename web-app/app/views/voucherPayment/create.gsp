@@ -89,13 +89,13 @@
                             <td class="text-right">
                                 {{user.totalPaid | currency:" $ " }}
                             </td>
-                            <td class="text-center">
+                            <td class="text-center" >
                                 <div class="input-icon text-left" ng-show="user.totalPaid <  user.totalRequired">
 
                                     <i class="fa fa-usd"></i>
 
                                     <input type="number" class="form-control" placeholder="Cantidad"
-                                           ng-model="user.voucherPayment.pay" min="1.0" max="{{user.totalRequired}}">
+                                           ng-model="user.voucherPayment.pay" min="1.0" max="{{user.totalRequired}}" style="width: 200px;">
                                 </div>
                                 <span class="text-success uppercase"
                                       ng-show="user.totalPaid >=  user.totalRequired">pagado</span>
