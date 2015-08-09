@@ -33,7 +33,7 @@ import java.text.SimpleDateFormat
 class BootStrap {
 
     def init = { servletContext ->
-        StateClassroom sc = new StateClassroom()
+        /*StateClassroom sc = new StateClassroom()
         sc.setName("Abierto")
         sc.setDescription("Abierto")
         sc.save(flush: true)
@@ -45,13 +45,13 @@ class BootStrap {
         Office office = new Office()
         office.setName("Oficina principal")
         office.setDescription("Oficina central")
-        office.save(flush: true)
+        office.save(flush: true)*/
 
         // DO NOT MODIFY
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         springContext.getBean("customObjectMarshallers").register()
         //
-        Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
+        /*Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
         Role.findOrSaveWhere([authority: 'ROLE_EMPLEADO'])
         Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
         Role.findOrSaveWhere([authority: 'ROLE_SU'])
@@ -210,7 +210,7 @@ class BootStrap {
         extraService.period = "2015-02"
         extraService.typeService = otherAgaintypeService
         extraService.cost = 500
-        extraService.save()
+        extraService.save()*/
 
     }
     def destroy = {
