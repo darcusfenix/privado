@@ -124,7 +124,7 @@ class User {
         }
     }
 
-    def getIC() {
+    /*def getIC() {
         if (Class.findByClassroom(UserClassroom.findByUser(this))) {
             use(TimeCategory) {
                 return Class.findByClassroom(UserClassroom.findByUser(this)).dateClass - 30.minutes
@@ -132,5 +132,5 @@ class User {
         } else {
             return null
         }
-    }
+    }*/
 }
