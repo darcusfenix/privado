@@ -67,7 +67,7 @@ class User {
         gender nullable: true;
         blank: false
         streetNumber nullable: false;
-        internalNumber nullable: true, blank:true
+        internalNumber nullable: true, blank: true
         blank: false
         city nullable: false;
         blank: false
@@ -75,8 +75,8 @@ class User {
         blank: false
         state nullable: true, blank: true
         previousStudent nullable: true, blank: true
-        comment nullable:true, blank: true
-        activationToken nullable:true, blank: true
+        comment nullable: true, blank: true
+        activationToken nullable: true, blank: true
         activationDate nullable: true, blank: true
         inductionClass nullable: true, blank: true
     }
@@ -86,8 +86,8 @@ class User {
         email unique: true
     }
 
-    String getFullName(){
-        return this.name + " " +this.lastName
+    String getFullName() {
+        return this.name + " " + this.lastName
     }
 
     def beforeInsert() {
@@ -98,17 +98,26 @@ class User {
         UserClassroom uc = UserClassroom.findByUser(this)
         if (uc != null) {
             uc.getClassroom()
-        }else{
+        } else {
             null
         }
     }
 
-    def getInductionC(){
+    def getInductionC() {
         InductionClass ic = this.inductionClass
-        if(ic != null){
+        if (ic != null) {
             return ic.name
-        }else {
+        } else {
             return null
+        }
+    }
+
+    def getApp() {
+        Appointment a = Appointment.findByUser(this)
+        if (a) {
+            return a.appointmentDate
+        } else {
+            return false
         }
     }
 }
