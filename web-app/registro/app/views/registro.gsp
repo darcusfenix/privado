@@ -137,7 +137,7 @@
             <li>
                 <label class="fs-field-label fs-anim-upper" for="municipality">Municipo o Delegaci&oacute;n:</label>
                 <input ng-model="userInstance.city" class="fs-anim-lower" id="municipality" name="municipality"
-                       type="text" placeholder="Av. Juan de Dios Batiz Paredes" required/>
+                       type="text" placeholder="Benito Juárez" required/>
             </li>
             <li>
                 <label class="fs-field-label fs-anim-upper" for="postCode">C&oacute;digo postal:</label>
