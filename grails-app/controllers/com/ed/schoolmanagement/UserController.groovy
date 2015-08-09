@@ -1,6 +1,7 @@
 package com.ed.schoolmanagement
 
 import com.ed.accesscontrol.StudentService
+import com.ed.classroomcourse.Class
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.UserClass
 import com.ed.inductionClass.InductionClass
@@ -299,5 +300,39 @@ class UserController {
         response.status = 200
         Date d = new Date()
         render([year: d, mes: d.getMonth(), day: d.getDate(), h: d.getHours(), m: d.getMinutes()] as JSON)
+    }
+    def datos(){
+        User user = User.findByActivationToken(params.token)
+
+
+        Date date = new Date();
+
+        DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy 'a las ' hh:mm a ", new Locale("es", "MX"));
+        DateFormat formatterHour = new SimpleDateFormat("hh:mm a ", new Locale("es", "MX"));
+
+
+        Class c = Class.findByClassroom(UserClassroom.findByUser(user).classroom)
+
+
+        Date nd = new Date()
+        Date now = new Date()
+        nd = c.dateClass
+
+        nd.setHours(c.stHour.getHours())
+        nd.setMinutes(c.stHour.getMinutes())
+
+        use(TimeCategory) {
+            nd = (nd + 6.hours)
+        }
+
+        def binding = [:]
+
+        binding.userFullName = user.fullName
+        binding.grupo = user.group.nameClassroom
+        binding.horaInicio = formatter.format( c.dateClass)
+        binding.horaLimit = formatterHour.format(nd)
+        binding.now = formatter.format(now)
+
+        render(  binding as JSON )
     }
 }
