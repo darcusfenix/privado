@@ -42,10 +42,45 @@
                         {{messageTime}}
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-2 mb-40"></div>
+                    <div id="induccion" class="row hidden">
+                        <div class="col-sm-4"><b>Clases de inducción:</b></div>
 
-                        <div class="col-sm-8 mb-40">
+                        <div class="col-sm-6 mb-40">
+                            <form method="post" action="#" id="form-2" role="form" class="form">
+                                <div class="mb-20 mb-md-10">
+                                    <select class="input-md form-control" ng-model="inductionDateSelect">
+                                        <option value="-1">Seleccione</option>
+                                        <option value="11:00">11:00 hrs.</option>
+                                        <option value="13:00">13:00 hrs.</option>
+                                        <option value="16:00">16:00 hrs.</option>
+                                        <option value="18:00">18:00 hrs.</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-sm-2 mb-40"></div>
+                    </div>
+
+
+                    <div id="citas" class="row hidden">
+                        <div class="col-sm-4"><b>Día:</b></div>
+
+                        <div class="col-sm-6 mb-40">
+                            <form method="post" action="#" id="form-01" role="form" class="form">
+                                <div class="mb-20 mb-md-10">
+                                    <select class="input-md form-control" ng-model="appointmentDate">
+                                        <option value="-1">Seleccione</option>
+                                        <option value="1">Hoy</option>
+                                        <option value="2">Mañana</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-sm-4"><b>Cita de inscripción:</b></div>
+
+                        <div class="col-sm-6 mb-40">
                             <form method="post" action="#" id="form-1" role="form" class="form">
                                 <div class="mb-20 mb-md-10">
                                     <select class="input-md form-control" ng-model="appointmentDateSelect">
@@ -80,10 +115,13 @@
 
                         <div class="col-sm-2 mb-40"></div>
                     </div>
-                    <!-- TODO change button action -->
-                    <a href="#/croquis.html" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul"
-                       ng-click="generateAppointment($event)">Continuar</a>
+                    <!-- TODO change button action href="#/croquis.html" -->
+                    <button id="Continuar" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul"
+                            ng-click="generateAppointment($event)">Continuar</button>
                 </div>
+            </div>
+            <div class="row">
+                <span style="color: #ff0000; font-size: 22px;">Nota: Los correos que se ten envían puede tardar (minutos) dependiendo tu conexión a internet. También es muy importante que revises tu entrada de spam. En algunos casos pueden estar los correos ahí.</span>
             </div>
         </div>
     </div>

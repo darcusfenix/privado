@@ -45,6 +45,10 @@
                             <a href="#/voucherPayment/create/">
                                 Agregar comprobante</a>
                         </li>
+                        <li ng-class="($root.location === '/voucherPayment/disableServices') ? 'active' : ''">
+                            <a href="#/voucherPayment/disableServices/">
+                                Cancelar Servicios</a>
+                        </li>
                     </ul>
                 </li>
                 <li ng-class="($root.location === '/classroom/' || $root.location === '/classroom/create') ? 'active open' : ''">

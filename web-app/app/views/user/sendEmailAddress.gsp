@@ -43,20 +43,20 @@
                         </tr>
                         <tr>
                             <th>
-                                <input type="text" ng-model="filtro.name" placeholder="Filtrar por nombre">
+                                <input type="text" ng-model="filtro.name" placeholder="Filtrar por nombre" class="form-control">
                             </th>
                             <th>
-                                <input type="text" ng-model="filtro.lastName" placeholder="Filtrar por Apellido">
+                                <input type="text" ng-model="filtro.lastName" placeholder="Filtrar por Apellido" class="form-control">
                             </th>
                             <th>
                                 <input type="text" ng-model="filtro.username"
-                                       placeholder="Filtrar por nombre de suario">
+                                       placeholder="Filtrar por nombre de suario" class="form-control">
                             </th>
                             <th>
-                                <input type="text" ng-model="filtro.phoneNumber" placeholder="Filtrar por teléfono">
+                                <input type="text" ng-model="filtro.phoneNumber" placeholder="Filtrar por teléfono" class="form-control">
                             </th>
                             <th>
-                                <input type="text" ng-model="filtro.group" placeholder="Filtrar por grupo">
+                                <input type="text" ng-model="filtro.group" placeholder="Filtrar por grupo" class="form-control">
                             </th>
                         </tr>
                         </thead>

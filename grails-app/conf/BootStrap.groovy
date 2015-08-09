@@ -51,7 +51,7 @@ class BootStrap {
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         springContext.getBean("customObjectMarshallers").register()
         //
-        Role alumno = Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
+        Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
         Role.findOrSaveWhere([authority: 'ROLE_EMPLEADO'])
         Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
         Role.findOrSaveWhere([authority: 'ROLE_SU'])
@@ -73,96 +73,10 @@ class BootStrap {
         classroom.places = 50
         classroom.typeClassroom = 0
         classroom.typeClassroomP = 0
-        classroom.priority = 2
-        classroom.stateClassroom = StateClassroom.findByName("Abierto")
-        classroom.office = office
-        classroom.save()
-
-        classroom = new Classroom()
-        classroom.nameClassroom = "Grupo C"
-        classroom.period = "2015-02"
-        classroom.places = 50
-        classroom.typeClassroom = 0
-        classroom.typeClassroomP = 0
         classroom.priority = 1
         classroom.stateClassroom = StateClassroom.findByName("Abierto")
         classroom.office = office
         classroom.save()
-
-        classroom = new Classroom()
-        classroom.nameClassroom = "Grupo D"
-        classroom.period = "2015-02"
-        classroom.places = 20
-        classroom.typeClassroom = 0
-        classroom.typeClassroomP = 0
-        classroom.priority = 3
-        classroom.stateClassroom = StateClassroom.findByName("Abierto")
-        classroom.office = office
-        classroom.save()
-
-        classroom = new Classroom()
-        classroom.nameClassroom = "Grupo E"
-        classroom.period = "2015-02"
-        classroom.places = 1
-        classroom.typeClassroom = 0
-        classroom.typeClassroomP = 0
-        classroom.priority = 3
-        classroom.stateClassroom = StateClassroom.findByName("Abierto")
-        classroom.office = office
-        classroom.save()
-
-        classroom = new Classroom()
-        classroom.nameClassroom = "Grupo F"
-        classroom.period = "2015-02"
-        classroom.places = 0
-        classroom.typeClassroom = 0
-        classroom.typeClassroomP = 0
-        classroom.priority = 3
-        classroom.stateClassroom = StateClassroom.findByName("Abierto")
-        classroom.office = office
-        classroom.save()
-
-        classroom = new Classroom()
-        classroom.nameClassroom = "Grupo G"
-        classroom.period = "2015-02"
-        classroom.places = 50
-        classroom.typeClassroom = 0
-        classroom.typeClassroomP = 0
-        classroom.priority = 4
-        classroom.stateClassroom = StateClassroom.findByName("Abierto")
-        classroom.office = office
-        classroom.save()
-
-        classroom = new Classroom()
-        classroom.nameClassroom = "Grupo H"
-        classroom.period = "2015-02"
-        classroom.places = 50
-        classroom.typeClassroom = 0
-        classroom.typeClassroomP = 0
-        classroom.priority = 4
-        classroom.stateClassroom = StateClassroom.findByName("Abierto")
-        classroom.office = office
-        classroom.save()
-
-        classroom = new Classroom()
-        classroom.nameClassroom = "Grupo I"
-        classroom.period = "2015-02"
-        classroom.places = 50
-        classroom.typeClassroom = 0
-        classroom.typeClassroomP = 0
-        classroom.priority = 4
-        classroom.stateClassroom = StateClassroom.findByName("Abierto")
-        classroom.office = office
-        classroom.save()
-
-        Class c = new Class()
-        c.name = "Clase 1"
-        c.classroom = classroom
-        c.dateClass = new Date()
-        c.endHour = new Date()
-        c.stClass = Boolean.FALSE
-        c.stHour = new Date()
-        c.save()
 
         InductionClass ic = new InductionClass()
         ic.date = null
@@ -171,87 +85,43 @@ class BootStrap {
         ic.office = office
         //
         Calendar cal = Calendar.getInstance()
-        cal.set(2015, Calendar.AUGUST, 9, 11, 00);
+        cal.set(2015, Calendar.AUGUST, 8, 11, 00, 00);
         ic.date = cal.getTime();
         ic.stateClassroom = StateClassroom.findByName("Abierto")
         ic.save(flush: true)
 
-        User pepo = new User()
-        pepo.email = "jresendiz27@gmail.com"
-        pepo.enabled = true
-        pepo.name = "Alberto"
-        pepo.lastName = "Reséndiz"
-        pepo.mobileNumber = "12345679"
-        pepo.phoneNumber = "12345679"
-        pepo.password = "test"
-        pepo.username = "pepo27"
-        pepo.street = "Ahuehuetes"
-        pepo.streetNumber = "53"
-        pepo.city = "Mexico"
-        pepo.town = "Nezahualcóyotl"
-        pepo.zipCode = "57820"
-        pepo.previousStudent = true
-        pepo.inductionClass = ic
-        pepo.save()
-        UserRole.create(pepo, alumno, false)
+        ic = new InductionClass()
+        ic.date = null
+        ic.name = "Clase de Inducción 2"
+        ic.places = 100
+        ic.office = office
+        //
+        cal.set(2015, Calendar.AUGUST, 8, 13, 00, 00);
+        ic.date = cal.getTime();
+        ic.stateClassroom = StateClassroom.findByName("Abierto")
+        ic.save(flush: true)
 
-        UserClassroom uc = new UserClassroom()
-        uc.classroom = classroom
-        uc.user = pepo
-        uc.save()
+        ic = new InductionClass()
+        ic.date = null
+        ic.name = "Clase de Inducción 3"
+        ic.places = 100
+        ic.office = office
+        //
+        cal.set(2015, Calendar.AUGUST, 8, 16, 00, 00);
+        ic.date = cal.getTime();
+        ic.stateClassroom = StateClassroom.findByName("Abierto")
+        ic.save(flush: true)
 
-        UserClass userClass = new UserClass()
-        userClass.clazz = c
-        userClass.user = pepo
-        userClass.save()
-
-        User user = new User()
-        user.email = "juancvfenix@gmail.com"
-        user.enabled = true
-        user.name = "Juan"
-        user.lastName = "Crisóstomo"
-        user.mobileNumber = "5530271655"
-        user.phoneNumber = "5530271655"
-        user.password = "test"
-        user.username = "darcusfenix"
-        user.street = "Ahuehuetes"
-        user.streetNumber = "53"
-        user.city = "Mexico"
-        user.town = "Nezahualcóyotl"
-        user.zipCode = "57820"
-        user.previousStudent = true
-        user.inductionClass = ic
-        user.save()
-        UserRole.create(user, alumno, false)
-
-        uc = new UserClassroom()
-        uc.classroom = classroom
-        uc.user = user
-        uc.save()
-
-        User anotheruser = new User()
-        anotheruser.email = "gerard@gmail.com"
-        anotheruser.enabled = true
-        anotheruser.name = "Gerard"
-        anotheruser.lastName = "Un apellido"
-        anotheruser.mobileNumber = "55555555"
-        anotheruser.phoneNumber = "55881763"
-        anotheruser.password = "test"
-        anotheruser.username = "chochoz"
-        anotheruser.street = "Ahuehuetes"
-        anotheruser.streetNumber = "53"
-        anotheruser.city = "Mexico"
-        anotheruser.town = "Nezahualcóyotl"
-        anotheruser.zipCode = "57820"
-        anotheruser.previousStudent = true
-        anotheruser.inductionClass = ic
-        anotheruser.save()
-        UserRole.create(anotheruser, alumno, false)
-
-        uc = new UserClassroom()
-        uc.classroom = classroom
-        uc.user = anotheruser
-        uc.save()
+        ic = new InductionClass()
+        ic.date = null
+        ic.name = "Clase de Inducción 4"
+        ic.places = 100
+        ic.office = office
+        //
+        cal.set(2015, Calendar.AUGUST, 8, 18, 00, 00);
+        ic.date = cal.getTime();
+        ic.stateClassroom = StateClassroom.findByName("Abierto")
+        ic.save(flush: true)
 
         StateVoucher stateVoucher = new StateVoucher()
         stateVoucher.name = "pendiente"
@@ -327,7 +197,7 @@ class BootStrap {
         mockExam.endDate = new Date()
         mockExam.term = 1.26
         mockExam.name = "primer examen"
-        mockExam.active = false
+        mockExam.active = true
         mockExam.typeService = othertypeService
         mockExam.save()
 
@@ -341,101 +211,6 @@ class BootStrap {
         extraService.typeService = otherAgaintypeService
         extraService.cost = 500
         extraService.save()
-
-        // TESTS
-
-        Structure structure = new Structure()
-        structure.name = "examen 1"
-        structure.description = "una descripción al examen"
-        structure.mockExam = mockExam
-        structure.save()
-
-        Structure anotherstructure = new Structure()
-        anotherstructure.name = "examen 2"
-        anotherstructure.description = "otra descripción al examen"
-        anotherstructure.mockExam = mockExam
-        anotherstructure.save()
-
-        Section section = new Section()
-        section.name = "Matemáticas"
-        section.description = "muchas matemáticas"
-        section.save()
-
-        Section anothersection = new Section()
-        anothersection.name = "Ciencias experimentales"
-        anothersection.description = "muchas ciencias experimentales"
-        anothersection.save()
-
-        StructureSection structureSection = new StructureSection()
-        structureSection.structure = structure;
-        structureSection.section = section;
-        structureSection.save()
-
-        /* Question question = new Question()
-         question.urlImage = ""
-         question.number = "1.1"
-         question.section = section
-         question.text = "soy un pregunta"
-         question.save()
-
-         Question anotherquestion = new Question()
-         anotherquestion.urlImage = ""
-         anotherquestion.number = 1
-         anotherquestion.section = section
-         anotherquestion.text = "soy la segunda pregunta"
-         anotherquestion.save()*/
-
-        /*
-        Answer answer = new Answer()
-        answer.question = question
-        answer.state = false
-        answer.textAnswer = servletContext.contextPath
-        answer.save()
-        */
-
-        // STUDENTS WITH SERVICES
-
-        StudentService studentService = new StudentService()
-        studentService.service = mockExam
-        studentService.user = pepo
-        studentService.active = true
-        studentService.fullPayment = 500.00
-        studentService.save()
-
-        StudentService anotherstudentService = new StudentService()
-        anotherstudentService.service = classroomCourse
-        anotherstudentService.user = pepo
-        anotherstudentService.active = true
-        anotherstudentService.fullPayment = 500.00
-        anotherstudentService.save()
-
-        StudentService SecondStudentService = new StudentService()
-        SecondStudentService.service = onlineCourse
-        SecondStudentService.user = pepo
-        SecondStudentService.active = true
-        SecondStudentService.fullPayment = 500.00
-        SecondStudentService.save()
-
-        StudentService studentService_1 = new StudentService()
-        studentService_1.service = mockExam
-        studentService_1.user = user
-        studentService_1.active = true
-        studentService_1.fullPayment = 500.00
-        studentService_1.save()
-
-        StudentService studentService_2 = new StudentService()
-        studentService_2.service = classroomCourse
-        studentService_2.user = user
-        studentService_2.active = true
-        studentService_2.fullPayment = 500.00
-        studentService_2.save()
-
-        StudentService studentService_3 = new StudentService()
-        studentService_3.service = onlineCourse
-        studentService_3.user = user
-        studentService_3.active = true
-        studentService_3.fullPayment = 500.00
-        studentService_3.save(flush: true)
 
     }
     def destroy = {

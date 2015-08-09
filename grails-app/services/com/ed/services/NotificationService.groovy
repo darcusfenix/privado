@@ -83,8 +83,8 @@ class NotificationService {
 
     def sendSketchMail(String activationToken, String contextPath, def params = [:]) {
         User user = User.findByActivationToken(activationToken)
-        user.activationToken = null
-        user.save(flush: true)
+        //user.activationToken = null
+        //user.save(flush: true)
         String htmlContent
 
         def binding = [:]
@@ -117,9 +117,9 @@ class NotificationService {
             return false
         }
     }
-    def sendEmailToForeignStudent(String activationToken, String contextPath) {
+    def sendEmailToForeignStudent(String activationToken, String contextPath, String contextPathWeb) {
         User user = User.findByActivationToken(activationToken)
-        //User user = User.findById(2)
+
 
         Date date = new Date();
 
@@ -127,7 +127,8 @@ class NotificationService {
         DateFormat formatterHour = new SimpleDateFormat("hh:mm a ", new Locale("es", "MX"));
 
 
-        Class c = Class.findByClassroom(Classroom.findById(user.group.id))
+        Class c = Class.findByClassroom(UserClassroom.findByUser(user).classroom)
+
 
         Date nd = new Date()
         Date now = new Date()
@@ -149,8 +150,8 @@ class NotificationService {
         binding.horaInicio = formatter.format( c.dateClass)
         binding.horaLimit = formatterHour.format(nd)
         binding.now = formatter.format(now)
+        binding.contextPathWeb = contextPathWeb
 
-        log.error(binding)
 
         htmlContent = new File(contextPath + grailsApplication.config.files.foreignStudent).text
 
@@ -161,7 +162,8 @@ class NotificationService {
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
-                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.temario))
+                .addAttachment("PreparacionIPNTemario.pdf", new File(contextPath + grailsApplication.config.files.temario))
+                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.direccion))
                 .build()
         try {
 
@@ -179,7 +181,7 @@ class NotificationService {
             return false
         }
     }
-    def sendEmailAddress(Integer id, String contextPath) {
+    def sendEmailAddress(Integer id, String contextPath, String contextPathWeb) {
         User user = User.findById(id)
 
         String htmlContent
@@ -187,6 +189,7 @@ class NotificationService {
         def binding = [:]
 
         binding.userFullName = user.fullName
+        binding.contextPathWeb = contextPathWeb
 
         htmlContent = new File(contextPath + grailsApplication.config.files.address).text
 
@@ -197,7 +200,7 @@ class NotificationService {
                 .to(user.email)
                 .subject('Curso de preparación IPN')
                 .withHtml(template.toString())
-                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.temario))
+                .addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.direccion))
                 .build()
         try {
 

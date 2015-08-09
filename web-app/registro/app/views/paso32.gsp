@@ -29,8 +29,11 @@
         <div class="row">
             <div class="blog-item-body">
                 <h1 class="mt-0 rojo font-alt text-center">Vivo en provincia</h1>
-                <button ng-click="sendEmailToforeignStudent($event);">enviar correo </button>
+
                 <div class="lead">
+                    <p class="Bblanco">
+                        Hola. Recibirás un correo con esta información.
+                    </p>
                     <p class="Bblanco">
                         Las instalaciones de Preparaci&oacute;n IPN se encuentran s&oacute;lo en el D. F. y comprendemos que te es muy difícil llegar a tu cita de inscripci&oacute;n. Realiza los siguientes pasos para realizar tu inscripci&oacute;n:
                     </p>
@@ -131,10 +134,14 @@
                             </div>
                         </div>
                     </section>
+                    <div class="row">
+                        <span style="color: #ff0000; font-size: 22px;">Nota: Los correos que se ten envían puede tardar (minutos) dependiendo tu conexión a internet. También es muy importante que revises tu entrada de spam. En algunos casos pueden estar los correos ahí.</span>
+                    </div>
                     <!--a href="./croquis.html" class="btn col-lg-offset-5 btn-mod btn-large btn-round Bazul">Continuar</a-->
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 <hr class="mt-0 mb-0"/>

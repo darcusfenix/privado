@@ -14,6 +14,9 @@ class ServiceController {
         render Service.list() as JSON
     }
 
+    def getServicesByStateTrue(){
+        render(Service.findAllByActive(true) as JSON)
+    }
 
     def show(Integer id){
         render (Service.findById(id ?: params.int("id")) as JSON)

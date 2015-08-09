@@ -3,22 +3,28 @@ package com.ed.schoolmanagement
 import com.ed.accesscontrol.StudentService
 import com.ed.classroomcourse.Classroom
 import com.ed.classroomcourse.UserClass
+import com.ed.inductionClass.InductionClass
+import com.ed.service.ClassroomCourse
+import com.ed.service.MockExam
+import com.ed.service.OnlineCourse
 import com.ed.service.UserClassroom
 import grails.converters.JSON
 import grails.transaction.Transactional
+import groovy.time.TimeCategory
 
 import javax.servlet.ServletContext
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 class UserController {
 
     def notificationService
     def enrollmentService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent:"POST" , sendEmailAddres : "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent: "POST", sendEmailAddres: "POST"]
 
     def index() {
         render User.listOrderById([max: params.int('max')]) as JSON
-
     }
 
     def create() {
@@ -28,9 +34,34 @@ class UserController {
     def save() {
         def userInstance = new User(request.JSON)
         if (userInstance.validate()) {
-            UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
             userInstance.active = true;
             userInstance.save()
+
+            UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
+
+            if ((int) request.JSON.authority.id == 1) {
+                StudentService studentService = new StudentService()
+                studentService.service = ClassroomCourse.findByActive(true)
+                studentService.user = userInstance
+                studentService.active = true
+                studentService.fullPayment = 0
+                studentService.save()
+
+                StudentService anotherStudentService = new StudentService()
+                anotherStudentService.service = OnlineCourse.findByActive(true)
+                anotherStudentService.user = userInstance
+                anotherStudentService.active = true
+                anotherStudentService.fullPayment = 0
+                anotherStudentService.save()
+
+                StudentService studentServiceMockExam = new StudentService()
+                studentServiceMockExam.service = MockExam.findByActive(true)
+                studentServiceMockExam.user = userInstance
+                studentServiceMockExam.active = true
+                studentServiceMockExam.fullPayment = 0
+                studentServiceMockExam.save()
+            }
+
             UserClassroom uc = new UserClassroom();
             uc.user = userInstance;
             uc.classroom = Classroom.findById(request.JSON.group.id);
@@ -54,13 +85,19 @@ class UserController {
 
     def update() {
         User userInstance = User.findById(request.JSON.id)
+        UserClassroom uc = UserClassroom.findByUser(userInstance)
         userInstance.properties = request.JSON
         if (userInstance.validate()) {
+            uc.delete()
             userInstance.save()
+
             UserRole.removeAll(userInstance)
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
-            //TODO: Remove all the services and groups related to the user
-            //TODO: Create again all the relationships between classroom and users
+            uc = new UserClassroom()
+            uc.user = userInstance;
+            uc.classroom = Classroom.findById(request.JSON.group.id);
+            uc.activated = true;
+            uc.save(flush: true);
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.updated.message")] as JSON)
         } else {
@@ -69,20 +106,44 @@ class UserController {
         }
     }
 
-    def delete(Integer id) {
+    def delete(Integer id, Integer td) {
         def user = User.findById(id ?: params.int("id"))
         UserRole.removeAll(user, false)
         // Return an error just if the user cant be removed! Checking all the services related
-        boolean hasService = true;
-        hasService = hasService && StudentService.findByUser(user)
-        hasService = hasService && UserClass.findByUser(user)
-        hasService = hasService && UserClassroom.findByUser(user)
-        if (hasService) {
+        String dependencias = "";
+
+        if (StudentService.findByUser(user)) {
+            dependencias += "<p><b>Servicios de curso en linea y examen simulacro</b></p>";
+        }
+        if (UserClass.findByUser(user)) {
+            dependencias += "<p><b>Clases asociadas al paso de lista</b></p>";
+        }
+        if (UserClassroom.findByUser(user)) {
+            dependencias += "<p><b>Grupo asignado</b></p>";
+        }
+
+        if (td == 1) {
+            dependencias = "";
+        }
+
+        if (dependencias.length() != 0) {
             response.status = 500
-            render([message: message(code: 'de.user.cant.delete.message')] as JSON)
+            render([message: message(code: 'de.user.cant.delete.message'), depen: dependencias] as JSON)
         } else {
             // Removing the roles assigned to the user
             UserRole.removeAll(user, false)
+            if (UserClassroom.findByUser(user)) {
+                UserClassroom.findByUser(user).delete()
+            }
+            for (UserClass uc : UserClass.findAllByUser(user)) {
+                uc.delete()
+            }
+            for (StudentService ss : StudentService.findAllByUser(user)) {
+                ss.delete()
+            }
+            if (Appointment.findByUser(user)) {
+                Appointment.findByUser(user).delete()
+            }
             user.delete(flush: true)
             response.status = 200
             render([message: message(code: 'de.user.deleted.message')] as JSON)
@@ -97,6 +158,7 @@ class UserController {
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
         Classroom classroomInstance = Classroom.findByNameClassroom(request.JSON.group)
+
         User userInstance = new User()
         userInstance.properties = request.JSON
         userInstance.password = "test"
@@ -104,6 +166,29 @@ class UserController {
         userInstance.save(flush: true, insert: true, failOnError: true)
         userInstance.inductionClass = enrollmentService.getInductionClass(userInstance, null, classroomInstance)
         userInstance.save(flush: true, failOnError: true)
+
+        StudentService studentService = new StudentService()
+        studentService.service = ClassroomCourse.findByActive(true)
+        studentService.user = userInstance
+        studentService.active = true
+        studentService.fullPayment = 0
+        studentService.save()
+
+        StudentService anotherStudentService = new StudentService()
+        anotherStudentService.service = OnlineCourse.findByActive(true)
+        anotherStudentService.user = userInstance
+        anotherStudentService.active = true
+        anotherStudentService.fullPayment = 0
+        anotherStudentService.save()
+
+        StudentService studentServiceMockExam = new StudentService()
+        studentServiceMockExam.service = MockExam.findByActive(true)
+        studentServiceMockExam.user = userInstance
+        studentServiceMockExam.active = true
+        studentServiceMockExam.fullPayment = 0
+        studentServiceMockExam.save()
+
+        UserRole.create(userInstance, Role.findById(1), true)
         //Assigning a Classroom to a user, it's not activated 'til the user activates his account
         UserClassroom uc = new UserClassroom()
         uc.classroom = classroomInstance
@@ -155,12 +240,30 @@ class UserController {
 
     def generateAppointment() {
         User user = User.findByActivationToken(params.token)
-        user.inductionClass = null;
-        user.save(flush: true)
-        Appointment appointment = new Appointment()
-        appointment.user = user
-        appointment.appointmentDate = params.date('appointmentDate', "yyyy-MM-dd'T'hh:mm:ss'Z'")
-        appointment.save(flush: true)
+        Date d = new Date()
+        String date = params.appointmentDate
+        d.setHours(Integer.valueOf(date.split(":")[0]))
+        d.setMinutes(Integer.valueOf(date.split(":")[1]))
+        d.setSeconds(0)
+        if (params.test == "inductionClass") {
+            user.inductionClass = InductionClass.findById(params.idClass)
+            user.save(flush: true)
+        } else {
+            user.inductionClass = null;
+            user.save(flush: true)
+            Appointment appointment = new Appointment()
+            for (Appointment ap : Appointment.findAllByUser(user)) {
+                ap.delete()
+            }
+            appointment.user = user
+            if (params.day != "1") {
+                use(TimeCategory) {
+                    d = (d + 1.day)
+                }
+            }
+            appointment.appointmentDate = d
+            appointment.save(flush: true)
+        }
         render([message: "Se te ha asignado una nueva fecha para tu clase de inducción ¡Chécala!"] as JSON)
         return
     }
@@ -174,18 +277,27 @@ class UserController {
         render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
     }
 
-    def sendEmailToforeignStudent(){
+    def sendEmailToforeignStudent() {
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
+        String contextPathWeb = request.contextPath
 
-        notificationService.sendEmailToForeignStudent(params.token, contextPath)
+        notificationService.sendEmailToForeignStudent(params.token, contextPath, contextPathWeb)
         render([message: "Se te ha enviado un correo con los detalles del croquis. ¡Chécalo!"] as JSON)
     }
-    def sendEmailAddres(){
+
+    def sendEmailAddres() {
         ServletContext servletContext = getServletContext();
         String contextPath = servletContext.getRealPath(File.separator);
+        String contextPathWeb = request.contextPath
 
-        notificationService.sendEmailAddress(params.int("id"), contextPath)
+        notificationService.sendEmailAddress(params.int("id"), contextPath, contextPathWeb)
         render([message: "Se ha enviado un correo con los detalles del croquis.!"] as JSON)
+    }
+
+    def Dates() {
+        response.status = 200
+        Date d = new Date()
+        render([year: d, mes: d.getMonth(), day: d.getDate(), h: d.getHours(), m: d.getMinutes()] as JSON)
     }
 }
