@@ -79,10 +79,10 @@
                         <tbody>
 
                         <tr ng-repeat="user in usersList | filter:filtro" ng-if="user.totalRequired !== 0">
-                            <td><a href="#/voucherPayment/student/{{user.id}}">{{user.name}}</a></td>
-                            <td><a href="#/voucherPayment/student/{{user.id}}">{{user.lastName}}</a></td>
-                            <td><a href="#/voucherPayment/student/{{user.id}}">{{user.email}}</a></td>
-                            <td><a href="#/voucherPayment/student/{{user.id}}">{{user.group.nameClassroom}}</a></td>
+                            <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.name}}</a></td>
+                            <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.lastName}}</a></td>
+                            <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.email}}</a></td>
+                            <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.group.nameClassroom}}</a></td>
                             <td class="text-right">
                                 {{user.totalRequired | currency:" $ " }}
                             </td>
