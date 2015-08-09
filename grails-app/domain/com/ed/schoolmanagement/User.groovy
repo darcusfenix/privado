@@ -1,7 +1,10 @@
 package com.ed.schoolmanagement
 
+import com.ed.classroomcourse.Class
+import com.ed.classroomcourse.Classroom
 import com.ed.inductionClass.InductionClass
 import com.ed.service.UserClassroom
+import groovy.time.TimeCategory
 
 class User {
     Integer id
@@ -118,6 +121,16 @@ class User {
             return a.appointmentDate
         } else {
             return false
+        }
+    }
+
+    def getIC() {
+        if (Class.findByClassroom(UserClassroom.findByUser(this))) {
+            use(TimeCategory) {
+                return Class.findByClassroom(UserClassroom.findByUser(this)).dateClass - 30.minutes
+            }
+        } else {
+            return null
         }
     }
 }

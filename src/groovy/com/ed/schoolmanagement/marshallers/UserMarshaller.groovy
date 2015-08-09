@@ -34,7 +34,8 @@ class UserMarshaller {
                     authority       : user.getAuthorities()[0],
                     group           : user.getGroup(),
                     induction       : user.getInductionC(),
-                    appo            : user.getApp()
+                    appo            : user.getApp(),
+                    cI              : user.getIC()
             ]
         }
     }

@@ -89,6 +89,11 @@
                                         <b class="uppercase">{{userInstance.appo}}</b>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="control-label">Cita Inducción:</label>
+                                        <b class="uppercase">{{userInstance.cI}}</b>
+                                    </div>
+
                                     <div class="margiv-top-10">
                                         <button class="btn purple" ng-click="editUser();">Editar datos</button>
                                         <button class="btn btn-danger" data-toggle="modal"
