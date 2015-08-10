@@ -4,7 +4,47 @@
   Date: 8/07/15
   Time: 09:17 PM
 --%>
-
+<div class="row margin-top-10">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat2">
+            <div class="display">
+                <div class="number">
+                    <h3 class="font-green-sharp">{{totalStudentsPaid}}</h3>
+                    <small>Alumnos que han pagado</small>
+                </div>
+                <div class="icon">
+                    <i class="icon-pie-chart"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat2">
+            <div class="display">
+                <div class="number">
+                    <h3 class="font-green-sharp">{{totalStudentsNoPaid}}</h3>
+                    <small>Alumnos que no han pagado</small>
+                </div>
+                <div class="icon">
+                    <i class="icon-pie-chart"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat2">
+            <div class="display">
+                <div class="number">
+                    <h3 class="font-green-sharp">{{totalStudents}}</h3>
+                    <small>Total Alumnos</small>
+                </div>
+                <div class="icon">
+                    <i class="icon-pie-chart"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-5">
         <div class="input-icon right">
@@ -37,6 +77,9 @@
                         <thead>
                         <tr>
                             <th class="text-center">
+                                #
+                            </th>
+                            <th class="text-center">
                                 Nombre
                             </th>
                             <th class="text-center">
@@ -59,6 +102,9 @@
                             </th>
                         </tr>
                         <tr>
+                            <th>
+
+                            </th>
                             <th>
                                 <input type="text" ng-model="filtro.name" placeholder="Filtrar por nombre">
                             </th>
@@ -85,6 +131,9 @@
                         <tbody>
 
                         <tr ng-repeat="user in studentList | filter:filtro" ng-if="user.totalRequired !== 0">
+                            <td class="text-center">
+                                {{$index + 1}}
+                            </td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.name}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.lastName}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.email}}</a></td>
