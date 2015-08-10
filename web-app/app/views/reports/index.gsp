@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: darcusfenix
-  Date: 8/07/15
-  Time: 09:17 PM
+  Date: 9/08/15
+  Time: 10:42 PM
 --%>
 
 <div class="row">
@@ -27,7 +27,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i>Alumnos del grupo <b>{{classRoomNameCurrent}}</b>
+                    <i class="fa fa-globe"></i>Alumnos del grupo <b>{{classRoomNameCurrent}}</b> que han realizado su pago
                 </div>
             </div>
 
@@ -46,16 +46,7 @@
                                 Correo Electrónico
                             </th>
                             <th class="text-center">
-                                Total requerido
-                            </th>
-                            <th class="text-center">
-                                Cantidad pagada
-                            </th>
-                            <th class="text-center">
-                                Ingresar cantidad
-                            </th>
-                            <th class="text-center">
-                                Confirmar pago único
+                                Total Pagado
                             </th>
                         </tr>
                         <tr>
@@ -71,15 +62,6 @@
                             <th>
 
                             </th>
-                            <th>
-
-                            </th>
-                            <th>
-
-                            </th>
-                            <th>
-
-                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,30 +70,8 @@
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.name}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.lastName}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.email}}</a></td>
-
-                            <td class="text-right">
-                                {{user.totalRequired | currency:" $ " }}
-                            </td>
                             <td class="text-right">
                                 {{user.totalPaid | currency:" $ " }}
-                            </td>
-                            <td class="text-center" >
-                                <div class="input-icon text-left" ng-show="user.totalPaid <  user.totalRequired">
-
-                                    <i class="fa fa-usd"></i>
-
-                                    <input type="number" class="form-control" placeholder="Cantidad"
-                                           ng-model="user.voucherPayment.pay" min="1.0" max="{{user.totalRequired}}" style="width: 200px;">
-                                </div>
-                                <span class="text-success uppercase"
-                                      ng-show="user.totalPaid >=  user.totalRequired">pagado</span>
-                            </td>
-                            <td class="text-center">
-                                <button ng-disabled="user.voucherPayment.pay <= 0" class="btn btn-primary uppercase"
-                                        ng-click="saveSingleVoucherPayment(user.voucherPayment.pay, user.id); "
-                                        ng-show="user.totalPaid <  user.totalRequired">Ingresar</button>
-                                <span class="text-success uppercase"
-                                      ng-show="user.totalPaid >=  user.totalRequired">pagado</span>
                             </td>
                         </tr>
                         </tbody>

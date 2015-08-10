@@ -256,7 +256,12 @@
                         </li>
                     </ul>
                 </li>
-
+                <li ng-class="($root.location === '/reports/' ) ? 'active open' : ''">
+                    <a href="#/reports/">
+                        <i class="fa fa-bar-chart"></i>
+                        <span class="title">Reportes</span>
+                    </a>
+                </li>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

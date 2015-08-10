@@ -150,6 +150,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Structure.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Answer.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Question.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/resources', file: 'Reports.js')}"></script>
 
 
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'UserRoutes.js')}"></script>
@@ -169,6 +170,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'StructureRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'QuestionRoutes.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'AnswerRoutes.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/routes/', file: 'ReportsRoutes.js')}"></script>
 
 <script type="text/javascript" src="${resource(dir: 'app/controllers/user', file: 'User.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/VoucherPayment', file: 'VoucherPayment.js')}"></script>
@@ -188,6 +190,7 @@
 <script type="text/javascript" src="${resource(dir: 'app/controllers/structure', file: 'Structure.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/answer', file: 'Answer.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'app/controllers/question', file: 'Question.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'app/controllers/reports', file: 'ReportsController.js')}"></script>
 
 
 <script type="text/javascript" src="${resource(dir: 'app/directives', file: 'end-repeat-answer-list.js')}"></script>
