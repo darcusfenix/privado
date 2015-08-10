@@ -101,15 +101,10 @@ function VoucherPaymentCreateController($scope, $routeParams, $location, Voucher
 
     $scope.message = {show: false, type: 0, text: ''}
 
-
     $scope.usersList = User.query(function (data) {
         $scope.usersList = data;
 
-
         for (var i = 0; i < $scope.usersList.length; i++) {
-            // $scope.usersList[i].services = {};
-            //$scope.usersList[i].voucherPayment = {};
-            // $scope.addServices($scope.usersList[i].id, i);
             $scope.addVoucherPayment(i);
         }
 
@@ -119,34 +114,6 @@ function VoucherPaymentCreateController($scope, $routeParams, $location, Voucher
         $scope.usersList[index].voucherPayment = VoucherPayment.create();
         $scope.usersList[index].voucherPayment.pay = 0;
     };
-
-    /*
-     $scope.addServices = function(id, index){
-     StudentService.services({userId: id},function(data) {
-     $scope.usersList[index].services = data;
-     $scope.usersList[index].totalPaid = 0;
-     $scope.usersList[index].totalRequired = 0;
-
-     for(var i = 0; i< $scope.usersList[index].services.length; i++){
-     Service.getTotalRequiredByUser({userId:id}, function(data){
-     $scope.usersList[index].totalRequired = parseFloat(data.total);
-     });
-     $scope.getTotal($scope.usersList[index].id, $scope.usersList[index].services[i].service.id, index);
-     }
-
-     });
-     };
-
-     $scope.getTotal = function(userId, serviceId, index){
-
-     VoucherPayment.vouchersStudenAndService({ 'userId':userId, 'serviceId': serviceId},function(data) {
-
-     for(var i = 0; i <  data.length; i++)
-     $scope.usersList[index].totalPaid += parseFloat(data[i].pay);
-
-     });
-     };
-     */
 
     $scope.saveSingleVoucherPayment = function (pay, userId) {
 
@@ -275,4 +242,80 @@ function VoucherPaymentDisableServicesController($scope, $location, VoucherPayme
             $rootScope.message = data.message;
         });
     };
-}
+};
+
+function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $location, VoucherPayment, User, $rootScope, $timeout, $route, StateVoucher, Classroom) {
+
+    $rootScope.location = $location.path();
+    $scope.message = {show: false, type: 0, text: ''}
+
+
+    $scope.classRoomList = Classroom.query(function (data) {
+        console.log($scope.classRoomList);
+    });
+
+    $scope.addVoucherPayment = function (index) {
+        $scope.studentList[index].voucherPayment = VoucherPayment.create();
+        $scope.studentList[index].voucherPayment.pay = 0;
+    };
+
+    $scope.getStudentsByClassroom = function(idClassRoom){
+
+        for(var i = 0; i < $scope.classRoomList.length; i++)
+            if($scope.classRoomList[i].id == idClassRoom)
+                $scope.classRoomNameCurrent = $scope.classRoomList[i].nameClassroom;
+
+        $scope.studentList = Classroom.getUsersByClassroom({id: idClassRoom}, function (data) {
+            $scope.studentList = data;
+            for (var i = 0; i < $scope.studentList.length; i++) {
+                $scope.addVoucherPayment(i);
+            }
+        }, function(err){
+
+        });
+    };
+
+    $scope.saveSingleVoucherPayment = function (pay, userId) {
+
+        $scope.voucherPaymentInstance = VoucherPayment.create(function (data) {
+            $scope.voucherPaymentInstance = data;
+            /*
+            $scope.voucherPaymentInstance.pay = pay;
+            $scope.voucherPaymentInstance.studentService = StudentService.getOneServiceOfStudent({userId: userId});
+            $scope.voucherPaymentInstance.stateVoucher = StateVoucher.get({id: 2});
+*/
+        });
+
+
+        $scope.voucherPaymentInstance = $scope.voucherPaymentInstance.$saveSingleVoucherPayment({
+            userId: userId,
+            stateVoucher: 2,
+            pay: pay
+        }, function (success) {
+            $scope.message.show = true;
+            $scope.message.type = 1;
+            $scope.message.text = success.message;
+
+
+             $timeout(function() {
+             $route.reload();
+             }, 3000);
+
+
+        }, function (error) {
+            console.log(error);
+            $scope.message.show = true;
+            $scope.message.type = 0;
+            $scope.message.text = error.data.message;
+
+
+             $timeout(function() {
+             $scope.message.show = false;
+             }, 4000);
+
+        });
+
+
+    };
+
+};

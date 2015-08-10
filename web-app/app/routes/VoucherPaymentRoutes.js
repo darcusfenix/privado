@@ -4,7 +4,7 @@
 
 angular.module('ControlEscuela').config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/voucherPayment/create', {
-        controller: 'VoucherPaymentCreateController',
+        controller: 'VoucherPaymentCreatePerClassRoomController',
         templateUrl: 'app/views/voucherPayment/create.gsp'
     }).when('/voucherPayment/student/:id', {
         controller: 'VoucherPaymentShowStudentController',

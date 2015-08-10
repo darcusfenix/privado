@@ -4,7 +4,18 @@
   Date: 8/07/15
   Time: 09:17 PM
 --%>
-
+<div class="row">
+    <div class="col-md-5">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select  ng-options=" classroom.id as classroom.nameClassroom for classroom in classRoomList"
+                     ng-model="classroom"
+                     required  class="form-control" ng-change="getStudentsByClassroom(classroom);">
+                <option value="">Seleccione un grupo</option>
+            </select>
+        </div>
+    </div>
+</div>
 <div class="row margin-top-10">
     <div class="col-md-12">
         <div class="alert {{ (message.type == 1 ) ? 'alert-success': 'alert-danger' }}  margin-bottom-10"
@@ -15,7 +26,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i>Alumnos del grupo
+                    <i class="fa fa-globe"></i>Alumnos del grupo <b>{{classRoomNameCurrent}}</b>
                 </div>
             </div>
 
@@ -32,9 +43,6 @@
                             </th>
                             <th class="text-center">
                                 Correo Electrónico
-                            </th>
-                            <th class="text-center">
-                                Grupo
                             </th>
                             <th class="text-center">
                                 Total requerido
@@ -60,9 +68,6 @@
                                 <input type="text" ng-model="filtro.email" placeholder="Filtrar por correo electrónico">
                             </th>
                             <th>
-                                <input type="text" ng-model="filtro.group" placeholder="Filtrar por grupo">
-                            </th>
-                            <th>
 
                             </th>
                             <th>
@@ -78,11 +83,11 @@
                         </thead>
                         <tbody>
 
-                        <tr ng-repeat="user in usersList | filter:filtro" ng-if="user.totalRequired !== 0">
+                        <tr ng-repeat="user in studentList | filter:filtro" ng-if="user.totalRequired !== 0">
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.name}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.lastName}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.email}}</a></td>
-                            <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.group.nameClassroom}}</a></td>
+
                             <td class="text-right">
                                 {{user.totalRequired | currency:" $ " }}
                             </td>
