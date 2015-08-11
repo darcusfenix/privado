@@ -140,7 +140,7 @@ class User {
         return totalRequired
     }
 
-    def vouchersPaymentStudentAndService() {
+    def getTotalPaid() {
         Float totalPaidServicio = 0.0
 
         StudentService.findAllByUser(this).each { studentService ->

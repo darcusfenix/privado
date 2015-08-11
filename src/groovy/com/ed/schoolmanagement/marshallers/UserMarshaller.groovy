@@ -36,7 +36,7 @@ class UserMarshaller {
                     induction       : user.getInductionC(),
                     appo            : user.getApp(),
                     totalRequired   : user.getTotalRequiredByUser(),
-                    totalPaid       : user.vouchersPaymentStudentAndService()
+                    totalPaid       : user.getTotalPaid()
             ]
         }
     }

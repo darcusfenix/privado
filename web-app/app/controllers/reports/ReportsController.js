@@ -21,6 +21,7 @@ function getStudentsServicesPaidController ($scope, $location, $rootScope, Class
 
         $scope.studentList = Reports.getStudentsServicesPaid({id: idClassRoom}, function (data) {
             $scope.studentList = data;
+            console.log($scope.studentList);
             $scope.totalStudents = data.length;
         }, function(err){
 

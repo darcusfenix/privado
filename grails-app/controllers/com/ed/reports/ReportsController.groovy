@@ -18,7 +18,7 @@ class ReportsController {
         def UserClassroomList = UserClassroom.findAllByClassroom(Classroom.findById(id ?: params.int("id")))
         List<User> userList = new ArrayList<User>()
         for (UserClassroom uc : UserClassroomList) {
-            if (uc.user.vouchersPaymentStudentAndService() > 0){
+            if (uc.user.getTotalPaid() > 0){
                 userList.add(uc.user)
             }
         }

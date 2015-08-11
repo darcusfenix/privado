@@ -251,7 +251,7 @@ function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $locat
 
 
     $scope.classRoomList = Classroom.query(function (data) {
-        console.log($scope.classRoomList);
+
     });
 
     $scope.addVoucherPayment = function (index) {
@@ -261,7 +261,7 @@ function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $locat
 
     $scope.totalStudentsPaid = 0;
     $scope.totalStudentsNoPaid = 0;
-    $scope.totalStudents = 0;
+
 
     $scope.getStudentsByClassroom = function(idClassRoom){
 
@@ -270,10 +270,11 @@ function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $locat
                 $scope.classRoomNameCurrent = $scope.classRoomList[i].nameClassroom;
 
         $scope.studentList = Classroom.getUsersByClassroom({id: idClassRoom}, function (data) {
+
             $scope.studentList = data;
-            $scope.totalStudents = data.length;
             $scope.totalStudentsPaid = 0;
             $scope.totalStudentsNoPaid = 0;
+
             for (var i = 0; i < $scope.studentList.length; i++) {
                 $scope.addVoucherPayment(i);
                 if($scope.studentList[i].totalPaid > 0){
@@ -282,6 +283,7 @@ function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $locat
                     $scope.totalStudentsNoPaid++
                 }
             }
+
         }, function(err){
 
         });
@@ -291,11 +293,6 @@ function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $locat
 
         $scope.voucherPaymentInstance = VoucherPayment.create(function (data) {
             $scope.voucherPaymentInstance = data;
-            /*
-            $scope.voucherPaymentInstance.pay = pay;
-            $scope.voucherPaymentInstance.studentService = StudentService.getOneServiceOfStudent({userId: userId});
-            $scope.voucherPaymentInstance.stateVoucher = StateVoucher.get({id: 2});
-*/
         });
 
 

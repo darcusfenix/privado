@@ -51,6 +51,9 @@
                         <thead>
                         <tr>
                             <th class="text-center">
+                                #
+                            </th>
+                            <th class="text-center">
                                 Nombre
                             </th>
                             <th class="text-center">
@@ -64,6 +67,9 @@
                             </th>
                         </tr>
                         <tr>
+                            <th>
+
+                            </th>
                             <th>
                                 <input type="text" ng-model="filtro.name" placeholder="Filtrar por nombre">
                             </th>
@@ -81,6 +87,9 @@
                         <tbody>
 
                         <tr ng-repeat="user in studentList | filter:filtro" ng-if="user.totalRequired !== 0">
+                            <td class="text-center">
+                                {{$index + 1}}
+                            </td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.name}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.lastName}}</a></td>
                             <td><a href="#/voucherPayment/student/{{user.id}}" target="_blank">{{user.email}}</a></td>

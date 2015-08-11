@@ -94,7 +94,7 @@ class NotificationService {
 
         def engine = new groovy.text.SimpleTemplateEngine()
         def template = engine.createTemplate(htmlContent).make(binding)
-        SendGridEmail email = new SendGridEmailBuilder()
+        SendGridEmail  email = new SendGridEmailBuilder()
                 .from('preparacionipn@cursopreparacionipn.com')
                 .to(user.email)
                 .subject('Curso de preparación IPN')
@@ -207,10 +207,11 @@ class NotificationService {
         try {
 
             sendGridService.send(email)
+            log.error("*********************************SE ENVIÓ")
             return true
 
         } catch (Exception e) {
-
+            log.error("*********************************ERROR ERROR")
             UserMailHistory userMailHistory = new UserMailHistory()
             userMailHistory.to = user.email;
             userMailHistory.from = "no-reply@cursopreparacionipn.com"
