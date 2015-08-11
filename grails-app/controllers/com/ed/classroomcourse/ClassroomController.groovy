@@ -33,7 +33,9 @@ class ClassroomController {
         def UserClassroomList = UserClassroom.findAllByClassroom(Classroom.findById(id))
         List<User> userList = new ArrayList<User>()
         for (UserClassroom uc : UserClassroomList) {
-            userList.add(uc.user)
+            if (uc.user.vouchersPaymentStudentAndService() > 0) {
+                userList.add(uc.user)
+            }
         }
         render userList as JSON
     }
