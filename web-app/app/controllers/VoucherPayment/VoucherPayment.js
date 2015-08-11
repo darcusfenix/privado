@@ -263,13 +263,13 @@ function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $locat
     $scope.totalStudentsNoPaid = 0;
 
 
-    $scope.getStudentsByClassroom = function(idClassRoom){
+    $scope.getStudentsByClassroom = function (idClassRoom) {
 
-        for(var i = 0; i < $scope.classRoomList.length; i++)
-            if($scope.classRoomList[i].id == idClassRoom)
+        for (var i = 0; i < $scope.classRoomList.length; i++)
+            if ($scope.classRoomList[i].id == idClassRoom)
                 $scope.classRoomNameCurrent = $scope.classRoomList[i].nameClassroom;
 
-        $scope.studentList = Classroom.getUsersByClassroom({id: idClassRoom}, function (data) {
+        $scope.studentList = Classroom.getAllUsersByClassroom({id: idClassRoom}, function (data) {
 
             $scope.studentList = data;
             $scope.totalStudentsPaid = 0;
@@ -277,14 +277,14 @@ function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $locat
 
             for (var i = 0; i < $scope.studentList.length; i++) {
                 $scope.addVoucherPayment(i);
-                if($scope.studentList[i].totalPaid > 0){
+                if ($scope.studentList[i].totalPaid > 0) {
                     $scope.totalStudentsPaid++
-                }else{
+                } else {
                     $scope.totalStudentsNoPaid++
                 }
             }
 
-        }, function(err){
+        }, function (err) {
 
         });
     };
@@ -309,7 +309,7 @@ function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $locat
              $timeout(function() {
              $route.reload();
              }, 3000);
-            */
+             */
 
         }, function (error) {
             console.log(error);
@@ -321,7 +321,7 @@ function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $locat
              $timeout(function() {
              $scope.message.show = false;
              }, 4000);
-                */
+             */
         });
 
 
