@@ -37,6 +37,11 @@ angular.module('ControlEscuela').factory('Classroom', function ($resource) {
             isArray: true,
             url: 'classroom/getUsersByClassroom/:id'
         },
+        getAllUsersByClassroom: {
+            method: 'GET',
+            isArray: true,
+            url: 'classroom/getAllUsersByClassroom/:id'
+        },
         getUsersInClassroom: {
             method: 'GET',
             isArray: true,

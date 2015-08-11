@@ -39,6 +39,14 @@ class ClassroomController {
         }
         render userList as JSON
     }
+    def getAllUsersByClassroom(Integer id) {
+        def UserClassroomList = UserClassroom.findAllByClassroom(Classroom.findById(id))
+        List<User> userList = new ArrayList<User>()
+        for (UserClassroom uc : UserClassroomList) {
+            userList.add(uc.user)
+        }
+        render userList as JSON
+    }
 
     def getUsersInClassroom(Integer id) {
         render UserClass.findAllByClazz(Class.findById(id)) as JSON;
