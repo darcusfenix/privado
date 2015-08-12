@@ -12,7 +12,7 @@ var ComingSoon = function () {
                 if (event.type === 'finish') {
                     $("#cont").removeClass("hidden");
                     $("#titulo").text("¡Bienvenid@!");
-                    $("#texto").text("El registro ha comenzado, da click en el siguiente botón para iniciar tu proceso de inscripción.");
+                    $("#texto").text("El tiempo de registro ha finalizado, esperamos obtengas los mejores resultados durante el próximo examen.");
                 }
             });
         }

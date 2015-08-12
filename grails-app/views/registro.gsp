@@ -73,13 +73,13 @@
     </div>
 
     <div class="row text-center">
-        <div id="cont" class="col-md-12 hidden">
+        <!--<div id="cont" class="col-md-12 hidden">
 
             <button onclick="registro()" class="btn btn-l blue" style="padding-bottom: 10px; padding-top: 0px;"
                     type="button">
                 <h3>
                     SUSCRÍBETE <i class="m-icon-swapright m-icon-white"></i></h3></button>
-        </div>
+        </div>-->
     </div>
 
 
