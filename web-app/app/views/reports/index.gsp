@@ -9,7 +9,7 @@
         <div class="dashboard-stat2">
             <div class="display">
                 <div class="number">
-                    <h3 class="font-green-sharp">{{totalStudents}}</h3>
+                    <h3 class="font-green-sharp">{{studentList ? studentList.length : 0}}</h3>
                     <small>Alumnos inscritos con pago</small>
                 </div>
                 <div class="icon">

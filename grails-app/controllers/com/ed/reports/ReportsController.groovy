@@ -1,13 +1,11 @@
 package com.ed.reports
 
-import com.ed.accesscontrol.StudentService
 import com.ed.classroomcourse.Classroom
-import com.ed.paycontrol.VoucherPayment
 import com.ed.schoolmanagement.User
-import com.ed.service.Service
 import com.ed.service.UserClassroom
 import grails.converters.JSON
-import org.hibernate.Query
+
+
 
 class ReportsController {
 
@@ -24,4 +22,5 @@ class ReportsController {
         }
         render userList as JSON
     }
+
 }
