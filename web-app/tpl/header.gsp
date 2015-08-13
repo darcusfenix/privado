@@ -1,4 +1,5 @@
-<div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+
+<div class="page-header md-shadow-z-1-i navbar navbar-fixed-top" xmlns:g="http://www.w3.org/1999/xhtml">
     <!-- BEGIN HEADER INNER -->
     <div class="page-header-inner">
         <!-- BEGIN LOGO -->
@@ -387,47 +388,30 @@
                     <!-- END TODO DROPDOWN -->
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                    <!--<li class="dropdown dropdown-user dropdown-dark">
+                    <li class="dropdown dropdown-user dropdown-dark">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                            data-close-others="true">
                                 <span class="username username-hide-on-mobile">
-						Nick </span>
-                            <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                           <!-- <img alt="" class="img-circle" src="assets/tema/img/avatar9.jpg"/>
+                                    <sec:access expression="hasRole('ROLE_SU')">
+                                        SUPER ADMINISTRADOR
+                                    </sec:access>
+                                    <sec:access expression="hasRole('ROLE_EMPLEADO')">
+                                        EMPLEADO
+                                    </sec:access>
+                                    <sec:access expression="hasRole('ROLE_ADMIN')">
+                                        ADMINISTRADOR
+                                    </sec:access>
+                                </span>
+
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="extra_profile.html">
-                                    <i class="icon-user"></i> My Profile </a>
-                            </li>
-                            <li>
-                                <a href="page_calendar.html">
-                                    <i class="icon-calendar"></i> My Calendar </a>
-                            </li>
-                            <li>
-                                <a href="inbox.html">
-                                    <i class="icon-envelope-open"></i> My Inbox <span class="badge badge-danger">
-								3 </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="page_todo.html">
-                                    <i class="icon-rocket"></i> My Tasks <span class="badge badge-success">
-								7 </span>
-                                </a>
-                            </li>
-                            <li class="divider">
-                            </li>
-                            <li>
-                                <a href="extra_lock.html">
-                                    <i class="icon-lock"></i> Lock Screen </a>
-                            </li>
-                            <li>
-                                <a href="login.html">
-                                    <i class="icon-key"></i> Log Out </a>
+                                <a href="j_spring_security_logout">
+                                    <i class="icon-key"></i> Salir </a>
                             </li>
                         </ul>
-                    </li>-
+                    </li>
+
                     <!-- END USER LOGIN DROPDOWN -->
                 </ul>
             </div>

@@ -256,12 +256,14 @@
                         </li>
                     </ul>
                 </li>
-                <li ng-class="($root.location === '/reports/' ) ? 'active open' : ''">
-                    <a href="#/reports/">
-                        <i class="fa fa-bar-chart"></i>
-                        <span class="title">Reportes</span>
-                    </a>
-                </li>
+                <sec:access expression="hasRole('ROLE_SU')">
+                    <li ng-class="($root.location === '/reports/' ) ? 'active open' : ''">
+                        <a href="#/reports/">
+                            <i class="fa fa-bar-chart"></i>
+                            <span class="title">Reportes</span>
+                        </a>
+                    </li>
+                </sec:access>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

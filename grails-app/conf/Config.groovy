@@ -100,7 +100,7 @@ log4j.main = {
     // Example of changing the log pattern for the default console appender:
     //
     appenders {
-        console name:'stdout', layout:pattern(conversionPattern: '[%p] %d %c %M - %m%n')
+        console name: 'stdout', layout: pattern(conversionPattern: '[%p] %d %c %M - %m%n')
     }
 
     error 'org.codehaus.groovy.grails.web.servlet',        // controllers
@@ -120,10 +120,21 @@ sendgrid {
     password = 'tiernito1234'
 }
 
-files.htmlMailContent ='files/MailContent.html'
+files.htmlMailContent = 'files/MailContent.html'
 files.nextDayMailContent = 'files/nextDayMailContent.html'
 files.temario = 'files/temario.pdf'
 files.sketchMail = 'files/SketchMail.html'
 files.foreignStudent = 'files/ForeignStudent.html'
 files.address = 'files/Address.html'
 files.direccion = 'files/direccion.pdf'
+
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/2706Administracion/'  : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
+        '/2706Administracion/**': ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
+        '/2706Administracion#'  : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
+        '/index'                : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
+        '/app/**'               : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
+        '/assets/**'            : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
+        '/exportTables/**'      : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
+]
+grails.plugin.springsecurity.securityConfigType = "Annotation"

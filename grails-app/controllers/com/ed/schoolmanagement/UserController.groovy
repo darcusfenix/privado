@@ -10,6 +10,7 @@ import com.ed.service.MockExam
 import com.ed.service.OnlineCourse
 import com.ed.service.UserClassroom
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import groovy.time.TimeCategory
 
@@ -17,6 +18,7 @@ import javax.servlet.ServletContext
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class UserController {
 
     def notificationService
@@ -89,16 +91,24 @@ class UserController {
         UserClassroom uc = UserClassroom.findByUser(userInstance)
         userInstance.properties = request.JSON
         if (userInstance.validate()) {
-            uc.delete()
+
+            if (uc != null){
+                uc.delete()
+            }
+
             userInstance.save()
 
             UserRole.removeAll(userInstance)
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
-            uc = new UserClassroom()
-            uc.user = userInstance;
-            uc.classroom = Classroom.findById(request.JSON.group.id);
-            uc.activated = true;
-            uc.save(flush: true);
+
+            if (uc != null){
+                uc = new UserClassroom()
+                uc.user = userInstance;
+                uc.classroom = Classroom.findById(request.JSON.group.id);
+                uc.activated = true;
+                uc.save(flush: true);
+            }
+
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.updated.message")] as JSON)
         } else {

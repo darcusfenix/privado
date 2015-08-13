@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +77,7 @@
 </div>
 
 <!-- BEGIN HEADER -->
-<g:include view="tpl/header.html"/>
+<g:include view="tpl/header.gsp"/>
 <!-- END HEADER -->
 
 <div class="clearfix">
@@ -86,7 +87,7 @@
 <div class="page-container">
 
     <!-- BEGIN SIDEBAR -->
-    <g:include view="tpl/sidebar.html"/>
+    <g:include view="tpl/sidebar.gsp"/>
     <!-- END SIDEBAR -->
 
 

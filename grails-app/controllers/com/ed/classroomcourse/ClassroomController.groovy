@@ -6,9 +6,12 @@ import com.ed.schoolmanagement.UserRole
 import com.ed.service.Office
 import com.ed.service.UserClassroom
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
+
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class ClassroomController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

@@ -4,9 +4,10 @@ import com.ed.classroomcourse.Classroom
 import com.ed.schoolmanagement.User
 import com.ed.service.UserClassroom
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 
-
+@Secured(['ROLE_SU'])
 class ReportsController {
 
     def index() {

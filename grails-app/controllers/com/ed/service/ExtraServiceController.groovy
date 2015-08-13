@@ -6,9 +6,11 @@ import com.ed.service.ExtraService
 import com.ed.service.MockExam
 import com.ed.service.OnlineCourse
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 import java.text.SimpleDateFormat
 
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class ExtraServiceController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

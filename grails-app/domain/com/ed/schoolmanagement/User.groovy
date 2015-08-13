@@ -10,6 +10,9 @@ import com.ed.service.UserClassroom
 import grails.converters.JSON
 
 class User {
+
+    transient springSecurityService
+
     Integer id
     String name
     String lastName
@@ -37,6 +40,11 @@ class User {
     String internalNumber
 
     InductionClass inductionClass
+
+    // se agregan para el plugin de spring security
+    boolean passwordExpired
+    boolean accountExpired
+    boolean accountLocked
 
     // Spring security methods
     @Override
@@ -99,6 +107,16 @@ class User {
 
     def beforeInsert() {
         this.activationToken = "${this.email}|${this.username}|${this.fullName}".encodeAsMD5().substring(0, 20)
+        encodePassword()
+    }
+    def beforeUpdate() {
+        if (isDirty('password')) {
+            encodePassword()
+        }
+    }
+
+    protected void encodePassword() {
+        this.password = springSecurityService.encodePassword(this.password)
     }
 
     def getGroup() {

@@ -7,9 +7,11 @@ import com.ed.service.ClassroomCourse
 import com.ed.service.TypeCourse
 import com.ed.service.TypeService
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 import java.text.SimpleDateFormat
 
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class ClassroomCourseController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

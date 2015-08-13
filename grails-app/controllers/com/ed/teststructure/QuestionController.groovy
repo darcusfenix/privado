@@ -1,6 +1,7 @@
 package com.ed.teststructure
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 import org.apache.jasper.tagplugins.jstl.core.Url
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.http.HttpRequest
@@ -9,7 +10,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-//@Transactional(readOnly = true)
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class QuestionController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]

@@ -4,6 +4,8 @@
   Date: 3/07/15
   Time: 10:46 AM
 --%>
+
+
 <%@ page contentType="text/html;charset=UTF-8" %>
 <h2>Bienvenido</h2>
 <div class="row margin-top-30">

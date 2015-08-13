@@ -3,7 +3,9 @@ package com.controlescuela
 import com.ed.paycontrol.StateVoucher
 import com.ed.service.Service
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class StateVoucherController {
 
     def index() {}

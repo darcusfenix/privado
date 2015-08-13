@@ -1,12 +1,14 @@
 package com.ed.teststructure
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 import javax.validation.constraints.Null
 
 
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class AnswerController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]

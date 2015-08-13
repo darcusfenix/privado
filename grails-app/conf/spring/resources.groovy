@@ -21,5 +21,5 @@ beans = {
                 new AnswerMarshaller()
         ]
     }
-
+    userDetailsService(com.ed.services.MyUserDetailsService)
 }

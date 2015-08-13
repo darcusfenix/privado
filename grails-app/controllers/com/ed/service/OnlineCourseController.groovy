@@ -4,9 +4,11 @@ import com.ed.accesscontrol.StudentService
 import com.ed.schoolmanagement.User
 import com.ed.service.OnlineCourse
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 import java.text.SimpleDateFormat
 
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class OnlineCourseController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
