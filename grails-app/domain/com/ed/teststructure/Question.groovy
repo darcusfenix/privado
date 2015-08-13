@@ -7,7 +7,7 @@ package com.ed.teststructure
 
 import java.sql.Blob
 
-class Question implements Serializable{
+class Question implements Serializable {
 
     String number
     String text
@@ -18,7 +18,7 @@ class Question implements Serializable{
 
     static constraints = {
         urlImage nullable: true, blank: true
-        text maxSize: 4096
+        text maxSize: 32768
     }
 
     static mapping = {
