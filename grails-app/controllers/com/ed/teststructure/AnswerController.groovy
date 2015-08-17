@@ -8,7 +8,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 import javax.validation.constraints.Null
 
 
-@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class AnswerController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]

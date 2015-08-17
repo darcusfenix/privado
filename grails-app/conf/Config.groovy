@@ -128,6 +128,7 @@ files.foreignStudent = 'files/ForeignStudent.html'
 files.address = 'files/Address.html'
 files.direccion = 'files/direccion.pdf'
 
+/*
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/2706Administracion/'  : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
         '/2706Administracion/**': ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
@@ -151,3 +152,5 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/favicon.ico'          : ['permitAll'],
 ]
 grails.plugin.springsecurity.securityConfigType = "Annotation"
+
+*/

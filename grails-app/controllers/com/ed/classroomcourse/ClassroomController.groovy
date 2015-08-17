@@ -11,7 +11,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
-@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class ClassroomController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
