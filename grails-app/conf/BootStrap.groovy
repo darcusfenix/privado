@@ -67,7 +67,10 @@ class BootStrap {
         superAdmin.password = "2706QAWS@"
         superAdmin.username = "ADMINMONTES"
 
-        superAdmin.save()
+        superAdmin.save(flush: true)
+        print("------------------")
+        print(roleSuperAdmin.authority)
+        print("------------------")
         UserRole.create(superAdmin, roleSuperAdmin, false)
 
         User employee = new User()
@@ -93,7 +96,10 @@ class BootStrap {
         employee.password = "preparacion-ipn-2015"
         employee.username = "CHOCHOZ"
 
-        employee.save()
+        employee.save(flush: true)
+        print("------------------")
+        print(roleEmployee.authority)
+        print("------------------")
         UserRole.create(employee, roleEmployee, false)
 
     }
