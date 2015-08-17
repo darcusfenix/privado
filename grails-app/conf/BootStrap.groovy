@@ -40,9 +40,9 @@ class BootStrap {
         //
 
         //Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
-        Role roleEmployee = Role.findByAuthority('ROLE_EMPLEADO')
+        Role roleEmployee = Role.findOrSaveWhere('ROLE_EMPLEADO')
         //Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
-        Role roleSuperAdmin = Role.findByAuthority('ROLE_SU')
+        Role roleSuperAdmin = Role.findOrSaveWhere('ROLE_SU')
 
         User superAdmin = new User()
         superAdmin.email = "preparacionipn@gmail.com"

@@ -6,7 +6,7 @@ import com.ed.schoolmanagement.UserRole
 import com.ed.service.Office
 import com.ed.service.UserClassroom
 import grails.converters.JSON
-
+import grails.plugin.springsecurity.annotation.Secured
 
 import java.text.ParseException
 import java.text.SimpleDateFormat

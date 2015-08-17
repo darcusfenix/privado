@@ -3,6 +3,7 @@ package com.ed.teststructure
 import com.ed.teststructure.Section
 import com.ed.teststructure.StructureSection
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 
 @Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])

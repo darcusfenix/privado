@@ -4,7 +4,7 @@ import com.ed.service.ExtraIncome
 import com.ed.service.ExtraService
 import com.ed.service.OnlineCourse
 import grails.converters.JSON
-
+import grails.plugin.springsecurity.annotation.Secured
 
 import java.text.SimpleDateFormat
 

@@ -8,9 +8,9 @@ import com.ed.paycontrol.VoucherPayment
 import com.ed.service.Service
 import com.ed.service.UserClassroom
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
-
-class User {
+class User implements Serializable {
 
     def springSecurityService
 
@@ -157,24 +157,36 @@ class User {
     def getTotalRequiredByUser() {
         Float totalRequired = 0.0
 
-        StudentService.findAllByUser(this).each { StudentService ->
-            Service.findAllById(StudentService.service.id).each { service ->
-                totalRequired += service.cost
-            }
-        }
+        def user = UserRole.findByUser(this)
 
-        return totalRequired
+        if (user.role.authority == "ROLE_ALUMNO") {
+            StudentService.findAllByUser(this).each { StudentService ->
+                Service.findAllById(StudentService.service.id).each { service ->
+                    totalRequired += service.cost
+                }
+            }
+
+            return totalRequired
+        } else {
+            return false
+        }
     }
 
     def getTotalPaid() {
         Float totalPaidServicio = 0.0
 
-        StudentService.findAllByUser(this).each { studentService ->
-            VoucherPayment.findAllByStudentService(studentService).each { voucherPaymentIndividual ->
-                totalPaidServicio += voucherPaymentIndividual.pay
+        def user = UserRole.findByUser(this)
+
+        if (user.role.authority == "ROLE_ALUMNO") {
+            StudentService.findAllByUser(this).each { studentService ->
+                VoucherPayment.findAllByStudentService(studentService).each { voucherPaymentIndividual ->
+                    totalPaidServicio += voucherPaymentIndividual.pay
+                }
             }
+            return totalPaidServicio
+        } else {
+            return false
         }
-        return totalPaidServicio
     }
 
     /*def getIC(){
