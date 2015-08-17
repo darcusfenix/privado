@@ -3,10 +3,12 @@ package com.ed.schoolmanagement.marshallers
 import com.ed.inductionClass.InductionClass
 import com.ed.schoolmanagement.User
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 /**
  * Created by alberto on 9/07/15.
  */
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class UserMarshaller {
     void register() {
         JSON.registerObjectMarshaller(User) { User user ->

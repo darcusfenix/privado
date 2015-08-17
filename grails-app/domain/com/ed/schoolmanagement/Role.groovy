@@ -1,5 +1,8 @@
 package com.ed.schoolmanagement
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class Role implements Serializable {
     Integer id
     String authority
