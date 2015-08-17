@@ -34,16 +34,15 @@ class BootStrap {
 
     def init = { servletContext ->
 
-
         // DO NOT MODIFY
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         springContext.getBean("customObjectMarshallers").register()
         //
 
-        Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
-        Role roleEmployee = Role.findOrSaveWhere([authority: 'ROLE_EMPLEADO'])
-        Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
-        Role roleSuperAdmin = Role.findOrSaveWhere([authority: 'ROLE_SU'])
+        //Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
+        Role roleEmployee = Role.findByAuthority('ROLE_EMPLEADO')
+        //Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
+        Role roleSuperAdmin = Role.findByAuthority('ROLE_SU')
 
         User superAdmin = new User()
         superAdmin.email = "preparacionipn@hotmail.com"
