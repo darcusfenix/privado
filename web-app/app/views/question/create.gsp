@@ -65,22 +65,19 @@
                             </div>
                         </div>
 
-                        <!--<div class="form-group">
-                            <div style="height:300px" ng-model="questionInstance.text" class="col-md-10 col-md-offset-1"
-                                 id="editorContainer"></div>
-                        </div>-->
-
-                        <!--<div class="form-group">
-                            <input type="button" value="Obtener función" ng-click="getFuncion()"
-                                   class="btn btn-info col-md-2">
-                        </input>
-                            <textarea class="form-control col-md-10" dir="ltr" id="result" rows="5"
-                                      spellcheck="false"></textarea>
-                        </div>-->
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Pregunta en: </label>
+                            <div class="col-md-9">
+                                <div class="input-icon right">
+                                    <a  class="btn blue" ng-click="typeQuestion = 1"> Texto </a>
+                                    <a  class="btn blue" ng-click="typeQuestion = 2"> Ecuación Matemática </a>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group"
-                             ng-class="{'has-error': varEditorMessage != undefined}">
-                            <label class="control-label col-md-3">Pregunta: <span class="required">
+                             ng-class="{'has-error': varEditorMessage != undefined}" ng-show="typeQuestion === 2">
+                            <label class="control-label col-md-3">Pregunta en ecuación Matemática: <span class="required">
                                 *</span>
                             </label>
 
@@ -93,6 +90,20 @@
                                       ng-show="varEditorMessage">
                                     {{varEditorMessage}}
                                 </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                             ng-class="{'has-error': varEditorMessage != undefined}"  ng-show="typeQuestion === 1">
+                            <label class="control-label col-md-3">Pregunta en texto: <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-9">
+
+                                <div name="summernote" id="summernote_1">
+                                </div>
+
                             </div>
                         </div>
 

@@ -23,12 +23,15 @@ function QuestionCreateController($scope, $location, $rootScope, Section, Questi
     editor.insertInto(document.getElementById('editorContainer'));
 
     $scope.varEditor = undefined;
+    $scope.typeQuestion = 1;
     $scope.varEditorMessage = undefined;
 
     var editorNull = '<math xmlns="http://www.w3.org/1998/Math/MathML"/>';
 
     $(".wrs_linkButton").remove();
     $(".wrs_imageContainer").remove();
+
+    ComponentsEditors.init();
 
 
     $rootScope.location = $location.path();
@@ -44,7 +47,13 @@ function QuestionCreateController($scope, $location, $rootScope, Section, Questi
 
     $scope.saveQuestion = function (valid, $event) {
         $event.preventDefault();
-        $scope.varEditor = editor.getMathML();
+        if($scope.typeQuestion === 2){
+            $scope.varEditor = editor.getMathML();
+        }
+        else if ($scope.typeQuestion === 1){
+            $scope.varEditor = $('#summernote_1').code();
+            console.log($scope.varEditor);
+        }
         if (valid) {
             if ($scope.varEditor != editorNull) {
                 $scope.varEditorMessage = undefined;
@@ -87,7 +96,8 @@ function QuestionCreateController($scope, $location, $rootScope, Section, Questi
 function QuestionEditController($scope, $location, $routeParams, $rootScope, Section, Question, Upload) {
     $rootScope.location = $location.path();
     $scope.validator = {};
-
+    $scope.typeQuestion = 1;
+    ComponentsEditors.init();
 
     $scope.varEditor = undefined;
     $scope.varEditorMessage = undefined;
@@ -115,6 +125,7 @@ function QuestionEditController($scope, $location, $routeParams, $rootScope, Sec
             $scope.varSlc = data.section.id;
             $scope.varEditor = data.text;
             editor.setMathML(data.text);
+            $('#summernote_1').code(data.text);
         }, function (err) {
             $location.path('/');
         });
@@ -122,7 +133,14 @@ function QuestionEditController($scope, $location, $routeParams, $rootScope, Sec
 
     $scope.editQuestion = function editQuestion(valid, $event) {
         $event.preventDefault();
-        $scope.varEditor = editor.getMathML();
+        if($scope.typeQuestion === 2){
+            $scope.varEditor = editor.getMathML();
+        }
+        else if ($scope.typeQuestion === 1){
+            $scope.varEditor = $('#summernote_1').code();
+            console.log($scope.varEditor);
+        }
+
         if (valid) {
             if ($scope.varEditor != editorNull) {
                 $scope.varEditorMessage = undefined;
