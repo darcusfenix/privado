@@ -64,6 +64,7 @@ class UserController {
                 studentServiceMockExam.fullPayment = 0
                 studentServiceMockExam.save()
 
+
             }
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.created.message")] as JSON)
