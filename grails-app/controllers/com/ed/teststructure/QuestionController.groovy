@@ -30,7 +30,7 @@ class QuestionController {
     //@Transactional
     def save() {
         def webRootDir = servletContext.getRealPath("/")
-        webRootDir = webRootDir.replace("ROOT/", "")
+        webRootDir = webRootDir.replace("ROOT", "ControlEscuela")
         def questionInstance = new Question()
         JSONObject jQuestion = new JSONObject(request.getParameter('data'))
         CommonsMultipartFile f = request.getFile('file')
@@ -68,7 +68,7 @@ class QuestionController {
     //@Transactional
     def update() {
         def webRootDir = servletContext.getRealPath("/")
-        webRootDir = webRootDir.replace("ROOT/", "")
+        webRootDir = webRootDir.replace("ROOT", "ControlEscuela")
         JSONObject jQuestion = new JSONObject(request.getParameter('data'))
         Question questionInstance = Question.findById(jQuestion.id)
         String tempQI = questionInstance.urlImage
