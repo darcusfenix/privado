@@ -46,16 +46,16 @@ class BootStrap {
         Role roleSuperAdmin = Role.findOrSaveWhere([authority: 'ROLE_SU'])
 
         User superAdmin = new User()
-        superAdmin.email = "juancvfenix@gmail.com"
-        superAdmin.name = "JUAN"
-        superAdmin.lastName = "CRISÓSTOMO"
-        superAdmin.surName = "VÁZQUEZ"
-        superAdmin.mobileNumber = "5530271655"
-        superAdmin.phoneNumber = "58880603"
-        superAdmin.street = "LAZARO CARDENAS"
-        superAdmin.streetNumber = "10"
-        superAdmin.city = "TULTITLÁN"
-        superAdmin.town = "MEXICO"
+        superAdmin.email = "preparacionipn@hotmail.com"
+        superAdmin.name = "EDGAR"
+        superAdmin.lastName = "MONTES"
+        superAdmin.surName = "GUTIERREZ"
+        superAdmin.mobileNumber = "5545117069"
+        superAdmin.phoneNumber = "26801666"
+        superAdmin.street = "Avenida Wilfrido Massieu"
+        superAdmin.streetNumber = "310"
+        superAdmin.city = "Venustiano Carranza"
+        superAdmin.town = "Distrito Federal"
         superAdmin.zipCode = "54900"
         superAdmin.previousStudent = false
         superAdmin.inductionClass = null
@@ -66,13 +66,13 @@ class BootStrap {
         superAdmin.accountExpired = false
         superAdmin.accountLocked = false
         superAdmin.password = "2706QAWS@"
-        superAdmin.username = "DARCUSFENIX"
+        superAdmin.username = "ADMINMONTES"
 
         superAdmin.save()
         UserRole.create(superAdmin, roleSuperAdmin, false)
 
         User employee = new User()
-        employee.email = "preparacionipn@hotmail.com"
+        employee.email = "chochozz@gmail.com"
         employee.name = "GERAR"
         employee.lastName = "RODRIGUEZ"
         employee.surName = "NULL"

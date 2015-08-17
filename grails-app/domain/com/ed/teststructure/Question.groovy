@@ -12,12 +12,14 @@ class Question implements Serializable {
     String number
     String text
     String urlImage
+    String urlVideo
     static belongsTo = [section: Section]
     static hasMany = [answer: Answer]
     static mappedBy = [answer: 'question']
 
     static constraints = {
         urlImage nullable: true, blank: true
+        urlVideo nullable: true, blank: true
         text maxSize: 32768
     }
 
@@ -28,6 +30,7 @@ class Question implements Serializable {
         text column: 'tx_question'
         image column: 'bl_image'
         text type: 'text'
+        urlVideo column: 'tx_video'
         version false
     }
 }

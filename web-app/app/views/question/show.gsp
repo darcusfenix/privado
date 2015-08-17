@@ -68,6 +68,16 @@
                     </div>
                 </div>
 
+                <div class="row static-info">
+                    <div class="col-md-5 name">
+                        URL Video:
+                    </div>
+
+                    <div class="col-md-7">
+                        {{ questionInstance.urlVideo }}
+                    </div>
+                </div>
+
             </div>
 
             <div class="form-actions noborder">

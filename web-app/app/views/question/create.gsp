@@ -112,6 +112,25 @@
                             </div>
                         </div>
 
+                        <div class="form-group"
+                             ng-class="{'has-error': createQuestion.urlVideo.$error.required || validator.urlVideo.hasError}">
+                            <label class="control-label col-md-3">URL Video: <span class="required">
+                                *</span>
+                            </label>
+
+                            <div class="col-md-9">
+                                <div class="left">
+                                    <input type="text" ng-model="questionInstance.urlVideo" class="form-control"
+                                           name="urlVideo"
+                                           required/>
+                                </div>
+                                <span class="help-block"
+                                      ng-show="createQuestion.urlVideo.$error.required || validator.urlVideo.hasError">
+                                    {{validator.urlVideo.message}}
+                                </span>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="form-actions">

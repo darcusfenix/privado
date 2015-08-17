@@ -135,7 +135,7 @@
                                 <div class="input-icon right">
                                     <i class="fa"></i>
                                     <select ng-options="group.id as group.nameClassroom for group in classroomList"
-                                            ng-model="userInstance.group.id" name="group" required></select>
+                                            ng-model="userInstance.group.id" name="group"></select>
                                 </div>
                             </div>
                             <span class="help-block" ng-show="editUser.group.$error.required||validator.group.hasError">

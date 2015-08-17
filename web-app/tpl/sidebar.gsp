@@ -13,7 +13,7 @@
                 <li ng-class="($root.location === '/user/' || $root.location === '/user/create') ? 'active open' : ''">
                     <a href="javascript:;">
                         <i class="fa fa-child"></i>
-                        <span class="title">Alumnos</span>
+                        <span class="title">Usuarios</span>
                         <span class="arrow {{$root.location === '/user/' ? 'open' : ''}}"></span>
                     </a>
                     <ul class="sub-menu">
@@ -23,14 +23,14 @@
                         </li>
                         <li ng-class="($root.location === '/user/create') ? 'active' : ''">
                             <a href="#/user/create">
-                                Registrar Alumno</a>
+                                Registrar Usuario</a>
                         </li>
                         <li ng-class="($root.location === '/user/sendEmailAddress') ? 'active' : ''">
                             <a href="#/user/sendEmailAddress">
                                 Enviar Correo Dirección</a>
                         </li>
                         <li ng-class="($root.location === '/user/relationClass') ? 'active' : ''">
-                            <a href="#/user/relationClass"> Asignar clase</a>
+                            <a href="#/user/relationClass">Asignar clase</a>
                         </li>
                     </ul>
                 </li>
@@ -82,10 +82,10 @@
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="#/classroomCourse"> Ver todos</a>
+                                    <a href="#/classroomCourse">Ver todos</a>
                                 </li>
                                 <li>
-                                    <a href="#/classroomCourse/create"> Registar Curso</a>
+                                    <a href="#/classroomCourse/create">Registar Curso</a>
                                 </li>
                             </ul>
                         </li>
@@ -95,10 +95,10 @@
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="#/onlineCourse"> Ver todos</a>
+                                    <a href="#/onlineCourse">Ver todos</a>
                                 </li>
                                 <li>
-                                    <a href="#/onlineCourse/create"> Registar curso online</a>
+                                    <a href="#/onlineCourse/create">Registar curso online</a>
                                 </li>
                             </ul>
                         </li>
@@ -108,10 +108,10 @@
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="#/mockExam"> Ver todos</a>
+                                    <a href="#/mockExam">Ver todos</a>
                                 </li>
                                 <li>
-                                    <a href="#/mockExam/create"> Registrar Examen</a>
+                                    <a href="#/mockExam/create">Registrar Examen</a>
                                 </li>
                             </ul>
                         </li>
@@ -121,10 +121,10 @@
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="#/extraService"> Ver todos</a>
+                                    <a href="#/extraService">Ver todos</a>
                                 </li>
                                 <li>
-                                    <a href="#/extraService/create"> Registrar Servicio</a>
+                                    <a href="#/extraService/create">Registrar Servicio</a>
                                 </li>
                             </ul>
                         </li>
@@ -215,10 +215,10 @@
                             </a>
                             <ul class="sub-menu">
                                 <li ng-class="($root.location === '/section/') ? 'active' : ''">
-                                    <a href="#/section/"> Ver secciones</a>
+                                    <a href="#/section/">Ver secciones</a>
                                 </li>
                                 <li ng-class="($root.location === '/section/create') ? 'active' : ''">
-                                    <a href="#/section/create"> Agregar sección</a>
+                                    <a href="#/section/create">Agregar sección</a>
                                 </li>
                                 <li ng-class="($root.location === '/question/' || $root.location === '/question/create') ? 'active open' : ''">
                                     <a href="javascript:;">
@@ -228,27 +228,27 @@
                                     </a>
                                     <ul class="sub-menu">
                                         <li ng-class="($root.location === '/question/') ? 'active' : ''">
-                                            <a href="#/question/"> Ver preguntas</a>
+                                            <a href="#/question/">Ver preguntas</a>
                                         </li>
                                         <li ng-class="($root.location === '/question/create') ? 'active' : ''">
-                                            <a href="#/question/create"> Agregar pregunta</a>
+                                            <a href="#/question/create">Agregar pregunta</a>
                                         </li>
 
-                                            <li ng-class="($root.location === '/answer/' || $root.location === '/answer/create') ? 'active open' : ''">
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-check-square-o"></i>
-                                                    <span class="title">Respuestas</span>
-                                                    <span class="arrow {{ ($root.location === '/answer/' || $root.location === '/answer/create') ? 'open' : ''}}"></span>
-                                                </a>
-                                                <ul class="sub-menu">
-                                                    <li ng-class="($root.location === '/answer/') ? 'active' : ''">
-                                                        <a href="#/answer"> Ver todas</a>
-                                                    </li>
-                                                    <li ng-class="($root.location === '/answer/create') ? 'active' : ''">
-                                                        <a href="#/answer/create"> Agregar respuesta</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                        <li ng-class="($root.location === '/answer/' || $root.location === '/answer/create') ? 'active open' : ''">
+                                            <a href="javascript:;">
+                                                <i class="fa fa-check-square-o"></i>
+                                                <span class="title">Respuestas</span>
+                                                <span class="arrow {{ ($root.location === '/answer/' || $root.location === '/answer/create') ? 'open' : ''}}"></span>
+                                            </a>
+                                            <ul class="sub-menu">
+                                                <li ng-class="($root.location === '/answer/') ? 'active' : ''">
+                                                    <a href="#/answer">Ver todas</a>
+                                                </li>
+                                                <li ng-class="($root.location === '/answer/create') ? 'active' : ''">
+                                                    <a href="#/answer/create">Agregar respuesta</a>
+                                                </li>
+                                            </ul>
+                                        </li>
 
                                     </ul>
                                 </li>

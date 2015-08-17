@@ -13,7 +13,8 @@ class QuestionMarshaller {
                     answer     : question.answer,
                     sectionName: question.section.getName(),
                     section    : question.section,
-                    urlImg     : question.urlImage
+                    urlImg     : question.urlImage,
+                    urlVideo   : question.urlVideo
             ]
         }
     }
