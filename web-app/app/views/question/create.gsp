@@ -71,6 +71,7 @@
                                 <div class="input-icon right">
                                     <a  class="btn blue" ng-click="typeQuestion = 1"> Texto </a>
                                     <a  class="btn blue" ng-click="typeQuestion = 2"> Ecuación Matemática </a>
+                                    <a  class="btn blue" ng-click="removeText()" ng-show="typeQuestion === 1"> Limpiar texto </a>
                                 </div>
                             </div>
                         </div>
