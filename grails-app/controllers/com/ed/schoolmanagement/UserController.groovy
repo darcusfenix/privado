@@ -27,10 +27,7 @@ class UserController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent: "POST", sendEmailAddres: "POST"]
 
     def index() {
-        //render User.listOrderById([max: params.int('max')]) as JSON
-        def list = User.listOrderById()
-        print(list.size())
-        render list as JSON
+        render User.listOrderById([max: params.int('max')]) as JSON
     }
 
     def create() {
@@ -66,11 +63,6 @@ class UserController {
                 studentServiceMockExam.active = true
                 studentServiceMockExam.fullPayment = 0
                 studentServiceMockExam.save()
-                UserClassroom uc = new UserClassroom();
-                uc.user = userInstance;
-                uc.classroom = Classroom.findById(request.JSON.group.id);
-                uc.activated = true;
-                uc.save(flush: true);
 
             }
             response.status = 200
@@ -95,7 +87,7 @@ class UserController {
         userInstance.properties = request.JSON
         if (userInstance.validate()) {
 
-            if (uc != null) {
+            if (uc != null){
                 uc.delete()
             }
 
@@ -104,7 +96,7 @@ class UserController {
             UserRole.removeAll(userInstance)
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
 
-            if (uc != null && request.JSON.authority.id == 1) {
+            if (uc != null){
                 uc = new UserClassroom()
                 uc.user = userInstance;
                 uc.classroom = Classroom.findById(request.JSON.group.id);
@@ -314,8 +306,7 @@ class UserController {
         Date d = new Date()
         render([year: d, mes: d.getMonth(), day: d.getDate(), h: d.getHours(), m: d.getMinutes()] as JSON)
     }
-
-    def datos() {
+    def datos(){
         User user = User.findByActivationToken(params.token)
 
 
@@ -343,10 +334,10 @@ class UserController {
 
         binding.userFullName = user.fullName
         binding.grupo = user.group.nameClassroom
-        binding.horaInicio = formatter.format(c.dateClass)
+        binding.horaInicio = formatter.format( c.dateClass)
         binding.horaLimit = formatterHour.format(nd)
         binding.now = formatter.format(now)
 
-        render(binding as JSON)
+        render(  binding as JSON )
     }
 }
