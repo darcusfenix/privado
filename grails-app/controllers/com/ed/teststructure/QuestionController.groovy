@@ -48,7 +48,7 @@ class QuestionController {
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
                 f.transferTo(new File(dir))
-                dir = "imgFiles/question-" + questionInstance.section.id + "/" + f.getOriginalFilename()
+                dir = "ControlEscuela/imgFiles/question-" + questionInstance.section.id + "/" + f.getOriginalFilename()
                 questionInstance.urlImage = dir
             }
             questionInstance.save(flush: true)
@@ -84,12 +84,12 @@ class QuestionController {
                 File folder = new File(webRootDir + tempQI)
                 print(folder)
                 folder.delete()
-                def dir = webRootDir + "imgFiles/" + questionInstance.section.id + "/"
+                def dir = webRootDir + "imgFiles/question-" + questionInstance.section.id + "/"
                 folder = new File(dir)
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
                 f.transferTo(new File(dir))
-                dir = "imgFiles/" + questionInstance.section.id + "/" + f.getOriginalFilename()
+                dir = "ControlEscuela/imgFiles/question-" + questionInstance.section.id + "/" + f.getOriginalFilename()
                 questionInstance.urlImage = dir
             } else {
                 questionInstance.urlImage = tempQI

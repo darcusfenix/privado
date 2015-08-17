@@ -43,7 +43,7 @@ class AnswerController {
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
                 f.transferTo(new File(dir))
-                dir = "imgFiles/answers/question-" + answerInstance.question.id + "/" + f.getOriginalFilename()
+                dir = "ControlEscuela/imgFiles/answers/question-" + answerInstance.question.id + "/" + f.getOriginalFilename()
                 answerInstance.image = dir
 
             }
@@ -78,7 +78,7 @@ class AnswerController {
                 folder.mkdirs()
                 dir = dir + f.getOriginalFilename()
                 f.transferTo(new File(dir))
-                dir = "imgFiles/answers/question-" + answerInstance.question.id + "/" + f.getOriginalFilename()
+                dir = "ControlEscuela/imgFiles/answers/question-" + answerInstance.question.id + "/" + f.getOriginalFilename()
                 answerInstance.image = dir
 
             }
