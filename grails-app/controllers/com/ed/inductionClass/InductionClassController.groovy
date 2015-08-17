@@ -4,7 +4,7 @@ import com.ed.classroomcourse.StateClassroom
 import com.ed.schoolmanagement.User
 import com.ed.service.Office
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
+
 import org.springframework.format.annotation.DateTimeFormat
 
 import java.text.DateFormat

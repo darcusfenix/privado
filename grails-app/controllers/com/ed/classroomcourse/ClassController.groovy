@@ -2,7 +2,7 @@ package com.ed.classroomcourse
 
 import com.ed.schoolmanagement.User
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
+
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional

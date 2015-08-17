@@ -8,7 +8,7 @@ import com.ed.paycontrol.VoucherPayment
 import com.ed.service.Service
 import com.ed.service.UserClassroom
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
+
 
 class User implements Serializable {
 

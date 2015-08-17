@@ -4,7 +4,7 @@ import com.ed.accesscontrol.StudentService
 import com.ed.schoolmanagement.User
 import com.ed.service.MockExam
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
+
 
 import java.text.SimpleDateFormat
 

@@ -7,7 +7,7 @@ import com.ed.service.ClassroomCourse
 import com.ed.service.TypeCourse
 import com.ed.service.TypeService
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
+
 
 import java.text.SimpleDateFormat
 

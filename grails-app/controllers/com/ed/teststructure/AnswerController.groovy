@@ -1,7 +1,7 @@
 package com.ed.teststructure
 
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
+
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 

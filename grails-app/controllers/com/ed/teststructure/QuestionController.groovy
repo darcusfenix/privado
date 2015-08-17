@@ -1,7 +1,7 @@
 package com.ed.teststructure
 
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
+
 import org.apache.jasper.tagplugins.jstl.core.Url
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.http.HttpRequest

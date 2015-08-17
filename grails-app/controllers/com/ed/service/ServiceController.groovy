@@ -5,7 +5,7 @@ import com.ed.paycontrol.VoucherPayment
 import com.ed.schoolmanagement.User
 import com.ed.service.Service
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
+
 
 //@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class ServiceController {

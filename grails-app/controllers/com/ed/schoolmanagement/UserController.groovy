@@ -10,7 +10,7 @@ import com.ed.service.MockExam
 import com.ed.service.OnlineCourse
 import com.ed.service.UserClassroom
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
+
 import grails.transaction.Transactional
 import groovy.time.TimeCategory
 
