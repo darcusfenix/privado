@@ -27,7 +27,10 @@ class UserController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent: "POST", sendEmailAddres: "POST"]
 
     def index() {
-        render User.listOrderById([max: params.int('max')]) as JSON
+        //render User.listOrderById([max: params.int('max')]) as JSON
+        def list = User.listOrderById()
+        print(list.size())
+        render list as JSON
     }
 
     def create() {
