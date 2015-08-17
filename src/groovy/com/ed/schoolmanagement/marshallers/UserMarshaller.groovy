@@ -11,10 +11,10 @@ class UserMarshaller {
     void register() {
         JSON.registerObjectMarshaller(User) { User user ->
             return [
-                    id              : user.id,
-                    name            : user.name,
-                    lastName        : user.lastName,
-                    phoneNumber     : user.phoneNumber,
+                    id      : user.id,
+                    name    : user.name,
+                    lastName: user.lastName,
+                    /*phoneNumber     : user.phoneNumber,
                     fullAddress     : "$user.state, $user.city, $user.town, $user.street, $user.streetNumber, $user.zipCode",
                     formattedAddress: "Estado: $user.state, Ciudad: $user.city, Colonia: $user.town, Calle: $user.street, #:$user.streetNumber, Código Postal: $user.zipCode",
                     state           : user.state,
@@ -30,7 +30,7 @@ class UserMarshaller {
                     email           : user.email,
                     socialNetworkUrl: user.socialNetworkUrl,
                     comment         : user.comment,
-                   /* previousStudent : user.previousStudent,
+                   previousStudent : user.previousStudent,
                     authority       : user.getAuthorities()[0],
                     group           : user.getGroup(),
                     induction       : user.getInductionC(),
