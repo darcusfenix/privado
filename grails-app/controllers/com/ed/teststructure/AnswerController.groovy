@@ -24,7 +24,7 @@ class AnswerController {
     def update() {
 
         def webRootDir = servletContext.getRealPath("/")
-
+        webRootDir = webRootDir.replace("ROOT/", "")
         JSONObject jAnswer = new JSONObject(request.getParameter('data'))
         CommonsMultipartFile f = request.getFile('file')
         def answerInstance = Answer.findById(jAnswer.id)
@@ -64,6 +64,7 @@ class AnswerController {
 
     def save() {
         def webRootDir = servletContext.getRealPath("/")
+        webRootDir = webRootDir.replace("ROOT/", "")
         def answerInstance = new Answer()
 
         JSONObject jAnswer = new JSONObject(request.getParameter('data'))
