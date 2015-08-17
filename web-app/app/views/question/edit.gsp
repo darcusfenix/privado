@@ -133,8 +133,7 @@
                             <div class="col-md-9">
                                 <div class="left">
                                     <input type="text" ng-model="questionInstance.urlVideo" class="form-control"
-                                           name="urlVideo"
-                                           required/>
+                                           name="urlVideo"/>
                                 </div>
                                 <span class="help-block"
                                       ng-show="updateQuestion.urlVideo.$error.required || validator.urlVideo.hasError">
