@@ -33,6 +33,10 @@ function QuestionCreateController($scope, $location, $rootScope, Section, Questi
 
     ComponentsEditors.init();
 
+    $scope.removeText = function () {
+        $('#summernote_1').code(" ");
+    };
+
 
     $rootScope.location = $location.path();
     FormDropzone.init();
@@ -130,6 +134,10 @@ function QuestionEditController($scope, $location, $routeParams, $rootScope, Sec
             $location.path('/');
         });
     });
+
+    $scope.removeText = function () {
+        $('#summernote_1').code(" ");
+    };
 
     $scope.editQuestion = function editQuestion(valid, $event) {
         $event.preventDefault();
