@@ -95,16 +95,10 @@ class User {
         activationToken nullable: true, blank: true
         activationDate nullable: true, blank: true
         inductionClass nullable: true, blank: true
-        accountLocked nullable: true
-        passwordExpired nullable: true
-        accountExpired nullable: true
     }
     static mapping = {
         version false
         table 't_user'
-        accountExpired column: 'account_expired'
-        accountLocked column: 'account_locked'
-        passwordExpired column: 'password_expired'
         email unique: true
     }
 
