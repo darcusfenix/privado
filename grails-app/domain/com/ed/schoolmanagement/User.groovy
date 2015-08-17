@@ -10,7 +10,7 @@ import com.ed.service.UserClassroom
 import grails.converters.JSON
 
 
-class User implements Serializable {
+class User {
 
     def springSecurityService
 
