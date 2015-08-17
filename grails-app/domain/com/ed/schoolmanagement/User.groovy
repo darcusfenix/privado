@@ -160,14 +160,18 @@ class User implements Serializable {
 
         def user = UserRole.findByUser(this)
 
-        if (user.role.authority == "ROLE_ALUMNO") {
-            StudentService.findAllByUser(this).each { StudentService ->
-                Service.findAllById(StudentService.service.id).each { service ->
-                    totalRequired += service.cost
+        if (user != null) {
+            if (user.role.authority == "ROLE_ALUMNO") {
+                StudentService.findAllByUser(this).each { StudentService ->
+                    Service.findAllById(StudentService.service.id).each { service ->
+                        totalRequired += service.cost
+                    }
                 }
-            }
 
-            return totalRequired
+                return totalRequired
+            } else {
+                return false
+            }
         } else {
             return false
         }
@@ -178,13 +182,17 @@ class User implements Serializable {
 
         def user = UserRole.findByUser(this)
 
-        if (user.role.authority == "ROLE_ALUMNO") {
-            StudentService.findAllByUser(this).each { studentService ->
-                VoucherPayment.findAllByStudentService(studentService).each { voucherPaymentIndividual ->
-                    totalPaidServicio += voucherPaymentIndividual.pay
+        if (user != null) {
+            if (user.role.authority == "ROLE_ALUMNO") {
+                StudentService.findAllByUser(this).each { studentService ->
+                    VoucherPayment.findAllByStudentService(studentService).each { voucherPaymentIndividual ->
+                        totalPaidServicio += voucherPaymentIndividual.pay
+                    }
                 }
+                return totalPaidServicio
+            } else {
+                return false
             }
-            return totalPaidServicio
         } else {
             return false
         }
