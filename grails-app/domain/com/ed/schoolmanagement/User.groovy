@@ -12,7 +12,7 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class User {
 
-    transient springSecurityService
+    def springSecurityService
 
     Integer id
     String name
