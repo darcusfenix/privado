@@ -128,29 +128,3 @@ files.foreignStudent = 'files/ForeignStudent.html'
 files.address = 'files/Address.html'
 files.direccion = 'files/direccion.pdf'
 
-/*
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        '/2706Administracion/'  : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
-        '/2706Administracion/**': ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
-        '/2706Administracion#'  : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
-        '/index'                : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
-        '/app/**'               : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
-        '/assets/**'            : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
-        '/exportTables/**'      : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
-
-        '/'                     : ['permitAll'],
-        '/registro.gsp'         : ['permitAll'],
-        '/registro'             : ['permitAll'],
-        '/registro/**'          : ['permitAll'],
-        '/static/*'             : ['permitAll'],
-        '/exportTables/**'      : ['permitAll'],
-        '/**/js/**'             : ['permitAll'],
-        '/**/css/**'            : ['permitAll'],
-        '/images'               : ['permitAll'],
-        '/js/**'                : ['permitAll'],
-        '/assets/**'            : ['permitAll'],
-        '/favicon.ico'          : ['permitAll'],
-]
-grails.plugin.springsecurity.securityConfigType = "Annotation"
-
-*/
