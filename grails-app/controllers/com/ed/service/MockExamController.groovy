@@ -8,7 +8,7 @@ import grails.converters.JSON
 
 import java.text.SimpleDateFormat
 
-//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class MockExamController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

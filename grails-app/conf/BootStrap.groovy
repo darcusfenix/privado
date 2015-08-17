@@ -37,12 +37,12 @@ class BootStrap {
         // DO NOT MODIFY
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         springContext.getBean("customObjectMarshallers").register()
+        //
 
-        /*
         //Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
-        Role roleEmployee = Role.findOrSaveWhere('ROLE_EMPLEADO')
+        Role roleEmployee = Role.findByAuthority('ROLE_EMPLEADO')
         //Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
-        Role roleSuperAdmin = Role.findOrSaveWhere('ROLE_SU')
+        Role roleSuperAdmin = Role.findByAuthority('ROLE_SU')
 
         User superAdmin = new User()
         superAdmin.email = "preparacionipn@gmail.com"
@@ -100,7 +100,7 @@ class BootStrap {
         print("------------------")
         print(roleEmployee.authority)
         print("------------------")
-        UserRole.create(employee, roleEmployee, true)*/
+        UserRole.create(employee, roleEmployee, true)
 
     }
     def destroy = {

@@ -3,7 +3,7 @@ package com.ed.schoolmanagement
 import grails.converters.JSON
 
 
-//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class RoleController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

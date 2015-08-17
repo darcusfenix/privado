@@ -8,7 +8,7 @@ import com.ed.service.Service
 import grails.converters.JSON
 
 
-//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class VoucherPaymentController {
 
     static allowedMethods = [save: "POST", create: "GET", saveSingleVourcherPayment: "POST", disableServices: "POST"]

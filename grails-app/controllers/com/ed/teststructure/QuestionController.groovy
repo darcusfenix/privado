@@ -10,7 +10,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class QuestionController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]

@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class InductionClassController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

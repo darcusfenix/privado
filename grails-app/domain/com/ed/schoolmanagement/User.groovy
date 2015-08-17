@@ -12,7 +12,7 @@ import grails.converters.JSON
 
 class User implements Serializable {
 
-    //def springSecurityService
+    def springSecurityService
 
     Integer id
     String name
@@ -124,7 +124,7 @@ class User implements Serializable {
     }
 
     protected void encodePassword() {
-        //this.password = springSecurityService.encodePassword(this.password)
+        this.password = springSecurityService.encodePassword(this.password)
     }
 
     def getGroup() {

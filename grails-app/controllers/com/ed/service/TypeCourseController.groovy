@@ -4,7 +4,7 @@ import com.ed.service.TypeCourse
 import grails.converters.JSON
 
 
-//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class TypeCourseController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

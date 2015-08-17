@@ -7,7 +7,7 @@ import grails.converters.JSON
 
 
 
-//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+@Secured(['ROLE_SU'])
 class ReportsController {
 
     def index() {

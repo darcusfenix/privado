@@ -18,7 +18,7 @@ import javax.servlet.ServletContext
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
-//@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
+@Secured(['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'])
 class UserController {
 
     def notificationService
