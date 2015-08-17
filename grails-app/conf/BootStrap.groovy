@@ -39,7 +39,7 @@ class BootStrap {
         springContext.getBean("customObjectMarshallers").register()
         //
 
-        Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
+        /*Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
         Role roleEmployee = Role.findOrSaveWhere([authority: 'ROLE_EMPLEADO'])
         Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
         Role roleSuperAdmin = Role.findOrSaveWhere([authority: 'ROLE_SU'])
@@ -100,7 +100,7 @@ class BootStrap {
         print("------------------")
         print(roleEmployee.authority)
         print("------------------")
-        UserRole.create(employee, roleEmployee, true)
+        UserRole.create(employee, roleEmployee, true)*/
 
 
     }

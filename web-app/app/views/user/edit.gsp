@@ -444,7 +444,7 @@
                                             <div class="row">
                                                 <div class="col-md-offset-3 col-md-9">
                                                     <button type="submit" class="btn purple"
-                                                            ng-disabled="!editUser.$dirty || !editUser.$valid   || !(userInstance.verifyPassword === userInstance.password)">Actualizar</button>
+                                                            ng-disabled="!editUser.$dirty || !editUser.$valid   || !(userInstance.verifyPassword !== userInstance.password)">Actualizar</button>
                                                     <button class="btn btn-danger"
                                                             ng-click="cancelar()">Cancelar</button>
                                                 </div>
