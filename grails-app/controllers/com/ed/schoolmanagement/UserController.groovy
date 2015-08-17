@@ -68,6 +68,7 @@ class UserController {
                 uc.classroom = Classroom.findById(request.JSON.group.id);
                 uc.activated = true;
                 uc.save(flush: true);
+
             }
             response.status = 200
             render([user: userInstance, message: message(code: "de.user.created.message")] as JSON)
