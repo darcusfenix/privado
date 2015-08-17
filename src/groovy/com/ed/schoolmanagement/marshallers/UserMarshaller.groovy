@@ -30,13 +30,13 @@ class UserMarshaller {
                     email           : user.email,
                     socialNetworkUrl: user.socialNetworkUrl,
                     comment         : user.comment,
-                    previousStudent : user.previousStudent,
+                   /* previousStudent : user.previousStudent,
                     authority       : user.getAuthorities()[0],
                     group           : user.getGroup(),
                     induction       : user.getInductionC(),
                     appo            : user.getApp(),
                     totalRequired   : user.getTotalRequiredByUser(),
-                    totalPaid       : user.getTotalPaid()
+                    totalPaid       : user.getTotalPaid()*/
             ]
         }
     }
