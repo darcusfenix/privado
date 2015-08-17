@@ -45,7 +45,7 @@ class BootStrap {
         Role roleSuperAdmin = Role.findByAuthority('ROLE_SU')
 
         User superAdmin = new User()
-        superAdmin.email = "preparacionipn@hotmail.com"
+        superAdmin.email = "preparacionipn@gmail.com"
         superAdmin.name = "EDGAR"
         superAdmin.lastName = "MONTES"
         superAdmin.surName = "GUTIERREZ"
@@ -71,10 +71,10 @@ class BootStrap {
         print("------------------")
         print(roleSuperAdmin.authority)
         print("------------------")
-        UserRole.create(superAdmin, roleSuperAdmin, false)
+        UserRole.create(superAdmin, roleSuperAdmin, true)
 
         User employee = new User()
-        employee.email = "chochozz@gmail.com"
+        employee.email = "ftapia.ipn@gmail.com"
         employee.name = "GERAR"
         employee.lastName = "RODRIGUEZ"
         employee.surName = "NULL"
@@ -100,7 +100,7 @@ class BootStrap {
         print("------------------")
         print(roleEmployee.authority)
         print("------------------")
-        UserRole.create(employee, roleEmployee, false)
+        UserRole.create(employee, roleEmployee, true)
 
     }
     def destroy = {
