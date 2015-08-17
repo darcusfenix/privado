@@ -38,7 +38,7 @@ class BootStrap {
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         springContext.getBean("customObjectMarshallers").register()
         //
-
+/*
         //Role.findOrSaveWhere([authority: 'ROLE_ALUMNO'])
         Role roleEmployee = Role.findOrSaveWhere([authority: 'ROLE_EMPLEADO'])
         //Role.findOrSaveWhere([authority: 'ROLE_ADMIN'])
@@ -100,7 +100,7 @@ class BootStrap {
         print("------------------")
         print(roleEmployee.authority)
         print("------------------")
-        UserRole.create(employee, roleEmployee, true)
+        UserRole.create(employee, roleEmployee, true)*/
 
     }
     def destroy = {
