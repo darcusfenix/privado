@@ -40,7 +40,12 @@
     <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-timepicker/css', file: 'bootstrap-timepicker.min.css')}">
     <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-colorpicker/css', file: 'colorpicker.css')}">
     <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-daterangepicker', file: 'daterangepicker-bs3.css')}">
-    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-datetimepicker/css', file: 'bootstrap-datetimepicker.min.css')}">
+
+    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-wysihtml5', file: 'bootstrap-wysihtml5.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-markdown/css', file: 'bootstrap-markdown.min.css')}">
+    <link rel="stylesheet" type="text/css" href="${resource(dir: '/assets/global/plugins/bootstrap-summernote', file: 'summernote.css')}">
+
+
 
     <!-- FIN DE TODOS LOS ESTILOS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
@@ -240,6 +245,12 @@
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/backstretch', file: 'jquery.backstretch.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: '/assets/global/plugins/dropzone', file: 'dropzone.js')}"></script>
 <!--<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/MathJax', file: 'MathJax.js?config=MML_HTMLorMML.js')}"></script>-->
+
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-wysihtml5', file: 'wysihtml5-0.3.0.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-wysihtml5', file: 'bootstrap-wysihtml5.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-markdown/lib', file: 'markdown.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-markdown/js', file: 'bootstrap-markdown.js')}"></script>
+<script type="text/javascript" src="${resource(dir: '/assets/global/plugins/bootstrap-summernote', file: 'summernote.min.js')}"></script>
 <!-- FIN DE TODOS LOS RECURSOS JS PARA LA FUNCIONALIDAD DE LOS PLUGINS -->
 
 <!--  -->
@@ -262,6 +273,8 @@
 <script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'coming-soon.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'form-dropzone.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'editorML.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'assets/global/scripts', file: 'components-editors.js')}"></script>
+
 <script>
     jQuery(document).ready(function () {
         Metronic.init(); // init metronic core components
