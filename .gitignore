@@ -18,6 +18,8 @@
 /test/reports
 /logs
 
+grails-app/conf/BootStrap.groovy
+
 # project release file
 /*.war
 
@@ -38,4 +40,4 @@ target
 *.class
 grails-app/conf/DataSource.groovy
 web-app/imgFiles/
-grails-app/conf/BootStrap.groovy
+
