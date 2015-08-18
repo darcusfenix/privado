@@ -126,6 +126,7 @@ files.temario = 'files/temario.pdf'
 files.sketchMail = 'files/SketchMail.html'
 files.foreignStudent = 'files/ForeignStudent.html'
 files.address = 'files/Address.html'
+files.exam = 'files/Exam.html'
 files.direccion = 'files/direccion.pdf'
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
