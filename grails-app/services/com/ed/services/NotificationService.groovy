@@ -227,7 +227,7 @@ class NotificationService {
     def sendEmailExam(String fullName, String contextPath,  String tokenUrl, String userEmail) {
 
 
-        DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy 'a las ' hh:mm a ", new Locale("es", "MX"));
+        DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy ", new Locale("es", "MX"));
         Date now = new Date();
 
         String htmlContent
@@ -247,7 +247,6 @@ class NotificationService {
                 .to(userEmail)
                 .subject('Curso de preparación IPN, Invitación a Examen Simulacro')
                 .withHtml(template.toString())
-                //.addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.exam))
                 .build()
         try {
 
