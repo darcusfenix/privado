@@ -26,6 +26,14 @@ angular.module('ControlEscuela').factory('User', function ($resource) {
         sendEmail: {
             method: 'POST',
             url: 'user/sendEmailAddres'
+        },
+        sendEmailExam: {
+            method: 'POST',
+            url: 'user/sendEmailExam'
+        },
+        sendEmailExamToAllStudents: {
+            method: 'POST',
+            url: 'user/sendEmailExamToAllStudents'
         }
     });
 });

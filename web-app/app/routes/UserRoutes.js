@@ -26,8 +26,15 @@ angular.module('ControlEscuela').config(['$routeProvider', function ($routeProvi
         templateUrl: 'app/views/user/sendEmailAddress.gsp'
 
     }).when('/user/relationClass', {
+
         controller: 'UserListClass',
         templateUrl: 'app/views/user/relationClass.gsp'
+
+    }).when('/user/sendEmailExamn', {
+
+        controller: 'UserSendEmailController',
+        templateUrl: 'app/views/user/sendEmailExam.gsp'
+
     }).otherwise({
 
         redirectTo: '/'
