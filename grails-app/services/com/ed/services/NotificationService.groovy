@@ -224,4 +224,50 @@ class NotificationService {
         }
 
     }
+    def sendEmailExam(String fullName, String contextPath,  String tokenUrl, String userEmail) {
+
+
+        DateFormat formatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy 'a las ' hh:mm a ", new Locale("es", "MX"));
+        Date now = new Date();
+
+        String htmlContent
+
+        def binding = [:]
+
+        binding.userFullName = fullName
+        binding.now = formatter.format(now)
+        binding.tokenUrl = tokenUrl
+
+        htmlContent = new File(contextPath + grailsApplication.config.files.exam).text
+
+        def engine = new groovy.text.SimpleTemplateEngine()
+        def template = engine.createTemplate(htmlContent).make(binding)
+        SendGridEmail email = new SendGridEmailBuilder()
+                .from('preparacionipn@cursopreparacionipn.com')
+                .to(userEmail)
+                .subject('Curso de preparación IPN, Invitación a Examen Simulacro')
+                .withHtml(template.toString())
+                //.addAttachment("PreparacionIPNCroquis.pdf", new File(contextPath + grailsApplication.config.files.exam))
+                .build()
+        try {
+
+            sendGridService.send(email)
+            return true
+
+        } catch (Exception e) {
+            /*
+
+            UserMailHistory userMailHistory = new UserMailHistory()
+            userMailHistory.to = user.email;
+            userMailHistory.from = "no-reply@cursopreparacionipn.com"
+            userMailHistory.subject = "Curso de preparación IPN"
+            userMailHistory.htmlContent = template.toString()
+            userMailHistory.attachmentPath = null
+            userMailHistory.save(flush: true, failOnError: true)
+            */
+            return false
+
+        }
+
+    }
 }
