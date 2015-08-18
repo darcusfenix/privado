@@ -10,11 +10,72 @@ function UserListController($scope, $location, $rootScope, User, Role) {
         $location.path("/user/show/" + $routeParams.id);
     };
 
+
     $scope.sendEmail = function (idStudent) {
 
         $(".btn").attr("disabled", "disabled");
 
         User.sendEmail({id: idStudent}, function (data) {
+
+            $rootScope.message = data.message;
+
+            $(".btn").removeAttr("disabled");
+
+        }, function (err) {
+
+            $(".btn").removeAttr("disabled");
+
+
+        });
+
+    };
+
+};
+
+function UserSendEmailController($scope, $routeParams, $location, VoucherPayment, User, $rootScope, $timeout, $route, StateVoucher, Classroom) {
+    $rootScope.location = $location.path();
+    $scope.message = {show: false, type: 0, text: ''}
+
+
+    $scope.classRoomList = Classroom.query(function (data) {
+
+    });
+
+    $scope.idClassRoom = 0;
+
+    $scope.getStudentsByClassroom = function (idClassRoom) {
+        $scope.idClassRoom = idClassRoom;
+        for (var i = 0; i < $scope.classRoomList.length; i++)
+            if ($scope.classRoomList[i].id == idClassRoom)
+                $scope.classRoomNameCurrent = $scope.classRoomList[i].nameClassroom;
+
+        $scope.studentList = Classroom.getAllUsersByClassroom({id: idClassRoom}, function (data) {
+
+            $scope.studentList = data;
+
+        }, function (err) {
+
+        });
+    };
+
+    $scope.sentoToAllStudents = function(){
+        /*
+        for(var i = 0; i< $scope.studentList.length ; i++){
+            $scope.sendEmailExam($scope.studentList[i].id);
+        }
+        */
+        console.log($scope.idClassRoom);
+
+        User.sendEmailExamToAllStudents({id: $scope.idClassRoom}, function (data) {
+
+        });
+    };
+
+    $scope.sendEmailExam = function (idStudent) {
+
+        $(".btn").attr("disabled", "disabled");
+
+        User.sendEmailExam({id: idStudent}, function (data) {
 
             $rootScope.message = data.message;
 

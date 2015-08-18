@@ -244,7 +244,7 @@ function VoucherPaymentDisableServicesController($scope, $location, VoucherPayme
     };
 };
 
-function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $location, VoucherPayment, User, $rootScope, $timeout, $route, StateVoucher, Classroom) {
+    function VoucherPaymentCreatePerClassRoomController($scope, $routeParams, $location, VoucherPayment, User, $rootScope, $timeout, $route, StateVoucher, Classroom) {
 
     $rootScope.location = $location.path();
     $scope.message = {show: false, type: 0, text: ''}

@@ -29,6 +29,10 @@
                             <a href="#/user/sendEmailAddress">
                                 Enviar Correo Dirección</a>
                         </li>
+                        <li ng-class="($root.location === '/user/sendEmailExamn') ? 'active' : ''">
+                            <a href="#/user/sendEmailExamn">
+                                Invitar a Examen</a>
+                        </li>
                         <li ng-class="($root.location === '/user/relationClass') ? 'active' : ''">
                             <a href="#/user/relationClass">Asignar clase</a>
                         </li>

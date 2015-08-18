@@ -23,8 +23,9 @@ class UserController {
 
     def notificationService
     def enrollmentService
+    def springSecurityService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent: "POST", sendEmailAddres: "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", enroll: "POST", sendEmailToforeignStudent: "POST", sendEmailAddres: "POST", sendEmailExam: "POST", sendEmailExamToAllStudents :"POST"]
 
     def index() {
         render User.listOrderById([max: params.int('max')]) as JSON
@@ -88,7 +89,7 @@ class UserController {
         userInstance.properties = request.JSON
         if (userInstance.validate()) {
 
-            if (uc != null){
+            if (uc != null) {
                 uc.delete()
             }
 
@@ -97,7 +98,7 @@ class UserController {
             UserRole.removeAll(userInstance)
             UserRole.create(userInstance, Role.findById(request.JSON.authority.id), true)
 
-            if (uc != null){
+            if (uc != null) {
                 uc = new UserClassroom()
                 uc.user = userInstance;
                 uc.classroom = Classroom.findById(request.JSON.group.id);
@@ -302,12 +303,92 @@ class UserController {
         render([message: "Se ha enviado un correo con los detalles del croquis.!"] as JSON)
     }
 
+    def sendEmailExam() {
+        ServletContext servletContext = getServletContext();
+        String contextPath = servletContext.getRealPath(File.separator);
+        String contextPathWeb = request.contextPath
+
+        User userInstance = User.findById(params.int("id"))
+        UserRole userRole = UserRole.findByUser(userInstance)
+
+        if (userInstance != null && userRole != null) {
+            if (userRole.role.authority == "ROLE_ALUMNO") {
+                log.error("********************" + userInstance.activationToken)
+                userInstance.activationToken = springSecurityService.encodePassword(userInstance.email).substring(0, 20)
+
+                userInstance.save(flush: true)
+                log.error("********************" + userInstance.activationToken)
+
+
+                String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/examen/" + userInstance.activationToken
+
+                log.error(tokenUrl)
+
+                notificationService.sendEmailExam(userInstance.fullName, contextPath, tokenUrl, userInstance.email)
+
+                render([message: "OK"] as JSON)
+            }else {
+                return ;
+            }
+        }else{
+            return ;
+        }
+    }
+
+    def sendEmailExamToAllStudents(Integer id){
+
+        ServletContext servletContext = getServletContext();
+        String contextPath = servletContext.getRealPath(File.separator);
+
+
+
+        def UserClassroomList = UserClassroom.findAllByClassroom(Classroom.findById(id ?: params.int("id")))
+
+        for (UserClassroom uc : UserClassroomList) {
+            if (uc.user.getTotalPaid() > 0) {
+
+                User userInstance = User.findById( uc.user.id )
+                UserRole userRole = UserRole.findByUser(userInstance)
+                if (userInstance != null && userRole != null) {
+                    if (userRole.role.authority == "ROLE_ALUMNO") {
+
+                        log.error("********************" + userInstance.activationToken)
+                        userInstance.activationToken = springSecurityService.encodePassword(userInstance.email).substring(0, 20)
+
+                        userInstance.save(flush: true)
+                        log.error("********************" + userInstance.activationToken)
+
+
+                        String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/examen/" + userInstance.activationToken
+
+                        log.error(tokenUrl)
+                        log.error("-------------------------------------------------------------------------------" + userInstance.email)
+
+                        notificationService.sendEmailExam(userInstance.fullName, contextPath, tokenUrl, userInstance.email)
+
+                        //render([message: "OK"] as JSON)
+                    }else {
+                        return ;
+                    }
+                }else{
+                    return ;
+                }
+
+            }
+        }
+
+
+
+
+    }
+
     def Dates() {
         response.status = 200
         Date d = new Date()
         render([year: d, mes: d.getMonth(), day: d.getDate(), h: d.getHours(), m: d.getMinutes()] as JSON)
     }
-    def datos(){
+
+    def datos() {
         User user = User.findByActivationToken(params.token)
 
 
@@ -335,10 +416,10 @@ class UserController {
 
         binding.userFullName = user.fullName
         binding.grupo = user.group.nameClassroom
-        binding.horaInicio = formatter.format( c.dateClass)
+        binding.horaInicio = formatter.format(c.dateClass)
         binding.horaLimit = formatterHour.format(nd)
         binding.now = formatter.format(now)
 
-        render(  binding as JSON )
+        render(binding as JSON)
     }
 }
