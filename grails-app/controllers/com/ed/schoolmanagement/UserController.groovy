@@ -320,7 +320,7 @@ class UserController {
                 log.error("********************" + userInstance.activationToken)
 
 
-                String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/examen/" + userInstance.activationToken
+                String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/examen?tk=" + userInstance.activationToken
 
                 log.error(tokenUrl)
 
@@ -359,7 +359,7 @@ class UserController {
                         log.error("********************" + userInstance.activationToken)
 
 
-                        String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/examen/" + userInstance.activationToken
+                        String tokenUrl = "http://" + request.getServerName() + (request.getServerPort() == 80 ? "" : ":${request.getServerPort()}") + (request.getServerPort() == 80 ? "" : "/ControlEscuela") + "/examen?tk=" + userInstance.activationToken
 
                         log.error(tokenUrl)
                         log.error("-------------------------------------------------------------------------------" + userInstance.email)
