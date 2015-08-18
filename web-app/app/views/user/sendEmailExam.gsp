@@ -55,7 +55,7 @@
                                 Grupo
                             </th>
                             <th>
-                                Enviar
+                                Correo
                             </th>
                             <th>
                                 Enviar correo
@@ -73,10 +73,10 @@
                                        placeholder="Filtrar por nombre de suario" class="form-control">
                             </th>
                             <th>
-                                <input type="text" ng-model="filtro.phoneNumber" placeholder="Filtrar por teléfono" class="form-control">
+                                <input type="text" ng-model="filtro.group" placeholder="Filtrar por grupo" class="form-control">
                             </th>
                             <th>
-                                <input type="text" ng-model="filtro.group" placeholder="Filtrar por grupo" class="form-control">
+                                <input type="text" ng-model="filtro.email" placeholder="Filtrar por correo" class="form-control">
                             </th>
                             <th>
 
@@ -88,8 +88,8 @@
                             <td><a href="#/user/show/{{user.id}}">{{user.name}}</a></td>
                             <td><a href="#/user/show/{{user.id}}">{{user.lastName}}</a></td>
                             <td><a href="#/user/show/{{user.id}}">{{user.username}}</a></td>
-                            <td><a href="#/user/show/{{user.id}}">{{user.phoneNumber}}</a></td>
                             <td><a href="#/user/show/{{user.id}}">{{user.group.nameClassroom}}</a></td>
+                            <td><a href="#/user/show/{{user.id}}">{{user.email}}</a></td>
                             <td>
                                 <button class="btn btn-primary" ng-click="sendEmailExam(user.id)">Enviar</button>
                             </td>
