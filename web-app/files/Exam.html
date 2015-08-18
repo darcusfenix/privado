@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title>Texto del correo</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='content-type'>
+</head>
+<style type='text/css'>
+* {
+    padding: 0px auto;
+    margin: 0px;
+}
+td,
+th {
+    text-align: left;
+    width: 33%;
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    display: table-cell;
+    color: #000000;
+}
+</style>
+
+<body style='background-color: #ffffff; width: 100%;'>
+
+    <div style='background-color: #6D1A42; color: #FFFFFF;'>
+        <h1 style='padding: 20px;'>Preparación IPN</h1>
+        <h2 style='padding: 20px;'>Registro curso segunda vuelta</h2>
+    </div>
+
+
+    <h2 style='text-align: center; color:#d32f2f; font-weight: bold;margin: 1.3em 0 0.5em 0;font-size: 28px;line-height: 1.4;'>Examen Simulacro</h2>
+
+    <div style='margin: 1em 0 2em 0;font-size: 140%;line-height: 1.6; width: 90%; margin: 0px auto;'>
+        <p style='margin: 0 0 .5em 0;display: block;margin: 1em;color: #000000;font-size: 24px;'>
+            Hola <b><% print userFullName %></b>. El equipo de Preparación IPN te envía un cordial saludo. Estás a punto de comenzar tu examen simulacro para iniciar con tu examen da clic en el siguiente enlace o botón.
+        </p>
+        <p style="text-align: center;">
+        <a  href="<% print tokenUrl %>">
+        <button style="width: 200px;padding : 10px; background-color: green; color: white;cursor:pointer; font-size: 22px; margin: 0px auto;">COMENZAR</button></a>
+        </p>
+        <p style='margin: 0 0 .5em 0;display: block;margin: 1em;color: #000000;font-size: 22px;'>
+            <ul>
+                <li>
+                    Cuando estés en la siguiente vista, da clic en el botón <b style="color: blue">comenzar</b>.
+                </li>
+                <li>
+                    Te recordamos tiene una duración de 1 hora 20 minutos.
+                </li>
+                <li>
+                    Al finalizar tu examen podrás ver tus resultados, se me mostrará cuáles fueron tus acierto y desaciertos, así como la explicación de cada pregunta.
+                </li>
+            </ul>
+        </p>
+
+        <p style='margin: 0 0 .5em 0;display: block;margin: 1em;color: #000000;font-size: 22px;'>
+            <h3><b style="color: red;">Advertencias</b></h3>
+            <ul>
+                <li>
+                    Te recordamos que sólo tienes una oportunidad para realizar tu examen, una vez iniciado sólo tendrás de una hora con veinte minutos para realizarlo.
+                </li>
+                <li>
+                    Si por alguna razón cierras el navegador(Google Chrome, Mozilla Firefox, Safari u Opera) solo tendrás que abrir la liga que aquí arriba te adjuntamos y dar clic nuevamente en el botón de comenzar así podrás retomar tu examen donde lo dejaste.
+                </li>
+                <li>
+                    Solo tendrás el día de hoy (<b><% print now %></b>) para realizar tu examen.
+                </li>
+            </ul>
+        </p>
+        <p style='margin: 0 0 .5em 0;display: block;margin: 1em;color: green;font-size: 22px;'>
+            <h2><b style="color: green;">Mucho éxito.</b></h2>
+        </p>
+    </div>
+</body>
+
+</html>
