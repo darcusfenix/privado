@@ -178,4 +178,28 @@ class TestStudentController {
         [relations:map, colors : colors, questions: questions, diff : diff]
 
     }
+    
+    def resultado(Integer id){
+        def colors = ["Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde"]
+
+        def questions = [:]
+
+        def map = StructureSection.findAllByStructure(Structure.findById(1)).each { structureSection ->
+            questions.put(structureSection.section.id,Question.findAllBySection(structureSection.section))
+        }
+        [relations:map, colors : colors, questions: questions]
+    }
+
+
+    def pregunta(Integer id){
+        def colors = ["Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde"]
+
+        def answers
+
+        def mapQuestion = Question.findById(id).each { question ->
+            answers  = Answer.findAllByQuestion(question)
+        }
+
+        [mapQuestion:mapQuestion, colors : colors, answers: answers]
+    }
 }
