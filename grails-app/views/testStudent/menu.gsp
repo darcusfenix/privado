@@ -59,21 +59,6 @@
                         <a href="${context}/examen" class="active">Inicio <i class="fa "></i></a>
                     </li>
                     <li>
-                        <a href="#" class="mn-has-sub">Secci&oacute;nes <i class="fa fa-angle-down"></i></a>
-                        <ul class="mn-sub mn-has-multi to-left">
-                            <li class="mn-sub-multi">
-                                <ul>
-                                    <g:each in="${relations}" var="relation" >
-                                        <li>
-                                            <a href="#">${relation.section.name}</a>
-                                        </li>
-                                    </g:each>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
                         <a href="${context}/examen/resultado">Finalizar <i class="fa"></i></a>
                     </li>
                 </ul>
@@ -111,7 +96,7 @@
         <div class="container relative">
 
             <h2 class="section-title font-alt mb-70 mb-sm-40">
-                Selecciona una <strong>secci&oacute;n</strong> y después una <strong>pregunta</strong>
+                ${user.name} ${user.lastName} selecciona una <strong>secci&oacute;n</strong> y después una <strong>pregunta</strong>
 
             </h2>
 
@@ -164,7 +149,7 @@
                                                             ${raw(question.text)}
                                                         </td>
                                                         <td>
-                                                            <a href="${context}/examen/question/${question.id}?tk:${tk}" class="btn btn-primary btn-small"> Ver</a>
+                                                            <a href="${context}/examen/question/${question.id}" class="btn btn-primary btn-small"> Ver</a>
                                                         </td>
                                                         <td class="alert align-center">
                                                             Sin contestar

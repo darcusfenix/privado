@@ -47,12 +47,6 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4 mt-30">
-                            <div class="mod-breadcrumbs font-alt align-right">
-                                TIEMPO: 1:10:00 min&nbsp;
-                            </div>
-                            
-                        </div>
                     </div>
                     
                 </div>
@@ -158,7 +152,7 @@
                                                                     A
                                                                 </td>
                                                                 <td class="align-center">
-                                                                    <a href="${raw(question.urlVideo)}" class="button line-blue" data-rel="lightcase"><span aria-hidden="true" class="icon-video"></span></a>
+                                                                    <a href="${raw(question.urlVideo)}" target="_blank" class="button line-blue" data-rel="lightcase"><span aria-hidden="true" class="icon-video"></span></a>
                                                                 </td>
                                                             </tr>
                                                         </g:each>

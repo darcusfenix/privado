@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<g:set var="context" value="${request.contextPath}" />
 <html>
     <head>
         <title>PREPARACI&Oacute;N IPN</title>
@@ -35,7 +36,7 @@
                 <div class="full-wrapper relative clearfix">
                     <div class="nav-logo-wrap local-scroll">
                         <a href="mp-index.html" class="logo">
-                            <img src="../../examen/images/ipnLogo2.png" alt="Preparacion IPN" />
+                            <img src="${context}/examen/images/ipnLogo2.png" alt="Preparacion IPN" />
                         </a>
                     </div>
                     <div class="mobile-nav">
@@ -71,7 +72,7 @@
             
             
             <!-- Head Section -->
-            <section class="page-section bg-light-alfa-30" data-background="../../examen/images/wall7.jpg">
+            <section class="page-section bg-light-alfa-30" data-background="${context}/examen/images/wall7.jpg">
                 <div class="relative container align-left">
                     
                     <div class="row">
@@ -97,19 +98,22 @@
             <section class="page-section">
                 <g:form name="testForm" controller="testStudent" action="respuestasPreguntas">
                     <div class="container relative">
-                        <g:each in="${mapQuestion}" var="question">
+
                         <h5 class="pregunta mb-40 mt-60 mb-sm-40">
-                            ${raw(question.text)}
+                            ${raw(mapQuestion.text)}
                         </h5>
-                        </g:each>
+
 
                         <g:each in="${answers}" var="answer">
                             <ul>
-                                <li><g:field type="radio" class="respuesta btn btn-default" id="respuesta" name="respuesta" value="${raw(answer.textAnswer)}" /> ${raw(answer.textAnswer)} </li>
+                                <li>
+                                    <g:field type="radio" class="respuesta btn btn-default" id="respuesta" name="respuesta" value="${answer.textAnswer}" />
+                                    ${raw(answer.textAnswer)}
+                                </li>
                             </ul>
                         </g:each>
 
-                        <g:field type="hidden" id="pregunta" name="pregunta" value="${raw(mapQuestion.getId())}" />
+                        <g:field type="hidden" id="pregunta" name="pregunta" value="${mapQuestion.getId()}" />
 
                         <g:submitButton name="questionAnswer" class="btn col-lg-offset-5 btn-mod mt-50 btn-large btn-round Bverde" value="Continuar"/>
                     </div>
@@ -161,14 +165,17 @@
     <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.simple-text-rotator.min.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'all.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.countdown.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
-    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
-    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.countdown.min.js')}"></script>
+
+    <script type="text/javascript"
+            src="${resource(dir: '/assets/global/plugins/MathJax', file: 'MathJax.js?config=MML_HTMLorMML.js')}"></script>
 
     <script type="text/javascript">
         var tiempo = ${diff};
 
-        console.log(tiempo);
+
 
         var fiveSeconds = new Date().getTime() + tiempo ;
         $('#clock').countdown(fiveSeconds, {elapse: true})
