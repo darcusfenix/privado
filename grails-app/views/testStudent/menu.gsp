@@ -100,7 +100,6 @@
                     <div class="mod-breadcrumbs font-alt align-right">
                         <a href="#">TIEMPO: <span id="clock"></span></a>&nbsp;
                     </div>
-
                 </div>
             </div>
 
@@ -118,12 +117,9 @@
 
             <!-- Row -->
             <div class="row">
-
                 <!-- Col -->
                 <h1>${tk}</h1>
-
                 <div class="col-sm-8 col-sm-offset-2">
-
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs tpl-tabs animate">
                         <g:each in="${relations}" var="relation" status="i">
@@ -133,10 +129,8 @@
                             </li>
                         </g:each>
                     </ul>
-
                     <!-- Tab panes -->
                     <div class="tab-content tpl-tabs-cont section-text">
-
                         <g:each in="${relations}" var="relation" status="i">
                             <div class="tab-pane fade ${i == 0 ? 'active' : ''}  in"
                                  id="relation-${relation.section.id}">
@@ -170,7 +164,7 @@
                                                             ${raw(question.text)}
                                                         </td>
                                                         <td>
-                                                            <a href="${context}/examen/question/${question.id}" class="btn btn-primary btn-small"> Ver</a>
+                                                            <a href="${context}/examen/question/${question.id}?tk:${tk}" class="btn btn-primary btn-small"> Ver</a>
                                                         </td>
                                                         <td class="alert align-center">
                                                             Sin contestar
@@ -186,11 +180,8 @@
                         </g:each>
 
                     </div>
-
                 </div>
-
                 <!-- End Col -->
-
             </div>
             <!-- End Row -->
         </div>

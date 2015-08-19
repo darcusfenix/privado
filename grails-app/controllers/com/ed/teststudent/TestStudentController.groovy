@@ -180,7 +180,67 @@ class TestStudentController {
 
     }
     
-    def resultado(Integer id){
+    def resultado(Integer id, String tk){
+        // si la variable no existe
+        if ((tk ?: params.tk) == null){
+            redirect(uri: "/examen/error")
+            log.error("************************ PRIMER VALIDACIÓN FUERA")
+            return ;
+        }
+
+
+        def user = User.findByActivationToken(tk ?: params.tk)
+
+        // si el usuario no existe
+        if(user == null) {
+            redirect(uri: "/examen/error")
+            log.error("************************ SEGUNDA VALIDACIÓN FUERA")
+            return ;
+        }
+
+        //TODO verificar el id del examen
+        def userStructure = UserStructure.findByUserAndStructure(user,Structure.findById(1))
+
+        // si el usuario no está en el examen lo saca
+        if (userStructure == null){
+            redirect(uri: "/examen/error")
+            log.error("************************ TERCER VALIDACIÓN FUERA")
+            return ;
+        }
+
+        Date now = new Date()
+        Date nd = userStructure.inicioFechaHora
+        Date limite = nd;
+        Date difference = new Date()
+        use(TimeCategory) {
+            limite = (nd + 80.minutes)
+            difference = (limite - now.minutes)
+        }
+
+        log.error("************************ INICIÉ " + nd)
+        log.error("************************ AHORA " + now)
+        log.error("************************ LIMITE " + limite)
+
+
+        long diff = 0
+
+        //(year, month, day [, hour, minute, second, millisecond ])
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+        if(now.after(userStructure.inicioFechaHora) && now.before(limite)) {
+            log.error("**************************** ESTOY A TIEMPO")
+
+            diff =  limite.getTime() -  now.getTime()
+
+            log.error("************************* ME QUEDAN: " + diff)
+
+
+        }else{
+            redirect(uri: "/examen/error")
+            log.error("************************ TERCER VALIDACIÓN FUERA, YA PASO SU TIEMPO. DESPUÉS QUE SE MUESTRE OTRA VISTA O LA DE RESULTADOS")
+            return ;
+        }
+
         def colors = ["Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde"]
 
         def questions = [:]
@@ -188,11 +248,71 @@ class TestStudentController {
         def map = StructureSection.findAllByStructure(Structure.findById(1)).each { structureSection ->
             questions.put(structureSection.section.id,Question.findAllBySection(structureSection.section))
         }
-        [relations:map, colors : colors, questions: questions]
+        [relations:map, colors : colors, questions: questions, diff : diff]
     }
 
 
-    def pregunta(Integer id){
+    def pregunta(Integer id, String tk){
+        // si la variable no existe
+        if ((tk ?: params.tk) == null){
+            redirect(uri: "/examen/error")
+            log.error("************************ PRIMER VALIDACIÓN FUERA")
+            return ;
+        }
+
+
+        def user = User.findByActivationToken(tk ?: params.tk)
+
+        // si el usuario no existe
+        if(user == null) {
+            redirect(uri: "/examen/error")
+            log.error("************************ SEGUNDA VALIDACIÓN FUERA")
+            return ;
+        }
+
+        //TODO verificar el id del examen
+        def userStructure = UserStructure.findByUserAndStructure(user,Structure.findById(1))
+
+        // si el usuario no está en el examen lo saca
+        if (userStructure == null){
+            redirect(uri: "/examen/error")
+            log.error("************************ TERCER VALIDACIÓN FUERA")
+            return ;
+        }
+
+        Date now = new Date()
+        Date nd = userStructure.inicioFechaHora
+        Date limite = nd;
+        Date difference = new Date()
+        use(TimeCategory) {
+            limite = (nd + 80.minutes)
+            difference = (limite - now.minutes)
+        }
+
+        log.error("************************ INICIÉ " + nd)
+        log.error("************************ AHORA " + now)
+        log.error("************************ LIMITE " + limite)
+
+
+        long diff = 0
+
+        //(year, month, day [, hour, minute, second, millisecond ])
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+        if(now.after(userStructure.inicioFechaHora) && now.before(limite)) {
+            log.error("**************************** ESTOY A TIEMPO")
+
+            diff =  limite.getTime() -  now.getTime()
+
+            log.error("************************* ME QUEDAN: " + diff)
+
+
+        }else{
+            redirect(uri: "/examen/error")
+            log.error("************************ TERCER VALIDACIÓN FUERA, YA PASO SU TIEMPO. DESPUÉS QUE SE MUESTRE OTRA VISTA O LA DE RESULTADOS")
+            return ;
+        }
+
         def colors = ["Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde"]
 
         def answers
@@ -201,21 +321,35 @@ class TestStudentController {
             answers  = Answer.findAllByQuestion(question)
         }
 
-        [mapQuestion:mapQuestion, colors : colors, answers: answers]
+        [mapQuestion:mapQuestion, colors : colors, answers: answers, diff : diff]
     }
 
     def respuestasPreguntas(){
         def result = [:]
-        def nextQuestion
+        def questionAct
 
-        result['pregunta'] = params.idPregunta
+        result['pregunta'] = params.pregunta
         result['respuesta'] = params.respuesta
+        tk=params.tk
 
         [resultados: result as JSON]
 
+        questionAct = params.pregunta
 
+        def nextQuestion = Integer.parseInt(questionAct)
+        nextQuestion = nextQuestion+1
 
-        nextQuestion = params.idPregunta++
-        redirect(uri: "/examen/question/nextQuestion")
+        //TODO Realizar consulta para saber cual es el maximo de preguntas que existen relacionadas a la estructura
+        if(nextQuestion==66){
+            redirect(uri: "/examen/resultado")
+        }else {
+            redirect(uri: "/examen/question/$nextQuestion")
+        }
+
+        def user = User.findByActivationToken(tk ?: params.tk)
+        def userStructure = UserStructure.findByUserAndStructure(user,Structure.findById(1))
+        userStructure.json=result
+
+        print(userStructure.json)
     }
 }

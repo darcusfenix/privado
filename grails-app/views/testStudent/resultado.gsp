@@ -224,11 +224,24 @@
         <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
         <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
         <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
-       
-        <script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $('a[data-rel^=lightcase]').lightcase();
-            });
-        </script>
+
+    <script type="text/javascript">
+        var tiempo = ${diff};
+
+        console.log(tiempo);
+
+        var fiveSeconds = new Date().getTime() + tiempo ;
+        $('#clock').countdown(fiveSeconds, {elapse: true})
+                .on('update.countdown', function (event) {
+                    var $this = $(this);
+                    if (event.elapsed) {
+                        $this.html(event.strftime('<span>Termino</span>'));
+                    } else {
+                        $this.html(event.strftime('<span>%H:%M:%S</span>'));
+                    }
+                });
+
+    </script>
+
     </body>
 </html>
