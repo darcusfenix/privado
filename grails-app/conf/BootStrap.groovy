@@ -35,7 +35,7 @@ import java.text.SimpleDateFormat
 class BootStrap {
 
     def init = { servletContext ->
-    /*
+
         StateClassroom sc = new StateClassroom()
         sc.setName("Abierto")
         sc.setDescription("Abierto")
@@ -484,7 +484,7 @@ class BootStrap {
         SecondStudentServiceA.active = true
         SecondStudentServiceA.fullPayment = 500.00
         SecondStudentServiceA.save(flush: true)
-        */
+
     }
     def destroy = {
 
