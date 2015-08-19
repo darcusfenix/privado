@@ -45,7 +45,7 @@
         <div class="full-wrapper relative clearfix">
             <div class="nav-logo-wrap local-scroll">
                 <a href="${context}/examen" class="logo">
-                    <img src="images/ipnLogo2.png" alt="Preparacion IPN"/>
+                    <img src="${context}/examen/images/ipnLogo2.png" alt="Preparacion IPN"/>
                 </a>
             </div>
 
@@ -288,7 +288,7 @@
 
 
     <!-- Head Section -->
-    <section class="page-section bg-light-alfa-30" data-background="images/wall7.jpg">
+    <section class="page-section bg-light-alfa-30" data-background="${context}/examen/images/wall7.jpg">
         <div class="relative container align-left">
 
             <div class="row">
@@ -362,7 +362,7 @@
                                                 <g:each in="${map.value}" var="question">
                                                     <tr>
                                                         <td>
-                                                            <a href="${context}/preguntas">${raw(question.text)}</a>
+                                                            ${raw(question.text)}
                                                         </td>
                                                         <td class="alert align-center">
                                                             Sin contestar
@@ -413,32 +413,35 @@
 
 
 <!-- JS -->
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/SmoothScroll.js"></script>
-<script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
-<script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
-<script type="text/javascript" src="js/jquery.viewport.mini.js"></script>
-<script type="text/javascript" src="js/jquery.countTo.js"></script>
-<script type="text/javascript" src="js/jquery.appear.js"></script>
-<script type="text/javascript" src="js/jquery.sticky.js"></script>
-<script type="text/javascript" src="js/jquery.parallax-1.1.3.js"></script>
-<script type="text/javascript" src="js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
-<script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
-<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery-1.11.1.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.easing.1.3.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'bootstrap.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'SmoothScroll.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.scrollTo.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.localScroll.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.viewport.mini.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.countTo.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.appear.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.sticky.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.parallax-1.1.3.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.fitvids.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'owl.carousel.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'isotope.pkgd.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'imagesloaded.pkgd.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.magnific-popup.min.js')}"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script type="text/javascript" src="js/gmap3.min.js"></script>
-<script type="text/javascript" src="js/wow.min.js"></script>
-<script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="js/jquery.simple-text-rotator.min.js"></script>
-<script type="text/javascript" src="js/all.js"></script>
-<script type="text/javascript" src="js/contact-form.js"></script>
-<script type="text/javascript" src="js/jquery.countdown.js"></script>
-<script type="text/javascript" src="js/jquery.countdown.min.js"></script>
-<!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'gmap3.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'wow.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'masonry.pkgd.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.simple-text-rotator.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'all.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
+
+
+
 
 <script type="text/javascript"
         src="${resource(dir: '/assets/global/plugins/MathJax', file: 'MathJax.js?config=MML_HTMLorMML.js')}"></script>
