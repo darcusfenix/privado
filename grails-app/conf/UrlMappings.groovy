@@ -17,5 +17,8 @@ class UrlMappings {
         "/examen/menu/$tk"(view: "testStudent/menu", controller: "testStudent", action: "menu")
         "/examen/error/"(view: "testStudent/error")
         "/examen"(view: "testStudent/index", controller: "testStudent", action: "index")
+        
+        "/examen/resultado/"(view: "testStudent/resultado", controller: "testStudent", action: "resultado")
+        "/examen/pregunta/$id?"(view: "testStudent/pregunta", controller: "testStudent", action: "pregunta")
     }
 }
