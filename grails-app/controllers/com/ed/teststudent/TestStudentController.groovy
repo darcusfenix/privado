@@ -17,52 +17,51 @@ import java.text.SimpleDateFormat
 @Secured(['permitAll'])
 class TestStudentController {
 
-    def index(String tk){
+    def index(){
 
-        // si la variable no existe
-        if ((tk ?: params.tk) == null){
+
+        if ((request.getAttribute("tk") ?: params.tk) == null){
             redirect(uri: "/examen/error")
             log.error("************************ PRIMER VALIDACIÓN FUERA")
             return ;
         }
 
 
-        def user = User.findByActivationToken(tk ?: params.tk)
+        def user = User.findByActivationToken( params.tk ?: request.getAttribute("tk"))
 
-        // si el usuario no existe
+
         if(user == null) {
             redirect(uri: "/examen/error")
             log.error("************************ SEGUNDA VALIDACIÓN FUERA")
             return ;
         }
+
         //TODO verificar el id del examen
         def confirm = UserStructure.findByUserAndStructure(user,Structure.findById(1))
-        String ruta
 
-        // si ya está en el examen lo pasa directamente
+
         if (confirm != null){
-            ruta = "/examen/menu?tk=" + user.activationToken
             log.error("************************ TERCER VALIDACIÓN SI YA ESTÁ EN EL EXAMEN")
-            redirect(uri: ruta)
+            redirect(uri: "/examen/menu")
             return ;
         }
 
-        // si no pasó nada anteriormente, lo deja ver index con datos de usuario
+
         [user:user]
     }
 
-    def enrolment(String tk){
+    def enrolment(){
 
-        // si la variable no existe
-        if ((tk ?: params.tk) == null){
+
+        if (params.tk == null){
             redirect(uri: "/examen/error")
             log.error("************************ PRIMER VALIDACIÓN FUERA")
             return ;
         }
 
-        def user = User.findByActivationToken(tk ?: params.tk)
+        def user = User.findByActivationToken(params.tk)
 
-        // si el usuario no existe
+
         if(user == null) {
             redirect(uri: "/examen/error")
             log.error("************************ SEGUNDA VALIDACIÓN FUERA")
@@ -70,17 +69,17 @@ class TestStudentController {
         }
 
         def confirm = UserStructure.findByUser(user)
-        String ruta
 
-        // si ya está en el examen lo pasa directamente
+
+
         if (confirm != null){
-            ruta = "/examen/menu?tk=" + user.activationToken
-            redirect(uri: ruta)
+
+            redirect(uri: "/examen/menu")
             log.error("************************ TERCER VALIDACIÓN SI YA ESTÁ EN EL EXAMEN")
             return ;
         }
 
-        // si no pasó nada anteriormente lo inscribe al examen
+
         UserStructure userStructure = new UserStructure()
         userStructure.aciertos = 0;
         userStructure.json = ""
@@ -88,33 +87,34 @@ class TestStudentController {
         userStructure.inicioFechaHora = new Date()
         //TODO verificar el id del examen
         userStructure.structure = Structure.findByMockExamAndId(MockExam.findByActive(true), 1)
-
+        String ruta;
 
         if(userStructure.validate()){
             userStructure.save(flush: true)
-            ruta = "/examen/menu?tk=" + user.activationToken
+            request.setAttribute("tk", user.activationToken)
+            ruta = "/examen/menu"
 
         }else {
             ruta = "/examen/error"
         }
-        // ya lo inscribió lo pasa al menú o lo manda a error, depende de la validación anterior
+
         redirect(uri: ruta)
     }
 
 
-    def menu(String tk) {
+    def menu() {
 
-        // si la variable no existe
-        if ((tk ?: params.tk) == null){
+
+        if (request.getAttribute("tk") == null){
             redirect(uri: "/examen/error")
             log.error("************************ PRIMER VALIDACIÓN FUERA")
             return ;
         }
 
 
-        def user = User.findByActivationToken(tk ?: params.tk)
+        def user = User.findByActivationToken(request.getAttribute("tk"))
 
-        // si el usuario no existe
+
         if(user == null) {
             redirect(uri: "/examen/error")
             log.error("************************ SEGUNDA VALIDACIÓN FUERA")
@@ -124,7 +124,7 @@ class TestStudentController {
         //TODO verificar el id del examen
         def userStructure = UserStructure.findByUserAndStructure(user,Structure.findById(1))
 
-        // si el usuario no está en el examen lo saca
+
         if (userStructure == null){
             redirect(uri: "/examen/error")
             log.error("************************ TERCER VALIDACIÓN FUERA")
@@ -147,16 +147,12 @@ class TestStudentController {
 
         long diff = 0
 
-        //(year, month, day [, hour, minute, second, millisecond ])
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-
         if(now.after(userStructure.inicioFechaHora) && now.before(limite)) {
             log.error("**************************** ESTOY A TIEMPO")
 
                 diff =  limite.getTime() -  now.getTime()
 
             log.error("************************* ME QUEDAN: " + diff)
-
 
         }else{
             redirect(uri: "/examen/error")
@@ -165,7 +161,7 @@ class TestStudentController {
         }
 
 
-        // si no pasó nada anteriormente lo deja ver el menú
+        
 
         def colors = ["Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde"]
 
