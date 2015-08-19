@@ -65,7 +65,7 @@ class UserController {
                 studentServiceMockExam.fullPayment = 0
                 studentServiceMockExam.save()
 
-                uc = new UserClassroom()
+                def uc = new UserClassroom()
                 uc.user = userInstance;
                 uc.classroom = Classroom.findById(request.JSON.group.id);
                 uc.activated = true;
