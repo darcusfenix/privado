@@ -44,230 +44,25 @@
                     <div class="inner-nav desktop-nav">
                         <ul class="clearlist">
                             <li>
-                                <a href="menu.gsp" class="active" >Inicio <i class="fa "></i></a>
+                                <a href="${context}/examen" class="active">Inicio <i class="fa "></i></a>
                             </li>
                             <li>
-                                <a href="#" class="mn-has-sub">Secci&oacute;n 1 <i class="fa fa-angle-down"></i></a>
+                                <a href="#" class="mn-has-sub">Secci&oacute;nes <i class="fa fa-angle-down"></i></a>
                                 <ul class="mn-sub mn-has-multi to-left">
                                     <li class="mn-sub-multi">
                                         <ul>
-                                            <li>
-                                                <a href="#">Pregunta 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 3</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 4</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 5</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 6</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 7</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 8</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 9</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 10</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="mn-sub-multi to-left">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Pregunta 11</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 12</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 13</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 14</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 15</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 16</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 17</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 18</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 19</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 20</a>
-                                            </li>
+                                            <g:each in="${relations}" var="relation" >
+                                                <li>
+                                                    <a href="#">${relation.section.name}</a>
+                                                </li>
+                                            </g:each>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
+
                             <li>
-                                <a href="#" class="mn-has-sub">Secci&oacute;n 2 <i class="fa fa-angle-down"></i></a>
-                                <ul class="mn-sub mn-has-multi to-left">
-                                    <li class="mn-sub-multi">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Pregunta 21</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 22</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 23</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 24</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 25</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 26</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 27</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 28</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 29</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 30</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="mn-sub-multi to-left">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Pregunta 31</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 32</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 33</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 34</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 35</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 36</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 37</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 38</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 39</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 40</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            
-                            <li>
-                                <a href="#" class="mn-has-sub">Secci&oacute;n 3 <i class="fa fa-angle-down"></i></a>
-                                <ul class="mn-sub mn-has-multi to-left">
-                                    <li class="mn-sub-multi">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Pregunta 41</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 42</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 43</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 44</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 45</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 46</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 47</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 48</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 49</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 50</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="mn-sub-multi to-left">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Pregunta 51</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 52</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 53</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 54</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 55</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 56</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 57</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 58</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 59</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pregunta 60</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="resultado.gsp">FINALIZAR <i class="fa"></i></a>
+                                <a href="${context}/resultados">Finalizar <i class="fa"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -300,22 +95,24 @@
             </section>
            
             <section class="page-section">
-                <div class="container relative">
-                    <g:each in="${mapQuestion}" var="question">
-                    <h5 class="pregunta mb-40 mt-60 mb-sm-40">
-                        ${raw(question.text)}
-                    </h5>
-                    </g:each>
+                <g:form action="examen/questionAnswer" >
+                    <div class="container relative">
+                        <g:each in="${mapQuestion}" var="question">
+                        <h5 class="pregunta mb-40 mt-60 mb-sm-40">
+                            ${raw(question.text)}
+                        </h5>
+                        </g:each>
 
-                    <g:each in="${answers}" var="answer">
-                        <ul>
-                            <li><button type="button" class="respuesta btn btn-default" value="">${raw(answer.textAnswer)} </button></li>
-                        </ul>
-                    </g:each>
+                        <g:each in="${answers}" var="answer">
+                            <ul>
+                                <li><g:field type="radio" class="respuesta btn btn-default" id="respuesta" name="respuesta" value="${raw(answer.textAnswer)}" /> ${raw(answer.textAnswer)} </li>
+                            </ul>
+                        </g:each>
 
-                    <a href="menu.gsp" class="btn col-lg-offset-5 btn-mod mt-50 btn-large btn-round Bverde">Contestar</a>
-                </div>
-
+                        <g:field type="hidden" id="idPregunta" name="idPregunta" value="${raw(mapQuestion.getId())}" />
+                        <g:submitButton name="questionAnswer" class="btn col-lg-offset-5 btn-mod mt-50 btn-large btn-round Bverde" value="Continuar"/>
+                    </div>
+                </g:form>
             </section>
 
 

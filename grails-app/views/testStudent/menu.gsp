@@ -74,7 +74,7 @@
                     </li>
 
                     <li>
-                        <a href="${context}/resultados">Finalizar <i class="fa"></i></a>
+                        <a href="${context}/examen/resultado">Finalizar <i class="fa"></i></a>
                     </li>
                 </ul>
             </div>
@@ -205,7 +205,7 @@
                 <h3 class="banner-heading font-alt">Finalizar examen</h3>
 
                 <div>
-                    <a href="${context}/resultados" class="btn btn-mod btn-w btn-medium btn-round">Resultados</a>
+                    <a href="${context}/examen/resultado" class="btn btn-mod btn-w btn-medium btn-round">Resultados</a>
                 </div>
             </div>
 

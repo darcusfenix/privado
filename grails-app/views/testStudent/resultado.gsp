@@ -107,768 +107,72 @@
                     <p class="mt-60 align-center azul ">A continuaci&oacute;n se muestran los resultados correctos de cada pregunta, revisa tus resultados.</p>
 
                     <div class="row">
+
+
+                        <!-- Col -->
+                        <h1>${tk}</h1>
+
                         <div class="col-sm-10 col-sm-offset-1">
+
+                            <!-- Nav tabs -->
                             <ul class="nav nav-tabs tpl-tabs animate">
-                                <li class="active align-center col-sm-4 Bazul">
-                                    <a href="#one" data-toggle="tab" aria-expanded="false">Matem&aacute;ticas</a>
-                                </li>
-                                <li class="col-sm-4  align-center Bnaranja">
-                                    <a href="#two" data-toggle="tab" aria-expanded="false">Ciencias experimentales</a>
-                                </li>
-                                <li class="col-sm-4  align-center Bverde">
-                                    <a href="#three" data-toggle="tab" aria-expanded="true">Comunicaci&oacute;n</a>
-                                </li>
+                                <g:each in="${relations}" var="relation" status="i">
+                                    <li class=" align-center col-sm-4 ${colors[i]}">
+                                        <a href="#relation-${relation.section.id}" data-toggle="tab"
+                                           aria-expanded="false">${relation.section.name}</a>
+                                    </li>
+                                </g:each>
                             </ul>
+
+                            <!-- Tab panes -->
                             <div class="tab-content tpl-tabs-cont section-text">
-                            <g:each in="${relations}" var="relation" status="i">
-                                <div class="tab-pane fade ${i == 0 ? 'active' : ''}  in"
-                                     id="relation-${relation.section.id}">
-                                   <div class="table-responsive">
-                                        <table class="table table-striped table-hover table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th class="col-md-8">
-                                                     Pregunta
-                                                </th>
-                                                <th class="col-md-2 align-center">
-                                                     Tu respuesta
-                                                </th>
-                                                <th class="col-md-2 align-center">
-                                                     Respuesta correcta
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
 
-                                            <g:each in="${questions}" var="map">
-                                                <g:if test="${relation.section.id == map.key}">
-                                                    <g:each in="${map.value}" var="question">
-                                                        <tr>
-                                                            <td>
-                                                                ${raw(question.number)}
-                                                            </td>
-                                                            <td class="align-center">
-                                                                A
-                                                            </td>
-                                                            <td class="align-center">
-                                                                <a href="${raw(question.urlVideo)}" class="button line-blue" data-rel="lightcase"><span aria-hidden="true" class="icon-video"></span></a>
-                                                            </td>
-                                                        </tr>
-                                                    </g:each>
-                                                </g:if>
-                                            </g:each>
-
-
-                                            <!--tr>
-                                                <td>
-                                                    Pregunta 1
-                                                </td>
-                                                <td class="align-center">
-                                                     A
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href="https://www.youtube.com/embed/SdVxNdAqUlo" class="button line-blue" data-rel="lightcase"><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                           <tr>
-                                                <td>
-                                                    Pregunta 2
-                                                </td>
-                                                <td class="align-center">
-                                                     B
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 3
-                                                </td>
-                                                <td class="align-center">
-                                                     C
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 4
-                                                </td>
-                                                <td class="align-center">
-                                                     D
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 5
-                                                </td>
-                                                <td class="align-center">
-                                                     A
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 6
-                                                </td>
-                                                <td class="align-center">
-                                                     B
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 7
-                                                </td>
-                                                <td class="align-center">
-                                                     B
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 8
-                                                </td>
-                                                <td class="align-center">
-                                                     C
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 9
-                                                </td>
-                                                <td class="align-center">
-                                                     C
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 10
-                                                </td>
-                                                <td class="align-center">
-                                                     A
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 11
-                                                </td>
-                                                <td class="align-center">
-                                                     D
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 12
-                                                </td>
-                                                <td class="align-center">
-                                                     D
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 13
-                                                </td>
-                                                <td class="align-center">
-                                                     C
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 14
-                                                </td>
-                                                <td class="align-center">
-                                                     A
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 15
-                                                </td>
-                                                <td class="align-center">
-                                                     B
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 16
-                                                </td>
-                                                <td class="align-center">
-                                                     D
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 17
-                                                </td>
-                                                <td class="align-center">
-                                                     C
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 18
-                                                </td>
-                                                <td class="align-center">
-                                                     A
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 19
-                                                </td>
-                                                <td class="align-center">
-                                                     B
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 20
-                                                </td>
-                                                <td class="align-center">
-                                                     C
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                            </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="two">
+                                <g:each in="${relations}" var="relation" status="i">
+                                    <div class="tab-pane fade ${i == 0 ? 'active' : ''}  in"
+                                         id="relation-${relation.section.id}">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th class="col-md-8">
-                                                     Pregunta
-                                                </th>
-                                                <th class="col-md-2 align-center">
-                                                     Tu respuesta
-                                                </th>
-                                                <th class="col-md-2 align-center">
-                                                     Respuesta correcta
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 21
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                           <tr>
-                                                <td>
-                                                    Pregunta 22
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 23
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 24
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 25
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 26
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 27
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 28
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 29
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 30
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 31
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 32
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 33
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 34
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 35
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 36
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 37
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 38
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 39
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 40
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
+                                                <thead>
+                                                <tr>
+                                                    <th class="col-md-8">
+                                                        Pregunta
+                                                    </th>
+                                                    <th class="col-md-2 align-center">
+                                                        Tu respuesta
+                                                    </th>
+                                                    <th class="col-md-2 align-center">
+                                                        Respuesta correcta
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <g:each in="${questions}" var="map">
+                                                    <g:if test="${relation.section.id == map.key}">
+                                                        <g:each in="${map.value}" var="question">
+                                                            <tr>
+                                                                <td>
+                                                                    ${raw(question.number)}
+                                                                </td>
+                                                                <td class="align-center">
+                                                                    A
+                                                                </td>
+                                                                <td class="align-center">
+                                                                    <a href="${raw(question.urlVideo)}" class="button line-blue" data-rel="lightcase"><span aria-hidden="true" class="icon-video"></span></a>
+                                                                </td>
+                                                            </tr>
+                                                        </g:each>
+                                                    </g:if>
+                                                </g:each>
+                                                </tbody>
                                             </table>
                                         </div>
-                                </div>
-                                <div class="tab-pane fade" id="three">
-                                     <div class="table-responsive">
-                                            <table class="table table-striped table-hover table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th class="col-md-8">
-                                                     Pregunta
-                                                </th>
-                                                <th class="col-md-2 align-center">
-                                                     Tu respuesta
-                                                </th>
-                                                <th class="col-md-2 align-center">
-                                                     Respuesta correcta
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 41
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                           <tr>
-                                                <td>
-                                                    Pregunta 42
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 43
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 44
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 45
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 46
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 47
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 48
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 49
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 50
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 51
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 52
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 53
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 54
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 55
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 56
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 57
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 58
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 59
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pregunta 60
-                                                </td>
-                                                <td class="align-center">
-                                                     Sin contestar
-                                                </td>
-                                                <td class="align-center">
-                                                     <a href=""><span aria-hidden="true" class="icon-video"></span></a>
-                                                </td>
-                                            </tr-->
-                                            </tbody>
-                                            </table>
-                                        </div>
-                                </div>
+                                    </div>
+                                </g:each>
+
                             </div>
-                            </g:each>
+
                         </div>
-                        
+
                         <!-- End Col -->                         
                         
                     </div>
@@ -879,14 +183,14 @@
             
             
             <!-- Call Action Section -->
-            <section class="small-section Bguinda mt-40">
+            <!--section class="small-section Bguinda mt-40">
                 <div class="container relative">
                     
                     <div class="align-center">
-                        <h3 class="banner-heading font-alt"><img src="examen/images/ipnLogo.png" alt="Preparacion IPN" /></h3>
+                        <h3 class="banner-heading font-alt"><img src="../../examen/images/ipnLogo.png" alt="Preparacion IPN" /></h3>
                     </div>                    
                 </div>
-            </section>
+            </section-->
             <!-- End Call Action Section -->
         </div>
         <!-- End Page Wrap -->

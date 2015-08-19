@@ -8,6 +8,7 @@ import com.ed.teststructure.Section
 import com.ed.teststructure.Structure
 import com.ed.teststructure.StructureSection
 import com.ed.teststructure.UserStructure
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import groovy.time.TimeCategory
 
@@ -201,5 +202,20 @@ class TestStudentController {
         }
 
         [mapQuestion:mapQuestion, colors : colors, answers: answers]
+    }
+
+    def respuestasPreguntas(){
+        def result = [:]
+        def nextQuestion
+
+        result['pregunta'] = params.idPregunta
+        result['respuesta'] = params.respuesta
+
+        [resultados: result as JSON]
+
+
+
+        nextQuestion = params.idPregunta++
+        redirect(uri: "/examen/question/nextQuestion")
     }
 }
