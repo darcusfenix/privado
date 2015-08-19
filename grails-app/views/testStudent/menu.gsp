@@ -351,6 +351,9 @@
                                             <th class="col-md-9">
                                                 Pregunta
                                             </th>
+                                            <th>
+                                                Ver
+                                            </th>
                                             <th class="col-md-3 align-center">
                                                 Estado
                                             </th>
@@ -363,6 +366,9 @@
                                                     <tr>
                                                         <td>
                                                             ${raw(question.text)}
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-primary btn-small"> Ver</a>
                                                         </td>
                                                         <td class="alert align-center">
                                                             Sin contestar
