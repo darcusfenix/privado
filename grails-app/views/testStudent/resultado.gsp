@@ -1,3 +1,4 @@
+<g:set var="context" value="${request.contextPath}" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -883,7 +884,7 @@
                 <div class="container relative">
                     
                     <div class="align-center">
-                        <h3 class="banner-heading font-alt"><img src="examen/images/ipnLogo.png" alt="Preparacion IPN" /></h3>
+                        <h3 class="banner-heading font-alt"><img src="${context}/examen/images/ipnLogo.png" alt="Preparacion IPN" /></h3>
                     </div>                    
                 </div>
             </section>
