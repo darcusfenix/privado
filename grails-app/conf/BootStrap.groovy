@@ -397,8 +397,8 @@ class BootStrap {
         User juan = new User()
 
         juan.email = "juancvfenix@hotmail.com"
-        juan.name = "AA"
-        juan.lastName = "AA"
+        juan.name = "JUAN"
+        juan.lastName = "CRISOSTOMO"
         juan.surName = "NULL"
         juan.mobileNumber = "NULL"
         juan.phoneNumber = "NULL"

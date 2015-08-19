@@ -8,18 +8,20 @@
         <meta name="author" content="Roman Kirichik">
         <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-        
+
         <!-- Favicons -->
-        <link rel="shortcut icon" href="images/favicon.ico">
-        
+        <link rel="shortcut icon" href="${resource(dir: 'examen/images', file: 'favicon.ico')}">
+
+
+
         <!-- CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/style-responsive.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-        <link rel="stylesheet" href="css/vertical-rhythm.min.css">
-        <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="${resource(dir: 'examen/css', file: 'bootstrap.min.css')}">
+        <link rel="stylesheet" href="${resource(dir: 'examen/css', file: 'style.css')}">
+        <link rel="stylesheet" href="${resource(dir: 'examen/css', file: 'style-responsive.css')}">
+        <link rel="stylesheet" href="${resource(dir: 'examen/css', file: 'animate.min.css')}">
+        <link rel="stylesheet" href="${resource(dir: 'examen/css', file: 'vertical-rhythm.min.css')}">
+        <link rel="stylesheet" href="${resource(dir: 'examen/css', file: 'owl.carousel.css')}">
+        <link rel="stylesheet" href="${resource(dir: 'examen/css', file: 'magnific-popup.css')}">
         <!--link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'-->
         
     </head>
@@ -102,30 +104,30 @@
         
         
         <!-- JS -->
-        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>        
-        <script type="text/javascript" src="js/SmoothScroll.js"></script>
-        <script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
-        <script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
-        <script type="text/javascript" src="js/jquery.viewport.mini.js"></script>
-        <script type="text/javascript" src="js/jquery.countTo.js"></script>
-        <script type="text/javascript" src="js/jquery.appear.js"></script>
-        <script type="text/javascript" src="js/jquery.sticky.js"></script>
-        <script type="text/javascript" src="js/jquery.parallax-1.1.3.js"></script>
-        <script type="text/javascript" src="js/jquery.fitvids.js"></script>
-        <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-        <script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
-        <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
-        <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-        <script type="text/javascript" src="js/gmap3.min.js"></script>
-        <script type="text/javascript" src="js/wow.min.js"></script>
-        <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
-        <script type="text/javascript" src="js/jquery.simple-text-rotator.min.js"></script>
-        <script type="text/javascript" src="js/all.js"></script>
-        <script type="text/javascript" src="js/contact-form.js"></script>        
-        <!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery-1.11.1.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.easing.1.3.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'bootstrap.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'SmoothScroll.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.scrollTo.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.localScroll.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.viewport.mini.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.countTo.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.appear.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.sticky.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.parallax-1.1.3.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.fitvids.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'owl.carousel.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'isotope.pkgd.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'imagesloaded.pkgd.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.magnific-popup.min.js')}"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'gmap3.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'wow.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'masonry.pkgd.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.simple-text-rotator.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'all.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
+
         
     </body>
 </html>

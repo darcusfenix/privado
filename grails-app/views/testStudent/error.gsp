@@ -54,29 +54,7 @@
             </div>
 
             <div class="inner-nav desktop-nav">
-                <ul class="clearlist">
-                    <li>
-                        <a href="${context}/examen" class="active">Inicio <i class="fa "></i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="mn-has-sub">Secci&oacute;nes <i class="fa fa-angle-down"></i></a>
-                        <ul class="mn-sub mn-has-multi to-left">
-                            <li class="mn-sub-multi">
-                                <ul>
-                                    <g:each in="${relations}" var="relation" >
-                                        <li>
-                                            <a href="#">${relation.section.name}</a>
-                                        </li>
-                                    </g:each>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
 
-                    <li>
-                        <a href="${context}/resultados">Finalizar <i class="fa"></i></a>
-                    </li>
-                </ul>
             </div>
         </div>
     </nav>
@@ -96,12 +74,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 mt-30">
-                    <div class="mod-breadcrumbs font-alt align-right">
-                        <a href="#">TIEMPO: <span id="clock"></span></a>&nbsp;
-                    </div>
 
-                </div>
             </div>
 
         </div>
@@ -111,85 +84,11 @@
     <section class="page-section">
         <div class="container relative">
 
-            <h2 class="section-title font-alt mb-70 mb-sm-40">
-                Selecciona una <strong>secci&oacute;n</strong> y después una <strong>pregunta</strong>
-
-            </h2>
 
             <!-- Row -->
             <div class="row">
 
-                <!-- Col -->
-                <h1>${tk}</h1>
-
-                <div class="col-sm-8 col-sm-offset-2">
-
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs tpl-tabs animate">
-                        <g:each in="${relations}" var="relation" status="i">
-                            <li class=" align-center col-sm-4 ${colors[i]}">
-                                <a href="#relation-${relation.section.id}" data-toggle="tab"
-                                   aria-expanded="false">${relation.section.name}</a>
-                            </li>
-                        </g:each>
-                    </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content tpl-tabs-cont section-text">
-
-                        <g:each in="${relations}" var="relation" status="i">
-                            <div class="tab-pane fade ${i == 0 ? 'active' : ''}  in"
-                                 id="relation-${relation.section.id}">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-hover table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th class="col-md-1">
-                                                #
-                                            </th>
-                                            <th class="col-md-8">
-                                                Pregunta
-                                            </th>
-                                            <th class="col-md-1 align-center">
-                                                Ver
-                                            </th>
-                                            <th class="col-md-2 align-center">
-                                                Estado
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <g:each in="${questions}" var="map">
-                                            <g:if test="${relation.section.id == map.key}">
-                                                <g:each in="${map.value}" var="question">
-                                                    <tr>
-                                                        <td style="width: 100px;">
-                                                            ${question.number}
-                                                        </td>
-                                                        <td>
-                                                            ${raw(question.text)}
-                                                        </td>
-                                                        <td>
-                                                            <a href="${context}/examen/question/${question.id}" class="btn btn-primary btn-small"> Ver</a>
-                                                        </td>
-                                                        <td class="alert align-center">
-                                                            Sin contestar
-                                                        </td>
-                                                    </tr>
-                                                </g:each>
-                                            </g:if>
-                                        </g:each>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </g:each>
-
-                    </div>
-
-                </div>
-
-                <!-- End Col -->
+                <h1 class="text-danger">Lo siento, no hemos podido validar los datos.</h1>
 
             </div>
             <!-- End Row -->
@@ -197,21 +96,6 @@
     </section>
 
 
-    <!-- Call Action Section -->
-    <section class="small-section Bguinda mt-40">
-        <div class="container relative">
-
-            <div class="align-center">
-                <h3 class="banner-heading font-alt">Finalizar examen</h3>
-
-                <div>
-                    <a href="${context}/resultados" class="btn btn-mod btn-w btn-medium btn-round">Resultados</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <!-- End Call Action Section -->
 
     <div class="scroll-to-top" style="display: block;">
         <i class="icon-arrow-up"></i>
@@ -244,10 +128,10 @@
 <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.simple-text-rotator.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'all.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
-
-<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.countdown.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'jquery.countdown.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
+
 
 
 
@@ -256,11 +140,8 @@
 
 
 <script type="text/javascript">
-    var tiempo = ${diff};
-
-    console.log(tiempo);
-
-    var fiveSeconds = new Date().getTime() + tiempo ;
+    /*
+    var fiveSeconds = new Date().getTime() + 4800000;
     $('#clock').countdown(fiveSeconds, {elapse: true})
             .on('update.countdown', function (event) {
                 var $this = $(this);
@@ -270,7 +151,7 @@
                     $this.html(event.strftime('<span>%H:%M:%S</span>'));
                 }
             });
-
+    */
 </script>
 </body>
 </html>

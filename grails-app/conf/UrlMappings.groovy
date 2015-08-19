@@ -12,6 +12,10 @@ class UrlMappings {
         "/"(view: '/registro')
         "/registro"(view: '/registro')
 
-        "/examen/menu/"(view: "testStudent/menu", controller: "testStudent", action: "menu")
+        "/examen/menu"(view: "testStudent/menu", controller: "testStudent", action: "menu")
+        "/examen/menu/enrolment"(controller: "testStudent", action: "enrolment")
+        "/examen/menu/$tk"(view: "testStudent/menu", controller: "testStudent", action: "menu")
+        "/examen/error/"(view: "testStudent/error")
+        "/examen"(view: "testStudent/index", controller: "testStudent", action: "index")
     }
 }
