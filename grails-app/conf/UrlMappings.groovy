@@ -20,7 +20,7 @@ class UrlMappings {
         
         "/examen/resultado/"(view: "testStudent/resultado", controller: "testStudent", action: "resultado")
 
-        "/examen/question/$id?$tk"(view: "testStudent/question", controller: "testStudent", action: "pregunta")
+        "/examen/question/$id"(view: "testStudent/question", controller: "testStudent", action: "pregunta")
 
     }
 }
