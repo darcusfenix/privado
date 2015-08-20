@@ -527,8 +527,18 @@ class TestStudentController {
 
         //TODO Realizar consulta para saber cual es el maximo de preguntas que existen relacionadas a la estructura
 
-        def jsonStr = result.toString()
-        //userStructure.json=jsonSt
+        def jsonSave = userStructure.json
+        def jsonStr
+
+        if (jsonSave==null){
+            jsonStr = result.toString()
+            log.debug("El JSON viene vacio y la cadena vale: "+jsonStr)
+        }else{
+            jsonStr = result.toString()
+            jsonStr = jsonSave+"|"+jsonStr
+            log.debug("El JSON NO viene vacio y la cadena vale: "+jsonStr)
+        }
+
         userStructure.setJson(jsonStr)
         userStructure.save(flush: true)
 
