@@ -113,7 +113,7 @@
                             </ul>
                         </g:each>
 
-                        <g:field type="hidden" id="pregunta" name="pregunta" value="${mapQuestion.getId()}" />
+                        <g:field type="hidden" id="pregunta" name="pregunta" value="${mapQuestion.id}" />
 
                         <g:submitButton name="questionAnswer" class="btn col-lg-offset-5 btn-mod mt-50 btn-large btn-round Bverde" value="Continuar"/>
                     </div>

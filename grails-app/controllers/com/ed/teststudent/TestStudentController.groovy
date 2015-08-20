@@ -40,6 +40,10 @@ class TestStudentController {
         //TODO verificar el id del examen
         def confirm = UserStructure.findByUserAndStructure(user,Structure.findById(1))
 
+        def structures = Structure.findAllByMockExam(MockExam.findByActive(true))
+
+        log.error(structures)
+
 
         if (confirm != null){
             log.error("************************ TERCER VALIDACIÓN SI YA ESTÁ EN EL EXAMEN")
@@ -251,7 +255,7 @@ class TestStudentController {
     }
 
 
-    def pregunta(Integer id, String tk){
+    def pregunta(Integer id){
 
         if (session.getAttribute("tk") == null){
             redirect(uri: "/examen/error")
@@ -319,6 +323,7 @@ class TestStudentController {
         def mapQuestion = Question.findById(id).each { question ->
             answers  = Answer.findAllByQuestion(question)
         }
+        mapQuestion.text
 
         [mapQuestion:mapQuestion, colors : colors, answers: answers, diff : diff]
     }
