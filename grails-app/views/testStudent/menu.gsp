@@ -59,7 +59,7 @@
                         <a href="${context}/examen" class="active">Inicio <i class="fa "></i></a>
                     </li>
                     <li>
-                        <a href="${context}/examen/resultado">Finalizar <i class="fa"></i></a>
+                        <a href="${context}/examen/finalizar/${examenId}">Finalizar <i class="fa"></i></a>
                     </li>
                 </ul>
             </div>

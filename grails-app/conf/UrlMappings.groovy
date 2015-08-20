@@ -22,5 +22,6 @@ class UrlMappings {
 
         "/examen/question/$id"(view: "testStudent/question", controller: "testStudent", action: "pregunta")
         "/examen/finalizar/$id"(controller: "testStudent", action: "finalizar")
+        "/examen/resultado/"(view: "testStudent/resultado")
     }
 }
