@@ -97,7 +97,7 @@
                             </td>
                             <td class="text-center" style="font-size: 18px;">
                                 <a href="#/answer/show/{{answer.id}}">
-                                    <img src="{{answer.image}}" ng-show="answer.typeAnswer === 1">
+                                    <img src="/{{answer.image}}" ng-show="answer.typeAnswer === 1">
                                     <span  ng-show="answer.typeAnswer === 2 || answer.typeAnswer === 3"
                                            class="html" >
                                     </span>

@@ -37,30 +37,35 @@ class TestStudentController {
             return ;
         }
 
-        //TODO verificar el id del examen
-        def confirm = UserStructure.findByUserAndStructure(user,Structure.findById(1))
 
-        def structures = Structure.findAllByMockExam(MockExam.findByActive(true))
+        def confirm
+        def flag = 0;
 
-        log.error(structures)
-
-
-        if (confirm != null){
+        Structure.findAllByMockExam(MockExam.findByActive(true)).each { structure ->
+            confirm = UserStructure.findByUserAndStructureAndFinalizado(user,structure,false)
+            if(confirm != null){
+                // está en un examen
+                flag = 1;
+                return true;
+            }
+        }
+        if (flag == 1){
             log.error("************************ TERCER VALIDACIÓN SI YA ESTÁ EN EL EXAMEN")
             redirect(uri: "/examen/menu")
             return ;
         }
 
 
+
         [user:user]
     }
 
     def enrolment(){
-
+        log.error("********************************************** TRATAR DE INSCRIBIR")
 
         if (params.tk == null){
-            redirect(uri: "/examen/error")
             log.error("************************ PRIMER VALIDACIÓN FUERA")
+            redirect(uri: "/examen/error")
             return ;
         }
 
@@ -68,19 +73,89 @@ class TestStudentController {
 
 
         if(user == null) {
-            redirect(uri: "/examen/error")
             log.error("************************ SEGUNDA VALIDACIÓN FUERA")
+            redirect(uri: "/examen/error")
+
             return ;
         }
 
-        def confirm = UserStructure.findByUser(user)
 
+        def confirm
+        def strutureSelected = new Structure()
+        def flag = 0;
 
-
-        if (confirm != null){
-
-            redirect(uri: "/examen/menu")
+        // si estoy aún en un examen
+        def structures = Structure.findAllByMockExam(MockExam.findByActive(true)).each { structure ->
+            confirm = UserStructure.findByUserAndStructureAndFinalizado(user,structure,false)
+            if (confirm != null){
+                flag = 1;
+                return true;
+            }
+        }
+        if (flag == 1){
             log.error("************************ TERCER VALIDACIÓN SI YA ESTÁ EN EL EXAMEN")
+            redirect(uri: "/examen/menu")
+            return;
+        }
+
+
+        Date currentDate = new Date();
+
+        Calendar zeroDay = Calendar.getInstance()
+        zeroDay.set(2015, Calendar.AUGUST, 18);
+        Date zero = zeroDay.getTime()
+
+        Calendar oneDay = Calendar.getInstance()
+        oneDay.set(2015, Calendar.AUGUST, 19);
+
+        Date one = oneDay.getTime()
+
+        Calendar secondDay = Calendar.getInstance()
+        secondDay.set(2015, Calendar.AUGUST, 20);
+
+        Date second = secondDay.getTime()
+
+        Calendar thirdDay = Calendar.getInstance()
+        thirdDay.set(2015, Calendar.AUGUST, 21);
+
+        Date third = thirdDay.getTime()
+
+        Calendar fourthDay = Calendar.getInstance()
+        fourthDay.set(2015, Calendar.AUGUST, 22);
+
+        Date fourth = fourthDay.getTime()
+
+        if(currentDate.after(zero) && currentDate.before(second) ){
+            for (int i = 0; i < structures.size(); i++){
+                if (structures.get(i).id == 1){
+                    strutureSelected = structures.get(i)
+
+                }
+            }
+            log.error("******************************************** PRIMER DÍA")
+        }
+        else if(currentDate.after(second) && currentDate.before(third)) {
+            for (int i = 0; i < structures.size(); i++){
+                if (structures.get(i).id == 2){
+                    strutureSelected = structures.get(i)
+                }
+            }
+            log.error("******************************************** SEGUNDO DÍA")
+        }
+        else if(currentDate.after(third) && currentDate.before(fourth)) {
+            for (int i = 0; i < structures.size(); i++){
+                if (structures.get(i).id == 3){
+                    strutureSelected = structures.get(i)
+                }
+            }
+            log.error("******************************************** TERCER DÍA")
+        }
+
+        def verificar = UserStructure.findByUserAndStructure(user,strutureSelected)
+
+        if(verificar != null){
+            log.error("************************ CUARTA VALIDACIÓN SI YA HIZO EL EXAMEN")
+            redirect(uri: "/examen/resultado/" + strutureSelected.id)
             return ;
         }
 
@@ -91,8 +166,7 @@ class TestStudentController {
         userStructure.user = user
         userStructure.finalizado = false
         userStructure.inicioFechaHora = new Date()
-        //TODO verificar el id del examen
-        userStructure.structure = Structure.findByMockExamAndId(MockExam.findByActive(true), 1)
+        userStructure.structure = strutureSelected
         String ruta;
 
         if(userStructure.validate()){
@@ -130,15 +204,27 @@ class TestStudentController {
             return ;
         }
 
-        //TODO verificar el id del examen
-        def userStructure = UserStructure.findByUserAndStructure(user,Structure.findById(1))
 
+        def userStructure
+
+        Structure.findAllByMockExam(MockExam.findByActive(true)).each { structure ->
+
+            def temp = UserStructure.findByUserAndStructureAndFinalizado(user,Structure.findById(structure.id),false)
+
+            if (temp != null){
+                userStructure = temp
+                return true
+            }
+        }
 
         if (userStructure == null){
             redirect(uri: "/examen/error")
             log.error("************************ TERCER VALIDACIÓN FUERA -- MENU")
             return ;
         }
+
+
+
 
         Date now = new Date()
         Date nd = userStructure.inicioFechaHora
@@ -149,20 +235,10 @@ class TestStudentController {
             difference = (limite - now.minutes)
         }
 
-        log.error("************************ INICIÉ " + nd)
-        log.error("************************ AHORA " + now)
-        log.error("************************ LIMITE " + limite)
-
-
         long diff = 0
 
         if(now.after(userStructure.inicioFechaHora) && now.before(limite)) {
-            log.error("**************************** ESTOY A TIEMPO")
-
                 diff =  limite.getTime() -  now.getTime()
-
-            log.error("************************* ME QUEDAN: " + diff)
-
         }else{
             redirect(uri: "/examen/error")
             log.error("************************ TERCER VALIDACIÓN FUERA, YA PASO SU TIEMPO. DESPUÉS QUE SE MUESTRE OTRA VISTA O LA DE RESULTADOS")
@@ -170,19 +246,78 @@ class TestStudentController {
         }
 
 
-
-
         def colors = ["Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde", "Bnaranja", "Bazul", "Bverde"]
 
         def questions = [:]
 
-        def map = StructureSection.findAllByStructure(Structure.findById(1)).each { structureSection ->
+        def map = StructureSection.findAllByStructure(Structure.findById(userStructure.structure.id)).each { structureSection ->
             questions.put(structureSection.section.id,Question.findAllBySection(structureSection.section))
         }
 
-        [relations:map, colors : colors, questions: questions, diff : diff, user: user]
+        [relations:map, colors : colors, questions: questions, diff : diff, user: user, examen : userStructure.structure.name, examenId : userStructure.structure.id]
 
     }
+
+
+    def finalizar(Integer id) {
+
+
+        if (session.getAttribute("tk") == null){
+            redirect(uri: "/examen/error")
+            log.error("************************ PRIMER VALIDACIÓN FUERA -- MENU")
+            return ;
+        }
+
+
+        def user = User.findByActivationToken(session.getAttribute("tk"))
+
+
+        if(user == null) {
+            redirect(uri: "/examen/error")
+            log.error("************************ SEGUNDA VALIDACIÓN FUERA -- MENU")
+            return ;
+        }
+
+        //TODO verificar el id del examen
+
+        def userStructure = UserStructure.findByUserAndStructureAndFinalizado(user,Structure.findById(id),false)
+
+
+
+        if (userStructure == null){
+            redirect(uri: "/examen/error")
+            log.error("************************ TERCER VALIDACIÓN FUERA -- MENU")
+            return ;
+        }
+
+
+
+        Date now = new Date()
+        Date nd = userStructure.inicioFechaHora
+        Date limite = nd;
+        Date difference = new Date()
+        use(TimeCategory) {
+            limite = (nd + 80.minutes)
+            difference = (limite - now.minutes)
+        }
+
+        long diff = 0
+
+        if(now.after(userStructure.inicioFechaHora) && now.before(limite)) {
+            diff =  limite.getTime() -  now.getTime()
+        }else{
+            redirect(uri: "/examen/error")
+            log.error("************************ TERCER VALIDACIÓN FUERA, YA PASO SU TIEMPO. DESPUÉS QUE SE MUESTRE OTRA VISTA O LA DE RESULTADOS")
+            return ;
+        }
+
+        userStructure.finalizado = true
+
+        userStructure.save(flush: true)
+
+        redirect(uri: "/examen/resultado/" + id)
+    }
+
     
     def resultado(Integer id, String tk){
 
@@ -203,7 +338,11 @@ class TestStudentController {
         }
 
         //TODO verificar el id del examen
-        def userStructure = UserStructure.findByUserAndStructure(user,Structure.findById(1))
+        def userStructure
+        def idStrutureSelected
+
+
+        userStructure = UserStructure.findByUserAndStructureAndFinalizado(user,Structure.findById(id),true)
 
         // si el usuario no está en el examen lo saca
         if (userStructure == null){
@@ -211,6 +350,8 @@ class TestStudentController {
             log.error("************************ TERCER VALIDACIÓN FUERA")
             return ;
         }
+
+        idStrutureSelected = userStructure.structure.id
 
         Date now = new Date()
         Date nd = userStructure.inicioFechaHora
@@ -221,23 +362,11 @@ class TestStudentController {
             difference = (limite - now.minutes)
         }
 
-        log.error("************************ INICIÉ " + nd)
-        log.error("************************ AHORA " + now)
-        log.error("************************ LIMITE " + limite)
-
-
         long diff = 0
 
-
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-
         if(now.after(userStructure.inicioFechaHora) && now.before(limite)) {
-            log.error("**************************** ESTOY A TIEMPO")
 
             diff =  limite.getTime() -  now.getTime()
-
-            log.error("************************* ME QUEDAN: " + diff)
-
 
         }else{
             redirect(uri: "/examen/error")
@@ -249,10 +378,10 @@ class TestStudentController {
 
         def questions = [:]
 
-        def map = StructureSection.findAllByStructure(Structure.findById(1)).each { structureSection ->
+        def map = StructureSection.findAllByStructure(Structure.findById(idStrutureSelected)).each { structureSection ->
             questions.put(structureSection.section.id,Question.findAllBySection(structureSection.section))
         }
-        [relations:map, colors : colors, questions: questions, diff : diff]
+        [relations:map, colors : colors, questions: questions, diff : diff, examen : userStructure.structure.name, examenId : userStructure.structure.id]
     }
 
 
@@ -275,7 +404,16 @@ class TestStudentController {
         }
 
         //TODO verificar el id del examen
-        def userStructure = UserStructure.findByUserAndStructure(user,Structure.findById(1))
+        def userStructure
+
+        Structure.findAllByMockExam(MockExam.findByActive(true)).each { structure ->
+            def temp = UserStructure.findByUserAndStructureAndFinalizado(user,Structure.findById(structure.id),false)
+
+            if (temp != null){
+                userStructure = temp
+                return true
+            }
+        }
 
 
         if (userStructure == null){
@@ -293,10 +431,6 @@ class TestStudentController {
             difference = (limite - now.minutes)
         }
 
-        log.error("************************ INICIÉ " + nd)
-        log.error("************************ AHORA " + now)
-        log.error("************************ LIMITE " + limite)
-
 
         long diff = 0
 
@@ -304,13 +438,7 @@ class TestStudentController {
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
         if(now.after(userStructure.inicioFechaHora) && now.before(limite)) {
-            log.error("**************************** ESTOY A TIEMPO")
-
             diff =  limite.getTime() -  now.getTime()
-
-            log.error("************************* ME QUEDAN: " + diff)
-
-
         }else{
             redirect(uri: "/examen/error")
             log.error("************************ TERCER VALIDACIÓN FUERA, YA PASO SU TIEMPO. DESPUÉS QUE SE MUESTRE OTRA VISTA O LA DE RESULTADOS")
@@ -326,7 +454,7 @@ class TestStudentController {
         }
         mapQuestion.text
 
-        [mapQuestion:mapQuestion, colors : colors, answers: answers, diff : diff]
+        [mapQuestion:mapQuestion, colors : colors, answers: answers, diff : diff, examen : userStructure.structure.name, examenId : userStructure.structure.id]
     }
 
     def respuestasPreguntas(){
@@ -349,7 +477,11 @@ class TestStudentController {
         }
 
         //TODO verificar el id del examen
-        def userStructure = UserStructure.findByUserAndStructure(user,Structure.findById(1))
+        def userStructure
+
+        Structure.findAllByMockExam(MockExam.findByActive(true)).each { structure ->
+            userStructure = UserStructure.findByUserAndStructureAndFinalizado(user,structure,false)
+        }
 
 
         if (userStructure == null){
@@ -367,22 +499,11 @@ class TestStudentController {
             difference = (limite - now.minutes)
         }
 
-        log.error("************************ INICIÉ " + nd)
-        log.error("************************ AHORA " + now)
-        log.error("************************ LIMITE " + limite)
-
-
         long diff = 0
 
 
         if(now.after(userStructure.inicioFechaHora) && now.before(limite)) {
-            log.error("**************************** ESTOY A TIEMPO")
-
             diff =  limite.getTime() -  now.getTime()
-
-            log.error("************************* ME QUEDAN: " + diff)
-
-
         }else{
             redirect(uri: "/examen/error")
             log.error("************************ TERCER VALIDACIÓN FUERA, YA PASO SU TIEMPO. DESPUÉS QUE SE MUESTRE OTRA VISTA O LA DE RESULTADOS")

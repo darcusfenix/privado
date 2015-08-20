@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="col-md-7 value uppercase">
-                        <img src="{{answerInstance.image}}" ng-show="answerInstance.typeAnswer === 1">
+                        <img src="/{{answerInstance.image}}" ng-show="answerInstance.typeAnswer === 1">
                         <span  ng-show="answerInstance.typeAnswer === 2 || answerInstance.typeAnswer === 3"
                                id="html">
 

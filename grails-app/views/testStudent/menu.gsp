@@ -77,7 +77,7 @@
                     <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">Examen simulacro</h1>
 
                     <div class="hs-line-4 font-alt black">
-                        Versi&oacute;n A
+                        ${examen}
                     </div>
                 </div>
 
@@ -181,7 +181,7 @@
                 <h3 class="banner-heading font-alt">Finalizar examen</h3>
 
                 <div>
-                    <a href="${context}/examen/resultado" class="btn btn-mod btn-w btn-medium btn-round">Resultados</a>
+                    <a href="${context}/examen/finalizar/${examenId}" class="btn btn-mod btn-w btn-medium btn-round">Resultados</a>
                 </div>
             </div>
 

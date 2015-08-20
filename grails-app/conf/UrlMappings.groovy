@@ -18,9 +18,9 @@ class UrlMappings {
         "/examen/error/"(view: "testStudent/error")
         "/examen"(view: "testStudent/index", controller: "testStudent", action: "index")
         
-        "/examen/resultado/"(view: "testStudent/resultado", controller: "testStudent", action: "resultado")
+        "/examen/resultado/$id"(view: "testStudent/resultado", controller: "testStudent", action: "resultado")
 
         "/examen/question/$id"(view: "testStudent/question", controller: "testStudent", action: "pregunta")
-
+        "/examen/finalizar/$id"(controller: "testStudent", action: "finalizar")
     }
 }

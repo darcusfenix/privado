@@ -43,7 +43,7 @@
                         <div class="col-md-8">
                             <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">Examen simulacro</h1>
                             <div class="hs-line-4 font-alt black">
-                                Versi&oacute;n A
+                                ${examen}
                             </div>
                         </div>
 

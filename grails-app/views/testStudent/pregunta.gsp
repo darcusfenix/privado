@@ -48,20 +48,8 @@
                                 <a href="${context}/examen" class="active">Inicio <i class="fa "></i></a>
                             </li>
                             <li>
-                                <a href="#" class="mn-has-sub">Secci&oacute;nes <i class="fa fa-angle-down"></i></a>
-                                <ul class="mn-sub mn-has-multi to-left">
-                                    <li class="mn-sub-multi">
-                                        <ul>
-                                            <g:each in="${relations}" var="relation" >
-                                                <li>
-                                                    <a href="#">${relation.section.name}</a>
-                                                </li>
-                                            </g:each>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <a href="${context}/examen/menu" class="active">MENÚ<i class="fa "></i></a>
                             </li>
-
                             <li>
                                 <a href="${context}/resultados">Finalizar <i class="fa"></i></a>
                             </li>
@@ -80,7 +68,7 @@
                         <div class="col-md-8">
                             <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">Examen simulacro</h1>
                             <div class="hs-line-4 font-alt black">
-                                Versi&oacute;n A
+                                ${examen}
                             </div>
                         </div>
 
@@ -108,7 +96,13 @@
                             <ul>
                                 <li>
                                     <g:field type="radio" class="respuesta btn btn-default" id="respuesta" name="respuesta" value="${answer.textAnswer}" />
-                                    ${raw(answer.textAnswer)}
+                                    <g:if test="${answer.typeAnswer == 1}">
+                                        <img src="/${answer.image}">
+                                    </g:if>
+                                    <g:if test="${answer.typeAnswer == 2 || answer.typeAnswer ==3}">
+                                        ${raw(answer.textAnswer)}
+                                    </g:if>
+
                                 </li>
                             </ul>
                         </g:each>
@@ -127,7 +121,7 @@
                     <div class="align-center">
                         <h3 class="banner-heading font-alt">Finalizar examen</h3>
                         <div>
-                            <a href="${context}/resultados" class="btn btn-mod btn-w btn-medium btn-round">Resultados</a>
+                            <a href="${context}/examen/finalizar/${examenId}" class="btn btn-mod btn-w btn-medium btn-round">Resultados</a>
                         </div>
                     </div>
                 </div>
