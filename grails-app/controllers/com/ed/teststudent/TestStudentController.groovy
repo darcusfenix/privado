@@ -80,11 +80,11 @@ class TestStudentController {
             return ;
         }
 
-
         UserStructure userStructure = new UserStructure()
         userStructure.aciertos = 0;
         userStructure.json = ""
         userStructure.user = user
+        userStructure.finalizado = false
         userStructure.inicioFechaHora = new Date()
         //TODO verificar el id del examen
         userStructure.structure = Structure.findByMockExamAndId(MockExam.findByActive(true), 1)
