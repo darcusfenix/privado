@@ -11,6 +11,7 @@ import com.ed.teststructure.UserStructure
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import groovy.time.TimeCategory
+//import groovy.json
 
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -404,15 +405,18 @@ class TestStudentController {
         nextQuestion = nextQuestion+1
 
         //TODO Realizar consulta para saber cual es el maximo de preguntas que existen relacionadas a la estructura
+
+        def jsonStr = result.toString()
+        //userStructure.json=jsonSt
+        userStructure.setJson(jsonStr)
+        userStructure.save(flush: true)
+
+        print("EL RESULTADO EN CADENA DEL JSON: " + userStructure.json)
+
         if(nextQuestion==66){
             redirect(uri: "/examen/resultado")
         }else {
             redirect(uri: "/examen/question/$nextQuestion")
         }
-
-
-        //userStructure.json=result
-
-        print(userStructure.json)
     }
 }
