@@ -135,7 +135,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/2706Administracion#'  : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
         '/index'                : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
         '/app/**'               : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
-        '/assets/**'            : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
+
         '/exportTables/**'      : ['ROLE_ADMIN', 'ROLE_EMPLEADO', 'ROLE_SU'],
 
         '/'                     : ['permitAll'],
@@ -148,8 +148,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/images'               : ['permitAll'],
         '/js/**'                : ['permitAll'],
         '/favicon.ico'          : ['permitAll'],
-        '/imgFiles/**'          : ['permitAll'],
-        '/imgFiles/'            : ['permitAll'],
         '/examen/**'            : ['permitAll'],
+        '/assets/**'            : ['permitAll'],
+        '/imgFiles/**'          : ['permitAll'],
 ]
 grails.plugin.springsecurity.securityConfigType = "Annotation"

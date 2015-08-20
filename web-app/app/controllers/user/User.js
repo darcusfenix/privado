@@ -49,7 +49,7 @@ function UserSendEmailController($scope, $routeParams, $location, VoucherPayment
             if ($scope.classRoomList[i].id == idClassRoom)
                 $scope.classRoomNameCurrent = $scope.classRoomList[i].nameClassroom;
 
-        $scope.studentList = Classroom.getAllUsersByClassroom({id: idClassRoom}, function (data) {
+        $scope.studentList = Classroom.getUsersByClassroom({id: idClassRoom}, function (data) {
 
             $scope.studentList = data;
 
@@ -59,12 +59,6 @@ function UserSendEmailController($scope, $routeParams, $location, VoucherPayment
     };
 
     $scope.sentoToAllStudents = function(){
-        /*
-        for(var i = 0; i< $scope.studentList.length ; i++){
-            $scope.sendEmailExam($scope.studentList[i].id);
-        }
-        */
-        console.log($scope.idClassRoom);
 
         User.sendEmailExamToAllStudents({id: $scope.idClassRoom}, function (data) {
 
