@@ -14,7 +14,7 @@ class UrlMappings {
 
         "/examen/menu"(view: "testStudent/menu", controller: "testStudent", action: "menu")
         "/examen/menu/enrolment"(controller: "testStudent", action: "enrolment")
-        "/examen/menu/$tk"(view: "testStudent/menu", controller: "testStudent", action: "menu")
+        //"/examen/menu/$tk"(view: "testStudent/menu", controller: "testStudent", action: "menu")
         "/examen/error/"(view: "testStudent/error")
         "/examen"(view: "testStudent/index", controller: "testStudent", action: "index")
         
@@ -22,5 +22,6 @@ class UrlMappings {
 
         "/examen/question/$id"(view: "testStudent/question", controller: "testStudent", action: "pregunta")
         "/examen/finalizar/$id"(controller: "testStudent", action: "finalizar")
+
     }
 }

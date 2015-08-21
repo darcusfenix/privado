@@ -59,7 +59,7 @@
                         <a href="${context}/examen" class="active">Inicio <i class="fa "></i></a>
                     </li>
                     <li>
-                        <a href="${context}/examen/resultado">Finalizar <i class="fa"></i></a>
+                        <a href="${context}/examen/finalizar/${examenId}">Finalizar <i class="fa"></i></a>
                     </li>
                 </ul>
             </div>
@@ -152,7 +152,12 @@
                                                             <a href="${context}/examen/question/${question.id}" class="btn btn-primary btn-small"> Ver</a>
                                                         </td>
                                                         <td class="alert align-center">
-                                                            Sin contestar
+                                                            <g:each in="${results}" var="result">
+                                                                <g:if test="${result.key == question.id}">
+                                                                    Resuelta
+                                                                </g:if>
+                                                            </g:each>
+                                                            
                                                         </td>
                                                     </tr>
                                                 </g:each>

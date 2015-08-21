@@ -164,6 +164,54 @@
                                     </div>
                                 </g:each>
 
+                            <g:each in="${relations}" var="relation" status="i">
+                                <div class="tab-pane fade ${i == 0 ? 'active' : ''}  in"
+                                     id="relation-${relation.section.id}">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th class="col-md-1">
+                                                    #
+                                                </th>
+                                                <th class="col-md-8">
+                                                    Pregunta
+                                                </th>
+                                                <th class="col-md-1 align-center">
+                                                    Ver
+                                                </th>
+                                                <th class="col-md-2 align-center">
+                                                    Estado
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <g:each in="${questions}" var="map">
+                                                <g:if test="${relation.section.id == map.key}">
+                                                    <g:each in="${map.value}" var="question">
+                                                        <tr>
+                                                            <td style="width: 100px;">
+                                                                ${question.number}
+                                                            </td>
+                                                            <td>
+                                                                ${raw(question.text)}
+                                                            </td>
+                                                            <td>
+                                                                <a href="${context}/examen/question/${question.id}" class="btn btn-primary btn-small"> Ver</a>
+                                                            </td>
+                                                            <td class="alert align-center">
+                                                                Sin contestar
+                                                            </td>
+                                                        </tr>
+                                                    </g:each>
+                                                </g:if>
+                                            </g:each>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </g:each>
+
                             </div>
 
                         </div>
@@ -175,22 +223,7 @@
                     
                 </div>
             </section>
-            
-            
-            <!-- Call Action Section -->
-            <!--section class="small-section Bguinda mt-40">
-                <div class="container relative">
-                    
-                    <div class="align-center">
-<<<<<<< HEAD
-                        <h3 class="banner-heading font-alt"><img src="../../examen/images/ipnLogo.png" alt="Preparacion IPN" /></h3>
-=======
-                        <h3 class="banner-heading font-alt"><img src="${context}/examen/images/ipnLogo.png" alt="Preparacion IPN" /></h3>
->>>>>>> 9ce08095c5adbfffe70ec98bc48473e953b66175
-                    </div>                    
-                </div>
-            </section-->
-            <!-- End Call Action Section -->
+
         </div>
         <!-- End Page Wrap -->
         
@@ -225,7 +258,7 @@
         <script type="text/javascript" src="${resource(dir: 'examen/js', file: 'contact-form.js')}"></script>
 
     <script type="text/javascript">
-        var tiempo = ${diff};
+        var tiempo = 0  ;
 
         console.log(tiempo);
 

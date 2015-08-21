@@ -51,7 +51,7 @@
                                 <a href="${context}/examen/menu" class="active">MENÚ<i class="fa "></i></a>
                             </li>
                             <li>
-                                <a href="${context}/resultados">Finalizar <i class="fa"></i></a>
+                                <a href="${context}/examen/finalizar/${examenId}">Finalizar <i class="fa"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -95,7 +95,7 @@
                         <g:each in="${answers}" var="answer">
                             <ul>
                                 <li>
-                                    <g:field type="radio" class="respuesta btn btn-default" id="respuesta" name="respuesta" value="${answer.textAnswer}" />
+                                    <g:field type="radio" class="respuesta btn btn-default" id="respuesta" name="respuesta" value="${answer.id}" />
                                     <g:if test="${answer.typeAnswer == 1}">
                                         <img src="/${answer.image}">
                                     </g:if>
