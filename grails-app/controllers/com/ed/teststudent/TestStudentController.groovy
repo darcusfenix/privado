@@ -479,7 +479,7 @@ class TestStudentController {
         def userStructure
 
         Structure.findAllByMockExam(MockExam.findByActive(true)).each { structure ->
-            userStructure = UserStructure.findByUserAndStructureAndFinalizado(user, structure, false)
+//            userStructure = UserStructure.findByUserAndStructureAndFinalizado(user, structure, false)
             def temp = UserStructure.findByUserAndStructureAndFinalizado(user, Structure.findById(structure.id), false)
 
             if (temp != null) {
